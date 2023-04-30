@@ -1,0 +1,91 @@
+@extends('layouts.master')
+@section('title') @lang('translation.dashboards')
+@endsection
+@section('css')
+<link href="{{ URL::asset('build/libs/jsvectormap/css/jsvectormap.min.css')}}" rel="stylesheet" type="text/css" />
+<link href="{{ URL::asset('build/libs/swiper/swiper-bundle.min.css')}}" rel="stylesheet" type="text/css" />
+@endsection
+@section('content')
+@component('components.breadcrumb')
+@slot('li_1') Tables @endslot
+@slot('title')Datatables @endslot
+@endcomponent
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Tabla de Usuarios</h5>
+            </div>
+            <div class="card-header">
+                <a class="btn btn-warning" href="{{route('user.create')}}">Nuevo</a>
+            </div>
+            <div class="card-body">
+                <table id="model-datatables" class="table table-bordered nowrap table-striped align-middle" style="width:100%">
+                    <thead>
+                        <tr>
+                            
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Email</th>
+                            <th>Rol</th>
+                            <th>Avatar</th>
+                            {{--  <th>Assigned To</th>  --}}
+                            {{--  <th>Created By</th>  --}}
+                            <th>Create Date</th>
+                            {{--  <th>Status</th>  --}}
+                            {{--  <th>Priority</th>  --}}
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($user as $user)
+                        <tr>
+                            <td>{{$user->id}}</td>
+                            <td>{{$user->name}}</td>
+                            <td>{{$user->email}}</td>
+                            <td>
+                                @if (!@empty($user->getRoleNames()))
+                                    @foreach($user->getRoleNames() as $rolName)
+                                    <h5><span>{{$rolName}}</span></h5>
+                                    @endforeach
+                                @endif
+                            </td>
+                            <td>{{$user->avatar}}</td>
+                            <td>{{$user->created_at}}</td>
+                            {{--  <td>Alexis Clarke</td>
+                            <td>Joseph Parker</td>  --}}
+                            {{--  <td><span class="badge badge-soft-info">Re-open</span></td>
+                            <td><span class="badge bg-danger">High</span></td>  --}}
+                            <td>
+                                <div class="dropdown d-inline-block">
+                                    <button class="btn btn-soft-secondary btn-sm dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="ri-more-fill align-middle"></i>
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-end">
+                                        {{--  <li><a href="{{route('user.view')}}" class="dropdown-item"><i class="ri-eye-fill align-bottom me-2 text-muted"></i> View</a></li>  --}}
+                                        <li><a href="{{ route('user.edit', $user->id) }}" class="dropdown-item edit-item-btn"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit</a></li>
+                                        <li>
+                                            <form action="{{ route('user.destroy', $user->id) }}" method="POST" class="delete-form">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="dropdown-item remove-item-btn"><i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete</button>
+                                            </form>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                        @endforeach    
+                    </tbody>
+                </table>
+                {{--  <div class="pagination justify-content-end">
+                    {{ $user->links() }}
+                </div>  --}}
+            </div>
+        </div>
+    </div>
+</div>
+
+@endsection
