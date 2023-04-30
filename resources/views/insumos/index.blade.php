@@ -17,7 +17,7 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
-                <a class="btn btn-warning" href="{{route('insumos.create')}}">Nuevo Registro</a>
+                <a class="btn btn-warning" href="{{route('insumos.create')}}">prueba</a>
             </div>
             <div class="card-body">
                 <table id="scroll-horizontal" class="table nowrap align-middle" style="width:100%">
