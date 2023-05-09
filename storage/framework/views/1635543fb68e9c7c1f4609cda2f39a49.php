@@ -163,23 +163,25 @@ parametrizacion
                                                 </a>
                                             </li>
                                             <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Remove">
-                                                <a class="text-danger d-inline-block remove-item-btn" data-bs-toggle="modal" href="#deleteOrder" data-id="<?php echo e($param->id); ?>">
-                                                    <i class="ri-delete-bin-5-fill fs-16"></i>
-                                                </a>                                                
+                                                
+                                                <form action="<?php echo e(route('parametrizacion.destroy', $param->id)); ?>" method="POST" class="delete-form" onsubmit="return confirm('¿Está seguro de que desea eliminar este registro?');">
+                                                    <?php echo csrf_field(); ?>
+                                                    <?php echo method_field('DELETE'); ?>
+                                                    <button type="submit" class="dropdown-item remove-item-btn"><i class="ri-delete-bin-5-fill fs-16"></i></button>
+                                                </form>
+                                                
+
                                             </li>
 
                                         </ul>
                                     </td>
-                                </tr>
+                                </tr> 
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </tbody>
                         </table>
 
 
-                        
 
-                
-                        
     
                         <div class="noresult" style="display: none">
                             <div class="text-center">
@@ -200,51 +202,16 @@ parametrizacion
                         </div>
                     </div>
 
-                    
-
-
-                      <!-- Modal ELIMINAR -->
-                    <div class="modal fade" id="deleteOrder" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
-                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                              
-                            </div>
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CANCELAR</button>
-
-
-                              <form id="formDelete" action="<?php echo e(route('parametrizacion.destroy',1)); ?>" data-action="<?php echo e(route('parametrizacion.destroy',1)); ?>" method="POST">
-                                <?php echo csrf_field(); ?> <?php echo method_field('DELETE'); ?>
-
-                                <button type="submit" class="btn btn-primary">ELIMINAR</button>
-
-
-                              </form>
-                              
-
-
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- Modal ELIMINAR -->
-
-
 
                 </div>
 
 
-                
-                
 
 
 
-                <!-- Modal para agregar item -->
+
+
+                <!-- Modal para agregar parametrizacion -->
                 <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -330,129 +297,6 @@ parametrizacion
                         </div>
                     </div>
                 </div>
-
-
-
-
-                
-                
-
-
-
-                
-                  
-                  
-
-
-
-
-
-                <!-- Modal para editar item -->
-
-
-
-
-                
-
-
-
-
-
-
-
-
-                <div class="modal fade" id="showModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header bg-light p-3">
-                                <h5 class="modal-title" id="exampleModalLabel">&nbsp;</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="close-modal"></button>
-                            </div>
-                            <form class="tablelist-form" autocomplete="off">
-                                <div class="modal-body">
-                                    <input type="hidden" id="id-field" />
-
-                                    <div class="mb-3" id="modal-id">
-                                        <label for="orderId" class="form-label">ID</label>
-                                        <input type="text" id="orderId" class="form-control" placeholder="ID" readonly />
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label for="customername-field" class="form-label">Customer Name</label>
-                                        <input type="text" id="customername-field" class="form-control" placeholder="Enter name" required />
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label for="productname-field" class="form-label">Product</label>
-                                        <select class="form-control" data-trigger name="productname-field" id="productname-field" required />
-                                        <option value="">Product</option>
-                                        <option value="Puma Tshirt">Puma Tshirt</option>
-                                        <option value="Adidas Sneakers">Adidas Sneakers</option>
-                                        <option value="350 ml Glass Grocery Container">350 ml Glass Grocery Container</option>
-                                        <option value="American egale outfitters Shirt">American egale outfitters Shirt</option>
-                                        <option value="Galaxy Watch4">Galaxy Watch4</option>
-                                        <option value="Apple iPhone 12">Apple iPhone 12</option>
-                                        <option value="Funky Prints T-shirt">Funky Prints T-shirt</option>
-                                        <option value="USB Flash Drive Personalized with 3D Print">USB Flash Drive Personalized with 3D Print</option>
-                                        <option value="Oxford Button-Down Shirt">Oxford Button-Down Shirt</option>
-                                        <option value="Classic Short Sleeve Shirt">Classic Short Sleeve Shirt</option>
-                                        <option value="Half Sleeve T-Shirts (Blue)">Half Sleeve T-Shirts (Blue)</option>
-                                        <option value="Noise Evolve Smartwatch">Noise Evolve Smartwatch</option>
-                                        </select>
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label for="date-field" class="form-label">Order Date</label>
-                                        <input type="date" id="date-field" class="form-control" data-provider="flatpickr" required data-date-format="d M, Y" data-enable-time required placeholder="Select date" />
-                                    </div>
-
-                                    <div class="row gy-4 mb-3">
-                                        <div class="col-md-6">
-                                            <div>
-                                                <label for="amount-field" class="form-label">Amount</label>
-                                                <input type="text" id="amount-field" class="form-control" placeholder="Total amount" required />
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div>
-                                                <label for="payment-field" class="form-label">Payment Method</label>
-                                                <select class="form-control" data-trigger name="payment-method" required id="payment-field">
-                                                    <option value="">Payment Method</option>
-                                                    <option value="Mastercard">Mastercard</option>
-                                                    <option value="Visa">Visa</option>
-                                                    <option value="COD">COD</option>
-                                                    <option value="Paypal">Paypal</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div>
-                                        <label for="delivered-status" class="form-label">Delivery Status</label>
-                                        <select class="form-control" data-trigger name="delivered-status" required id="delivered-status">
-                                            <option value="">Delivery Status</option>
-                                            <option value="Pending">Pending</option>
-                                            <option value="Inprogress">Inprogress</option>
-                                            <option value="Cancelled">Cancelled</option>
-                                            <option value="Pickups">Pickups</option>
-                                            <option value="Delivered">Delivered</option>
-                                            <option value="Returns">Returns</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <div class="hstack gap-2 justify-content-end">
-                                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-success" id="add-btn">Add Order</button>
-                                        <!-- <button type="button" class="btn btn-success" id="edit-btn">Update</button> -->
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-
             </div>
         </div>
 
@@ -460,6 +304,7 @@ parametrizacion
     <!--end col-->
 </div>
 <!--end row-->
+
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('script'); ?>
 

@@ -59,7 +59,11 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::get('/parametrizacion/{id}/edit', [parametrizacionController::class, 'edit'])->name('parametrizacion.edit');
     Route::put('/parametrizacion/{id}', [parametrizacionController::class, 'update'])->name('parametrizacion.update');
-    Route::delete('/parametrizacion/{id}', 'Parametrizacion@destroy')->name('parametrizacion.destroy');
+    // Route::delete('/parametrizacion/{id}', [parametrizacionController::class, 'destroy'])->name('parametrizacion.destroy');
+
+    Route::delete('/parametrizacion/{id}/destroy', [App\Http\Controllers\parametrizacionController::class, 'destroy'])->name('parametrizacion.destroy');
+
+
 
 
 

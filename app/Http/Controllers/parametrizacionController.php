@@ -142,7 +142,10 @@ class parametrizacionController extends Controller
      */
     public function destroy($id)
     {
-        parametrizacion::destroy($id);
+        $parametrizacion = Parametrizacion::find($id);
+        $parametrizacion->delete();
+    
         return redirect()->route('parametrizacion.index');
     }
+    
 }

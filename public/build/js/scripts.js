@@ -41,9 +41,9 @@
 
 //    $('#formDelete').attr('action',action);
 
-const modalTitle = deleteOrder.querySelector('.modal-title')
+    const modalTitle = deleteOrder.querySelector('.modal-title')
 
-modalTitle.textContent = `Se va a eliminar el registro con ID ${recipient}`
+    modalTitle.textContent = `Se va a eliminar el registro con ID ${recipient}`
 
 
 //    const modalTitle = deleteOrder.querySelector('.modal-title')
@@ -52,9 +52,9 @@ modalTitle.textContent = `Se va a eliminar el registro con ID ${recipient}`
 //    modalTitle.textContent = `Se va a eliminar el registro: ${recipient}`
 //    modalBodyInput.value = recipient
 
-const formDelete = document.getElementById('formDelete')
-const action = formDelete.getAttribute('data-action').replace('1', recipient)
-formDelete.setAttribute('action', action)
+    const formDelete = document.getElementById('formDelete')
+    const action = formDelete.getAttribute('data-action').replace('1', recipient)
+    formDelete.setAttribute('action', action)
  })
 
 
