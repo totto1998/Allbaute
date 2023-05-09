@@ -1,16 +1,18 @@
 @extends('layouts.master')
-@section('title') @lang('translation.dashboards')
+@section('title')
+@lang('translation.orders')
 @endsection
 @section('css')
-<link href="{{ URL::asset('build/libs/jsvectormap/css/jsvectormap.min.css')}}" rel="stylesheet" type="text/css" />
-<link href="{{ URL::asset('build/libs/swiper/swiper-bundle.min.css')}}" rel="stylesheet" type="text/css" />
+<link href="{{ URL::asset('build/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" />
 @endsection
-
-
 @section('content')
 @component('components.breadcrumb')
-@slot('li_1') Tables @endslot
-@slot('title')Datatables @endslot
+@slot('li_1')
+Permisos Especiales
+@endslot
+@slot('title')
+Roles
+@endslot
 @endcomponent
 
     <section class="section">

@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use App\Models\TipoParametrizacion;
+
 class parametrizacion extends Model
 {
     use HasFactory;
@@ -17,9 +19,17 @@ class parametrizacion extends Model
           'nombre',
           'descripcion',
           'estado',
-          'archivo',
+          // 'archivo',
 
       ];
+
+      public function tipoParametrizacion()
+      {
+        return $this->belongsTo(TipoParametrizacion::class, 'id_tipo');
+      }
+
+      
+      
 
 
 }

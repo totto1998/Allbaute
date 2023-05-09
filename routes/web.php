@@ -52,6 +52,19 @@ Route::group(['middleware' => 'auth'], function() {
     Route::resource('orden-compra',ordenCompraController::class);
     Route::resource('insumos',insumosController::class);
     Route::resource('parametrizacion',parametrizacionController::class);
+    Route::resource('tipoParametrizacion',tipoParametrizacionController::class);
+
+
+    Route::put('parametrizacion/{id}', 'parametrizacionController@update')->name('parametrizacion.update');
+
+    Route::get('/parametrizacion/{id}/edit', [parametrizacionController::class, 'edit'])->name('parametrizacion.edit');
+    Route::put('/parametrizacion/{id}', [parametrizacionController::class, 'update'])->name('parametrizacion.update');
+    Route::delete('/parametrizacion/{id}', 'Parametrizacion@destroy')->name('parametrizacion.destroy');
+
+
+
+
+    
 
 });
 

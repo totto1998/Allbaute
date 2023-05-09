@@ -14,8 +14,8 @@ class insumosController extends Controller
      */
     public function index()
     {
-       $insumos = insumos::paginate(10);
-       return view('insumos.index', compact('insumos'));
+       $data = insumos::paginate(8);
+       return view('insumos.index', compact('data'));
     }
 
     /**

@@ -11,15 +11,25 @@ class proveedor extends Model
 
     protected $table = 'proveedor';
 
-    // protected $fillable = [
-    //      'id',
-    //      'id_proveedor',
-    //      'id_formapago',
-    //      'fecha_solicitud',
-    //      'total',
-    //      'archivo',
+    protected $fillable = [
+          'id',
+          'razon_social',
+          'nit',
+          'telefono_fijo',
+          'celular',
+          'direccion',
+          'ciudad',
+          'email',
+          'nombre_contacto',
+          't_insumo',
+          'tags',
 
-    //  ];
+     ];
+
+     public function insumos()
+     {
+       return $this->belongsTo(insumos::class, 't_insumo');
+     }
 
 
 }

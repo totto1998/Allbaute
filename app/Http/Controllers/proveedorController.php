@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-
+use App\Models\insumos;
 use App\Models\proveedor;
 
 class proveedorController extends Controller
@@ -23,8 +23,9 @@ class proveedorController extends Controller
      */
     public function index()
     {
-        $proveedor = proveedor::paginate(10);
-        return view('proveedor.index', compact('proveedor'));
+        $data = proveedor::paginate(10);
+        $insumo = insumos::paginate(10);
+        return view('proveedor.index', compact('data', 'insumo'));
     }
 
     /**
@@ -32,7 +33,8 @@ class proveedorController extends Controller
      */
     public function create()
     {
-        $proveedor = Proveedor::all();
+       $proveedor = Proveedor::all();
+     
        return view('provee$proveedor.crear', compact('provee$proveedor'));
     }
 
@@ -41,8 +43,44 @@ class proveedorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            // 'tipo_parametrizacion' => 'required',
+            // 'nombre' => 'required|max:255',
+            // 'estado' => 'required',
+            'razon_social' => 'required',
+            'nit' => 'required',
+            'telefono_fijo' => 'required',
+            'celular' => 'required',
+            'direccion' => 'required',
+            'ciudad' => 'required',
+            'email' => 'required',
+            'nombre_contacto' => 'required',
+            't_insumo' => 'required',
+            'tags' => 'required',
+        ]);
+ 
+        $proveedor = new proveedor();
+        $proveedor->razon_social = $validatedData['razon_social'];
+        $proveedor->nit = $validatedData['nit'];
+        $proveedor->telefono_fijo = $validatedData['telefono_fijo'];
+        $proveedor->celular = $validatedData['celular'];
+        $proveedor->direccion = $validatedData['direccion'];
+        $proveedor->ciudad = $validatedData['ciudad'];
+        $proveedor->email = $validatedData['email'];
+        $proveedor->nombre_contacto = $validatedData['nombre_contacto'];
+        $proveedor->t_insumo = $validatedData['t_insumo'];
+        $proveedor->tags = $validatedData['tags'];
+        
+        // $proveedor->id_tipo = $validatedData['tipo_parametrizacion'];
+        // $proveedor->nombre = $validatedData['nombre'];
+        // $proveedor->descripcion = $request->descripcion;
+        // $proveedor->estado = $validatedData['estado'];
+
+        $proveedor->save();
+ 
+        return redirect()->route('proveedor.index')->with('success', 'El Proveedor se ha creado exitosamente.');
     }
+ 
 
     /**
      * Display the specified resource.

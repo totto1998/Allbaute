@@ -1,15 +1,18 @@
 @extends('layouts.master')
-@section('title') @lang('translation.dashboards')
+@section('title')
+@lang('translation.orders')
 @endsection
 @section('css')
-<link href="{{ URL::asset('build/libs/jsvectormap/css/jsvectormap.min.css')}}" rel="stylesheet" type="text/css" />
-<link href="{{ URL::asset('build/libs/swiper/swiper-bundle.min.css')}}" rel="stylesheet" type="text/css" />
+<link href="{{ URL::asset('build/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" />
 @endsection
 @section('content')
-
 @component('components.breadcrumb')
-@slot('li_1') Tables @endslot
-@slot('title')Datatables @endslot
+@slot('li_1')
+Permisos Especiales
+@endslot
+@slot('title')
+Crear Usuarios
+@endslot
 @endcomponent
 
     <section class="section">
@@ -20,8 +23,8 @@
                         <div class="card-body">
 
                             <div class="text-center mt-2">
-                                <h5 class="text-primary">Create New Account</h5>
-                                <p class="text-muted">Get your free ALL BAUTE account now</p>
+                                <h5 class="text-primary">Crear Nuevo Usuario</h5>
+                                {{--  <p class="text-muted">Get your free ALL BAUTE account now</p>  --}}
                             </div>
                             <div class="p-2 mt-4">
                                 <form method="POST" action="{{ route('user.store') }}" enctype="multipart/form-data">

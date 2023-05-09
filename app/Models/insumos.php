@@ -11,15 +11,19 @@ class insumos extends Model
 
     protected $table = 'insumos';
 
-    // protected $fillable = [
-    //      'id',
-    //      'id_proveedor',
-    //      'id_formapago',
-    //      'fecha_solicitud',
-    //      'total',
-    //      'archivo',
+    protected $fillable = [
+          'id',
+          'id_categ',
+          'id_subcateg',
+          'nombre',
+          'color',
+          'unidad',
+          'img',
+          't_insumo',
+          'ancho_tela',
 
-    //  ];
+
+      ];
 
 
 }
