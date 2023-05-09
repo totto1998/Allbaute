@@ -180,19 +180,24 @@ parametrizacion
                                                 </a>
                                             </li>
                                             <li class="list-inline-item edit" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Edit">
-                                                <a href="#editModal" data-bs-toggle="modal" class="text-primary d-inline-block edit-item-btn">
+                                                <a href="#editModal" data-bs-toggle="modal" class="text-primary d-inline-block edit-item-btn" data-id=""{{ $param->id }}"">
                                                     <i class="ri-pencil-fill fs-16"></i>
                                                 </a>
                                             </li>
                                             <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Remove">
-                                                <a class="text-danger d-inline-block remove-item-btn" data-bs-toggle="modal" href="#deleteOrder" data-id="{{ $param->id }}">
-                                                    <i class="ri-delete-bin-5-fill fs-16"></i>
-                                                </a>                                                
+                                                
+                                                <form action="{{ route('parametrizacion.destroy', $param->id) }}" method="POST" class="delete-form" onsubmit="return confirm('¿Está seguro de que desea eliminar este registro?');">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="dropdown-item remove-item-btn"><i class="ri-delete-bin-5-fill fs-16"></i></button>
+                                                </form>
+                                                
+
                                             </li>
 
                                         </ul>
                                     </td>
-                                </tr>
+                                </tr> 
                                 @endforeach
                             </tbody>
                         </table>
@@ -304,62 +309,40 @@ parametrizacion
                         </div>
                     </div>
 
-                    {{--  <div class="d-flex justify-content-end">
-                        <div class="pagination-wrap hstack gap-2">
-                            <a class="page-item pagination-prev disabled" href="#">
-                                Previous
-                            </a>
-                            <ul class="pagination listjs-pagination mb-0"></ul>
-                            <a class="page-item pagination-next" href="#">
-                                Next
-                            </a>
-                        </div>
-                    </div>  --}}
-
-
-                      <!-- Modal ELIMINAR -->
-                    <div class="modal fade" id="deleteOrder" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
-                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                              {{--  <form>
-                                <div class="mb-3">
-                                  <label for="recipient-name" class="col-form-label">Recipient:</label>
-                                  <input type="text" class="form-control" id="recipient-name">
-                                </div>
-                                <div class="mb-3">
-                                  <label for="message-text" class="col-form-label">Message:</label>
-                                  <textarea class="form-control" id="message-text"></textarea>
-                                </div>
-                              </form>  --}}
-                            </div>
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CANCELAR</button>
-
-
-                              <form id="formDelete" action="{{ route('parametrizacion.destroy',1) }}" data-action="{{ route('parametrizacion.destroy',1) }}" method="POST">
-                                @csrf @method('DELETE')
-
-                                <button type="submit" class="btn btn-primary">ELIMINAR</button>
-
-
-                              </form>
-                              
-
-
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- Modal ELIMINAR -->
-
-
 
                 </div>
+
+
+
+                {{--  <!-- Modal ELIMINAR-->
+                <div class="modal fade flip" id="deleteOrder" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header bg-danger">
+                                <h5 class="modal-title text-white">Eliminar Parametrización</h5>
+                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body p-5 text-center">
+                                <lord-icon src="https://cdn.lordicon.com/gsqxdxog.json" trigger="loop" colors="primary:#405189,secondary:#f06548" style="width:90px;height:90px">
+                                </lord-icon>
+                                <div class="mt-4 text-center">
+                                    <h4>¿Está seguro de eliminar esta Parametrización?</h4>
+                                    <p class="text-muted fs-15 mb-4">Eliminar la Parametrización eliminará toda su información de nuestra base de datos.</p>
+                                    <div class="hstack gap-2 justify-content-center remove">
+                                        <button class="btn btn-link link-light fw-medium text-decoration-none" id="deleteRecord-close" data-bs-dismiss="modal">Cancelar</button>
+                                        <form method="POST" id="delete-record-form" action="{{ route('parametrizacion.destroy', $param->id) }}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end modal -->
+                                  --}}
 
 
                 {{--  <!-- Modal ELIMINAR-->
@@ -388,7 +371,7 @@ parametrizacion
                         </div>
                     </div>
                 </div>
-                <!--end modal -->    --}}
+                <!--end modal -->   --}}
                 
 
 
