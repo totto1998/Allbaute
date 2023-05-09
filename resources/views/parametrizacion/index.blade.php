@@ -268,7 +268,7 @@ parametrizacion
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label for="nombre">Nombre:</label>
+                                        <label for="nombre">Nombres:</label>
                                         <input type="text" class="form-control" id="nombre" name="nombre" value="{{ $param->nombre }}">
                                     </div>
                                     <div class="form-group">
