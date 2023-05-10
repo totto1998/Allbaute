@@ -14,29 +14,21 @@
             Crear nueva parametrizacion
         <?php $__env->endSlot(); ?>
     <?php echo $__env->renderComponent(); ?>
-    <form id="createproduct-form" autocomplete="off" class="needs-validation" novalidate>
+    <form action="<?php echo e(route('parametrizacion.store')); ?>" method="POST">
+        <?php echo csrf_field(); ?>
         <div class="row">
             <div class="col-lg-8">
                     <div class="card">
                         <div class="card-body">
                             <div>
-                                <label>Product Description</label>
-
+                                <label for="descripcion" class="form-label">Descripción</label>
                                 <div id="ckeditor-classic">
-                                    <p>Tommy Hilfiger men striped pink sweatshirt. Crafted with cotton. Material composition is 100% organic cotton. This is one of the world’s leading designer lifestyle brands and is internationally recognized for celebrating the essence of classic American cool style, featuring preppy with a twist designs.</p>
-                                    <ul>
-                                        <li>Full Sleeve</li>
-                                        <li>Cotton</li>
-                                        <li>All Sizes available</li>
-                                        <li>4 Different Color</li>
-                                    </ul>
+                                    <textarea id="descripcion" name="descripcion"></textarea>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="text-end mb-3">
-                        <button type="submit" class="btn btn-success w-sm">Submit</button>
-                    </div>
+
             </div>
             <!-- end col -->
 
@@ -44,22 +36,21 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="mb-3">
-                            <label for="choices-publish-status-input" class="form-label">Tipo de parametrizacion</label>
-
-                            <select class="form-select" id="choices-publish-status-input" data-choices data-choices-search-false>
-                                <option value="Published" selected>Categoria</option>
-                                <option value="Scheduled">Subcategoria</option>
-                                <option value="Draft">Color</option>
-                                <option value="Published" selected>Forma de pago</option>
-                                <option value="Published" selected>unidades de medida</option>
+                            <label for="tipo_parametrizacion" class="form-label">Tipo de Parámetro</label>
+                            <select class="form-select" id="tipo_parametrizacion" name="tipo_parametrizacion" required>
+                                <option value="">Seleccionar tipo de parámetro</option>
+                                <?php $__currentLoopData = $parametrizacion; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tipo): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <option value="<?php echo e($tipo->id); ?>"><?php echo e($tipo->nombre); ?></option>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </select>
                         </div>
 
                         <div>
-                            <label for="choices-publish-visibility-input" class="form-label">Estado</label>
-                            <select class="form-select" id="choices-publish-visibility-input" data-choices data-choices-search-false>
-                                <option value="Public" selected>Activo</option>
-                                <option value="Hidden">Inactivo </option>
+                            <label for="estado">Estado</label>
+                            <select class="form-select" id="estado" name="estado" required>
+                                <option value="">Seleccionar estado</option>
+                                <option value="1">Activo</option>
+                                <option value="0">Inactivo</option>
                             </select>
                         </div>
                     </div>
@@ -74,20 +65,33 @@
                     <!-- end card body -->
                     <div class="card-body">
                         <div>
-                            <label for="datepicker-publish-input" class="form-label">Nombre</label>
-                            <input type="text" id="datepicker-publish-input" class="form-control"
-                                placeholder="Enter publish date" data-provider="flatpickr" data-date-format="d.m.y"
-                                data-enable-time>
+                            <label for="nombre" class="form-label">Nombre</label>
+                            <input type="text" class="form-control" id="nombre" name="nombre" required>
                         </div>
                     </div>
                 </div>
                 <!-- end card -->
              </div>
+             <div class="text-end mb-3">
+                <button type="submit" class="btn btn-success w-sm">Submit</button>
+            </div>
         </div>
         <!-- end row -->
     </form>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('script'); ?>
+
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#descripcion' ) )
+        .then( editor => {
+            console.log( editor );
+        } )
+        .catch( error => {
+            console.error( error );
+        } );
+</script>
+
 <script src="<?php echo e(URL::asset('build/libs/@ckeditor/ckeditor5-build-classic/build/ckeditor.js')); ?>"></script>
 
 <script src="<?php echo e(URL::asset('build/libs/dropzone/dropzone-min.js')); ?>"></script>

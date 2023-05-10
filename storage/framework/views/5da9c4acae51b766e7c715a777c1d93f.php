@@ -28,6 +28,8 @@ parametrizacion
                     <div class="col-sm-auto">
                         <div class="d-flex gap-1 flex-wrap">
                             
+                            <input type="text" id="searchInput" placeholder="Buscar...">
+
                             <a class="btn btn-warning" href="<?php echo e(route('parametrizacion.create')); ?>">Nuevo</a>
                             <button type="button" class="btn btn-secondary"><i class="ri-file-download-line align-bottom me-1"></i>Exportar</button>
                             <button class="btn btn-soft-danger" id="remove-actions" onClick="deleteMultiple()"><i class="ri-delete-bin-2-line"></i></button>
@@ -228,6 +230,21 @@ parametrizacion
 
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('script'); ?>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function(){
+        $("#searchInput").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#orderTable tbody tr").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>
+
+    
 
 
 

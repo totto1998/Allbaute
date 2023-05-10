@@ -126,7 +126,6 @@
                                                     <input type="number" class="form-control" id="product-price-input" placeholder="Enter price" aria-label="Price" aria-describedby="product-price-addon" required>
                                                     <div class="invalid-feedback">Ingrese el presio del insumo.</div>
                                                 </div>
-
                                             </div>
                                         </div>
                                         <!-- end col -->
