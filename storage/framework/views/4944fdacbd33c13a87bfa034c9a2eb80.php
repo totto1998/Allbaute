@@ -1,34 +1,21 @@
-@extends('layouts.master')
-@section('title')
-@lang('translation.orders')
-@endsection
-@section('css')
-<link href="{{ URL::asset('build/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" />
-@endsection
-@section('content')
-@component('components.breadcrumb')
-@slot('li_1')
+
+<?php $__env->startSection('title'); ?>
+<?php echo app('translator')->get('translation.orders'); ?>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('css'); ?>
+<link href="<?php echo e(URL::asset('build/libs/sweetalert2/sweetalert2.min.css')); ?>" rel="stylesheet" type="text/css" />
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
+<?php $__env->startComponent('components.breadcrumb'); ?>
+<?php $__env->slot('li_1'); ?>
 Ecommerce
-@endslot
-@slot('title')
+<?php $__env->endSlot(); ?>
+<?php $__env->slot('title'); ?>
 parametrizacion
-@endslot
-@endcomponent
-
-{{--  @extends('layouts.master')
-@section('title') @lang('translation.dashboards')
-@endsection
-@section('css')
-<link href="{{ URL::asset('build/libs/jsvectormap/css/jsvectormap.min.css')}}" rel="stylesheet" type="text/css" />
-<link href="{{ URL::asset('build/libs/swiper/swiper-bundle.min.css')}}" rel="stylesheet" type="text/css" />
-@endsection
+<?php $__env->endSlot(); ?>
+<?php echo $__env->renderComponent(); ?>
 
 
-@section('content')
-@component('components.breadcrumb')
-@slot('li_1') Tables @endslot
-@slot('title')PARAMETRIZACION @endslot
-@endcomponent  --}}
 
 <div class="row">
     <div class="col-lg-12">
@@ -40,30 +27,23 @@ parametrizacion
                     </div>
                     <div class="col-sm-auto">
                         <div class="d-flex gap-1 flex-wrap">
-                            {{--  <button type="button" class="btn btn-primary add-btn" data-bs-toggle="modal" id="create-btn" data-bs-target="#addModal"><i class="ri-add-line align-bottom me-1"></i>Crear Parametrizacion</button>  --}}
+                            
                             <input type="text" id="searchInput" placeholder="Buscar...">
 
-                            <a class="btn btn-warning" href="{{route('parametrizacion.create')}}">Nuevo</a>
+                            <a class="btn btn-warning" href="<?php echo e(route('parametrizacion.create')); ?>">Nuevo</a>
                             <button type="button" class="btn btn-secondary"><i class="ri-file-download-line align-bottom me-1"></i>Exportar</button>
                             <button class="btn btn-soft-danger" id="remove-actions" onClick="deleteMultiple()"><i class="ri-delete-bin-2-line"></i></button>
-                            <br>
                         </div>
                     </div>
                 </div>
             </div>
-            <br>
-    </br>
             <div class="card-body pt-0">
                 <div>
                     <div class="table-responsive table-card mb-1">
                         <table class="table table-nowrap align-middle" id="orderTable">
                             <thead class="text-muted table-light">
                                 <tr class="text-uppercase">
-                                    {{--  <th scope="col" style="width: 25px;">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="checkAll" value="option">
-                                        </div>
-                                    </th>  --}}
+                                    
                                     <th class="sort" data-sort="id">ID</th>
                                     <th class="sort" data-sort="id_tipo">Tipo</th>
                                     <th class="sort" data-sort="nombre">Nombre</th>
@@ -74,30 +54,26 @@ parametrizacion
                             </thead>
                             <tbody class="list form-check-all">
 
-                                @foreach ($data as $param)
+                                <?php $__currentLoopData = $data; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $param): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <tr>
-                                    {{--  <th scope="row">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="checkAll" value="option1">
-                                        </div>
-                                    </th>  --}}
-                                    <td>{{$param->id}}</td>
-                                    <td>{{$param->tipoParametrizacion->nombre ?? '' }}</td>
-                                    <td>{{$param->nombre}}</td>
-                                    <td>{{$param->descripcion}}</td>
+                                    
+                                    <td><?php echo e($param->id); ?></td>
+                                    <td><?php echo e($param->tipoParametrizacion->nombre ?? ''); ?></td>
+                                    <td><?php echo e($param->nombre); ?></td>
+                                    <td><?php echo e($param->descripcion); ?></td>
                                     <td>
-                                        @if($param->estado == 1)
+                                        <?php if($param->estado == 1): ?>
                                             <span class="badge badge-soft-success">Activo</span>
-                                        @else
+                                        <?php else: ?>
                                             <span class="badge badge-soft-danger">Inactivo</span>
-                                        @endif
+                                        <?php endif; ?>
                                     </td>
 
 
                                     <td>
                                         <ul class="list-inline hstack gap-2 mb-0">
                                             <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="View">
-                                                <a href="{{URL::asset('/apps-ecommerce-order-details')}}" class="text-primary d-inline-block">
+                                                <a href="<?php echo e(URL::asset('/apps-ecommerce-order-details')); ?>" class="text-primary d-inline-block">
                                                     <i class="ri-eye-fill fs-16"></i>
                                                 </a>
                                             </li>
@@ -108,9 +84,9 @@ parametrizacion
                                             </li>
                                             <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Remove">
                                                 
-                                                <form action="{{ route('parametrizacion.destroy', $param->id) }}" method="POST" class="delete-form" onsubmit="return confirm('¿Está seguro de que desea eliminar este registro?');">
-                                                    @csrf
-                                                    @method('DELETE')
+                                                <form action="<?php echo e(route('parametrizacion.destroy', $param->id)); ?>" method="POST" class="delete-form" onsubmit="return confirm('¿Está seguro de que desea eliminar este registro?');">
+                                                    <?php echo csrf_field(); ?>
+                                                    <?php echo method_field('DELETE'); ?>
                                                     <button type="submit" class="dropdown-item remove-item-btn"><i class="ri-delete-bin-5-fill fs-16"></i></button>
                                                 </form>
                                                 
@@ -120,7 +96,7 @@ parametrizacion
                                         </ul>
                                     </td>
                                 </tr> 
-                                @endforeach
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </tbody>
                         </table>
 
@@ -141,7 +117,8 @@ parametrizacion
 
                     <div class="card-body">
                         <div class="pagination justify-content-end">
-                            {{ $data->links() }}
+                            <?php echo e($data->links()); ?>
+
                         </div>
                     </div>
 
@@ -163,15 +140,15 @@ parametrizacion
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                           </div>
                             <div class="modal-body">
-                                <form action="{{ route('parametrizacion.store') }}" method="POST">
-                                    @csrf
+                                <form action="<?php echo e(route('parametrizacion.store')); ?>" method="POST">
+                                    <?php echo csrf_field(); ?>
                                     <div class="mb-3">
                                         <label for="tipo_parametrizacion" class="form-label">Tipo de Parámetro</label>
                                         <select class="form-select" id="tipo_parametrizacion" name="tipo_parametrizacion" required>
                                             <option value="">Seleccionar tipo de parámetro</option>
-                                            @foreach ($tipo_parametrizacion as $tipo)
-                                                <option value="{{ $tipo->id }}">{{ $tipo->nombre }}</option>
-                                            @endforeach
+                                            <?php $__currentLoopData = $tipo_parametrizacion; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tipo): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <option value="<?php echo e($tipo->id); ?>"><?php echo e($tipo->nombre); ?></option>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </select>
                                     </div>
                                     <div class="mb-3">
@@ -206,32 +183,32 @@ parametrizacion
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form method="POST" action="{{ route('parametrizacion.update',$param->id) }}">
-                                    @csrf
-                                    @method('PUT')
+                                <form method="POST" action="<?php echo e(route('parametrizacion.update',$param->id)); ?>">
+                                    <?php echo csrf_field(); ?>
+                                    <?php echo method_field('PUT'); ?>
                                     <div class="form-group">
                                         <label for="tipoParametrizacion">Tipo:</label>
                                         <select class="form-control" name="tipoParametrizacion" id="tipoParametrizacion">
                                             <option value="">Seleccione una opción</option>
-                                            @foreach($tipo_parametrizacion as $tipo)
-                                                <option value="{{ $tipo->id }}" {{ $param->tipoParametrizacion->id == $tipo->id ? 'selected' : '' }}>{{ $tipo->nombre }}</option>
-                                            @endforeach
+                                            <?php $__currentLoopData = $tipo_parametrizacion; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tipo): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <option value="<?php echo e($tipo->id); ?>" <?php echo e($param->tipoParametrizacion->id == $tipo->id ? 'selected' : ''); ?>><?php echo e($tipo->nombre); ?></option>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label for="nombre">Nombre:</label>
-                                        <input type="text" class="form-control" id="nombre" name="nombre" value="{{ $param->nombre }}">
+                                        <input type="text" class="form-control" id="nombre" name="nombre" value="<?php echo e($param->nombre); ?>">
                                     </div>
                                     <div class="form-group">
                                         <label for="descripcion">Descripción:</label>
-                                        <textarea class="form-control" id="descripcion" name="descripcion">{{ $param->descripcion }}</textarea>
+                                        <textarea class="form-control" id="descripcion" name="descripcion"><?php echo e($param->descripcion); ?></textarea>
                                     </div>
                                     <div class="form-group">
                                         <label for="estado">Estado:</label>
                                         <select class="form-control" name="estado" id="estado">
                                             <option value="">Seleccione una opción</option>
-                                            <option value="1" {{ $param->estado == 'Activo' ? 'selected' : '' }}>Activo</option>
-                                            <option value="0" {{ $param->estado == 'Inactivo' ? 'selected' : '' }}>Inactivo</option>
+                                            <option value="1" <?php echo e($param->estado == 'Activo' ? 'selected' : ''); ?>>Activo</option>
+                                            <option value="0" <?php echo e($param->estado == 'Inactivo' ? 'selected' : ''); ?>>Inactivo</option>
                                         </select>
                                     </div>
                                     <button type="submit" class="btn btn-primary">Guardar Cambios</button>
@@ -248,8 +225,8 @@ parametrizacion
 </div>
 <!--end row-->
 
-@endsection
-@section('script')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('script'); ?>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -265,17 +242,18 @@ parametrizacion
 </script>
 
     
-{{--  <script src="{{ URL::asset('build/libs/list.js/list.min.js') }}"></script>
-<script src="{{ URL::asset('build/libs/list.pagination.js/list.pagination.min.js') }}"></script>  --}}
+
 
 
 <!--ecommerce-customer init js -->
-{{--  <script src="{{ URL::asset('build/js/pages/ecommerce-order.init.js') }}"></script>    --}}
-<script src="{{ URL::asset('build/libs/sweetalert2/sweetalert2.min.js') }}"></>
 
-<script src="{{ URL::asset('build/js/app.js') }}"></script>
-<script src="{{ URL::asset('build/js/scripts.js') }}"></script>
+<script src="<?php echo e(URL::asset('build/libs/sweetalert2/sweetalert2.min.js')); ?>"></>
+
+<script src="<?php echo e(URL::asset('build/js/app.js')); ?>"></script>
+<script src="<?php echo e(URL::asset('build/js/scripts.js')); ?>"></script>
 
 
 
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\Usuario\Documents\GitHub\Allbaute\resources\views/parametrizacion/index.blade.php ENDPATH**/ ?>
