@@ -1,40 +1,19 @@
-@extends('layouts.master')
-@section('title') @lang('translation.dashboards')
-@endsection
-@section('css')
-<link href="{{ URL::asset('build/libs/jsvectormap/css/jsvectormap.min.css')}}" rel="stylesheet" type="text/css" />
-<link href="{{ URL::asset('build/libs/swiper/swiper-bundle.min.css')}}" rel="stylesheet" type="text/css" />
-@endsection
 
-
-@section('content')
-@component('components.breadcrumb')
-@slot('li_1') Tables @endslot
-@slot('title')PARAMETRIZACION @endslot
-@endcomponent
-
-{{--  <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-                    
-
-                    
-                </div>
-            </div>
-        </div>
-    </div>
-</div>  --}}
-
-
+<?php $__env->startSection('title'); ?>
+<?php echo app('translator')->get('translation.orders'); ?>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('css'); ?>
+<link href="<?php echo e(URL::asset('build/libs/sweetalert2/sweetalert2.min.css')); ?>" rel="stylesheet" type="text/css" />
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
+<?php $__env->startComponent('components.breadcrumb'); ?>
+<?php $__env->slot('li_1'); ?>
+Ecommerce
+<?php $__env->endSlot(); ?>
+<?php $__env->slot('title'); ?>
+Orders
+<?php $__env->endSlot(); ?>
+<?php echo $__env->renderComponent(); ?>
 
 <div class="row">
     <div class="col-lg-12">
@@ -53,7 +32,7 @@
                     </div>
                 </div>
             </div>
-            {{--  <div class="card-body border border-dashed border-end-0 border-start-0">
+            <div class="card-body border border-dashed border-end-0 border-start-0">
                 <form>
                     <div class="row g-3">
                         <div class="col-xxl-5 col-sm-6">
@@ -108,10 +87,10 @@
                     </div>
                     <!--end row-->
                 </form>
-            </div>  --}}
+            </div>
             <div class="card-body pt-0">
                 <div>
-                    {{--  <ul class="nav nav-tabs nav-tabs-custom nav-success mb-3" role="tablist">
+                    <ul class="nav nav-tabs nav-tabs-custom nav-success mb-3" role="tablist">
                         <li class="nav-item">
                             <a class="nav-link active All py-3" data-bs-toggle="tab" id="All" href="#home1" role="tab" aria-selected="true">
                                 <i class="ri-store-2-fill me-1 align-bottom"></i> All Orders
@@ -137,83 +116,35 @@
                                 <i class="ri-close-circle-line me-1 align-bottom"></i> Cancelled
                             </a>
                         </li>
-                    </ul>  --}}
+                    </ul>
 
                     <div class="table-responsive table-card mb-1">
                         <table class="table table-nowrap align-middle" id="orderTable">
                             <thead class="text-muted table-light">
                                 <tr class="text-uppercase">
-                                    {{--  <th scope="col" style="width: 25px;">
+                                    <th scope="col" style="width: 25px;">
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" id="checkAll" value="option">
                                         </div>
-                                    </th>  --}}
-                                    {{--  <th class="sort" data-sort="id">Order ID</th>
+                                    </th>
+                                    <th class="sort" data-sort="id">Order ID</th>
                                     <th class="sort" data-sort="customer_name">Customer</th>
                                     <th class="sort" data-sort="product_name">Product</th>
                                     <th class="sort" data-sort="date">Order Date</th>
                                     <th class="sort" data-sort="amount">Amount</th>
                                     <th class="sort" data-sort="payment">Payment Method</th>
                                     <th class="sort" data-sort="status">Delivery Status</th>
-                                    <th class="sort" data-sort="city">Action</th>  --}}
-
-                                    <th class="sort" data-sort="id">ID</th>
-                                    <th class="sort" data-sort="customer_name">Tipo</th>
-                                    <th class="sort" data-sort="product_name">Nombre</th>
-                                    <th class="sort" data-sort="payment">Descripcion</th>
-                                    <th class="sort" data-sort="status">Estado</th>
-                                    <th class="sort" data-sort="city">Acciones</th>
+                                    <th class="sort" data-sort="city">Action</th>
                                 </tr>
                             </thead>
                             <tbody class="list form-check-all">
-                                
-                                @foreach ($parametrizacion as $param)
                                 <tr>
-                                    <td>{{$param->id}}</td>
-                                    <td>{{$param->tipoParametrizacion->nombre ?? '' }}</td>
-                                    <td>{{$param->nombre}}</td>
-                                    <td>{{$param->descripcion}}</td>
-                                    <td><span class="badge badge-soft-info">{{$param->estado}}</span></td>
-                                    <td>
-                                        <div class="dropdown d-inline-block">
-                                            <button class="btn btn-soft-secondary btn-sm dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                <i class="ri-more-fill align-middle"></i>
-                                            </button>
-                                            <ul class="dropdown-menu dropdown-menu-end">
-                                                {{--  <li><a href="{{ route('parametrizacion.edit', $param->id) }}" class="dropdown-item edit-item-btn"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit</a></li>  --}}
-                                                <li>
-                                                    <button type="button" class="dropdown-item edit-item-btn" data-bs-toggle="modal" data-bs-target="#showModal" data-id="{{ $param->id }}" data-tipo="{{ $param->id_tipo ?? '' }}" data-nombre="{{ $param->nombre }}" data-descripcion="{{ $param->descripcion }}" data-estado="{{ $param->estado }}">
-                                                        <i class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit
-                                                    </button>
-                                                </li>
-                                                <li>
-                                                    <form action="{{ route('parametrizacion.destroy', $param->id) }}" method="POST" class="delete-form">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="dropdown-item remove-item-btn"><i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete</button>
-                                                    </form>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </td>
-                                </tr>
-                                @endforeach
-                            
-                                
-                                
-                                
-                                
-                                {{--  <tr>
                                     <th scope="row">
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" name="checkAll" value="option1">
                                         </div>
                                     </th>
-
-            
-
-
-                                    <td class="id"><a href="{{URL::asset('/apps-ecommerce-order-details')}}" class="fw-medium link-primary">#VZ2101</a></td>
+                                    <td class="id"><a href="<?php echo e(URL::asset('/apps-ecommerce-order-details')); ?>" class="fw-medium link-primary">#VZ2101</a></td>
                                     <td class="customer_name">Frank Hook</td>
                                     <td class="product_name">Puma Tshirt</td>
                                     <td class="date">20 Dec, 2021, <small class="text-muted">02:21
@@ -225,7 +156,7 @@
                                     <td>
                                         <ul class="list-inline hstack gap-2 mb-0">
                                             <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="View">
-                                                <a href="{{URL::asset('/apps-ecommerce-order-details')}}" class="text-primary d-inline-block">
+                                                <a href="<?php echo e(URL::asset('/apps-ecommerce-order-details')); ?>" class="text-primary d-inline-block">
                                                     <i class="ri-eye-fill fs-16"></i>
                                                 </a>
                                             </li>
@@ -241,10 +172,9 @@
                                             </li>
                                         </ul>
                                     </td>
-                                </tr>  --}}
+                                </tr>
                             </tbody>
                         </table>
-                        
                         <div class="noresult" style="display: none">
                             <div class="text-center">
                                 <lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="loop" colors="primary:#405189,secondary:#0ab39c" style="width:75px;height:75px">
@@ -275,50 +205,78 @@
                                 <h5 class="modal-title" id="exampleModalLabel">&nbsp;</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="close-modal"></button>
                             </div>
-                            <form class="tablelist-form" autocomplete="off" action="{{ route('parametrizacion.store') }}" method="POST">
-                                @csrf<div class="modal-body">
+                            <form class="tablelist-form" autocomplete="off">
+                                <div class="modal-body">
                                     <input type="hidden" id="id-field" />
 
-                                    <div class="form-group">
-                                        <label for="name">Tipo de parametrización:</label>
-                                        <select class="form-select mb-3" aria-label="Default select example" name="id_tipo">
-                                            <option selected></option>
-                                            @foreach($parametrizacion as $param)
-                                                <option value="{{ $param->tipoParametrizacion->id }}">{{ $param->tipoParametrizacion->nombre }}</option>
-                                            @endforeach
+                                    <div class="mb-3" id="modal-id">
+                                        <label for="orderId" class="form-label">ID</label>
+                                        <input type="text" id="orderId" class="form-control" placeholder="ID" readonly />
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="customername-field" class="form-label">Customer Name</label>
+                                        <input type="text" id="customername-field" class="form-control" placeholder="Enter name" required />
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="productname-field" class="form-label">Product</label>
+                                        <select class="form-control" data-trigger name="productname-field" id="productname-field" required />
+                                        <option value="">Product</option>
+                                        <option value="Puma Tshirt">Puma Tshirt</option>
+                                        <option value="Adidas Sneakers">Adidas Sneakers</option>
+                                        <option value="350 ml Glass Grocery Container">350 ml Glass Grocery Container</option>
+                                        <option value="American egale outfitters Shirt">American egale outfitters Shirt</option>
+                                        <option value="Galaxy Watch4">Galaxy Watch4</option>
+                                        <option value="Apple iPhone 12">Apple iPhone 12</option>
+                                        <option value="Funky Prints T-shirt">Funky Prints T-shirt</option>
+                                        <option value="USB Flash Drive Personalized with 3D Print">USB Flash Drive Personalized with 3D Print</option>
+                                        <option value="Oxford Button-Down Shirt">Oxford Button-Down Shirt</option>
+                                        <option value="Classic Short Sleeve Shirt">Classic Short Sleeve Shirt</option>
+                                        <option value="Half Sleeve T-Shirts (Blue)">Half Sleeve T-Shirts (Blue)</option>
+                                        <option value="Noise Evolve Smartwatch">Noise Evolve Smartwatch</option>
                                         </select>
                                     </div>
-    
-                                    <div class="form-group">
-                                        <label for="name">Nombre:</label>
-                                        <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required>
-                                        @error('name')
-                                          <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
-                                        <br/>
+
+                                    <div class="mb-3">
+                                        <label for="date-field" class="form-label">Order Date</label>
+                                        <input type="date" id="date-field" class="form-control" data-provider="flatpickr" required data-date-format="d M, Y" data-enable-time required placeholder="Select date" />
                                     </div>
-    
-                                    <div class="form-group">
-                                        <label for="description">Descripción:</label>
-                                        <textarea class="form-control @error('description') is-invalid @enderror" name="description" rows="3">{{ old('description') }}</textarea>
-                                        @error('description')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
-                                        <br/>
-                                    </div>
-    
-                                    <div class="form-group">
-                                        <label for="estado">Estado:</label>
-                                        <div>
-                                            <input type="radio" id="activo" name="estado" value="0" checked>
-                                            <label for="activo">Activo</label>
+
+                                    <div class="row gy-4 mb-3">
+                                        <div class="col-md-6">
+                                            <div>
+                                                <label for="amount-field" class="form-label">Amount</label>
+                                                <input type="text" id="amount-field" class="form-control" placeholder="Total amount" required />
+                                            </div>
                                         </div>
-                                
-                                        <div>
-                                            <input type="radio" id="inactivo" name="estado" value="1">
-                                            <label for="inactivo">Inactivo</label>
+                                        <div class="col-md-6">
+                                            <div>
+                                                <label for="payment-field" class="form-label">Payment Method</label>
+                                                <select class="form-control" data-trigger name="payment-method" required id="payment-field">
+                                                    <option value="">Payment Method</option>
+                                                    <option value="Mastercard">Mastercard</option>
+                                                    <option value="Visa">Visa</option>
+                                                    <option value="COD">COD</option>
+                                                    <option value="Paypal">Paypal</option>
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
+
+                                    <div>
+                                        <label for="delivered-status" class="form-label">Delivery Status</label>
+                                        <select class="form-control" data-trigger name="delivered-status" required id="delivered-status">
+                                            <option value="">Delivery Status</option>
+                                            <option value="Pending">Pending</option>
+                                            <option value="Inprogress">Inprogress</option>
+                                            <option value="Cancelled">Cancelled</option>
+                                            <option value="Pickups">Pickups</option>
+                                            <option value="Delivered">Delivered</option>
+                                            <option value="Returns">Returns</option>
+                                        </select>
+                                    </div>
+                                </div>
                                 <div class="modal-footer">
                                     <div class="hstack gap-2 justify-content-end">
                                         <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
@@ -330,47 +288,6 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Modal Editar -->
-                <div class="modal fade" id="modalEditar" tabindex="-1" aria-labelledby="modalEditarLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <form method="POST" action="{{ route('parametrizacion.update', $param->id) }}">
-                                @csrf
-                                @method('PUT')
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="modalEditarLabel">Editar Parametrización</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="mb-3">
-                                        <label for="editIdTipo" class="form-label">Tipo:</label>
-                                        <input type="text" class="form-control" id="editIdTipo" name="id_tipo" value="{{ $param->id_tipo }}" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="editNombre" class="form-label">Nombre:</label>
-                                        <input type="text" class="form-control" id="editNombre" name="nombre" value="{{ $param->nombre }}" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="editDescripcion" class="form-label">Descripción:</label>
-                                        <textarea class="form-control" id="editDescripcion" name="descripcion" rows="3" required>{{ $param->descripcion }}</textarea>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="editEstado" class="form-label">Estado:</label>
-                                        <input type="text" class="form-control" id="editEstado" name="estado" value="{{ $param->estado }}" required>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                    <button type="submit" class="btn btn-primary">Guardar cambios</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-
-
 
                 <!-- Modal -->
                 <div class="modal fade flip" id="deleteOrder" tabindex="-1" aria-hidden="true">
@@ -403,19 +320,16 @@
     <!--end col-->
 </div>
 <!--end row-->
-@endsection
-@section('script')
-<script src="{{ URL::asset('build/libs/list.js/list.min.js') }}"></script>
-<script src="{{ URL::asset('build/libs/list.pagination.js/list.pagination.min.js') }}"></script>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('script'); ?>
+<script src="<?php echo e(URL::asset('build/libs/list.js/list.min.js')); ?>"></script>
+<script src="<?php echo e(URL::asset('build/libs/list.pagination.js/list.pagination.min.js')); ?>"></script>
 
 <!--ecommerce-customer init js -->
-<script src="{{ URL::asset('build/js/pages/ecommerce-order.init.js') }}"></script>
-<script src="{{ URL::asset('build/libs/sweetalert2/sweetalert2.min.js') }}"></script>
+<script src="<?php echo e(URL::asset('build/js/pages/ecommerce-order.init.js')); ?>"></script>
+<script src="<?php echo e(URL::asset('build/libs/sweetalert2/sweetalert2.min.js')); ?>"></script>
 
-<script src="{{ URL::asset('build/js/app.js') }}"></script>
+<script src="<?php echo e(URL::asset('build/js/app.js')); ?>"></script>
+<?php $__env->stopSection(); ?>
 
-
-
-@endsection
-
-
+<?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\laragon\www\Allbaute\Allbaute\resources\views/OrdenCompra/index.blade.php ENDPATH**/ ?>
