@@ -29,67 +29,30 @@ insumos
                         <div class="d-flex gap-1 flex-wrap">
                             
                               <a class="btn btn-warning" href="<?php echo e(route('insumos.create')); ?>">Nuevo</a>
-                            <button type="button" class="btn btn-secondary"><i class="ri-file-download-line align-bottom me-1"></i> Import</button>
+                            <button type="button" class="btn btn-secondary"><i class="ri-file-download-line align-bottom me-1"></i>Exportar</button>
                             <button class="btn btn-soft-danger" id="remove-actions" onClick="deleteMultiple()"><i class="ri-delete-bin-2-line"></i></button>
                         </div>
                     </div>
                 </div>
             </div>
+            <br>
+                            </br>
             <div class="card-body pt-0">
                 <div>
-                    <ul class="nav nav-tabs nav-tabs-custom nav-success mb-3" role="tablist">
-                        <li class="nav-item">
-                            <a class="nav-link active All py-3" data-bs-toggle="tab" id="All" href="#home1" role="tab" aria-selected="true">
-                                <i class="ri-store-2-fill me-1 align-bottom"></i> All Orders
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link py-3 Delivered" data-bs-toggle="tab" id="Delivered" href="#delivered" role="tab" aria-selected="false">
-                                <i class="ri-checkbox-circle-line me-1 align-bottom"></i> Delivered
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link py-3 Pickups" data-bs-toggle="tab" id="Pickups" href="#pickups" role="tab" aria-selected="false">
-                                <i class="ri-truck-line me-1 align-bottom"></i> Pickups <span class="badge bg-danger align-middle ms-1">2</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link py-3 Returns" data-bs-toggle="tab" id="Returns" href="#returns" role="tab" aria-selected="false">
-                                <i class="ri-arrow-left-right-fill me-1 align-bottom"></i> Returns
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link py-3 Cancelled" data-bs-toggle="tab" id="Cancelled" href="#cancelled" role="tab" aria-selected="false">
-                                <i class="ri-close-circle-line me-1 align-bottom"></i> Cancelled
-                            </a>
-                        </li>
-                    </ul>
-
                     <div class="table-responsive table-card mb-1">
                         <table class="table table-nowrap align-middle" id="orderTable">
                             <thead class="text-muted table-light">
                                 <tr class="text-uppercase">
                                     <th scope="col" style="width: 25px;">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="checkAll" value="option">
-                                        </div>
                                     </th>
-                                    
-
-                                    <th>ID</th>
-                                    <th>Categoria</th>
-                                    <th>Sub Categoria</th>
-                                    <th>Nombre</th>
-                                    <th>Color</th>
-                                    <th>unidad</th>
-                                    
-                                    <th>Tipo Insumo</th>
-                                    <th>Ancho Tela</th>
-                                    <th>Acciones</th>
-
-
-
-
+                                    <th class="sort" data-sort="id">ID</th>
+                                    <th class="sort" data-sort="imagen">Imagen</th>
+                                    <th class="sort" data-sort="nombre">Nombre</th>
+                                    <th class="sort" data-sort="id_tipo">Categoria</th>
+                                    <th class="sort" data-sort="color">Color</th>
+                                    <th class="sort" data-sort="medida">Unidad de medida</th>
+                                    <th class="sort" data-sort="ancho">Ancho de la tela</th>
+                                    <th class="sort" data-sort="payment">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -105,7 +68,6 @@ insumos
                                         </th>
                                     <td><?php echo e($insumos->id); ?></td>
                                     <td><?php echo e($insumos->id_categ); ?></td>
-                                    <td><?php echo e($insumos->id_subcateg); ?></td>
                                     <td><?php echo e($insumos->nombre); ?></td>
                                     <td><?php echo e($insumos->color); ?></td>
                                     <td><?php echo e($insumos->unidad); ?></td>

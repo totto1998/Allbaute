@@ -11,52 +11,26 @@
             Ecommerce
         @endslot
         @slot('title')
-            Create Product
+            Crear nuevo insumo
         @endslot
     @endcomponent
     <form id="createproduct-form" autocomplete="off" class="needs-validation" novalidate>
         <div class="row">
             <div class="col-lg-8">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="mb-3">
-                                <div class="mb-3">
-                                    <label class="form-label" for="product-title-input">Product Title</label>
-                                    <input type="hidden" class="form-control" id="formAction" name="formAction" value="add">
-                                    <input type="text" class="form-control d-none" id="product-id-input">
-                                    <input type="text" class="form-control" id="product-title-input" value="" placeholder="Enter product title" required>
-                                    <div class="invalid-feedback">Please Enter a product title.</div>
-                                </div>
-                            </div>
-                            <div>
-                                <label>Product Description</label>
-
-                                <div id="ckeditor-classic">
-                                    <p>Tommy Hilfiger men striped pink sweatshirt. Crafted with cotton. Material composition is 100% organic cotton. This is one of the world’s leading designer lifestyle brands and is internationally recognized for celebrating the essence of classic American cool style, featuring preppy with a twist designs.</p>
-                                    <ul>
-                                        <li>Full Sleeve</li>
-                                        <li>Cotton</li>
-                                        <li>All Sizes available</li>
-                                        <li>4 Different Color</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <!-- end card -->
 
                     <div class="card">
                         <div class="card-header">
-                            <h5 class="card-title mb-0">Product Gallery</h5>
+                            <h5 class="card-title mb-0">Galeria de productos</h5>
                         </div>
                         <div class="card-body">
                             <div class="mb-4">
-                                <h5 class="fs-14 mb-1">Product Image</h5>
-                                <p class="text-muted">Add Product main Image.</p>
+                                <h5 class="fs-14 mb-1">Imagen del producto</h5>
+                                <p class="text-muted">Selecciona la imagen del producto</p>
                                 <div class="text-center">
                                     <div class="position-relative d-inline-block">
                                         <div class="position-absolute top-100 start-100 translate-middle">
-                                            <label for="product-image-input" class="mb-0"  data-bs-toggle="tooltip" data-bs-placement="right" title="Select Image">
+                                            <label for="product-image-input" class="mb-0"  data-bs-toggle="tooltip" data-bs-placement="right" title="Seleccione la imagen">
                                                 <div class="avatar-xs">
                                                     <div class="avatar-title bg-light border rounded-circle text-muted cursor-pointer">
                                                         <i class="ri-image-fill"></i>
@@ -75,8 +49,7 @@
                                 </div>
                             </div>
                             <div>
-                                <h5 class="fs-14 mb-1">Product Gallery</h5>
-                                <p class="text-muted">Add Product Gallery Images.</p>
+                                <h5 class="fs-14 mb-1">Subir nueva imagen a la galeria</h5>
 
                                 <div class="dropzone">
                                     <div class="fallback">
@@ -87,7 +60,7 @@
                                             <i class="display-4 text-muted ri-upload-cloud-2-fill"></i>
                                         </div>
 
-                                        <h5>Drop files here or click to upload.</h5>
+                                        <h5>Clik aqui para subir la imagen.</h5>
                                     </div>
                                 </div>
 
@@ -127,13 +100,7 @@
                                 <li class="nav-item">
                                     <a class="nav-link active" data-bs-toggle="tab" href="#addproduct-general-info"
                                         role="tab">
-                                        General Info
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" data-bs-toggle="tab" href="#addproduct-metadata"
-                                        role="tab">
-                                        Meta Data
+                                        Informacion general
                                     </a>
                                 </li>
                             </ul>
@@ -142,76 +109,29 @@
                         <div class="card-body">
                             <div class="tab-content">
                                 <div class="tab-pane active" id="addproduct-general-info" role="tabpanel">
-                                    <div class="mb-3">
-                                        <label class="form-label" for="manufacturer-name-input">Manufacturer Name</label>
-                                        <input type="text" class="form-control" id="manufacturer-name-input"
-                                            placeholder="Enter manufacturer name">
-                                    </div>
+                                    
                                     <div class="row">
                                         <div class="col-lg-3 col-sm-6">
                                             <div class="mb-3">
                                                 <label class="form-label" for="stocks-input">Stocks</label>
                                                 <input type="text" class="form-control" id="stocks-input" placeholder="Stocks" required>
-                                                <div class="invalid-feedback">Please Enter a product stocks.</div>
+                                                <div class="invalid-feedback">Ingrese la cantidad disponible del insumo.</div>
                                             </div>
                                         </div>
                                         <div class="col-lg-3 col-sm-6">
                                             <div class="mb-3">
-                                                <label class="form-label" for="product-price-input">Price</label>
+                                                <label class="form-label" for="product-price-input">Presio</label>
                                                 <div class="input-group has-validation mb-3">
                                                     <span class="input-group-text" id="product-price-addon">$</span>
-                                                    <input type="text" class="form-control" id="product-price-input" placeholder="Enter price" aria-label="Price" aria-describedby="product-price-addon" required>
-                                                    <div class="invalid-feedback">Please Enter a product price.</div>
+                                                    <input type="number" class="form-control" id="product-price-input" placeholder="Enter price" aria-label="Price" aria-describedby="product-price-addon" required>
+                                                    <div class="invalid-feedback">Ingrese el presio del insumo.</div>
                                                 </div>
 
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3 col-sm-6">
-                                            <div class="mb-3">
-                                                <label class="form-label" for="product-discount-input">Discount</label>
-                                                <div class="input-group mb-3">
-                                                    <span class="input-group-text" id="product-discount-addon">%</span>
-                                                    <input type="text" class="form-control" id="product-discount-input" placeholder="Enter discount" aria-label="discount" aria-describedby="product-discount-addon">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3 col-sm-6">
-                                            <div class="mb-3">
-                                                <label class="form-label" for="orders-input">Orders</label>
-                                                <input type="text" class="form-control" id="orders-input" placeholder="Orders" required>
-                                                <div class="invalid-feedback">Please Enter a product orders.</div>
                                             </div>
                                         </div>
                                         <!-- end col -->
                                     </div>
                                     <!-- end row -->
-                                </div>
-                                <!-- end tab-pane -->
-
-                                <div class="tab-pane" id="addproduct-metadata" role="tabpanel">
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <div class="mb-3">
-                                                <label class="form-label" for="meta-title-input">Meta title</label>
-                                                <input type="text" class="form-control" placeholder="Enter meta title" id="meta-title-input">
-                                            </div>
-                                        </div>
-                                        <!-- end col -->
-
-                                        <div class="col-lg-6">
-                                            <div class="mb-3">
-                                                <label class="form-label" for="meta-keywords-input">Meta Keywords</label>
-                                                <input type="text" class="form-control" placeholder="Enter meta keywords" id="meta-keywords-input">
-                                            </div>
-                                        </div>
-                                        <!-- end col -->
-                                    </div>
-                                    <!-- end row -->
-
-                                    <div>
-                                        <label class="form-label" for="meta-description-input">Meta Description</label>
-                                        <textarea class="form-control" id="meta-description-input" placeholder="Enter meta description" rows="3"></textarea>
-                                    </div>
                                 </div>
                                 <!-- end tab pane -->
                             </div>
@@ -226,102 +146,75 @@
             </div>
             <!-- end col -->
 
-            <div class="col-lg-4">
-                <div class="card">
-                    <div class="card-header">
-                        <h5 class="card-title mb-0">Publish</h5>
-                    </div>
-                    <div class="card-body">
-                        <div class="mb-3">
-                            <label for="choices-publish-status-input" class="form-label">Status</label>
+            
+            <div class="col-lg-4 position-relative mb-4">
+    <div class="card">
+        <div class="mb-3">
+            <label for="choices-publish-status-input" class="form-label">Tipo de insumo</label>
+            <select class="form-select" id="choices-publish-status-input" data-choices data-choices-search-false>
+                <option value="">Selecciona una opción</option>
+                <option value="Lino">Lino</option>
+                <option value="Algodon">Algodon</option>
+                <option value="boton">boton</option>
+                <option value="cremallera">cremallera</option>
+                <option value="unidades de medida">unidades de medida</option>
+            </select>
+        </div>
 
-                            <select class="form-select" id="choices-publish-status-input" data-choices data-choices-search-false>
-                                <option value="Published" selected>Published</option>
-                                <option value="Scheduled">Scheduled</option>
-                                <option value="Draft">Draft</option>
-                            </select>
-                        </div>
+        <div id="card-body-container"></div>
 
-                        <div>
-                            <label for="choices-publish-visibility-input" class="form-label">Visibility</label>
-                            <select class="form-select" id="choices-publish-visibility-input" data-choices data-choices-search-false>
-                                <option value="Public" selected>Public</option>
-                                <option value="Hidden">Hidden</option>
-                            </select>
-                        </div>
-                    </div>
-                    <!-- end card body -->
-                </div>
-                <!-- end card -->
+        <script>
+            const selectEl = document.getElementById('choices-publish-status-input');
+            const cardBodyContainerEl = document.getElementById('card-body-container');
 
-                <div class="card">
-                    <div class="card-header">
-                        <h5 class="card-title mb-0">Publish Schedule</h5>
-                    </div>
-                    <!-- end card body -->
-                    <div class="card-body">
-                        <div>
-                            <label for="datepicker-publish-input" class="form-label">Publish Date & Time</label>
-                            <input type="text" id="datepicker-publish-input" class="form-control"
-                                placeholder="Enter publish date" data-provider="flatpickr" data-date-format="d.m.y"
-                                data-enable-time>
-                        </div>
-                    </div>
-                </div>
-                <!-- end card -->
+            selectEl.addEventListener('change', (event) => {
+                const selectedValue = event.target.value;
 
-                <div class="card">
-                    <div class="card-header">
-                        <h5 class="card-title mb-0">Product Categories</h5>
-                    </div>
-                    <div class="card-body">
-                        <p class="text-muted mb-2"> <a href="#" class="float-end text-decoration-underline">Add
-                            New</a>Select product category</p>
-                            <select class="form-select" id="choices-category-input" name="choices-category-input" data-choices data-choices-search-false>
-                                <option value="Appliances">Appliances</option>
-                                <option value="Automotive Accessories">Automotive Accessories</option>
-                                <option value="Electronics">Electronics</option>
-                                <option value="Fashion">Fashion</option>
-                                <option value="Furniture">Furniture</option>
-                                <option value="Grocery">Grocery</option>
-                                <option value="Kids">Kids</option>
-                                <option value="Watches">Watches</option>
-                            </select>
-                    </div>
-                    <!-- end card body -->
-                </div>
-                <!-- end card -->
-                <div class="card">
-                    <div class="card-header">
-                        <h5 class="card-title mb-0">Product Tags</h5>
-                    </div>
-                    <div class="card-body">
-                        <div class="hstack gap-3 align-items-start">
-                            <div class="flex-grow-1">
-                                <input class="form-control" data-choices data-choices-multiple-remove="true" placeholder="Enter tags" type="text"
-                            value="Cotton" />
+                if (selectedValue === 'Lino' || selectedValue === 'Algodon') {
+                    // Agregar el código HTML al contenedor
+                    cardBodyContainerEl.innerHTML = `
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <label for="unidad-input" class="form-label">Unidad de medida</label>
+                                <input type="text" id="unidad-input" class="form-control" placeholder="Ingrese unidad de medida">
+                            </div>
+                            <div class="mb-3">
+                                <label for="ancho-input" class="form-label">Ancho de la tela</label>
+                                <input type="text" id="ancho-input" class="form-control" placeholder="Ingrese ancho de la tela">
+                            </div>
+                            <div class="mb-3">
+                                <label for="color-input" class="form-label">Color</label>
+                                <input type="text" id="color-input" class="form-control" placeholder="Ingrese color">
                             </div>
                         </div>
-                    </div>
-                    <!-- end card body -->
-                </div>
-                <!-- end card -->
-
-                <div class="card">
-                    <div class="card-header">
-                        <h5 class="card-title mb-0">Product Short Description</h5>
+                    `;
+                } else if (selectedValue === 'boton' || selectedValue === 'cremallera') {
+                    // Agregar el código HTML al contenedor
+                 cardBodyContainerEl.innerHTML = `
+                            <div class="mb-3">
+                        <label for="choices-publish-status-input" class="form-label">Tipo de material</label>
+                     <select class="form-select" id="choices-publish-status-input" data-choices data-choices-search-false>
+                            <option value="">Selecciona una opción</option>
+                            <option value="Lino">Metalica</option>
+                            <option value="Plastica">Plastico</option>
+                        </select>
                     </div>
                     <div class="card-body">
-                        <p class="text-muted mb-2">Add short description for product</p>
-                        <textarea class="form-control" placeholder="Must enter minimum of a 100 characters" rows="3"></textarea>
-                    </div>
-                    <!-- end card body -->
-                </div>
-                <!-- end card -->
+                            <div class="mb-3">
+                                <label for="color-input" class="form-label">Color</label>
+                                <input type="text" id="color-input" class="form-control" placeholder="Ingrese color">
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    // Limpiar el contenido del contenedor si no se selecciona una opción correspondiente
+                    cardBodyContainerEl.innerHTML = '';
+                }
+            });
+        </script>
+    </div>
+</div>
 
-            </div>
-        </div>
-        <!-- end row -->
     </form>
 @endsection
 @section('script')

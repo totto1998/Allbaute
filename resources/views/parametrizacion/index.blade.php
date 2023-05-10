@@ -44,10 +44,13 @@ parametrizacion
                             <a class="btn btn-warning" href="{{route('parametrizacion.create')}}">Nuevo</a>
                             <button type="button" class="btn btn-secondary"><i class="ri-file-download-line align-bottom me-1"></i>Exportar</button>
                             <button class="btn btn-soft-danger" id="remove-actions" onClick="deleteMultiple()"><i class="ri-delete-bin-2-line"></i></button>
+                            <br>
                         </div>
                     </div>
                 </div>
             </div>
+            <br>
+    </br>
             <div class="card-body pt-0">
                 <div>
                     <div class="table-responsive table-card mb-1">

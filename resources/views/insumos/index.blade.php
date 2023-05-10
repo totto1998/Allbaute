@@ -30,12 +30,14 @@ insumos
                             {{--  <button type="button" class="btn btn-primary add-btn" data-bs-toggle="modal" id="create-btn" data-bs-target="#showModal"><i class="ri-add-line align-bottom me-1"></i>Crear Nuevo insumo</button>
                               --}}
                               <a class="btn btn-warning" href="{{route('insumos.create')}}">Nuevo</a>
-                            <button type="button" class="btn btn-secondary"><i class="ri-file-download-line align-bottom me-1"></i> Import</button>
+                            <button type="button" class="btn btn-secondary"><i class="ri-file-download-line align-bottom me-1"></i>Exportar</button>
                             <button class="btn btn-soft-danger" id="remove-actions" onClick="deleteMultiple()"><i class="ri-delete-bin-2-line"></i></button>
                         </div>
                     </div>
                 </div>
             </div>
+            <br>
+                            </br>
             <div class="card-body pt-0">
                 <div>
                     <div class="table-responsive table-card mb-1">
@@ -43,33 +45,15 @@ insumos
                             <thead class="text-muted table-light">
                                 <tr class="text-uppercase">
                                     <th scope="col" style="width: 25px;">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="checkAll" value="option">
-                                        </div>
                                     </th>
-                                    {{--  <th class="sort" data-sort="id">Order ID</th>
-                                    <th class="sort" data-sort="customer_name">Customer</th>
-                                    <th class="sort" data-sort="product_name">Product</th>
-                                    <th class="sort" data-sort="date">Order Date</th>
-                                    <th class="sort" data-sort="amount">Amount</th>
-                                    <th class="sort" data-sort="payment">Payment Method</th>
-                                    <th class="sort" data-sort="status">Delivery Status</th>
-                                    <th class="sort" data-sort="city">Action</th>  --}}
-
-                                    <th>ID</th>
-                                    <th>Categoria</th>
-                                    <th>Sub Categoria</th>
-                                    <th>Nombre</th>
-                                    <th>Color</th>
-                                    <th>unidad</th>
-                                    {{--  <th>img</th>  --}}
-                                    <th>Tipo Insumo</th>
-                                    <th>Ancho Tela</th>
-                                    <th>Acciones</th>
-
-
-
-
+                                    <th class="sort" data-sort="id">ID</th>
+                                    <th class="sort" data-sort="imagen">Imagen</th>
+                                    <th class="sort" data-sort="nombre">Nombre</th>
+                                    <th class="sort" data-sort="id_tipo">Categoria</th>
+                                    <th class="sort" data-sort="color">Color</th>
+                                    <th class="sort" data-sort="medida">Unidad de medida</th>
+                                    <th class="sort" data-sort="ancho">Ancho de la tela</th>
+                                    <th class="sort" data-sort="payment">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -85,7 +69,6 @@ insumos
                                         </th>
                                     <td>{{$insumos->id}}</td>
                                     <td>{{$insumos->id_categ}}</td>
-                                    <td>{{$insumos->id_subcateg}}</td>
                                     <td>{{$insumos->nombre}}</td>
                                     <td>{{$insumos->color}}</td>
                                     <td>{{$insumos->unidad}}</td>
