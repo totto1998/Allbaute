@@ -39,8 +39,8 @@ class parametrizacionController extends Controller
         // método para mostrar el formulario de creación
         public function create()
         {
-            $tipo_parametrizacion = TipoParametrizacion::all();
-            return view('parametrizacion.create', compact('tipo_parametrizacion'));
+            $parametrizacion = TipoParametrizacion::all();
+            return view('parametrizacion.create', compact('parametrizacion'));
         }
 
 

@@ -23,9 +23,9 @@ class ordenCompraController extends Controller
      */
     public function create()
     {
-        //
+       $ordenCompra = OrdenCompra::all();
+       return view('ordenCompra.create', compact('ordenCompra'));
     }
-
     /**
      * Store a newly created resource in storage.
      */

@@ -24,7 +24,7 @@ class insumosController extends Controller
     public function create()
     {
        $insumos = Insumos::all();
-       return view('insumos.crear', compact('insumos'));
+       return view('insumos.create', compact('insumos'));
     }
 
     /**

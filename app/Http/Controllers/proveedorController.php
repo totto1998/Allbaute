@@ -35,7 +35,7 @@ class proveedorController extends Controller
     {
        $proveedor = Proveedor::all();
      
-       return view('provee$proveedor.crear', compact('provee$proveedor'));
+       return view('proveedor.create', compact('proveedor'));
     }
 
     /**
