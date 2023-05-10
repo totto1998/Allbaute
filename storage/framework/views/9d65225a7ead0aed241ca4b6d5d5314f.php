@@ -1,21 +1,21 @@
-@extends('layouts.master')
-@section('title')
-    @lang('translation.create-product')
-@endsection
-@section('css')
-<link href="{{ URL::asset('build/libs/dropzone/dropzone.css') }}" rel="stylesheet">
-@endsection
-@section('content')
-    @component('components.breadcrumb')
-        @slot('li_1')
+
+<?php $__env->startSection('title'); ?>
+    <?php echo app('translator')->get('translation.create-product'); ?>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('css'); ?>
+<link href="<?php echo e(URL::asset('build/libs/dropzone/dropzone.css')); ?>" rel="stylesheet">
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
+    <?php $__env->startComponent('components.breadcrumb'); ?>
+        <?php $__env->slot('li_1'); ?>
             Ecommerce
-        @endslot
-        @slot('title')
+        <?php $__env->endSlot(); ?>
+        <?php $__env->slot('title'); ?>
             Crear nueva parametrizacion
-        @endslot
-    @endcomponent
-    <form action="{{ route('parametrizacion.store') }}" method="POST">
-        @csrf
+        <?php $__env->endSlot(); ?>
+    <?php echo $__env->renderComponent(); ?>
+    <form action="<?php echo e(route('parametrizacion.store')); ?>" method="POST">
+        <?php echo csrf_field(); ?>
         <div class="row">
             <div class="col-lg-8">
                     <div class="card">
@@ -39,9 +39,9 @@
                             <label for="tipo_parametrizacion" class="form-label">Tipo de Parámetro</label>
                             <select class="form-select" id="tipo_parametrizacion" name="tipo_parametrizacion" required>
                                 <option value="">Seleccionar tipo de parámetro</option>
-                                @foreach ($parametrizacion as $tipo)
-                                    <option value="{{ $tipo->id }}">{{ $tipo->nombre }}</option>
-                                @endforeach
+                                <?php $__currentLoopData = $parametrizacion; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tipo): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <option value="<?php echo e($tipo->id); ?>"><?php echo e($tipo->nombre); ?></option>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </select>
                         </div>
 
@@ -78,8 +78,8 @@
         </div>
         <!-- end row -->
     </form>
-@endsection
-@section('script')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('script'); ?>
 
 <script>
     ClassicEditor
@@ -92,10 +92,12 @@
         } );
 </script>
 
-<script src="{{ URL::asset('build/libs/@ckeditor/ckeditor5-build-classic/build/ckeditor.js') }}"></script>
+<script src="<?php echo e(URL::asset('build/libs/@ckeditor/ckeditor5-build-classic/build/ckeditor.js')); ?>"></script>
 
-<script src="{{ URL::asset('build/libs/dropzone/dropzone-min.js') }}"></script>
-<script src="{{ URL::asset('build/js/pages/ecommerce-product-create.init.js') }}"></script>
+<script src="<?php echo e(URL::asset('build/libs/dropzone/dropzone-min.js')); ?>"></script>
+<script src="<?php echo e(URL::asset('build/js/pages/ecommerce-product-create.init.js')); ?>"></script>
 
-<script src="{{ URL::asset('build/js/app.js') }}"></script>
-@endsection
+<script src="<?php echo e(URL::asset('build/js/app.js')); ?>"></script>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\Usuario\Documents\GitHub\Allbaute\resources\views/parametrizacion/create.blade.php ENDPATH**/ ?>
