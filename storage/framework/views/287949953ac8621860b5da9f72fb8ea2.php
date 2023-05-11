@@ -120,13 +120,12 @@
                                         </div>
                                         <div class="col-lg-3 col-sm-6">
                                             <div class="mb-3">
-                                                <label class="form-label" for="product-price-input">Presio</label>
+                                                <label class="form-label" for="product-price-input">Precio</label>
                                                 <div class="input-group has-validation mb-3">
                                                     <span class="input-group-text" id="product-price-addon">$</span>
-                                                    <input type="number" class="form-control" id="product-price-input" placeholder="Enter price" aria-label="Price" aria-describedby="product-price-addon" required>
-                                                    <div class="invalid-feedback">Ingrese el presio del insumo.</div>
+                                                    <input type="number" class="form-control" id="product-price-input" placeholder="Precio" aria-label="Price" aria-describedby="product-price-addon" required>
+                                                    <div class="invalid-feedback">Ingrese el precio del insumo.</div>
                                                 </div>
-
                                             </div>
                                         </div>
                                         <!-- end col -->

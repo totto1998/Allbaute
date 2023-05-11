@@ -123,7 +123,11 @@
                                                 <label class="form-label" for="product-price-input">Precio</label>
                                                 <div class="input-group has-validation mb-3">
                                                     <span class="input-group-text" id="product-price-addon">$</span>
+<<<<<<< Updated upstream
                                                     <input type="number" class="form-control" id="product-price-input" placeholder="Enter price" aria-label="Price" aria-describedby="product-price-addon" required>
+=======
+                                                    <input type="number" class="form-control" id="product-price-input" placeholder="Precio" aria-label="Price" aria-describedby="product-price-addon" required>
+>>>>>>> Stashed changes
                                                     <div class="invalid-feedback">Ingrese el precio del insumo.</div>
                                                 </div>
                                             </div>
