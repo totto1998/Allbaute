@@ -8,10 +8,10 @@
 @section('content')
     @component('components.breadcrumb')
         @slot('li_1')
-            Ecommerce
+            Insumos
         @endslot
         @slot('title')
-            Crear nuevo insumo
+            Crear insumos
         @endslot
     @endcomponent
     <form id="createproduct-form" autocomplete="off" class="needs-validation" novalidate>
@@ -24,32 +24,8 @@
                             <h5 class="card-title mb-0">Galeria de productos</h5>
                         </div>
                         <div class="card-body">
-                            <div class="mb-4">
-                                <h5 class="fs-14 mb-1">Imagen del producto</h5>
-                                <p class="text-muted">Selecciona la imagen del producto</p>
-                                <div class="text-center">
-                                    <div class="position-relative d-inline-block">
-                                        <div class="position-absolute top-100 start-100 translate-middle">
-                                            <label for="product-image-input" class="mb-0"  data-bs-toggle="tooltip" data-bs-placement="right" title="Seleccione la imagen">
-                                                <div class="avatar-xs">
-                                                    <div class="avatar-title bg-light border rounded-circle text-muted cursor-pointer">
-                                                        <i class="ri-image-fill"></i>
-                                                    </div>
-                                                </div>
-                                            </label>
-                                            <input class="form-control d-none" value="" id="product-image-input" type="file"
-                                                accept="image/png, image/gif, image/jpeg">
-                                        </div>
-                                        <div class="avatar-lg">
-                                            <div class="avatar-title bg-light rounded">
-                                                <img src="" id="product-img" class="avatar-md h-auto" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                             <div>
-                                <h5 class="fs-14 mb-1">Subir nueva imagen a la galeria</h5>
+                                <h5 class="fs-14 mb-1">Agrega la imagen de un producto nuevo</h5>
 
                                 <div class="dropzone">
                                     <div class="fallback">
@@ -60,7 +36,7 @@
                                             <i class="display-4 text-muted ri-upload-cloud-2-fill"></i>
                                         </div>
 
-                                        <h5>Clik aqui para subir la imagen.</h5>
+                                        <h5>Clik aqui para subir la imagen</h5>
                                     </div>
                                 </div>
 
@@ -82,7 +58,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="flex-shrink-0 ms-3">
-                                                    <button data-dz-remove class="btn btn-sm btn-danger">Delete</button>
+                                                    <button data-dz-remove class="btn btn-sm btn-danger">Borrar</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -115,7 +91,7 @@
                                             <div class="mb-3">
                                                 <label class="form-label" for="stocks-input">Stocks</label>
                                                 <input type="text" class="form-control" id="stocks-input" placeholder="Stocks" required>
-                                                <div class="invalid-feedback">Ingrese la cantidad disponible del insumo.</div>
+                                                <div class="invalid-feedback">Ingrese cuantos productos estan en Stocks.</div>
                                             </div>
                                         </div>
                                         <div class="col-lg-3 col-sm-6">
@@ -123,12 +99,18 @@
                                                 <label class="form-label" for="product-price-input">Precio</label>
                                                 <div class="input-group has-validation mb-3">
                                                     <span class="input-group-text" id="product-price-addon">$</span>
-<<<<<<< Updated upstream
-                                                    <input type="number" class="form-control" id="product-price-input" placeholder="Enter price" aria-label="Price" aria-describedby="product-price-addon" required>
-=======
-                                                    <input type="number" class="form-control" id="product-price-input" placeholder="Precio" aria-label="Price" aria-describedby="product-price-addon" required>
->>>>>>> Stashed changes
-                                                    <div class="invalid-feedback">Ingrese el precio del insumo.</div>
+                                                    <input type="text" class="form-control" id="product-price-input" placeholder="Enter price" aria-label="Price" aria-describedby="product-price-addon" required>
+                                                    <div class="invalid-feedback">Ingrese el precio.</div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-sm-6">
+                                            <div class="mb-3">
+                                                <label class="form-label" for="product-discount-input">Descuento</label>
+                                                <div class="input-group mb-3">
+                                                    <span class="input-group-text" id="product-discount-addon">%</span>
+                                                    <input type="text" class="form-control" id="product-discount-input" placeholder="Descuento" aria-label="discount" aria-describedby="product-discount-addon">
                                                 </div>
                                             </div>
                                         </div>
@@ -143,82 +125,109 @@
                         <!-- end card body -->
                     </div>
                     <!-- end card -->
-
+                    
             </div>
             <!-- end col -->
-
-            
             <div class="col-lg-4 position-relative mb-4">
-    <div class="card">
-        <div class="mb-3">
-            <label for="choices-publish-status-input" class="form-label">Tipo de insumo</label>
-            <select class="form-select" id="choices-publish-status-input" data-choices data-choices-search-false>
-                <option value="">Selecciona una opción</option>
-                <option value="Lino">Lino</option>
-                <option value="Algodon">Algodon</option>
-                <option value="boton">boton</option>
-                <option value="cremallera">cremallera</option>
-                <option value="unidades de medida">unidades de medida</option>
-            </select>
-        </div>
+                <div class="card">
+                    <div class="mb-2">
+                        <label for="choices-publish-status-input" class="form-label">Tipo de insumo</label>
+                        <select class="form-select" id="choices-publish-status-input" data-choices data-choices-search-false>
+                         <option value="">Selecciona una opción</option>
+                         <option value="Lino">Lino</option>
+                         <option value="Algodon">Algodon</option>
+                         <option value="boton">boton</option>
+                         <option value="cremallera">cremallera</option>
+                        </select>
+                    </div>
 
-        <div id="card-body-container"></div>
+                    <div id="card-body-container"></div>
 
-        <script>
-            const selectEl = document.getElementById('choices-publish-status-input');
-            const cardBodyContainerEl = document.getElementById('card-body-container');
+                    <script>
+                        const selectEl = document.getElementById('choices-publish-status-input');
+                        const cardBodyContainerEl = document.getElementById('card-body-container');
 
-            selectEl.addEventListener('change', (event) => {
-                const selectedValue = event.target.value;
+                        selectEl.addEventListener('change', (event) => {
+                        const selectedValue = event.target.value;
 
-                if (selectedValue === 'Lino' || selectedValue === 'Algodon') {
-                    // Agregar el código HTML al contenedor
-                    cardBodyContainerEl.innerHTML = `
+                        if (selectedValue === 'Lino' || selectedValue === 'Algodon') {
+                            // Agregar el código HTML al contenedor
+                        cardBodyContainerEl.innerHTML = `
                         <div class="card-body">
-                            <div class="mb-3">
-                                <label for="unidad-input" class="form-label">Unidad de medida</label>
-                                <input type="text" id="unidad-input" class="form-control" placeholder="Ingrese unidad de medida">
+                            <div class="mb-2">
+                                <label for="choices-publish-status-input" class="form-label">Unidad de medida</label>
+                                    <select class="form-select" id="choices-publish-status-input" data-choices data-choices-search-false>
+                                        <option value="">Metro</option>
+                                        <option value="Lino">Yarda</option>
+                                        <option value="Algodon">Bolsa</option>
+                                        <option value="boton">Kilogramo</option>
+                                </select>
                             </div>
                             <div class="mb-3">
                                 <label for="ancho-input" class="form-label">Ancho de la tela</label>
                                 <input type="text" id="ancho-input" class="form-control" placeholder="Ingrese ancho de la tela">
                             </div>
                             <div class="mb-3">
-                                <label for="color-input" class="form-label">Color</label>
-                                <input type="text" id="color-input" class="form-control" placeholder="Ingrese color">
+                             <label for="color-input" class="form-label">Color</label>
+                             <input type="text" id="color-input" class="form-control" placeholder="Ingrese color">
                             </div>
                         </div>
+                        <div class="card">
+                                <div class="card-header">
+                                    <h5 class="card-title mb-0">Tags de insumos</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="hstack gap-3 align-items-start">
+                                        <div class="flex-grow-1">
+                                            <input class="form-control" data-choices data-choices-multiple-remove="true" placeholder="Enter tags" type="text"
+                                     value="" />
+                                     </div>
+                                 </div>
+                                </div>
+                            </div>
                     `;
                 } else if (selectedValue === 'boton' || selectedValue === 'cremallera') {
                     // Agregar el código HTML al contenedor
-                 cardBodyContainerEl.innerHTML = `
+                    cardBodyContainerEl.innerHTML = `
+                        <div class="card-body">
                             <div class="mb-3">
-                        <label for="choices-publish-status-input" class="form-label">Tipo de material</label>
-                     <select class="form-select" id="choices-publish-status-input" data-choices data-choices-search-false>
-                            <option value="">Selecciona una opción</option>
-                            <option value="Lino">Metalica</option>
-                            <option value="Plastica">Plastico</option>
-                        </select>
-                    </div>
-                    <div class="card-body">
+                             <label for="metal-input" class="form-label">Material</label>
+                             <input type="text" id="metal-input" class="form-control" placeholder="Ingrese el material">
+                            </div>
                             <div class="mb-3">
                                 <label for="color-input" class="form-label">Color</label>
                                 <input type="text" id="color-input" class="form-control" placeholder="Ingrese color">
                             </div>
                         </div>
+                        <div class="card">
+                                <div class="card-header">
+                                    <h5 class="card-title mb-0">Tags de insumos</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="hstack gap-3 align-items-start">
+                                        <div class="flex-grow-1">
+                                            <input class="form-control" data-choices data-choices-multiple-remove="true" placeholder="Enter tags" type="text"
+                                        value="" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                     `;
                 } else {
                     // Limpiar el contenido del contenedor si no se selecciona una opción correspondiente
                     cardBodyContainerEl.innerHTML = '';
                 }
             });
-        </script>
-    </div>
-    <div class="text-end mb-3">
-        <button type="submit" class="btn btn-success w-sm">Submit</button>
-    </div>
-</div>
-
+            </script>
+                </div>
+            </div>
+                </div>
+                <div class="text-end mb-3">
+                        <button type="submit" class="btn btn-success w-sm">Submit</button>
+                    </div>
+                </div>
+        </div>
+        <!-- end row -->
     </form>
 @endsection
 @section('script')
@@ -229,3 +238,4 @@
 
 <script src="{{ URL::asset('build/js/app.js') }}"></script>
 @endsection
+
