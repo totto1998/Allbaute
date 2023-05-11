@@ -33,10 +33,13 @@ parametrizacion
                             <a class="btn btn-warning" href="<?php echo e(route('parametrizacion.create')); ?>">Nuevo</a>
                             <button type="button" class="btn btn-secondary"><i class="ri-file-download-line align-bottom me-1"></i>Exportar</button>
                             <button class="btn btn-soft-danger" id="remove-actions" onClick="deleteMultiple()"><i class="ri-delete-bin-2-line"></i></button>
+                            <br>
                         </div>
                     </div>
                 </div>
             </div>
+            <br>
+    </br>
             <div class="card-body pt-0">
                 <div>
                     <div class="table-responsive table-card mb-1">
@@ -246,7 +249,7 @@ parametrizacion
 
 
 <!--ecommerce-customer init js -->
-
+<script src="<?php echo e(URL::asset('build/js/pages/ecommerce-order.init.js')); ?>"></script>
 <script src="<?php echo e(URL::asset('build/libs/sweetalert2/sweetalert2.min.js')); ?>"></>
 
 <script src="<?php echo e(URL::asset('build/js/app.js')); ?>"></script>

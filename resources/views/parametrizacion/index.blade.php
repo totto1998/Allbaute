@@ -270,7 +270,7 @@ parametrizacion
 
 
 <!--ecommerce-customer init js -->
-{{--  <script src="{{ URL::asset('build/js/pages/ecommerce-order.init.js') }}"></script>    --}}
+<script src="{{ URL::asset('build/js/pages/ecommerce-order.init.js') }}"></script>
 <script src="{{ URL::asset('build/libs/sweetalert2/sweetalert2.min.js') }}"></>
 
 <script src="{{ URL::asset('build/js/app.js') }}"></script>

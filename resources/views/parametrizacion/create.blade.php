@@ -20,11 +20,9 @@
             <div class="col-lg-8">
                     <div class="card">
                         <div class="card-body">
-                            <div>
+                            <div class="mb-3">
                                 <label for="descripcion" class="form-label">Descripción</label>
-                                <div id="ckeditor-classic">
-                                    <textarea id="descripcion" name="descripcion"></textarea>
-                                </div>
+                                <textarea class="form-control" id="descripcion" name="descripcion" rows="10"></textarea>
                             </div>
                         </div>
                     </div>
@@ -81,16 +79,6 @@
 @endsection
 @section('script')
 
-<script>
-    ClassicEditor
-        .create( document.querySelector( '#descripcion' ) )
-        .then( editor => {
-            console.log( editor );
-        } )
-        .catch( error => {
-            console.error( error );
-        } );
-</script>
 
 <script src="{{ URL::asset('build/libs/@ckeditor/ckeditor5-build-classic/build/ckeditor.js') }}"></script>
 

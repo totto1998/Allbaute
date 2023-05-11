@@ -26,7 +26,7 @@
     </div>
 
     <div id="scrollbar">
-        <div class="main-content>
+        <div class="container-fluid">
 
             <div id="two-column-menu">
             </div>
