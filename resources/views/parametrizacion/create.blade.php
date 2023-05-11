@@ -22,7 +22,7 @@
                         <div class="card-body">
                             <div class="mb-3">
                                 <label for="descripcion" class="form-label">Descripción</label>
-                                <textarea class="form-control" id="descripcion" name="descripcion" rows="10"></textarea>
+                                <textarea required pattern="[A-Za-z\s]+" class="form-control" id="descripcion" name="descripcion" rows="10"></textarea>
                             </div>
                         </div>
                     </div>
