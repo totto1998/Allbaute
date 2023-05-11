@@ -172,7 +172,7 @@
     </div>
     <div class="mb-3">
       <label for="tags" class="form-label">Tags</label>
-      <input type="text" class="form-control" id="tags" placeholder="Ingrese los tags separados por comas" required pattern="[A-Za-z\s]+">
+      <input type="text" class="form-control" id="tags" placeholder="Ingrese los tags" required pattern="[A-Za-z\s]+">
     </div>
     <button type="submit" class="btn btn-primary">Enviar</button>
   </form>
