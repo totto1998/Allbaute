@@ -8,180 +8,176 @@
 @section('content')
     @component('components.breadcrumb')
         @slot('li_1')
-            Insumos
+            Proveedores
         @endslot
         @slot('title')
-            Crear insumos
+            Ingresar nuevo proveedor
         @endslot
     @endcomponent
-    <form id="createproduct-form" autocomplete="off" class="needs-validation" novalidate>
-        <div class="row">
-            <div class="col-lg-8">
-                        <div class="card">   
-                             <div class="mb-3">
-                                <label for="ancho-input" class="form-label">Ancho de la tela</label>
-                                <input type="text" id="ancho-input" class="form-control" placeholder="Ingrese ancho de la tela">
-                            </div>
-                        </div>
-                    <div class="card">
-                        <div class="card-header">
-                            <ul class="nav nav-tabs-custom card-header-tabs border-bottom-0" role="tablist">
-                                <li class="nav-item">
-                                    <a class="nav-link active" data-bs-toggle="tab" href="#addproduct-general-info"
-                                        role="tab">
-                                        Informacion general
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- end card header -->
-                        <div class="card-body">
-                            <div class="tab-content">
-                                <div class="tab-pane active" id="addproduct-general-info" role="tabpanel">
-                                    
-                                    <div class="row">
-                                        <div class="col-lg-3 col-sm-6">
-                                            <div class="mb-3">
-                                                <label class="form-label" for="stocks-input">Stocks</label>
-                                                <input type="text" class="form-control" id="stocks-input" placeholder="Stocks" required>
-                                                <div class="invalid-feedback">Ingrese cuantos productos estan en Stocks.</div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3 col-sm-6">
-                                            <div class="mb-3">
-                                                <label class="form-label" for="product-price-input">Precio</label>
-                                                <div class="input-group has-validation mb-3">
-                                                    <span class="input-group-text" id="product-price-addon">$</span>
-                                                    <input type="text" class="form-control" id="product-price-input" placeholder="Enter price" aria-label="Price" aria-describedby="product-price-addon" required>
-                                                    <div class="invalid-feedback">Ingrese el precio.</div>
-                                                </div>
+  <form>
+  <div class="form-group">
+  <label for="email">Email:</label>
+  <div class="input-group">
+    <input type="email" class="form-control" id="email" placeholder="Ingrese su email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+    <div class="invalid-feedback" style="position:absolute; bottom:-1.5rem; left:0;">Ingrese un correo electrónico válido.</div>
+  </div>
+  <br>
+</div>
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label for="razon-social" class="form-label">Razón Social</label>
+        <input type="text" class="form-control" id="razon-social" placeholder="Ingrese su razón social" required pattern="[A-Za-z\s]+">
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="nit" class="form-label">NIT</label>
+        <input type="text" class="form-control" id="nit" placeholder="Ingrese su NIT" required pattern="[0-9]+">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label for="telefono-fijo" class="form-label">Teléfono fijo</label>
+        <input type="text" class="form-control" id="telefono-fijo" placeholder="Ingrese su teléfono fijo" required pattern="[0-9]+">
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="celular" class="form-label">Celular</label>
+        <input type="text" class="form-control" id="celular" placeholder="Ingrese su celular" required pattern="[0-9]+">
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="direccion" class="form-label">Dirección</label>
+      <input type="text" class="form-control" id="direccion" placeholder="Ingrese su dirección" required>
+    </div>
+    <div class="row">
+    <label for="direccion" class="form-label">Ciudad</label>
+    <select class="form-select" id="ciudad" name="ciudad">
+  <option selected>Seleccione su ciudad</option>
+  <optgroup label="Amazonas">
+    <option value="Leticia">Leticia</option>
+    <option value="Puerto Nariño">Puerto Nariño</option>
+  </optgroup>
+  <optgroup label="Antioquia">
+    <option value="Medellín">Medellín</option>
+    <option value="Bello">Bello</option>
+    <option value="Envigado">Envigado</option>
+    <option value="Itagüí">Itagüí</option>
+    <option value="Sabaneta">Sabaneta</option>
+  </optgroup>
+  <optgroup label="Arauca">
+    <option value="Arauca">Arauca</option>
+  </optgroup>
+  <optgroup label="Atlántico">
+    <option value="Barranquilla">Barranquilla</option>
+    <option value="Galapa">Galapa</option>
+    <option value="Malambo">Malambo</option>
+    <option value="Puerto Colombia">Puerto Colombia</option>
+    <option value="Soledad">Soledad</option>
+  </optgroup>
+  <optgroup label="Bolívar">
+    <option value="Cartagena">Cartagena</option>
+  </optgroup>
+  <optgroup label="Boyacá">
+    <option value="Tunja">Tunja</option>
+    <option value="Villa de Leyva">Villa de Leyva</option>
+  </optgroup>
+  <optgroup label="Caldas">
+    <option value="Manizales">Manizales</option>
+    <option value="Chinchiná">Chinchiná</option>
+  </optgroup>
+  <optgroup label="Caquetá">
+    <option value="Florencia">Florencia</option>
+  </optgroup>
+  <optgroup label="Casanare">
+    <option value="Aguazul">Aguazul</option>
+    <option value="Yopal">Yopal</option>
+  </optgroup>
+  <optgroup label="Cauca">
+    <option value="Popayán">Popayán</option>
+  </optgroup>
+  <optgroup label="Cesar">
+    <option value="Valledupar">Valledupar</option>
+  </optgroup>
+  <optgroup label="Chocó">
+    <option value="Quibdó">Quibdó</option>
+  </optgroup>
+  <optgroup label="Córdoba">
+    <option value="Montería">Montería</option>
+  </optgroup>
+  <optgroup label="Cundinamarca">
+    <option value="Bogotá">Bogotá</option>
+  </optgroup>
+  <optgroup label="Guainía">
+    <option value="Inírida">Inírida</option>
+  </optgroup>
+   <optgroup label="Huila">
+    <option value="Neiva">Neiva</option>
+  </optgroup>
+  <optgroup label="La Guajira">
+    <option value="Riohacha">Riohacha</option>
+  </optgroup>
+  <optgroup label="Magdalena">
+    <option value="Santa Marta">Santa Marta</option>
+  </optgroup>
+  <optgroup label="Meta">
+    <option value="Villavicencio">Villavicencio</option>
+  </optgroup>
+  <optgroup label="Nariño">
+    <option value="Pasto">Pasto</option>
+  </optgroup>
+  <optgroup label="Norte de Santander">
+    <option value="Cúcuta">Cúcuta</option>
+  </optgroup>
+  <optgroup label="Putumayo">
+    <option value="Mocoa">Mocoa</option>
+  </optgroup>
+  <optgroup label="Quindío">
+    <option value="Armenia">Armenia</option>
+  </optgroup>
+  <optgroup label="Risaralda">
+    <option value="Pereira">Pereira</option>
+  </optgroup>
+  <optgroup label="San Andrés y Providencia">
+    <option value="San Andrés">San Andrés</option>
+  </optgroup>
+  <optgroup label="Santander">
+    <option value="Bucaramanga">Bucaramanga</option>
+  </optgroup>
+  <optgroup label="Sucre">
+    <option value="Sincelejo">Sincelejo</option>
+  </optgroup>
+  <optgroup label="Tolima">
+    <option value="Ibagué">Ibagué</option>
+  </optgroup>
+  <optgroup label="Vaupés">
+    <option value="Mitú">Mitú</option>
+  </optgroup>
+  <optgroup label="Vichada">
+    <option value="Vichada">Vichada</option>
+  </optgroup>
+    </select>
+    </div>
+    <br>
+    <div class="mb-3">
+      <label for="nombre-de-contacto" class="form-label">Nombre del contacto</label>
+      <input type="text" class="form-control" id="nombre-de-contacto" placeholder="Ingrese ingrese el nombre del contacto" required pattern="[A-Za-z\s]+">
+    </div>
+    </div>
+    <div class="mb-3">
+      <label for="tipo-insumo" class="form-label">Tipo de insumo</label>
+      <select class="form-select" id="tipo-insumo" required>
+        <option selected>Seleccione una opción</option>
+        <option value="1">lino</option>
+        <option value="2">algodon</option>
+        <option value="3">boton</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="tags" class="form-label">Tags</label>
+      <input type="text" class="form-control" id="tags" placeholder="Ingrese los tags separados por comas" required pattern="[A-Za-z\s]+">
+    </div>
+    <button type="submit" class="btn btn-primary">Enviar</button>
+  </form>
+</div>
 
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3 col-sm-6">
-                                            <div class="mb-3">
-                                                <label class="form-label" for="product-discount-input">Descuento</label>
-                                                <div class="input-group mb-3">
-                                                    <span class="input-group-text" id="product-discount-addon">%</span>
-                                                    <input type="text" class="form-control" id="product-discount-input" placeholder="Descuento" aria-label="discount" aria-describedby="product-discount-addon">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- end col -->
-                                    </div>
-                                    <!-- end row -->
-                                </div>
-                                <!-- end tab pane -->
-                            </div>
-                            <!-- end tab content -->
-                        </div>
-                        <!-- end card body -->
-                    </div>
-                    <!-- end card -->
-                    
-            </div>
-            <!-- end col -->
-            <div class="col-lg-4 position-relative mb-4">
-                <div class="card">
-                    <div class="mb-2">
-                        <label for="choices-publish-status-input" class="form-label">Tipo de insumo</label>
-                        <select class="form-select" id="choices-publish-status-input" data-choices data-choices-search-false>
-                         <option value="">Selecciona una opción</option>
-                         <option value="Lino">Lino</option>
-                         <option value="Algodon">Algodon</option>
-                         <option value="boton">boton</option>
-                         <option value="cremallera">cremallera</option>
-                        </select>
-                    </div>
-
-                    <div id="card-body-container"></div>
-
-                    <script>
-                        const selectEl = document.getElementById('choices-publish-status-input');
-                        const cardBodyContainerEl = document.getElementById('card-body-container');
-
-                        selectEl.addEventListener('change', (event) => {
-                        const selectedValue = event.target.value;
-
-                        if (selectedValue === 'Lino' || selectedValue === 'Algodon') {
-                            // Agregar el código HTML al contenedor
-                        cardBodyContainerEl.innerHTML = `
-                        <div class="card-body">
-                            <div class="mb-2">
-                                <label for="choices-publish-status-input" class="form-label">Unidad de medida</label>
-                                    <select class="form-select" id="choices-publish-status-input" data-choices data-choices-search-false>
-                                        <option value="">Metro</option>
-                                        <option value="Lino">Yarda</option>
-                                        <option value="Algodon">Bolsa</option>
-                                        <option value="boton">Kilogramo</option>
-                                </select>
-                            </div>
-                            <div class="mb-3">
-                                <label for="ancho-input" class="form-label">Ancho de la tela</label>
-                                <input type="text" id="ancho-input" class="form-control" placeholder="Ingrese ancho de la tela">
-                            </div>
-                            <div class="mb-3">
-                             <label for="color-input" class="form-label">Color</label>
-                             <input type="text" id="color-input" class="form-control" placeholder="Ingrese color">
-                            </div>
-                        </div>
-                        <div class="card">
-                                <div class="card-header">
-                                    <h5 class="card-title mb-0">Tags de insumos</h5>
-                                </div>
-                                <div class="card-body">
-                                    <div class="hstack gap-3 align-items-start">
-                                        <div class="flex-grow-1">
-                                            <input class="form-control" data-choices data-choices-multiple-remove="true" placeholder="Enter tags" type="text"
-                                     value="" />
-                                     </div>
-                                 </div>
-                                </div>
-                            </div>
-                    `;
-                } else if (selectedValue === 'boton' || selectedValue === 'cremallera') {
-                    // Agregar el código HTML al contenedor
-                    cardBodyContainerEl.innerHTML = `
-                        <div class="card-body">
-                            <div class="mb-3">
-                             <label for="metal-input" class="form-label">Material</label>
-                             <input type="text" id="metal-input" class="form-control" placeholder="Ingrese el material">
-                            </div>
-                            <div class="mb-3">
-                                <label for="color-input" class="form-label">Color</label>
-                                <input type="text" id="color-input" class="form-control" placeholder="Ingrese color">
-                            </div>
-                        </div>
-                        <div class="card">
-                                <div class="card-header">
-                                    <h5 class="card-title mb-0">Tags de insumos</h5>
-                                </div>
-                                <div class="card-body">
-                                    <div class="hstack gap-3 align-items-start">
-                                        <div class="flex-grow-1">
-                                            <input class="form-control" data-choices data-choices-multiple-remove="true" placeholder="Enter tags" type="text"
-                                        value="" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                    `;
-                } else {
-                    // Limpiar el contenido del contenedor si no se selecciona una opción correspondiente
-                    cardBodyContainerEl.innerHTML = '';
-                }
-            });
-            </script>
-                </div>
-            </div>
-                </div>
-                <div class="text-end mb-3">
-                        <button type="submit" class="btn btn-success w-sm">Submit</button>
-                    </div>
-                </div>
-        </div>
-        <!-- end row -->
-    </form>
 @endsection
 @section('script')
 <script src="{{ URL::asset('build/libs/@ckeditor/ckeditor5-build-classic/build/ckeditor.js') }}"></script>
