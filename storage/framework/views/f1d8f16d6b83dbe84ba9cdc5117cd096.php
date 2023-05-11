@@ -43,7 +43,7 @@
                     <div class="card-header border-0">
                         <div class="row g-4">
                             <div class="col-sm-auto"><div>
-                                    <a  class="btn btn-warning" href="<?php echo e(route('insumo.create')); ?>" id="addproduct-btn"><i
+                                    <a  class="btn btn-warning" href="<?php echo e(route('insumos.create')); ?>" id="addproduct-btn"><i
                                             class="ri-add-line align-bottom me-1"></i>Agregar insumos</a>
                                 </div>
                             </div>
