@@ -13,14 +13,17 @@ class insumos extends Model
 
     protected $fillable = [
           'id',
-          'id_categ',
-          'id_subcateg',
-          'nombre',
+          'img',
+          'tags',
+          'categ',
+          'precio',
+          'stock',
+          'descuento',
           'color',
           'unidad',
-          'img',
-          't_insumo',
-          'ancho_tela',
+          'ancho',
+          'material',
+          'created_at',
 
 
       ];
