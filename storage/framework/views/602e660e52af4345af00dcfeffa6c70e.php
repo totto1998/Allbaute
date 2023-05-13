@@ -36,6 +36,7 @@ Provedor
                     </div>
                 </div>
             </div>
+            <br>
             <div class="card-body pt-0">
                 <div>
                     <div class="table-responsive table-card mb-1">
@@ -83,11 +84,7 @@ Provedor
                                     <td><?php echo e($proveedor->tags); ?></td>
                                     <td>
                                         <ul class="list-inline hstack gap-2 mb-0">
-                                            <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="View">
-                                                <a href="<?php echo e(URL::asset('/apps-ecommerce-order-details')); ?>" class="text-primary d-inline-block">
-                                                    <i class="ri-eye-fill fs-16"></i>
-                                                </a>
-                                            </li>
+                                            
                                             <li class="list-inline-item edit" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Edit">
                                                 <a href="#editModal" data-bs-toggle="modal" class="text-primary d-inline-block edit-item-btn">
                                                     <i class="ri-pencil-fill fs-16"></i>

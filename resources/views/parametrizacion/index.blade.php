@@ -41,7 +41,15 @@ parametrizacion
                     <div class="col-sm-auto">
                         <div class="d-flex gap-1 flex-wrap">
                             {{--  <button type="button" class="btn btn-primary add-btn" data-bs-toggle="modal" id="create-btn" data-bs-target="#addModal"><i class="ri-add-line align-bottom me-1"></i>Crear Parametrizacion</button>  --}}
-                            <input type="text" id="searchInput" placeholder="Buscar...">
+                            {{--  <input type="text" id="searchInput" placeholder="Buscar...">  --}}
+                            <div class="col-sm">
+                                <div class="d-flex justify-content-sm-end">
+                                    <div class="search-box ms-2">
+                                        <input type="text" class="form-control" id="searchInput" placeholder="Buscar insumo...">
+                                        <i class="ri-search-line search-icon"></i>
+                                    </div>
+                                </div>
+                            </div>
 
                             <a class="btn btn-warning" href="{{route('parametrizacion.create')}}">Nuevo</a>
                             <button type="button" class="btn btn-secondary"><i class="ri-file-download-line align-bottom me-1"></i>Exportar</button>
@@ -96,13 +104,13 @@ parametrizacion
 
                                     <td>
                                         <ul class="list-inline hstack gap-2 mb-0">
-                                            <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="View">
+                                            {{--  <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="View">
                                                 <a href="{{URL::asset('/apps-ecommerce-order-details')}}" class="text-primary d-inline-block">
                                                     <i class="ri-eye-fill fs-16"></i>
                                                 </a>
-                                            </li>
+                                            </li>  --}}
                                             <li class="list-inline-item edit" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Edit">
-                                                <a href="#editModal" data-bs-toggle="modal" class="text-primary d-inline-block edit-item-btn">
+                                                <a href="{{ route('parametrizacion.edit', $param->id) }}" class="text-primary d-inline-block">
                                                     <i class="ri-pencil-fill fs-16"></i>
                                                 </a>
                                             </li>

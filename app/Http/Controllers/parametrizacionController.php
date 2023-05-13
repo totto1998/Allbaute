@@ -104,16 +104,17 @@ class parametrizacionController extends Controller
     // método para mostrar el formulario de edición
     public function edit($id)
     {
-        $parametrizacion = Parametrizacion::findOrFail($id);
-        $tipo_parametrizacion = TipoParametrizacion::all();
-        return view('parametrizacion.edit', compact('parametro', 'tipo_parametrizacion'));
+        $param = Parametrizacion::findOrFail($id);
+        $tiposParametrizacion = TipoParametrizacion::all();
+        // Puedes pasar el registro a la vista de edición
+        return view('parametrizacion.edit', compact('param', 'tiposParametrizacion'));
     }
     
 
 
     public function update(Request $request, $id)
     {
-        $parametrizacion = Parametrizacion::findOrFail($id);
+        $param = Parametrizacion::findOrFail($id);
     
         $validatedData = $request->validate([
             'tipo_parametrizacion' => 'required',
@@ -121,12 +122,12 @@ class parametrizacionController extends Controller
             'estado' => 'required',
         ]);
     
-        $parametrizacion->tipo_parametrizacion_id = $validatedData['tipo_parametrizacion'];
-        $parametrizacion->nombre = $validatedData['nombre'];
-        $parametrizacion->descripcion = $request->descripcion;
-        $parametrizacion->estado = $validatedData['estado'];
+        $param->id_tipo = $validatedData['tipo_parametrizacion'];
+        $param->nombre = $validatedData['nombre'];
+        $param->descripcion = $request->descripcion;
+        $param->estado = $validatedData['estado'];
     
-        $parametrizacion->save();
+        $param->save();
     
         return redirect()->route('parametrizacion.index')->with('status', 'El parámetro se ha actualizado correctamente.');
     }

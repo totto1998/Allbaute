@@ -23,16 +23,48 @@ class insumosController extends Controller
      */
     public function create()
     {
-       $insumos = Insumos::all();
-       return view('insumos.create', compact('insumos'));
+        return view('insumos.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nombre' => 'required',
+            'img' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'tags' => 'required',
+            'categ' => 'required',
+            'precio' => 'required|numeric',
+            'stock' => 'required|numeric',
+            'estado' => 'required|numeric',
+            // 'descuento' => 'required|numeric',
+            // 'color' => 'required',
+            // 'unidad' => 'required',
+            // 'ancho' => 'required|numeric',
+            // 'material' => 'required',
+        ]);
+
+        $imageName = time().'.'.$request->img->extension();
+        $request->img->move(public_path('images'), $imageName);
+
+        $insumo = Insumos::create([
+            'nombre' => $request->nombre,
+            'img' => $imageName,
+            'tags' => $request->tags,
+            'categ' => $request->categ,
+            'precio' => $request->precio,
+            'stock' => $request->stock,
+            'descuento' => $request->descuento,
+            'color' => $request->color,
+            'unidad' => $request->unidad,
+            'ancho' => $request->ancho,
+            'material' => $request->material,
+            'estado' => $request->estado,
+            'created_at' => now(),
+        ]);
+
+        // Otras operaciones que desees realizar después de guardar el insumo
+
+        return redirect()->route('insumos.index')->with('success', 'Insumo agregado correctamente');
     }
 
     /**
@@ -46,24 +78,65 @@ class insumosController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $insumo = insumos::find($id);
+        // Puedes pasar otros datos necesarios al formulario si lo deseas
+
+        return view('insumos.edit', compact('insumo'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    // Método para actualizar el registro en la base de datos
+    public function update(Request $request, $id)
     {
-        //
+        // Validar los datos del formulario si es necesario
+        $request->validate([
+
+            //activar los campos que son obligatorios
+
+            // 'nombre' => 'required',
+            // 'tags' => 'required',
+            // 'precio' => 'required',
+            // 'stock' => 'required',
+            // 'descuento' => 'required',
+            // 'color' => 'required',
+            // 'unidad' => 'required',
+            // 'ancho' => 'required',
+            // 'material' => 'required',
+            // 'estado' => 'required',
+        ]);
+
+        // Buscar el insumo a actualizar
+        $insumo = insumos::find($id);
+
+        // Actualizar los campos del insumo
+        $insumo->nombre = $request->nombre;
+        $insumo->tags = $request->tags;
+        $insumo->precio = $request->precio;
+        $insumo->stock = $request->stock;
+        $insumo->descuento = $request->descuento;
+        $insumo->color = $request->color;
+        $insumo->unidad = $request->unidad;
+        $insumo->ancho = $request->ancho;
+        $insumo->material = $request->material;
+        $insumo->estado = $request->estado;
+        // Actualizar otros campos si es necesario
+
+        // Guardar los cambios en la base de datos
+        $insumo->save();
+
+        // Redireccionar a la vista deseada o mostrar un mensaje de éxito
+        return redirect()->route('insumos.index')->with('success', 'El insumo se actualizó correctamente.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $insumo = insumos::find($id);
+        $insumo->delete();
+    
+        return redirect()->route('insumos.index');
     }
 }
