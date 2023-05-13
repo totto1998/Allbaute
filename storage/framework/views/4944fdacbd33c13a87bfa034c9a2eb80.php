@@ -208,7 +208,7 @@ parametrizacion
                                     </div>
                                     <div class="form-group">
                                         <label for="descripcion">Descripción:</label>
-                                        <textarea class="form-control" id="descripcion" name="descripcion"><?php echo e($param->descripcion); ?></textarea>
+                                        <textarea maxlength="30" minlength="10" class="form-control" id="descripcion" name="descripcion"><?php echo e($param->descripcion); ?></textarea>
                                     </div>
                                     <div class="form-group">
                                         <label for="estado">Estado:</label>

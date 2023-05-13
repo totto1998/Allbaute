@@ -11,8 +11,12 @@
         </div>
     </div>
 </div>
+<<<<<<< Updated upstream
 
 
+=======
+</div> -->
+>>>>>>> Stashed changes
 
 <!-- Theme Settings -->
 <div class="offcanvas offcanvas-end border-0" tabindex="-1" id="theme-settings-offcanvas">
