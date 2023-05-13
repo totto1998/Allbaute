@@ -11,6 +11,7 @@
         </div>
     </div>
 </div>
+<<<<<<< Updated upstream
 
 {{--  <!--end back-to-top-->
 =======
