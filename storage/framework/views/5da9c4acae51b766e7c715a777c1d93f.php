@@ -28,7 +28,15 @@ parametrizacion
                     <div class="col-sm-auto">
                         <div class="d-flex gap-1 flex-wrap">
                             
-                            <input type="text" id="searchInput" placeholder="Buscar...">
+                            
+                            <div class="col-sm">
+                                <div class="d-flex justify-content-sm-end">
+                                    <div class="search-box ms-2">
+                                        <input type="text" class="form-control" id="searchInput" placeholder="Buscar insumo...">
+                                        <i class="ri-search-line search-icon"></i>
+                                    </div>
+                                </div>
+                            </div>
 
                             <a class="btn btn-warning" href="<?php echo e(route('parametrizacion.create')); ?>">Nuevo</a>
                             <button type="button" class="btn btn-secondary"><i class="ri-file-download-line align-bottom me-1"></i>Exportar</button>
@@ -75,13 +83,9 @@ parametrizacion
 
                                     <td>
                                         <ul class="list-inline hstack gap-2 mb-0">
-                                            <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="View">
-                                                <a href="<?php echo e(URL::asset('/apps-ecommerce-order-details')); ?>" class="text-primary d-inline-block">
-                                                    <i class="ri-eye-fill fs-16"></i>
-                                                </a>
-                                            </li>
+                                            
                                             <li class="list-inline-item edit" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Edit">
-                                                <a href="#editModal" data-bs-toggle="modal" class="text-primary d-inline-block edit-item-btn">
+                                                <a href="<?php echo e(route('parametrizacion.edit', $param->id)); ?>" class="text-primary d-inline-block">
                                                     <i class="ri-pencil-fill fs-16"></i>
                                                 </a>
                                             </li>
@@ -204,7 +208,7 @@ parametrizacion
                                     </div>
                                     <div class="form-group">
                                         <label for="descripcion">Descripción:</label>
-                                        <textarea class="form-control" id="descripcion" name="descripcion"><?php echo e($param->descripcion); ?></textarea>
+                                        <textarea maxlength="30" minlength="10" class="form-control" id="descripcion" name="descripcion"><?php echo e($param->descripcion); ?></textarea>
                                     </div>
                                     <div class="form-group">
                                         <label for="estado">Estado:</label>
