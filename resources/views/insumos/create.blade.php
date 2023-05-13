@@ -52,6 +52,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
+<<<<<<< Updated upstream
                     <div class="card-body">
                     <div class="mb-3">
                         <label for="nombre" class="form-label">Nombre</label>
@@ -123,6 +124,111 @@
                       </select>
                   </div>
                    <button type="submit" class="btn btn-primary">Agregar</button>
+=======
+                    <div class="mb-2">
+                        <label for="choices-publish-status-input" class="form-label">Categoria de insumo</label>
+                        <select class="form-select" id="choices-publish-status-input" data-choices data-choices-search-false>
+                         <option value="">Selecciona una opción</option>
+                         <option value="Tela">Tela</option>
+                         <option value="boton">boton</option>
+                         <option value="cremallera">cremallera</option>
+                        </select>
+                    </div>
+
+                    <div id="card-body-container"></div>
+
+                    <script>
+                        const selectEl = document.getElementById('choices-publish-status-input');
+                        const cardBodyContainerEl = document.getElementById('card-body-container');
+
+                        selectEl.addEventListener('change', (event) => {
+                        const selectedValue = event.target.value;
+
+                        if (selectedValue === 'Tela') {
+                            // Agregar el código HTML al contenedor
+                        cardBodyContainerEl.innerHTML = `
+                        <div class="card-body">
+                            <div class="mb-2">
+                                <label for="choices-publish-status-input" class="form-label">Unidad de medida</label>
+                                    <select class="form-select" id="choices-publish-status-input" data-choices data-choices-search-false required>
+                                        <option value="">Metro</option>
+                                        <option value="Yarda">Yarda</option>
+                                </select>
+                            </div>
+                            <div class="mb-2">
+                                <label for="choices-publish-status-input" class="form-label">Tipo de insumo</label>
+                                    <select class="form-select" id="choices-publish-status-input" data-choices data-choices-search-false required>
+                                        <option value="">Producto terminado</option>
+                                        <option value="Emproduccion">Emproducción</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="ancho-input" class="form-label">Ancho de la tela</label>
+                                <input type="text" id="ancho-input" class="form-control" required pattern="[A-Za-z]+" placeholder="Ingrese ancho de la tela">
+                            </div>
+                            <div class="mb-3">
+                             <label for="color-input" class="form-label">Color</label>
+                             <input type="text" id="color-input" class="form-control" required pattern="[A-Za-z]+"placeholder="Ingrese color">
+                            </div>
+                        </div>
+                        <div class="card">
+                                <div class="card-header">
+                                    <h5 class="card-title mb-0">Tags de insumos</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="hstack gap-3 align-items-start">
+                                        <div class="flex-grow-1">
+                                            <input class="form-control" data-choices data-choices-multiple-remove="true" placeholder="Enter tags" type="text"
+                                     value="" required pattern="[A-Za-z\s]+" />
+                                     </div>
+                                 </div>
+                                </div>
+                            </div>
+                    `;
+                } else if (selectedValue === 'boton' || selectedValue === 'cremallera') {
+                    // Agregar el código HTML al contenedor
+                    cardBodyContainerEl.innerHTML = `
+                        <div class="card-body">
+                            <div class="mb-2">
+                                <label for="choices-publish-status-input" class="form-label">Unidad de medida</label>
+                                    <select class="form-select" id="choices-publish-status-input" data-choices data-choices-search-false required>
+                                        <option value="">Plastico</option>
+                                        <option value="Metal">Yarda</option>
+                                </select>
+                            </div>
+                            <div class="mb-2">
+                                <label for="choices-publish-status-input" class="form-label">Tipo de insumo</label>
+                                    <select class="form-select" id="choices-publish-status-input" data-choices data-choices-search-false required>
+                                        <option value="">Producto terminado</option>
+                                        <option value="Emproduccion">Emproducción</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="color-input" class="form-label">Color</label>
+                                <input type="text" id="color-input" class="form-control" placeholder="Ingrese color">
+                            </div>
+                        </div>
+                        <div class="card">
+                                <div class="card-header">
+                                    <h5 class="card-title mb-0">Tags de insumos</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="hstack gap-3 align-items-start">
+                                        <div class="flex-grow-1">
+                                            <input class="form-control" data-choices data-choices-multiple-remove="true" placeholder="Enter tags" type="text"
+                                        value="" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    `;
+                } else {
+                    // Limpiar el contenido del contenedor si no se selecciona una opción correspondiente
+                    cardBodyContainerEl.innerHTML = '';
+                }
+            });
+            </script>
+>>>>>>> Stashed changes
                 </div>
             </div>
         </div>

@@ -131,11 +131,10 @@
             <div class="col-lg-4 position-relative mb-4">
                 <div class="card">
                     <div class="mb-2">
-                        <label for="choices-publish-status-input" class="form-label">Tipo de insumo</label>
+                        <label for="choices-publish-status-input" class="form-label">Categoria de insumo</label>
                         <select class="form-select" id="choices-publish-status-input" data-choices data-choices-search-false>
                          <option value="">Selecciona una opción</option>
-                         <option value="Lino">Lino</option>
-                         <option value="Algodon">Algodon</option>
+                         <option value="Tela">Tela</option>
                          <option value="boton">boton</option>
                          <option value="cremallera">cremallera</option>
                         </select>
@@ -150,7 +149,7 @@
                         selectEl.addEventListener('change', (event) => {
                         const selectedValue = event.target.value;
 
-                        if (selectedValue === 'Lino' || selectedValue === 'Algodon') {
+                        if (selectedValue === 'Tela') {
                             // Agregar el código HTML al contenedor
                         cardBodyContainerEl.innerHTML = `
                         <div class="card-body">
@@ -158,9 +157,14 @@
                                 <label for="choices-publish-status-input" class="form-label">Unidad de medida</label>
                                     <select class="form-select" id="choices-publish-status-input" data-choices data-choices-search-false required>
                                         <option value="">Metro</option>
-                                        <option value="Lino">Yarda</option>
-                                        <option value="Algodon">Bolsa</option>
-                                        <option value="boton">Kilogramo</option>
+                                        <option value="Yarda">Yarda</option>
+                                </select>
+                            </div>
+                            <div class="mb-2">
+                                <label for="choices-publish-status-input" class="form-label">Tipo de insumo</label>
+                                    <select class="form-select" id="choices-publish-status-input" data-choices data-choices-search-false required>
+                                        <option value="">Producto terminado</option>
+                                        <option value="Emproduccion">Emproducción</option>
                                 </select>
                             </div>
                             <div class="mb-3">
@@ -190,9 +194,19 @@
                     // Agregar el código HTML al contenedor
                     cardBodyContainerEl.innerHTML = `
                         <div class="card-body">
-                            <div class="mb-3">
-                             <label for="metal-input" class="form-label">Material</label>
-                             <input type="text" id="metal-input" class="form-control" placeholder="Ingrese el material">
+                            <div class="mb-2">
+                                <label for="choices-publish-status-input" class="form-label">Unidad de medida</label>
+                                    <select class="form-select" id="choices-publish-status-input" data-choices data-choices-search-false required>
+                                        <option value="">Plastico</option>
+                                        <option value="Metal">Yarda</option>
+                                </select>
+                            </div>
+                            <div class="mb-2">
+                                <label for="choices-publish-status-input" class="form-label">Tipo de insumo</label>
+                                    <select class="form-select" id="choices-publish-status-input" data-choices data-choices-search-false required>
+                                        <option value="">Producto terminado</option>
+                                        <option value="Emproduccion">Emproducción</option>
+                                </select>
                             </div>
                             <div class="mb-3">
                                 <label for="color-input" class="form-label">Color</label>

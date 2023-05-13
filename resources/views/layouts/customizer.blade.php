@@ -13,11 +13,19 @@
 </div>
 
 {{--  <!--end back-to-top-->
+=======
+<!-- 
+<end back-to-top
+>>>>>>> Stashed changes
 <div class="customizer-setting d-none d-md-block">
     <div class="btn-info btn-rounded shadow-lg btn btn-icon btn-lg p-2" data-bs-toggle="offcanvas" data-bs-target="#theme-settings-offcanvas" aria-controls="theme-settings-offcanvas">
         <i class='mdi mdi-spin mdi-cog-outline fs-22'></i>
     </div>
+<<<<<<< Updated upstream
 </div>  --}}
+=======
+</div> -->
+>>>>>>> Stashed changes
 
 <!-- Theme Settings -->
 <div class="offcanvas offcanvas-end border-0" tabindex="-1" id="theme-settings-offcanvas">
