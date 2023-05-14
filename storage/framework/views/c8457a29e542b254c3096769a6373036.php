@@ -1,21 +1,21 @@
-@extends('layouts.master')
-@section('title')
-    @lang('translation.create-product')
-@endsection
-@section('css')
-<link href="{{ URL::asset('build/libs/dropzone/dropzone.css') }}" rel="stylesheet">
-<link rel="stylesheet" href="{{ URL::asset('build/css/style.css') }}"> <!-- Reemplazar 'css/style.css' por la ruta de tu archivo CSS -->
 
-@endsection
-@section('content')
-    @component('components.breadcrumb')
-        @slot('li_1')
+<?php $__env->startSection('title'); ?>
+    <?php echo app('translator')->get('translation.create-product'); ?>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('css'); ?>
+<link href="<?php echo e(URL::asset('build/libs/dropzone/dropzone.css')); ?>" rel="stylesheet">
+<link rel="stylesheet" href="<?php echo e(URL::asset('build/css/style.css')); ?>"> <!-- Reemplazar 'css/style.css' por la ruta de tu archivo CSS -->
+
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
+    <?php $__env->startComponent('components.breadcrumb'); ?>
+        <?php $__env->slot('li_1'); ?>
             Ecommerce
-        @endslot
-        @slot('title')
+        <?php $__env->endSlot(); ?>
+        <?php $__env->slot('title'); ?>
             Crear nueva parametrizacion
-        @endslot
-    @endcomponent
+        <?php $__env->endSlot(); ?>
+    <?php echo $__env->renderComponent(); ?>
     <!DOCTYPE html>
 <!-- Created By CodingLab - www.codinglabweb.com -->
 <html>
@@ -78,14 +78,15 @@
 
 </html>
 
-@endsection
-@section('script')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('script'); ?>
 
 
-<script src="{{ URL::asset('build/libs/@ckeditor/ckeditor5-build-classic/build/ckeditor.js') }}"></script>
+<script src="<?php echo e(URL::asset('build/libs/@ckeditor/ckeditor5-build-classic/build/ckeditor.js')); ?>"></script>
 
-<script src="{{ URL::asset('build/libs/dropzone/dropzone-min.js') }}"></script>
-<script src="{{ URL::asset('build/js/pages/ecommerce-product-create.init.js') }}"></script>
+<script src="<?php echo e(URL::asset('build/libs/dropzone/dropzone-min.js')); ?>"></script>
+<script src="<?php echo e(URL::asset('build/js/pages/ecommerce-product-create.init.js')); ?>"></script>
 
-<script src="{{ URL::asset('build/js/app.js') }}"></script>
-@endsection
+<script src="<?php echo e(URL::asset('build/js/app.js')); ?>"></script>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\Usuario\Documents\GitHub\Allbaute\resources\views/ordenCompra/create.blade.php ENDPATH**/ ?>
