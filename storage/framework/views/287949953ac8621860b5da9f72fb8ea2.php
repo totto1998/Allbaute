@@ -4,6 +4,7 @@
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('css'); ?>
 <link href="<?php echo e(URL::asset('build/libs/dropzone/dropzone.css')); ?>" rel="stylesheet">
+<link rel="stylesheet" href="<?php echo e(URL::asset('build/css/style.css')); ?>"> 
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
     <?php $__env->startComponent('components.breadcrumb'); ?>
@@ -183,6 +184,14 @@
                                   <option value="azul">Azul</option>
                           </select>
                       </div>
+                      
+                      <div class="mb-2">
+                          <label for="choices-publish-status-input" class="form-label">Estado</label>
+                              <select class="form-select" id="choices-publish-status-input" data-choices data-choices-search-false required>
+                                  <option value="amarillo">Terminado</option>
+                                  <option value="rojo">Emproduccion</option>
+                          </select>
+                      </div>
                   </div>
                   <div class="card">
                           <div class="card-header">
@@ -202,13 +211,7 @@
               // Agregar el código HTML al contenedor
               cardBodyContainerEl.innerHTML = `
               <div class="card-body">
-              <div class="mb-2">
-                          <label for="choices-publish-status-input" class="form-label">Material</label>
-                              <select class="form-select" id="choices-publish-status-input" data-choices data-choices-search-false required>
-                                  <option value="">Plastico</option>
-                                  <option value="">Metal</option>
-                          </select>
-                      </div>
+                    
                       <div class="mb-2">
                           <label for="choices-publish-status-input" class="form-label">Unidad de medida</label>
                               <select class="form-select" id="choices-publish-status-input" data-choices data-choices-search-false required>
@@ -231,6 +234,14 @@
                           </select>
                       </div>
                   </div>
+                  
+                  <div class="mb-2">
+                          <label for="choices-publish-status-input" class="form-label">Estado</label>
+                              <select class="form-select" id="choices-publish-status-input" data-choices data-choices-search-false required>
+                                  <option value="amarillo">Terminado</option>
+                                  <option value="rojo">Emproduccion</option>
+                          </select>
+                      </div>
                   <div class="card">
                           <div class="card-header">
                               <h5 class="card-title mb-0">Tags de insumos</h5>
@@ -249,25 +260,14 @@
               // Agregar el código HTML al contenedor
               cardBodyContainerEl.innerHTML = `
               <div class="card-body">
-              <div class="mb-2">
-                          <label for="choices-publish-status-input" class="form-label">Material</label>
-                              <select class="form-select" id="choices-publish-status-input" data-choices data-choices-search-false required>
-                                  <option value="">Plastico</option>
-                                  <option value="">Metal</option>
-                          </select>
-                      </div>
                       <div class="mb-2">
                           <label for="choices-publish-status-input" class="form-label">Unidad de medida</label>
                               <select class="form-select" id="choices-publish-status-input" data-choices data-choices-search-false required>
-                                  <option value="">Pulgadas</option>
-                                  <option value="">Centimetros</option>
+                                  <option value="">Metro</option>
+                                  <option value="Lino">Yarda</option>
+                                  <option value="Algodon">Bolsa</option>
                                   <option value="boton">Kilogramo</option>
                           </select>
-                      </div>
-                      
-                      <div class="mb-3">
-                          <label for="ancho-input" class="form-label">Ancho de la cremallera</label>
-                          <input type="text" id="ancho-input" class="form-control" required pattern="[A-Za-z]+" placeholder="Ingrese ancho de la tela">
                       </div>
                       <div class="mb-2">
                           <label for="choices-publish-status-input" class="form-label">Color</label>
@@ -277,7 +277,19 @@
                                   <option value="Azul">Azul</option>
                           </select>
                       </div>
+                      <div class="mb-3">
+                          <label for="ancho-input" class="form-label">Ancho del cremallera</label>
+                          <input type="text" id="ancho-input" class="form-control" required pattern="[A-Za-z]+" placeholder="Ingrese ancho de la tela">
+                      </div>
                   </div>
+                  
+                  <div class="mb-2">
+                          <label for="choices-publish-status-input" class="form-label">Estado</label>
+                              <select class="form-select" id="choices-publish-status-input" data-choices data-choices-search-false required>
+                                  <option value="amarillo">Terminado</option>
+                                  <option value="rojo">Emproduccion</option>
+                          </select>
+                      </div>
                   <div class="card">
                           <div class="card-header">
                               <h5 class="card-title mb-0">Tags de insumos</h5>
@@ -302,9 +314,14 @@
     </div>
   </div>
       </div>
-      <div class="text-end mb-3">
-              <button type="submit" class="btn btn-success w-sm">Submit</button>
-          </div>
+      <div class="content">
+      <form action="#">
+        <div class="user-details">
+      <div class="button">
+          <input type="submit" value="Register">
+        </div>
+        </div>
+      </form>
       </div>
 </div>
 <!-- end row -->

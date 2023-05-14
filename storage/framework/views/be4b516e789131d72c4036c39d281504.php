@@ -4,6 +4,7 @@
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('css'); ?>
 <link href="<?php echo e(URL::asset('build/libs/dropzone/dropzone.css')); ?>" rel="stylesheet">
+<link rel="stylesheet" href="<?php echo e(URL::asset('build/css/style.css')); ?>"> 
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
     <?php $__env->startComponent('components.breadcrumb'); ?>
@@ -69,11 +70,17 @@
                     </div>
                 </div>
                 <!-- end card -->
-             </div>
-             <div class="text-end mb-3">
-                <button type="submit" class="btn btn-success w-sm">Submit</button>
-            </div>
+                </div>
+      </div>
+      <div class="content">
+      <form action="#">
+        <div class="user-details">
+      <div class="button">
+          <input type="submit" value="Register">
         </div>
+        </div>
+      </form>
+      </div>
         <!-- end row -->
     </form>
 <?php $__env->stopSection(); ?>

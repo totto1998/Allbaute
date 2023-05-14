@@ -4,8 +4,7 @@
 @endsection
 @section('css')
 <link href="{{ URL::asset('build/libs/dropzone/dropzone.css') }}" rel="stylesheet">
-<link rel="stylesheet" href="{{ URL::asset('build/css/style.css') }}"> <!-- Reemplazar 'css/style.css' por la ruta de tu archivo CSS -->
-
+<link rel="stylesheet" href="{{ URL::asset('build/css/style.css') }}"> 
 @endsection
 @section('content')
     @component('components.breadcrumb')
@@ -17,7 +16,6 @@
         @endslot
     @endcomponent
     <!DOCTYPE html>
-<!-- Created By CodingLab - www.codinglabweb.com -->
 <html>
   <div class="container">
     <div class="title">Registration</div>

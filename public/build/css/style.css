@@ -59,6 +59,31 @@ form .input-box span.details{
 .user-details .input-box input:valid{
   border-color: #9b59b6;
 }
+
+form .user-details .input-box2{
+  margin-bottom: 15px;
+  width: calc(100% / 2 - 20px);
+}
+form .input-box2 span.details{
+  display: block;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+.user-details .input-box2 input{
+  height: 45px;
+  width: 70%;
+  outline: none;
+  font-size: 16px;
+  border-radius: 5px;
+  padding-left: 15px;
+  border: 1px solid #ccc;
+  border-bottom-width: 2px;
+  transition: all 0.3s ease;
+}
+.user-details .input-box2 input:focus,
+.user-details .input-box2 input:valid{
+  border-color: #9b59b6;
+}
  form .gender-details .gender-title{
   font-size: 20px;
   font-weight: 500;

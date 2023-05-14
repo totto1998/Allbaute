@@ -4,6 +4,7 @@
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('css'); ?>
 <link href="<?php echo e(URL::asset('build/libs/dropzone/dropzone.css')); ?>" rel="stylesheet">
+<link rel="stylesheet" href="<?php echo e(URL::asset('build/css/style.css')); ?>"> 
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
     <?php $__env->startComponent('components.breadcrumb'); ?>
@@ -15,17 +16,7 @@
         <?php $__env->endSlot(); ?>
     <?php echo $__env->renderComponent(); ?>
     <!DOCTYPE html>
-<!-- Created By CodingLab - www.codinglabweb.com -->
-<html lang="en" dir="ltr">
-<head>
-    <meta charset="UTF-8">
-    <title> Responsive Registration Form | CodingLab </title>
-    <link rel="stylesheet" href="<?php echo e(URL::asset('build/libs/dropzone/dropzone.css')); ?>">
-    <link rel="stylesheet" href="<?php echo e(asset('scss/style.css')); ?>"> <!-- Reemplazar 'css/style.css' por la ruta de tu archivo CSS -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-
-<body>
+<html>
   <div class="container">
     <div class="title">Registration</div>
     <div class="content">
@@ -83,7 +74,6 @@
     </div>
   </div>
 
-</body>
 </html>
 
 
