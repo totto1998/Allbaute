@@ -16,8 +16,6 @@
     <?php echo $__env->renderComponent(); ?>
 
 
-
-
     <form id="createproduct-form" autocomplete="off" class="needs-validation" novalidate>
       <div class="row">
           <div class="col-lg-8">
@@ -234,12 +232,6 @@
 <!-- end row -->
 </form>
 
-
-
-    
-
-
-    
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('script'); ?>
 <script src="<?php echo e(URL::asset('build/libs/@ckeditor/ckeditor5-build-classic/build/ckeditor.js')); ?>"></script>
