@@ -165,13 +165,17 @@
                                   <option value="boton">Kilogramo</option>
                           </select>
                       </div>
+                      <div class="mb-2">
+                          <label for="choices-publish-status-input" class="form-label">Color</label>
+                              <select class="form-select" id="choices-publish-status-input" data-choices data-choices-search-false required>
+                                  <option value="">Amarrillo</option>
+                                  <option value="Rojo">Rojo</option>
+                                  <option value="Azul">Azul</option>
+                          </select>
+                      </div>
                       <div class="mb-3">
                           <label for="ancho-input" class="form-label">Ancho de la tela</label>
                           <input type="text" id="ancho-input" class="form-control" required pattern="[A-Za-z]+" placeholder="Ingrese ancho de la tela">
-                      </div>
-                      <div class="mb-3">
-                       <label for="color-input" class="form-label">Color</label>
-                       <input type="text" id="color-input" class="form-control" required pattern="[A-Za-z]+"placeholder="Ingrese color">
                       </div>
                   </div>
                   <div class="card">
@@ -182,23 +186,36 @@
                               <div class="hstack gap-3 align-items-start">
                                   <div class="flex-grow-1">
                                       <input class="form-control" data-choices data-choices-multiple-remove="true" placeholder="Enter tags" type="text"
-                               value="" required pattern="[A-Za-z\s]+" />
+                               value="" required pattern="[A-Za-z]+" />
                                </div>
                            </div>
                           </div>
                       </div>
               `;
-          } else if (selectedValue === 'boton' || selectedValue === 'cremallera') {
+          } else if (selectedValue === 'boton') {
               // Agregar el código HTML al contenedor
               cardBodyContainerEl.innerHTML = `
-                  <div class="card-body">
-                      <div class="mb-3">
-                       <label for="metal-input" class="form-label">Material</label>
-                       <input type="text" id="metal-input" class="form-control" placeholder="Ingrese el material">
+              <div class="card-body">
+                      <div class="mb-2">
+                          <label for="choices-publish-status-input" class="form-label">Unidad de medida</label>
+                              <select class="form-select" id="choices-publish-status-input" data-choices data-choices-search-false required>
+                                  <option value="">Metro</option>
+                                  <option value="Lino">Yarda</option>
+                                  <option value="Algodon">Bolsa</option>
+                                  <option value="boton">Kilogramo</option>
+                          </select>
+                      </div>
+                      <div class="mb-2">
+                          <label for="choices-publish-status-input" class="form-label">Color</label>
+                              <select class="form-select" id="choices-publish-status-input" data-choices data-choices-search-false required>
+                                  <option value="">Amarrillo</option>
+                                  <option value="Rojo">Rojo</option>
+                                  <option value="Azul">Azul</option>
+                          </select>
                       </div>
                       <div class="mb-3">
-                          <label for="color-input" class="form-label">Color</label>
-                          <input type="text" id="color-input" class="form-control" placeholder="Ingrese color">
+                          <label for="ancho-input" class="form-label">Ancho del boton</label>
+                          <input type="text" id="ancho-input" class="form-control" required pattern="[A-Za-z]+" placeholder="Ingrese ancho de la tela">
                       </div>
                   </div>
                   <div class="card">
@@ -209,13 +226,54 @@
                               <div class="hstack gap-3 align-items-start">
                                   <div class="flex-grow-1">
                                       <input class="form-control" data-choices data-choices-multiple-remove="true" placeholder="Enter tags" type="text"
-                                  value="" />
-                                  </div>
-                              </div>
+                               value="" required pattern="[A-Za-z]+" />
+                               </div>
+                           </div>
                           </div>
                       </div>
               `;
-          } else {
+          } else if (selectedValue === 'cremallera') {
+              // Agregar el código HTML al contenedor
+              cardBodyContainerEl.innerHTML = `
+              <div class="card-body">
+                      <div class="mb-2">
+                          <label for="choices-publish-status-input" class="form-label">Unidad de medida</label>
+                              <select class="form-select" id="choices-publish-status-input" data-choices data-choices-search-false required>
+                                  <option value="">Metro</option>
+                                  <option value="Lino">Yarda</option>
+                                  <option value="Algodon">Bolsa</option>
+                                  <option value="boton">Kilogramo</option>
+                          </select>
+                      </div>
+                      <div class="mb-2">
+                          <label for="choices-publish-status-input" class="form-label">Color</label>
+                              <select class="form-select" id="choices-publish-status-input" data-choices data-choices-search-false required>
+                                  <option value="">Amarrillo</option>
+                                  <option value="Rojo">Rojo</option>
+                                  <option value="Azul">Azul</option>
+                          </select>
+                      </div>
+                      <div class="mb-3">
+                          <label for="ancho-input" class="form-label">Ancho del cremallera</label>
+                          <input type="text" id="ancho-input" class="form-control" required pattern="[A-Za-z]+" placeholder="Ingrese ancho de la tela">
+                      </div>
+                  </div>
+                  <div class="card">
+                          <div class="card-header">
+                              <h5 class="card-title mb-0">Tags de insumos</h5>
+                          </div>
+                          <div class="card-body">
+                              <div class="hstack gap-3 align-items-start">
+                                  <div class="flex-grow-1">
+                                      <input class="form-control" data-choices data-choices-multiple-remove="true" placeholder="Enter tags" type="text"
+                               value="" required pattern="[A-Za-z]+" />
+                               </div>
+                           </div>
+                          </div>
+                      </div>
+              `;
+          } 
+          else {
               // Limpiar el contenido del contenedor si no se selecciona una opción correspondiente
               cardBodyContainerEl.innerHTML = '';
           }
