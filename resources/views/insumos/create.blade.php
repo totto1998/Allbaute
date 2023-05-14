@@ -202,14 +202,25 @@
               // Agregar el código HTML al contenedor
               cardBodyContainerEl.innerHTML = `
               <div class="card-body">
+              <div class="mb-2">
+                          <label for="choices-publish-status-input" class="form-label">Material</label>
+                              <select class="form-select" id="choices-publish-status-input" data-choices data-choices-search-false required>
+                                  <option value="">Plastico</option>
+                                  <option value="">Metal</option>
+                          </select>
+                      </div>
                       <div class="mb-2">
                           <label for="choices-publish-status-input" class="form-label">Unidad de medida</label>
                               <select class="form-select" id="choices-publish-status-input" data-choices data-choices-search-false required>
-                                  <option value="">Metro</option>
-                                  <option value="Lino">Yarda</option>
-                                  <option value="Algodon">Bolsa</option>
+                                  <option value="">Pulgadas</option>
+                                  <option value="">Centimetros</option>
                                   <option value="boton">Kilogramo</option>
                           </select>
+                      </div>
+                      
+                      <div class="mb-3">
+                          <label for="ancho-input" class="form-label">Ancho del boton</label>
+                          <input type="text" id="ancho-input" class="form-control" required pattern="[A-Za-z]+" placeholder="Ingrese ancho de la tela">
                       </div>
                       <div class="mb-2">
                           <label for="choices-publish-status-input" class="form-label">Color</label>
@@ -218,10 +229,6 @@
                                   <option value="Rojo">Rojo</option>
                                   <option value="Azul">Azul</option>
                           </select>
-                      </div>
-                      <div class="mb-3">
-                          <label for="ancho-input" class="form-label">Ancho del boton</label>
-                          <input type="text" id="ancho-input" class="form-control" required pattern="[A-Za-z]+" placeholder="Ingrese ancho de la tela">
                       </div>
                   </div>
                   <div class="card">
