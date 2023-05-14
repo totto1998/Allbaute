@@ -133,11 +133,10 @@
         <div class="col-lg-4 position-relative mb-4">
           <div class="card">
             <div class="mb-2">
-                <label for="choices-publish-status-input" class="form-label">Tipo de insumo</label>
+                <label for="choices-publish-status-input" class="form-label">Categoria de insumos</label>
                 <select class="form-select" id="choices-publish-status-input" data-choices data-choices-search-false>
                  <option value="">Selecciona una opción</option>
-                 <option value="Lino">Lino</option>
-                 <option value="Algodon">Algodon</option>
+                 <option value="Tela">Tela</option>
                  <option value="boton">boton</option>
                  <option value="cremallera">cremallera</option>
                 </select>
@@ -152,30 +151,37 @@
                   selectEl.addEventListener('change', (event) => {
                   const selectedValue = event.target.value;
 
-                  if (selectedValue === 'Lino' || selectedValue === 'Algodon') {
+                  if (selectedValue === 'Tela') {
                       // Agregar el código HTML al contenedor
                   cardBodyContainerEl.innerHTML = `
                   <div class="card-body">
-                      <div class="mb-2">
-                          <label for="choices-publish-status-input" class="form-label">Unidad de medida</label>
+                  <div class="mb-2">
+                          <label for="choices-publish-status-input" class="form-label">Tipo de tela</label>
                               <select class="form-select" id="choices-publish-status-input" data-choices data-choices-search-false required>
-                                  <option value="">Metro</option>
-                                  <option value="Lino">Yarda</option>
-                                  <option value="Algodon">Bolsa</option>
-                                  <option value="boton">Kilogramo</option>
+                                  <option value="lino">Lino</option>
+                                  <option value="algodon">Algodón</option>
                           </select>
                       </div>
                       <div class="mb-2">
-                          <label for="choices-publish-status-input" class="form-label">Color</label>
+                          <label for="choices-publish-status-input" class="form-label">Unidad de medida</label>
                               <select class="form-select" id="choices-publish-status-input" data-choices data-choices-search-false required>
-                                  <option value="">Amarrillo</option>
-                                  <option value="Rojo">Rojo</option>
-                                  <option value="Azul">Azul</option>
+                                  <option value="metro">Metro</option>
+                                  <option value="yarda">Yarda</option>
+                                  <option value="bolsa">Bolsa</option>
+                                  <option value="kg">Kilogramo</option>
                           </select>
                       </div>
                       <div class="mb-3">
                           <label for="ancho-input" class="form-label">Ancho de la tela</label>
                           <input type="text" id="ancho-input" class="form-control" required pattern="[A-Za-z]+" placeholder="Ingrese ancho de la tela">
+                      </div>
+                      <div class="mb-2">
+                          <label for="choices-publish-status-input" class="form-label">Color</label>
+                              <select class="form-select" id="choices-publish-status-input" data-choices data-choices-search-false required>
+                                  <option value="amarillo">Amarillo</option>
+                                  <option value="rojo">Rojo</option>
+                                  <option value="azul">Azul</option>
+                          </select>
                       </div>
                   </div>
                   <div class="card">
