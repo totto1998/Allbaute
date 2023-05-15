@@ -125,7 +125,7 @@
                                         <td>{{ $insumo->color }}</td>
                                         <td>{{ $insumo->unidad }}</td>
                                         <td>{{ $insumo->ancho }}</td>
-                                        <td>{{ $insumo->material }}</td>
+                                        <td>{{ $insumo->subcateg }}</td>
                                         <td>
                                             @if($insumo->estado == 1)
                                                 <span class="badge badge-soft-success">Terminado</span>

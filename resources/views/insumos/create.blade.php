@@ -155,40 +155,46 @@ Crear insumos
                             // Agregar el código HTML al contenedor
                             cardBodyContainerEl.innerHTML = `
                   <div class="card-body">
-                  <div class="mb-2">
+                      <div class="mb-2">
                           <label for="choices-publish-status-input" class="form-label">Tipo de tela</label>
-                              <select class="form-select" id="choices-publish-status-input" data-choices data-choices-search-false required>
-                                  <option value="lino">Lino</option>
-                                  <option value="algodon">Algodón</option>
-                          </select>
+                              <select class="form-select" id="choices-publish-status-input" name="subcateg" data-choices data-choices-search-false required>
+                                @foreach($paramcateg as $param)
+                                @if($param->id_tipo == 2)
+                                    <option value="{{ $param->nombre }}">{{ $param->nombre }}</option>
+                                @endif
+                                @endforeach
+                              </select>
                       </div>
                       <div class="mb-2">
                           <label for="choices-publish-status-input" class="form-label">Unidad de medida</label>
-                              <select class="form-select" id="choices-publish-status-input" data-choices data-choices-search-false required>
-                                  <option value="metro">Metro</option>
-                                  <option value="yarda">Yarda</option>
-                                  <option value="bolsa">Bolsa</option>
-                                  <option value="kg">Kilogramo</option>
+                              <select class="form-select" id="choices-publish-status-input" name="unidad" data-choices data-choices-search-false required>
+                                @foreach($paramcateg as $param)
+                                @if($param->id_tipo == 6)
+                                    <option value="{{ $param->nombre }}">{{ $param->nombre }}</option>
+                                @endif
+                                @endforeach
                           </select>
                       </div>
                       <div class="mb-3">
                           <label for="ancho-input" class="form-label">Ancho de la tela</label>
-                          <input type="text" id="ancho-input" class="form-control" required pattern="[A-Za-z]+" placeholder="Ingrese ancho de la tela">
+                          <input type="text" id="ancho-input" class="form-control" required pattern="[A-Za-z]+" placeholder="Ingrese ancho de la tela" name="ancho">
                       </div>
                       <div class="mb-2">
                           <label for="choices-publish-status-input" class="form-label">Color</label>
-                              <select class="form-select" id="choices-publish-status-input" data-choices data-choices-search-false required>
-                                  <option value="amarillo">Amarillo</option>
-                                  <option value="rojo">Rojo</option>
-                                  <option value="azul">Azul</option>
+                              <select class="form-select" id="choices-publish-status-input" name="color" data-choices data-choices-search-false required>
+                                @foreach($paramcateg as $param)
+                                @if($param->id_tipo == 5)
+                                    <option value="{{ $param->nombre }}">{{ $param->nombre }}</option>
+                                @endif
+                                @endforeach
                           </select>
                       </div>
-                      
+
                       <div class="mb-2">
                           <label for="choices-publish-status-input" class="form-label">Estado</label>
-                              <select class="form-select" id="choices-publish-status-input" data-choices data-choices-search-false required>
-                                  <option value="amarillo">Terminado</option>
-                                  <option value="rojo">Emproduccion</option>
+                              <select class="form-select" id="choices-publish-status-input" name="estado" data-choices data-choices-search-false required>
+                                  <option value="1">Terminado</option>
+                                  <option value="0">Emproduccion</option>
                           </select>
                       </div>
                   </div>
@@ -199,8 +205,7 @@ Crear insumos
                           <div class="card-body">
                               <div class="hstack gap-3 align-items-start">
                                   <div class="flex-grow-1">
-                                      <input class="form-control" data-choices data-choices-multiple-remove="true" placeholder="Enter tags" type="text"
-                               value="" required pattern="[A-Za-z]+" />
+                                      <input class="form-control" data-choices data-choices-multiple-remove="true" name="tags" placeholder="Enter tags" type="text" value="" required pattern="[A-Za-z]+" />
                                </div>
                            </div>
                           </div>
@@ -210,37 +215,53 @@ Crear insumos
                             // Agregar el código HTML al contenedor
                             cardBodyContainerEl.innerHTML = `
               <div class="card-body">
-                    
+
                       <div class="mb-2">
-                          <label for="choices-publish-status-input" class="form-label">Unidad de medida</label>
-                              <select class="form-select" id="choices-publish-status-input" data-choices data-choices-search-false required>
-                                  <option value="">Pulgadas</option>
-                                  <option value="">Centimetros</option>
-                                  <option value="boton">Kilogramo</option>
+                          <label for="choices-publish-status-input" class="form-label">Tipo de Material</label>
+                              <select class="form-select" id="choices-publish-status-input" name="subcateg" data-choices data-choices-search-false required>
+                                @foreach($paramcateg as $param)
+                                @if($param->id_tipo == 3)
+                                    <option value="{{ $param->nombre }}">{{ $param->nombre }}</option>
+                                @endif
+                                @endforeach
                           </select>
                       </div>
-                      
+
+                      <div class="mb-2">
+                          <label for="choices-publish-status-input" class="form-label">Unidad de medida</label>
+                              <select class="form-select" id="choices-publish-status-input" name="unidad" data-choices data-choices-search-false required>
+                                @foreach($paramcateg as $param)
+                                @if($param->id_tipo == 6)
+                                    <option value="{{ $param->nombre }}">{{ $param->nombre }}</option>
+                                @endif
+                                @endforeach
+                          </select>
+                      </div>
+
                       <div class="mb-3">
                           <label for="ancho-input" class="form-label">Ancho del boton</label>
-                          <input type="text" id="ancho-input" class="form-control" required pattern="[A-Za-z]+" placeholder="Ingrese ancho de la tela">
+                          <input type="text" id="ancho-input" class="form-control" required pattern="[A-Za-z]+" placeholder="Ingrese ancho de la tela" name="ancho">
                       </div>
                       <div class="mb-2">
                           <label for="choices-publish-status-input" class="form-label">Color</label>
-                              <select class="form-select" id="choices-publish-status-input" data-choices data-choices-search-false required>
-                                  <option value="">Amarrillo</option>
-                                  <option value="Rojo">Rojo</option>
-                                  <option value="Azul">Azul</option>
+                              <select class="form-select" id="choices-publish-status-input" name="color" data-choices data-choices-search-false required>
+                                @foreach($paramcateg as $param)
+                                @if($param->id_tipo == 5)
+                                    <option value="{{ $param->nombre }}">{{ $param->nombre }}</option>
+                                @endif
+                                @endforeach
                           </select>
+                      </div>
+                      <div class="mb-2">
+                        <label for="choices-publish-status-input" class="form-label">Estado</label>
+                            <select class="form-select" id="choices-publish-status-input" name="estado" data-choices data-choices-search-false required>
+                                <option value="1">Terminado</option>
+                                <option value="0">Emproduccion</option>
+                        </select>
                       </div>
                   </div>
-                  
-                  <div class="mb-2">
-                          <label for="choices-publish-status-input" class="form-label">Estado</label>
-                              <select class="form-select" id="choices-publish-status-input" data-choices data-choices-search-false required>
-                                  <option value="amarillo">Terminado</option>
-                                  <option value="rojo">Emproduccion</option>
-                          </select>
-                      </div>
+
+
                   <div class="card">
                           <div class="card-header">
                               <h5 class="card-title mb-0">Tags de insumos</h5>
@@ -248,8 +269,7 @@ Crear insumos
                           <div class="card-body">
                               <div class="hstack gap-3 align-items-start">
                                   <div class="flex-grow-1">
-                                      <input class="form-control" data-choices data-choices-multiple-remove="true" placeholder="Enter tags" type="text"
-                               value="" required pattern="[A-Za-z]+" />
+                                      <input class="form-control" data-choices data-choices-multiple-remove="true" name="tags" placeholder="Enter tags" type="text" value="" required pattern="[A-Za-z]+" />
                                </div>
                            </div>
                           </div>
@@ -328,8 +348,10 @@ Crear insumos
 @endsection
 @section('script')
 <script src="{{ URL::asset('build/libs/@ckeditor/ckeditor5-build-classic/build/ckeditor.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.min.js"></script>
 
-<script src="{{ URL::asset('build/libs/dropzone/dropzone-min.js') }}"></script>
+
+<script src="{{ URL::asset('build/libs/dropzone/dropzone-min.js') }}"></script> 
 <script src="{{ URL::asset('build/js/pages/ecommerce-product-create.init.js') }}"></script>
 
 <script src="{{ URL::asset('build/js/app.js') }}"></script>

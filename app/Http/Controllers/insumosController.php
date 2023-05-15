@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\insumos;
+use App\Models\Parametrizacion;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -21,25 +22,33 @@ class insumosController extends Controller
     /**
      * Show the form for creating a new resource.
      */
+    // public function create()
+    // {
+    //     $paramcateg = Parametrizacion::where('id_tipo', 1)->get();
+    //     return view('insumos.create', ['paramcateg' => $paramcateg]);
+    // }
     public function create()
-    {
-        return view('insumos.create');
-    }
+{
+    $paramcateg = Parametrizacion::all();
+    return view('insumos.create', compact('paramcateg'));
+}
+
+    
 
     public function store(Request $request)
     {
         $request->validate([
-            'nombre' => 'required',
-            'img' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'tags' => 'required',
-            'categ' => 'required',
-            'precio' => 'required|numeric',
-            'stock' => 'required|numeric',
-            'estado' => 'required|numeric',
-            // 'descuento' => 'required|numeric',
-            // 'color' => 'required',
-            // 'unidad' => 'required',
-            // 'ancho' => 'required|numeric',
+            // 'nombre' => 'required',
+             'img' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+             'tags' => 'required',
+             'categ' => 'required',
+             'precio' => 'required|numeric',
+             'stock' => 'required|numeric',
+             'estado' => 'required|numeric',
+             'descuento' => 'required|numeric',
+             'color' => 'required',
+             'unidad' => 'required',
+             'ancho' => 'required|numeric',
             // 'material' => 'required',
         ]);
 
@@ -47,7 +56,7 @@ class insumosController extends Controller
         $request->img->move(public_path('images'), $imageName);
 
         $insumo = Insumos::create([
-            'nombre' => $request->nombre,
+            // 'nombre' => $request->nombre,
             'img' => $imageName,
             'tags' => $request->tags,
             'categ' => $request->categ,
@@ -57,7 +66,7 @@ class insumosController extends Controller
             'color' => $request->color,
             'unidad' => $request->unidad,
             'ancho' => $request->ancho,
-            'material' => $request->material,
+            'subcateg' => $request->subcateg,
             'estado' => $request->estado,
             'created_at' => now(),
         ]);
