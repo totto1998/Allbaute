@@ -17,141 +17,213 @@ Crear nueva parametrizacion
 @endcomponent
 <!DOCTYPE html>
 <html>
-<div class="container">
-  <div class="title">Registrar nueva orden</div>
-  <div class="content">
-    <form action="#">
-      <from>
-        <div class="user-details">
-          <from class="container2">
-            <div class="select-btn">
-              <span class="btn-text">Nombre del proveedor</span>
-              <span class="arrow-dwn">
-                <i class="fa-solid fa-chevron-down"></i>
-              </span>
+<div class="col-lg-4 position-relative mb-4">
+            <div class="card">
+                <div class="mb-2" style="margin-top: 10px;  margin-left: 20px; margin-right: 20px; margin-bottom: 20px;;">
+                    <label for="choices-publish-status-input" class="form-label">Categoria de insumos</label>
+                    <select class="form-select" id="choices-publish-status-input" aria-label="Disabled select example">
+                        <option selected>Selecciona una opción</option>
+                        <option value="Tela">Tela</option>
+                        <option value="boton">boton</option>
+                        <option value="cremallera">cremallera</option>
+                    </select>
+                </div>
+
+
+                <div id="card-body-container"></div>
+
+                <script>
+                    const selectEl = document.getElementById('choices-publish-status-input');
+                    const cardBodyContainerEl = document.getElementById('card-body-container');
+
+                    selectEl.addEventListener('change', (event) => {
+                        const selectedValue = event.target.value;
+
+                        if (selectedValue === 'Tela') {
+                            // Agregar el código HTML al contenedor
+                            cardBodyContainerEl.innerHTML = `
+                  <div class="card-body">
+                      <div class="mb-2">
+                          <label for="choices-publish-status-input" class="form-label">Tipo de tela</label>
+                              <select class="form-select" id="choices-publish-status-input" name="subcateg" data-choices data-choices-search-false required>
+                                @foreach($paramcateg as $param)
+                                @if($param->id_tipo == 2)
+                                    <option value="{{ $param->nombre }}">{{ $param->nombre }}</option>
+                                @endif
+                                @endforeach
+                              </select>
+                      </div>
+                      <div class="mb-2">
+                          <label for="choices-publish-status-input" class="form-label">Unidad de medida</label>
+                              <select class="form-select" id="choices-publish-status-input" name="unidad" data-choices data-choices-search-false required>
+                                @foreach($paramcateg as $param)
+                                @if($param->id_tipo == 6)
+                                    <option value="{{ $param->nombre }}">{{ $param->nombre }}</option>
+                                @endif
+                                @endforeach
+                          </select>
+                      </div>
+                      <div class="mb-3">
+                          <label for="ancho-input" class="form-label">Ancho de la tela</label>
+                          <input type="text" id="ancho-input" class="form-control" required pattern="[A-Za-z]+" placeholder="Ingrese ancho de la tela" name="ancho">
+                      </div>
+                      <div class="mb-2">
+                          <label for="choices-publish-status-input" class="form-label">Color</label>
+                              <select class="form-select" id="choices-publish-status-input" name="color" data-choices data-choices-search-false required>
+                                @foreach($paramcateg as $param)
+                                @if($param->id_tipo == 5)
+                                    <option value="{{ $param->nombre }}">{{ $param->nombre }}</option>
+                                @endif
+                                @endforeach
+                          </select>
+                      </div>
+
+                      <div class="mb-2">
+                          <label for="choices-publish-status-input" class="form-label">Estado</label>
+                              <select class="form-select" id="choices-publish-status-input" name="estado" data-choices data-choices-search-false required>
+                                  <option value="1">Terminado</option>
+                                  <option value="0">Emproduccion</option>
+                          </select>
+                      </div>
+                  </div>
+                  <div class="card">
+                          <div class="card-header">
+                              <h5 class="card-title mb-0">Tags de insumos</h5>
+                          </div>
+                          <div class="card-body">
+                              <div class="hstack gap-3 align-items-start">
+                                  <div class="flex-grow-1">
+                                      <input class="form-control" data-choices data-choices-multiple-remove="true" name="tags" placeholder="Enter tags" type="text" value="" required pattern="[A-Za-z]+" />
+                               </div>
+                           </div>
+                          </div>
+                      </div>
+              `;
+                        } else if (selectedValue === 'boton') {
+                            // Agregar el código HTML al contenedor
+                            cardBodyContainerEl.innerHTML = `
+              <div class="card-body">
+
+                      <div class="mb-2">
+                          <label for="choices-publish-status-input" class="form-label">Tipo de Material</label>
+                              <select class="form-select" id="choices-publish-status-input" name="subcateg" data-choices data-choices-search-false required>
+                                @foreach($paramcateg as $param)
+                                @if($param->id_tipo == 3)
+                                    <option value="{{ $param->nombre }}">{{ $param->nombre }}</option>
+                                @endif
+                                @endforeach
+                          </select>
+                      </div>
+
+                      <div class="mb-2">
+                          <label for="choices-publish-status-input" class="form-label">Unidad de medida</label>
+                              <select class="form-select" id="choices-publish-status-input" name="unidad" data-choices data-choices-search-false required>
+                                @foreach($paramcateg as $param)
+                                @if($param->id_tipo == 6)
+                                    <option value="{{ $param->nombre }}">{{ $param->nombre }}</option>
+                                @endif
+                                @endforeach
+                          </select>
+                      </div>
+
+                      <div class="mb-3">
+                          <label for="ancho-input" class="form-label">Ancho del boton</label>
+                          <input type="text" id="ancho-input" class="form-control" required pattern="[A-Za-z]+" placeholder="Ingrese ancho de la tela" name="ancho">
+                      </div>
+                      <div class="mb-2">
+                          <label for="choices-publish-status-input" class="form-label">Color</label>
+                              <select class="form-select" id="choices-publish-status-input" name="color" data-choices data-choices-search-false required>
+                                @foreach($paramcateg as $param)
+                                @if($param->id_tipo == 5)
+                                    <option value="{{ $param->nombre }}">{{ $param->nombre }}</option>
+                                @endif
+                                @endforeach
+                          </select>
+                      </div>
+                      <div class="mb-2">
+                        <label for="choices-publish-status-input" class="form-label">Estado</label>
+                            <select class="form-select" id="choices-publish-status-input" name="estado" data-choices data-choices-search-false required>
+                                <option value="1">Terminado</option>
+                                <option value="0">Emproduccion</option>
+                        </select>
+                      </div>
+                  </div>
+
+
+                  <div class="card">
+                          <div class="card-header">
+                              <h5 class="card-title mb-0">Tags de insumos</h5>
+                          </div>
+                          <div class="card-body">
+                              <div class="hstack gap-3 align-items-start">
+                                  <div class="flex-grow-1">
+                                      <input class="form-control" data-choices data-choices-multiple-remove="true" name="tags" placeholder="Enter tags" type="text" value="" required pattern="[A-Za-z]+" />
+                               </div>
+                           </div>
+                          </div>
+                      </div>
+              `;
+                        } else if (selectedValue === 'cremallera') {
+                            // Agregar el código HTML al contenedor
+                            cardBodyContainerEl.innerHTML = `
+              <div class="card-body">
+                      <div class="mb-2">
+                          <label for="choices-publish-status-input" class="form-label">Unidad de medida</label>
+                              <select class="form-select" id="choices-publish-status-input" data-choices data-choices-search-false required>
+                                  <option value="">Metro</option>
+                                  <option value="Lino">Yarda</option>
+                                  <option value="Algodon">Bolsa</option>
+                                  <option value="boton">Kilogramo</option>
+                          </select>
+                      </div>
+                      <div class="mb-2">
+                          <label for="choices-publish-status-input" class="form-label">Color</label>
+                              <select class="form-select" id="choices-publish-status-input" data-choices data-choices-search-false required>
+                                  <option value="">Amarrillo</option>
+                                  <option value="Rojo">Rojo</option>
+                                  <option value="Azul">Azul</option>
+                          </select>
+                      </div>
+                      <div class="mb-3">
+                          <label for="ancho-input" class="form-label">Ancho del cremallera</label>
+                          <input type="text" id="ancho-input" class="form-control" required pattern="[A-Za-z]+" placeholder="Ingrese ancho de la tela">
+                      </div>
+                  </div>
+                  
+                  <div class="mb-2">
+                          <label for="choices-publish-status-input" class="form-label">Estado</label>
+                              <select class="form-select" id="choices-publish-status-input" data-choices data-choices-search-false required>
+                                  <option value="amarillo">Terminado</option>
+                                  <option value="rojo">Emproduccion</option>
+                          </select>
+                      </div>
+                  <div class="card">
+                          <div class="card-header">
+                              <h5 class="card-title mb-0">Tags de insumos</h5>
+                          </div>
+                          <div class="card-body">
+                              <div class="hstack gap-3 align-items-start">
+                                  <div class="flex-grow-1">
+                                      <input class="form-control" data-choices data-choices-multiple-remove="true" placeholder="Enter tags" type="text"
+                               value="" required pattern="[A-Za-z]+" />
+                               </div>
+                           </div>
+                          </div>pa
+                      </div>
+              `;
+                        } else {
+                            // Limpiar el contenido del contenedor si no se selecciona una opción correspondiente
+                            cardBodyContainerEl.innerHTML = '';
+                        }
+                    });
+                </script>
             </div>
-            <ul class="list-items">
-                <li class="item">
-                    <span class="checkbox">
-                        <i class="fa-solid fa-check check-icon"></i>
-                    </span>
-                    <span class="item-text">HTML & CSS</span>
-                </li>
-                <li class="item">
-                    <span class="checkbox">
-                        <i class="fa-solid fa-check check-icon"></i>
-                    </span>
-                    <span class="item-text">Bootstrap</span>
-                </li>
-                <li class="item">
-                    <span class="checkbox">
-                        <i class="fa-solid fa-check check-icon"></i>
-                    </span>
-                    <span class="item-text">JavaScript</span>
-                </li>
-                <li class="item">
-                    <span class="checkbox">
-                        <i class="fa-solid fa-check check-icon"></i>
-                    </span>
-                    <span class="item-text">Node.Js</span>
-                </li>
-                <li class="item">
-                    <span class="checkbox">
-                        <i class="fa-solid fa-check check-icon"></i>
-                    </span>
-                    <span class="item-text">React JS</span>
-                </li>
-                <li class="item">
-                    <span class="checkbox">
-                        <i class="fa-solid fa-check check-icon"></i>
-                    </span>
-                    <span class="item-text">Mango DB</span>
-                </li>
-            </ul>
-            <script src="js/script.js"></script>
-          </from>
-          <ul class="list-items">
-                <li class="item">
-                    <span class="checkbox">
-                        <i class="fa-solid fa-check check-icon"></i>
-                    </span>
-                    <span class="item-text">HTML & CSS</span>
-                </li>
-                <li class="item">
-                    <span class="checkbox">
-                        <i class="fa-solid fa-check check-icon"></i>
-                    </span>
-                    <span class="item-text">Bootstrap</span>
-                </li>
-                <li class="item">
-                    <span class="checkbox">
-                        <i class="fa-solid fa-check check-icon"></i>
-                    </span>
-                    <span class="item-text">JavaScript</span>
-                </li>
-                <li class="item">
-                    <span class="checkbox">
-                        <i class="fa-solid fa-check check-icon"></i>
-                    </span>
-                    <span class="item-text">Node.Js</span>
-                </li>
-                <li class="item">
-                    <span class="checkbox">
-                        <i class="fa-solid fa-check check-icon"></i>
-                    </span>
-                    <span class="item-text">React JS</span>
-                </li>
-                <li class="item">
-                    <span class="checkbox">
-                        <i class="fa-solid fa-check check-icon"></i>
-                    </span>
-                    <span class="item-text">Mango DB</span>
-                </li>
-            </ul>
-          <from class="container2">
-            <div class="select-btn">
-              <span class="btn-text">Insumo</span>
-              <span class="arrow-dwn">
-                <i class="fa-solid fa-chevron-down"></i>
-              </span>
-            </div>
-          </from>
-          <div class="input-box">
-            <span class="details">Email</span>
-            <input type="text" placeholder="Enter your email" required>
-          </div>
-          <div class="input-box">
-            <span class="details">Phone Number</span>
-            <input type="text" placeholder="Enter your number" required>
-          </div>
-          <div class="input-box">
-            <span class="details">Password</span>
-            <input type="text" placeholder="Enter your password" required>
-          </div>
-          <div class="input-box">
-            <span class="details">Confirm Password</span>
-            <input type="text" placeholder="Confirm your password" required>
-          </div>
         </div>
+    </div>
         <div class="gender-details">
           <input type="radio" name="gender" id="dot-1">
           <input type="radio" name="gender" id="dot-2">
           <input type="radio" name="gender" id="dot-3">
-          <span class="gender-title">Gender</span>
-          <div class="category">
-            <label for="dot-1">
-              <span class="dot one"></span>
-              <span class="gender">Male</span>
-            </label>
-            <label for="dot-2">
-              <span class="dot two"></span>
-              <span class="gender">Female</span>
-            </label>
-            <label for="dot-3">
-              <span class="dot three"></span>
-              <span class="gender">Prefer not to say</span>
-            </label>
-          </div>
         </div>
         <div class="button">
           <input type="submit" value="Register">
@@ -173,31 +245,5 @@ Crear nueva parametrizacion
 <script src="{{ URL::asset('build/js/pages/ecommerce-product-create.init.js') }}"></script>
 
 <script src="{{ URL::asset('build/js/app.js') }}"></script>
-
-<script>
-  const selectBtn = document.querySelector(".select-btn"),
-  items = document.querySelectorAll(".item");
-
-  selectBtn.addEventListener("click", () => {
-  selectBtn.classList.toggle("open");
-  });
-
-  items.forEach(item => {
-  item.addEventListener("click", () => {
-      item.classList.toggle("checked");
-
-    let checked = document.querySelectorAll(".checked"),
-        btnText = document.querySelector(".btn-text");
-
-        if(checked && checked.length > 0){
-            btnText.innerText = `${checked.length} Selected`;
-        }else{
-            btnText.innerText = "Select Language";
-        }
-  });
-  })
-</script>
-
-
 
 @endsection
