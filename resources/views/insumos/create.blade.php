@@ -132,15 +132,16 @@ Crear insumos
         <!-- end col -->
         <div class="col-lg-4 position-relative mb-4">
             <div class="card">
-                <div class="mb-2">
+                <div class="mb-2" style="margin-top: 10px;  margin-left: 20px; margin-right: 20px; margin-bottom: 20px;;">
                     <label for="choices-publish-status-input" class="form-label">Categoria de insumos</label>
-                    <select class="form-select" id="choices-publish-status-input" data-choices data-choices-search-false>
-                        <option value="">Selecciona una opción</option>
+                    <select class="form-select" id="choices-publish-status-input" aria-label="Disabled select example">
+                        <option selected>Selecciona una opción</option>
                         <option value="Tela">Tela</option>
                         <option value="boton">boton</option>
                         <option value="cremallera">cremallera</option>
                     </select>
                 </div>
+
 
                 <div id="card-body-container"></div>
 
@@ -351,7 +352,7 @@ Crear insumos
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.min.js"></script>
 
 
-<script src="{{ URL::asset('build/libs/dropzone/dropzone-min.js') }}"></script> 
+<script src="{{ URL::asset('build/libs/dropzone/dropzone-min.js') }}"></script>
 <script src="{{ URL::asset('build/js/pages/ecommerce-product-create.init.js') }}"></script>
 
 <script src="{{ URL::asset('build/js/app.js') }}"></script>
