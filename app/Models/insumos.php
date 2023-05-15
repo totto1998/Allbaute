@@ -12,18 +12,19 @@ class insumos extends Model
     protected $table = 'insumos';
 
     protected $fillable = [
-          'nombre',
+        //   'nombre',
           'id',
           'img',
           'tags',
           'categ',
+          'subcateg',
           'precio',
           'stock',
           'descuento',
           'color',
           'unidad',
           'ancho',
-          'material',
+        //   'material',
           'estado',
           'created_at',
 
