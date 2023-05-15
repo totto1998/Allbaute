@@ -25,6 +25,7 @@
   
 
 
+
  const deleteOrder = document.getElementById('deleteOrder')
  deleteOrder.addEventListener('show.bs.modal', event => {
    // Button that triggered the modal
@@ -107,7 +108,27 @@
 //     });
 // });
 
+const selectBtn = document.querySelector(".select-btn"),
+      items = document.querySelectorAll(".item");
 
+selectBtn.addEventListener("click", () => {
+    selectBtn.classList.toggle("open");
+});
+
+items.forEach(item => {
+    item.addEventListener("click", () => {
+        item.classList.toggle("checked");
+
+        let checked = document.querySelectorAll(".checked"),
+            btnText = document.querySelector(".btn-text");
+
+            if(checked && checked.length > 0){
+                btnText.innerText = `${checked.length} Selected`;
+            }else{
+                btnText.innerText = "Select Language";
+            }
+    });
+})
 
 //Table
 var options = {

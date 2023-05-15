@@ -25,59 +25,139 @@ Crear nueva parametrizacion
         <div class="user-details">
           <from class="container2">
             <div class="select-btn">
-              <span class="btn-text">Select Language</span>
+              <span class="btn-text">Nombre del proveedor</span>
+              <span class="arrow-dwn">
+                <i class="fa-solid fa-chevron-down"></i>
+              </span>
+            </div>
+            <ul class="list-items">
+                <li class="item">
+                    <span class="checkbox">
+                        <i class="fa-solid fa-check check-icon"></i>
+                    </span>
+                    <span class="item-text">HTML & CSS</span>
+                </li>
+                <li class="item">
+                    <span class="checkbox">
+                        <i class="fa-solid fa-check check-icon"></i>
+                    </span>
+                    <span class="item-text">Bootstrap</span>
+                </li>
+                <li class="item">
+                    <span class="checkbox">
+                        <i class="fa-solid fa-check check-icon"></i>
+                    </span>
+                    <span class="item-text">JavaScript</span>
+                </li>
+                <li class="item">
+                    <span class="checkbox">
+                        <i class="fa-solid fa-check check-icon"></i>
+                    </span>
+                    <span class="item-text">Node.Js</span>
+                </li>
+                <li class="item">
+                    <span class="checkbox">
+                        <i class="fa-solid fa-check check-icon"></i>
+                    </span>
+                    <span class="item-text">React JS</span>
+                </li>
+                <li class="item">
+                    <span class="checkbox">
+                        <i class="fa-solid fa-check check-icon"></i>
+                    </span>
+                    <span class="item-text">Mango DB</span>
+                </li>
+            </ul>
+            <script src="js/script.js"></script>
+          </from>
+          <ul class="list-items">
+                <li class="item">
+                    <span class="checkbox">
+                        <i class="fa-solid fa-check check-icon"></i>
+                    </span>
+                    <span class="item-text">HTML & CSS</span>
+                </li>
+                <li class="item">
+                    <span class="checkbox">
+                        <i class="fa-solid fa-check check-icon"></i>
+                    </span>
+                    <span class="item-text">Bootstrap</span>
+                </li>
+                <li class="item">
+                    <span class="checkbox">
+                        <i class="fa-solid fa-check check-icon"></i>
+                    </span>
+                    <span class="item-text">JavaScript</span>
+                </li>
+                <li class="item">
+                    <span class="checkbox">
+                        <i class="fa-solid fa-check check-icon"></i>
+                    </span>
+                    <span class="item-text">Node.Js</span>
+                </li>
+                <li class="item">
+                    <span class="checkbox">
+                        <i class="fa-solid fa-check check-icon"></i>
+                    </span>
+                    <span class="item-text">React JS</span>
+                </li>
+                <li class="item">
+                    <span class="checkbox">
+                        <i class="fa-solid fa-check check-icon"></i>
+                    </span>
+                    <span class="item-text">Mango DB</span>
+                </li>
+            </ul>
+          <from class="container2">
+            <div class="select-btn">
+              <span class="btn-text">Insumo</span>
               <span class="arrow-dwn">
                 <i class="fa-solid fa-chevron-down"></i>
               </span>
             </div>
           </from>
-      </from>
-      <div class="input-box">
-        <span class="details">Username</span>
-        <input type="text" placeholder="Enter your username" required>
-      </div>
-      <div class="input-box">
-        <span class="details">Email</span>
-        <input type="text" placeholder="Enter your email" required>
-      </div>
-      <div class="input-box">
-        <span class="details">Phone Number</span>
-        <input type="text" placeholder="Enter your number" required>
-      </div>
-      <div class="input-box">
-        <span class="details">Password</span>
-        <input type="text" placeholder="Enter your password" required>
-      </div>
-      <div class="input-box">
-        <span class="details">Confirm Password</span>
-        <input type="text" placeholder="Confirm your password" required>
-      </div>
+          <div class="input-box">
+            <span class="details">Email</span>
+            <input type="text" placeholder="Enter your email" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Phone Number</span>
+            <input type="text" placeholder="Enter your number" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Password</span>
+            <input type="text" placeholder="Enter your password" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Confirm Password</span>
+            <input type="text" placeholder="Confirm your password" required>
+          </div>
+        </div>
+        <div class="gender-details">
+          <input type="radio" name="gender" id="dot-1">
+          <input type="radio" name="gender" id="dot-2">
+          <input type="radio" name="gender" id="dot-3">
+          <span class="gender-title">Gender</span>
+          <div class="category">
+            <label for="dot-1">
+              <span class="dot one"></span>
+              <span class="gender">Male</span>
+            </label>
+            <label for="dot-2">
+              <span class="dot two"></span>
+              <span class="gender">Female</span>
+            </label>
+            <label for="dot-3">
+              <span class="dot three"></span>
+              <span class="gender">Prefer not to say</span>
+            </label>
+          </div>
+        </div>
+        <div class="button">
+          <input type="submit" value="Register">
+        </div>
+    </form>
   </div>
-  <div class="gender-details">
-    <input type="radio" name="gender" id="dot-1">
-    <input type="radio" name="gender" id="dot-2">
-    <input type="radio" name="gender" id="dot-3">
-    <span class="gender-title">Gender</span>
-    <div class="category">
-      <label for="dot-1">
-        <span class="dot one"></span>
-        <span class="gender">Male</span>
-      </label>
-      <label for="dot-2">
-        <span class="dot two"></span>
-        <span class="gender">Female</span>
-      </label>
-      <label for="dot-3">
-        <span class="dot three"></span>
-        <span class="gender">Prefer not to say</span>
-      </label>
-    </div>
-  </div>
-  <div class="button">
-    <input type="submit" value="Register">
-  </div>
-  </form>
-</div>
 </div>
 
 </html>

@@ -97,7 +97,7 @@
                                         <td><?php echo e($insumo->color); ?></td>
                                         <td><?php echo e($insumo->unidad); ?></td>
                                         <td><?php echo e($insumo->ancho); ?></td>
-                                        <td><?php echo e($insumo->material); ?></td>
+                                        <td><?php echo e($insumo->subcateg); ?></td>
                                         <td>
                                             <?php if($insumo->estado == 1): ?>
                                                 <span class="badge badge-soft-success">Terminado</span>

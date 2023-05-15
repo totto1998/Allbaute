@@ -1,41 +1,121 @@
 
 <?php $__env->startSection('title'); ?>
-    <?php echo app('translator')->get('translation.create-product'); ?>
+<?php echo app('translator')->get('translation.create-product'); ?>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('css'); ?>
 <link href="<?php echo e(URL::asset('build/libs/dropzone/dropzone.css')); ?>" rel="stylesheet">
-<link rel="stylesheet" href="<?php echo e(URL::asset('build/css/style.css')); ?>"> 
+<link rel="stylesheet" href="<?php echo e(URL::asset('build/css/style.css')); ?>">
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
-    <?php $__env->startComponent('components.breadcrumb'); ?>
-        <?php $__env->slot('li_1'); ?>
-            Ecommerce
-        <?php $__env->endSlot(); ?>
-        <?php $__env->slot('title'); ?>
-            Crear nueva parametrizacion
-        <?php $__env->endSlot(); ?>
-    <?php echo $__env->renderComponent(); ?>
-    <!DOCTYPE html>
+<?php $__env->startComponent('components.breadcrumb'); ?>
+<?php $__env->slot('li_1'); ?>
+Ecommerce
+<?php $__env->endSlot(); ?>
+<?php $__env->slot('title'); ?>
+Crear nueva parametrizacion
+<?php $__env->endSlot(); ?>
+<?php echo $__env->renderComponent(); ?>
+<!DOCTYPE html>
 <html>
-  <div class="container">
-    <div class="title">Registrar nueva orden</div>
-    <div class="content">
-      <form action="#">
-        <from>
+<div class="container">
+  <div class="title">Registrar nueva orden</div>
+  <div class="content">
+    <form action="#">
+      <from>
         <div class="user-details">
-        <from class="container2">
+          <from class="container2">
             <div class="select-btn">
-                <span class="btn-text">Select Language</span>
-                <span class="arrow-dwn">
-                    <i class="fa-solid fa-chevron-down"></i>
-                </span>
-            </div> 
-        </from>
-</from>
-        <div class="input-box">
-            <span class="details">Username</span>
-            <input type="text" placeholder="Enter your username" required>
-          </div>
+              <span class="btn-text">Nombre del proveedor</span>
+              <span class="arrow-dwn">
+                <i class="fa-solid fa-chevron-down"></i>
+              </span>
+            </div>
+            <ul class="list-items">
+                <li class="item">
+                    <span class="checkbox">
+                        <i class="fa-solid fa-check check-icon"></i>
+                    </span>
+                    <span class="item-text">HTML & CSS</span>
+                </li>
+                <li class="item">
+                    <span class="checkbox">
+                        <i class="fa-solid fa-check check-icon"></i>
+                    </span>
+                    <span class="item-text">Bootstrap</span>
+                </li>
+                <li class="item">
+                    <span class="checkbox">
+                        <i class="fa-solid fa-check check-icon"></i>
+                    </span>
+                    <span class="item-text">JavaScript</span>
+                </li>
+                <li class="item">
+                    <span class="checkbox">
+                        <i class="fa-solid fa-check check-icon"></i>
+                    </span>
+                    <span class="item-text">Node.Js</span>
+                </li>
+                <li class="item">
+                    <span class="checkbox">
+                        <i class="fa-solid fa-check check-icon"></i>
+                    </span>
+                    <span class="item-text">React JS</span>
+                </li>
+                <li class="item">
+                    <span class="checkbox">
+                        <i class="fa-solid fa-check check-icon"></i>
+                    </span>
+                    <span class="item-text">Mango DB</span>
+                </li>
+            </ul>
+            <script src="js/script.js"></script>
+          </from>
+          <ul class="list-items">
+                <li class="item">
+                    <span class="checkbox">
+                        <i class="fa-solid fa-check check-icon"></i>
+                    </span>
+                    <span class="item-text">HTML & CSS</span>
+                </li>
+                <li class="item">
+                    <span class="checkbox">
+                        <i class="fa-solid fa-check check-icon"></i>
+                    </span>
+                    <span class="item-text">Bootstrap</span>
+                </li>
+                <li class="item">
+                    <span class="checkbox">
+                        <i class="fa-solid fa-check check-icon"></i>
+                    </span>
+                    <span class="item-text">JavaScript</span>
+                </li>
+                <li class="item">
+                    <span class="checkbox">
+                        <i class="fa-solid fa-check check-icon"></i>
+                    </span>
+                    <span class="item-text">Node.Js</span>
+                </li>
+                <li class="item">
+                    <span class="checkbox">
+                        <i class="fa-solid fa-check check-icon"></i>
+                    </span>
+                    <span class="item-text">React JS</span>
+                </li>
+                <li class="item">
+                    <span class="checkbox">
+                        <i class="fa-solid fa-check check-icon"></i>
+                    </span>
+                    <span class="item-text">Mango DB</span>
+                </li>
+            </ul>
+          <from class="container2">
+            <div class="select-btn">
+              <span class="btn-text">Insumo</span>
+              <span class="arrow-dwn">
+                <i class="fa-solid fa-chevron-down"></i>
+              </span>
+            </div>
+          </from>
           <div class="input-box">
             <span class="details">Email</span>
             <input type="text" placeholder="Enter your email" required>
@@ -60,25 +140,25 @@
           <span class="gender-title">Gender</span>
           <div class="category">
             <label for="dot-1">
-            <span class="dot one"></span>
-            <span class="gender">Male</span>
-          </label>
-          <label for="dot-2">
-            <span class="dot two"></span>
-            <span class="gender">Female</span>
-          </label>
-          <label for="dot-3">
-            <span class="dot three"></span>
-            <span class="gender">Prefer not to say</span>
+              <span class="dot one"></span>
+              <span class="gender">Male</span>
+            </label>
+            <label for="dot-2">
+              <span class="dot two"></span>
+              <span class="gender">Female</span>
+            </label>
+            <label for="dot-3">
+              <span class="dot three"></span>
+              <span class="gender">Prefer not to say</span>
             </label>
           </div>
         </div>
         <div class="button">
           <input type="submit" value="Register">
         </div>
-      </form>
-    </div>
+    </form>
   </div>
+</div>
 
 </html>
 
