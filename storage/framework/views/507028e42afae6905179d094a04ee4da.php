@@ -34,9 +34,9 @@ Crear insumos
                     <div>
                         <h5 class="fs-14 mb-1">Agrega la imagen de un producto nuevo</h5>
 
-                        <div class="dropzone">
+                          <div class="dropzone">
                             <div class="fallback">
-                                <input name="img" type="file" multiple="multiple">
+                                <input name="img" type="file" multiple="multiple" accept="image/*"/>
                             </div>
                             <div class="dz-message needsclick">
                                 <div class="mb-3">
@@ -72,7 +72,7 @@ Crear insumos
                             </li>
                         </ul>
                         <!-- end dropzon-preview -->
-                    </div>
+                    </div> 
                 </div>
             </div>
             <!-- end card -->
@@ -312,13 +312,13 @@ Crear insumos
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/dropzone@5.9.3/dist/dropzone.js"></script>
 
-<script>
+  <script>
     $(document).ready(function () {
         // Inicializar Dropzone
         Dropzone.autoDiscover = false;
         var maxFilesize = 2; // Tamaño máximo del archivo en MB
         var myDropzone = new Dropzone('.dropzone', {
-            paramName: 'img', // Nombre del parámetro que enviará el archivo
+            paramName: "img", // Nombre del parámetro que enviará el archivo
             maxFiles: 1, // Número máximo de archivos permitidos
             maxFilesize: maxFilesize, // Tamaño máximo del archivo en MB
             acceptedFiles: 'image/*', // Tipos de archivo aceptados (en este caso, solo imágenes)
@@ -330,7 +330,7 @@ Crear insumos
             // Otras opciones y eventos de Dropzone según sea necesario
         });
     });
-</script>
+</script> 
 
 
 <script src="<?php echo e(URL::asset('build/libs/dropzone/dropzone-min.js')); ?>"></script>
