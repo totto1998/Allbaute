@@ -18,15 +18,21 @@
     <!DOCTYPE html>
 <html>
   <div class="container">
-    <div class="title">Registration</div>
+    <div class="title">Registrar nueva orden</div>
     <div class="content">
       <form action="#">
+        <from>
         <div class="user-details">
-          <div class="input-box">
-            <span class="details">Full Name</span>
-            <input type="text" placeholder="Enter your name" required>
-          </div>
-          <div class="input-box">
+        <from class="container2">
+            <div class="select-btn">
+                <span class="btn-text">Select Language</span>
+                <span class="arrow-dwn">
+                    <i class="fa-solid fa-chevron-down"></i>
+                </span>
+            </div> 
+        </from>
+</from>
+        <div class="input-box">
             <span class="details">Username</span>
             <input type="text" placeholder="Enter your username" required>
           </div>
