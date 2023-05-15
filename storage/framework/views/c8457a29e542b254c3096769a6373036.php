@@ -1,37 +1,121 @@
 
 <?php $__env->startSection('title'); ?>
-    <?php echo app('translator')->get('translation.create-product'); ?>
+<?php echo app('translator')->get('translation.create-product'); ?>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('css'); ?>
 <link href="<?php echo e(URL::asset('build/libs/dropzone/dropzone.css')); ?>" rel="stylesheet">
-<link rel="stylesheet" href="<?php echo e(URL::asset('build/css/style.css')); ?>"> <!-- Reemplazar 'css/style.css' por la ruta de tu archivo CSS -->
-
+<link rel="stylesheet" href="<?php echo e(URL::asset('build/css/style.css')); ?>">
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
-    <?php $__env->startComponent('components.breadcrumb'); ?>
-        <?php $__env->slot('li_1'); ?>
-            Ecommerce
-        <?php $__env->endSlot(); ?>
-        <?php $__env->slot('title'); ?>
-            Crear nueva parametrizacion
-        <?php $__env->endSlot(); ?>
-    <?php echo $__env->renderComponent(); ?>
-    <!DOCTYPE html>
-<!-- Created By CodingLab - www.codinglabweb.com -->
+<?php $__env->startComponent('components.breadcrumb'); ?>
+<?php $__env->slot('li_1'); ?>
+Ecommerce
+<?php $__env->endSlot(); ?>
+<?php $__env->slot('title'); ?>
+Crear nueva parametrizacion
+<?php $__env->endSlot(); ?>
+<?php echo $__env->renderComponent(); ?>
+<!DOCTYPE html>
 <html>
-  <div class="container">
-    <div class="title">Registration</div>
-    <div class="content">
-      <form action="#">
+<div class="container">
+  <div class="title">Registrar nueva orden</div>
+  <div class="content">
+    <form action="#">
+      <from>
         <div class="user-details">
-          <div class="input-box">
-            <span class="details">Full Name</span>
-            <input type="text" placeholder="Enter your name" required>
-          </div>
-          <div class="input-box">
-            <span class="details">Username</span>
-            <input type="text" placeholder="Enter your username" required>
-          </div>
+          <from class="container2">
+            <div class="select-btn">
+              <span class="btn-text">Nombre del proveedor</span>
+              <span class="arrow-dwn">
+                <i class="fa-solid fa-chevron-down"></i>
+              </span>
+            </div>
+            <ul class="list-items">
+                <li class="item">
+                    <span class="checkbox">
+                        <i class="fa-solid fa-check check-icon"></i>
+                    </span>
+                    <span class="item-text">HTML & CSS</span>
+                </li>
+                <li class="item">
+                    <span class="checkbox">
+                        <i class="fa-solid fa-check check-icon"></i>
+                    </span>
+                    <span class="item-text">Bootstrap</span>
+                </li>
+                <li class="item">
+                    <span class="checkbox">
+                        <i class="fa-solid fa-check check-icon"></i>
+                    </span>
+                    <span class="item-text">JavaScript</span>
+                </li>
+                <li class="item">
+                    <span class="checkbox">
+                        <i class="fa-solid fa-check check-icon"></i>
+                    </span>
+                    <span class="item-text">Node.Js</span>
+                </li>
+                <li class="item">
+                    <span class="checkbox">
+                        <i class="fa-solid fa-check check-icon"></i>
+                    </span>
+                    <span class="item-text">React JS</span>
+                </li>
+                <li class="item">
+                    <span class="checkbox">
+                        <i class="fa-solid fa-check check-icon"></i>
+                    </span>
+                    <span class="item-text">Mango DB</span>
+                </li>
+            </ul>
+            <script src="js/script.js"></script>
+          </from>
+          <ul class="list-items">
+                <li class="item">
+                    <span class="checkbox">
+                        <i class="fa-solid fa-check check-icon"></i>
+                    </span>
+                    <span class="item-text">HTML & CSS</span>
+                </li>
+                <li class="item">
+                    <span class="checkbox">
+                        <i class="fa-solid fa-check check-icon"></i>
+                    </span>
+                    <span class="item-text">Bootstrap</span>
+                </li>
+                <li class="item">
+                    <span class="checkbox">
+                        <i class="fa-solid fa-check check-icon"></i>
+                    </span>
+                    <span class="item-text">JavaScript</span>
+                </li>
+                <li class="item">
+                    <span class="checkbox">
+                        <i class="fa-solid fa-check check-icon"></i>
+                    </span>
+                    <span class="item-text">Node.Js</span>
+                </li>
+                <li class="item">
+                    <span class="checkbox">
+                        <i class="fa-solid fa-check check-icon"></i>
+                    </span>
+                    <span class="item-text">React JS</span>
+                </li>
+                <li class="item">
+                    <span class="checkbox">
+                        <i class="fa-solid fa-check check-icon"></i>
+                    </span>
+                    <span class="item-text">Mango DB</span>
+                </li>
+            </ul>
+          <from class="container2">
+            <div class="select-btn">
+              <span class="btn-text">Insumo</span>
+              <span class="arrow-dwn">
+                <i class="fa-solid fa-chevron-down"></i>
+              </span>
+            </div>
+          </from>
           <div class="input-box">
             <span class="details">Email</span>
             <input type="text" placeholder="Enter your email" required>
@@ -56,27 +140,28 @@
           <span class="gender-title">Gender</span>
           <div class="category">
             <label for="dot-1">
-            <span class="dot one"></span>
-            <span class="gender">Male</span>
-          </label>
-          <label for="dot-2">
-            <span class="dot two"></span>
-            <span class="gender">Female</span>
-          </label>
-          <label for="dot-3">
-            <span class="dot three"></span>
-            <span class="gender">Prefer not to say</span>
+              <span class="dot one"></span>
+              <span class="gender">Male</span>
+            </label>
+            <label for="dot-2">
+              <span class="dot two"></span>
+              <span class="gender">Female</span>
+            </label>
+            <label for="dot-3">
+              <span class="dot three"></span>
+              <span class="gender">Prefer not to say</span>
             </label>
           </div>
         </div>
         <div class="button">
           <input type="submit" value="Register">
         </div>
-      </form>
-    </div>
+    </form>
   </div>
+</div>
 
 </html>
+
 
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('script'); ?>
@@ -88,5 +173,32 @@
 <script src="<?php echo e(URL::asset('build/js/pages/ecommerce-product-create.init.js')); ?>"></script>
 
 <script src="<?php echo e(URL::asset('build/js/app.js')); ?>"></script>
+
+<script>
+  const selectBtn = document.querySelector(".select-btn"),
+  items = document.querySelectorAll(".item");
+
+  selectBtn.addEventListener("click", () => {
+  selectBtn.classList.toggle("open");
+  });
+
+  items.forEach(item => {
+  item.addEventListener("click", () => {
+      item.classList.toggle("checked");
+
+    let checked = document.querySelectorAll(".checked"),
+        btnText = document.querySelector(".btn-text");
+
+        if(checked && checked.length > 0){
+            btnText.innerText = `${checked.length} Selected`;
+        }else{
+            btnText.innerText = "Select Language";
+        }
+  });
+  })
+</script>
+
+
+
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\Usuario\Documents\GitHub\Allbaute\resources\views/ordenCompra/create.blade.php ENDPATH**/ ?>
