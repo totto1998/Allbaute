@@ -46,7 +46,7 @@ Crear nueva parametrizacion
                       <div class="mb-2">
                           <label for="choices-publish-status-input" class="form-label">Tipo de tela</label>
                               <select class="form-select" id="choices-publish-status-input" name="subcateg" data-choices data-choices-search-false required>
-                                @foreach($paramcateg as $param)
+                                @foreach($ordenCompra as $param)
                                 @if($param->id_tipo == 2)
                                     <option value="{{ $param->nombre }}">{{ $param->nombre }}</option>
                                 @endif
@@ -56,7 +56,7 @@ Crear nueva parametrizacion
                       <div class="mb-2">
                           <label for="choices-publish-status-input" class="form-label">Unidad de medida</label>
                               <select class="form-select" id="choices-publish-status-input" name="unidad" data-choices data-choices-search-false required>
-                                @foreach($paramcateg as $param)
+                                @foreach($ordenCompra as $param)
                                 @if($param->id_tipo == 6)
                                     <option value="{{ $param->nombre }}">{{ $param->nombre }}</option>
                                 @endif
@@ -70,7 +70,7 @@ Crear nueva parametrizacion
                       <div class="mb-2">
                           <label for="choices-publish-status-input" class="form-label">Color</label>
                               <select class="form-select" id="choices-publish-status-input" name="color" data-choices data-choices-search-false required>
-                                @foreach($paramcateg as $param)
+                                @foreach($ordenCompra as $param)
                                 @if($param->id_tipo == 5)
                                     <option value="{{ $param->nombre }}">{{ $param->nombre }}</option>
                                 @endif
@@ -107,7 +107,7 @@ Crear nueva parametrizacion
                       <div class="mb-2">
                           <label for="choices-publish-status-input" class="form-label">Tipo de Material</label>
                               <select class="form-select" id="choices-publish-status-input" name="subcateg" data-choices data-choices-search-false required>
-                                @foreach($paramcateg as $param)
+                                @foreach($ordenCompra as $param)
                                 @if($param->id_tipo == 3)
                                     <option value="{{ $param->nombre }}">{{ $param->nombre }}</option>
                                 @endif
@@ -118,7 +118,7 @@ Crear nueva parametrizacion
                       <div class="mb-2">
                           <label for="choices-publish-status-input" class="form-label">Unidad de medida</label>
                               <select class="form-select" id="choices-publish-status-input" name="unidad" data-choices data-choices-search-false required>
-                                @foreach($paramcateg as $param)
+                                @foreach($ordenCompra as $param)
                                 @if($param->id_tipo == 6)
                                     <option value="{{ $param->nombre }}">{{ $param->nombre }}</option>
                                 @endif
@@ -133,7 +133,7 @@ Crear nueva parametrizacion
                       <div class="mb-2">
                           <label for="choices-publish-status-input" class="form-label">Color</label>
                               <select class="form-select" id="choices-publish-status-input" name="color" data-choices data-choices-search-false required>
-                                @foreach($paramcateg as $param)
+                                @foreach($ordenCompra as $param)
                                 @if($param->id_tipo == 5)
                                     <option value="{{ $param->nombre }}">{{ $param->nombre }}</option>
                                 @endif

@@ -136,7 +136,7 @@ Crear insumos
         <!-- end col -->
         <div class="col-lg-4 position-relative mb-4">
             <div class="card">
-                <div class="mb-2">
+                <div class="mb-2" style="margin-top: 10px;  margin-left: 20px; margin-right: 20px; margin-bottom: 20px;;">
                     <label for="choices-publish-status-input" class="form-label">Categoria de insumos</label>
                     <select class="form-select" id="choices-publish-status-input" data-choices data-choices-search-false>
                         <option value="">Selecciona una opción</option>
@@ -148,6 +148,7 @@ Crear insumos
                     </select>
                 </div>
                 
+
 
                 <div id="card-body-container"></div>
 
@@ -332,8 +333,7 @@ Crear insumos
 </script>
 
 
-
-
+<script src="<?php echo e(URL::asset('build/libs/dropzone/dropzone-min.js')); ?>"></script>
 <script src="<?php echo e(URL::asset('build/js/pages/ecommerce-product-create.init.js')); ?>"></script>
 
 <script src="<?php echo e(URL::asset('build/js/app.js')); ?>"></script>
