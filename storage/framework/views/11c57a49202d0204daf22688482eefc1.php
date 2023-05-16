@@ -51,9 +51,6 @@ Crear nueva parametrizacion
     </div>
   </div>
   <form>
-    <div id="insumos-container">
-      <!-- Aquí se agregarán dinámicamente los insumos seleccionados -->
-    </div>
 
     <div class="row mb-3">
       <div class="col-md-6">
@@ -71,7 +68,10 @@ Crear nueva parametrizacion
         </div>
       </div>
     </div>
-
+    
+    <div id="insumos-container">
+        <a> Aquí se agregarán dinámicamente los insumos seleccionados </a>
+      </div>
     <button type="button" class="btn btn-primary" onclick="agregarInsumo()">Agregar Insumo</button>
     <button type="submit" class="btn btn-primary">Enviar</button>
   </form>
@@ -84,127 +84,98 @@ Crear nueva parametrizacion
 
     let insumos = [];
 
-  // Función para agregar un nuevo insumo al formulario
-  function agregarInsumo() {
-    const insumosContainer = document.getElementById('insumos-container');
+    // Función para agregar un nuevo insumo al formulario
+    function agregarInsumo() {
+      const insumosContainer = document.getElementById('insumos-container');
 
-    const divRow = document.createElement('div');
-    divRow.classList.add('row', 'mb-3');
+      const divRow = document.createElement('div');
+      divRow.classList.add('row', 'mb-3');
 
-    const divCol1 = document.createElement('div');
-    divCol1.classList.add('col-md-4');
-    const labelInsumo = document.createElement('label');
-    labelInsumo.textContent = 'Tipo de insumo';
-    const selectInsumo = document.createElement('select');
-    selectInsumo.classList.add('form-select');
-    selectInsumo.addEventListener('input', calcularTotal);
+      const divCol1 = document.createElement('div');
+      divCol1.classList.add('col-md-4');
+      const labelInsumo = document.createElement('label');
+      labelInsumo.textContent = 'Tipo de insumo';
+      const selectInsumo = document.createElement('select');
+      selectInsumo.classList.add('form-select');
+      selectInsumo.addEventListener('input', calcularTotal);
 
-    const optionDefault = document.createElement('option');
-    optionDefault.disabled = true;
-    optionDefault.selected = true;
-    optionDefault.textContent = 'Selecciona una opción';
+      // opciones del select...
 
-    const optionTela = document.createElement('option');
-    optionTela.value = 'Tela';
-    optionTela.textContent = 'Tela';
+      divCol1.appendChild(labelInsumo);
+      divCol1.appendChild(selectInsumo);
 
-    const optionBoton = document.createElement('option');
-    optionBoton.value = 'Botón';
-    optionBoton.textContent = 'Botón';
+      const divCol2 = document.createElement('div');
+      divCol2.classList.add('col-md-4');
+      const labelCantidad = document.createElement('label');
+      labelCantidad.textContent = 'Cantidad de insumo';
+      const inputCantidad = document.createElement('input');
+      inputCantidad.type = 'number';
+      inputCantidad.classList.add('form-control');
+      inputCantidad.addEventListener('input', calcularTotal);
 
-    const optionCremallera = document.createElement('option');
-    optionCremallera.value = 'Cremallera';
-    optionCremallera.textContent = 'Cremallera';
+      divCol2.appendChild(labelCantidad);
+      divCol2.appendChild(inputCantidad);
 
-    selectInsumo.appendChild(optionDefault);
-    selectInsumo.appendChild(optionTela);
-    selectInsumo.appendChild(optionBoton);
-    selectInsumo.appendChild(optionCremallera);
+      const divCol3 = document.createElement('div');
+      divCol3.classList.add('col-md-4');
+      const labelValorUnitario = document.createElement('label');
+      labelValorUnitario.textContent = 'Valor unitario';
+      const inputValorUnitario = document.createElement('input');
+      inputValorUnitario.type = 'number';
+      inputValorUnitario.classList.add('form-control');
+      inputValorUnitario.addEventListener('input', calcularTotal);
 
-    divCol1.appendChild(labelInsumo);
-    divCol1.appendChild(selectInsumo);
+      divCol3.appendChild(labelValorUnitario);
+      divCol3.appendChild(inputValorUnitario);
 
-    const divCol2 = document.createElement('div');
-    divCol2.classList.add('col-md-4');
-    const labelCantidad = document.createElement('label');
-    labelCantidad.textContent = 'Cantidad de insumo';
-    const inputCantidad = document.createElement('input');
-    inputCantidad.type = 'number';
-    inputCantidad.classList.add('form-control');
-    inputCantidad.addEventListener('input', calcularTotal);
+      const divCol4 = document.createElement('div');
+      divCol4.classList.add('col-md-4');
+      const labelSubtotal = document.createElement('label');
+      labelSubtotal.textContent = 'Subtotal';
+      const inputSubtotal = document.createElement('input');
+      inputSubtotal.type = 'text';
+      inputSubtotal.classList.add('form-control');
+      inputSubtotal.readOnly = true;
 
-    divCol2.appendChild(labelCantidad);
-    divCol2.appendChild(inputCantidad);
+      divCol4.appendChild(labelSubtotal);
+      divCol4.appendChild(inputSubtotal);
 
-    const divCol3 = document.createElement('div');
-    divCol3.classList.add('col-md-4');
-    const labelValorUnitario = document.createElement('label');
-    labelValorUnitario.textContent = 'Valor unitario';
-    const inputValorUnitario = document.createElement('input');
-    inputValorUnitario.type = 'number';
-    inputValorUnitario.classList.add('form-control');
-    inputValorUnitario.addEventListener('input', calcularTotal);
+      divRow.appendChild(divCol1);
+      divRow.appendChild(divCol2);
+      divRow.appendChild(divCol3);
+      divRow.appendChild(divCol4);
 
-    divCol3.appendChild(labelValorUnitario);
-    divCol3.appendChild(inputValorUnitario);
-
-    divRow.appendChild(divCol1);
-    divRow.appendChild(divCol2);
-    divRow.appendChild(divCol3);
-
-    insumosContainer.appendChild(divRow);
-  }
-
-  // Función para calcular el subtotal y el total
-  function calcularTotal() {
-    let subtotal = 0;
-
-    const rows = document.getElementById('insumos-container').querySelectorAll('.row');
-
-    rows.forEach(row => {
-      const cantidadInput = row.querySelector('.col-md-4 input[type="number"]');
-      const valorUnitarioInput = row.querySelector('.col-md-4 input[type="number"]');
-
-      const cantidad = cantidadInput.valueAsNumber;
-      const valorUnitario = valorUnitarioInput.valueAsNumber;
-
-      subtotal += cantidad * valorUnitario;
-    });
-
-    const subtotalInput = document.getElementById('subtotal-input');
-    const totalInput = document.getElementById('total-input');
-
-    subtotalInput.value = subtotal.toLocaleString();
-    totalInput.value = subtotal.toLocaleString();
-  }
-
-    
-    // Calcular subtotal y total
-    function calcularSubtotal() {
-      const cantidad = parseFloat(cantidadInput.value);
-      const valorUnitario = parseFloat(valorUnitarioInput.value);
-
-      const subtotal = cantidad * valorUnitario;
-
-      subtotalInput.value = subtotal.toLocaleString('en-US', {
-        style: 'currency',
-        currency: 'USD'
-      });
-
+      insumosContainer.appendChild(divRow);
       calcularTotal();
     }
 
     function calcularTotal() {
-      const subtotal = parseFloat(subtotalInput.value.replace(/\$|,/g, ''));
-      totalInput.value = subtotal.toLocaleString('en-US', {
-        style: 'currency',
-        currency: 'USD'
+      let subtotal = 0;
+
+      const rows = document.getElementById('insumos-container').querySelectorAll('.row');
+
+      rows.forEach(row => {
+        const inputCantidad = row.querySelector('.form-control');
+        const inputValorUnitario = row.querySelectorAll('.form-control')[1];
+        const inputSubtotal = row.querySelectorAll('.form-control')[2];
+
+        const cantidad = inputCantidad.value;
+        const valorUnitario = inputValorUnitario.value;
+
+        if (cantidad && valorUnitario) {
+          const subtotalInsumo = cantidad * valorUnitario;
+          inputSubtotal.value = subtotalInsumo;
+          subtotal += subtotalInsumo;
+        }
       });
+
+      // Actualiza el valor del subtotal y el total en los elementos correspondientes
+      document.getElementById('subtotal-input').value = subtotal;
+      document.getElementById('total-input').value = subtotal;
     }
 
-    // Agregar evento de cambio para recalcular el subtotal y el total
-    cantidadInput.addEventListener('input', calcularSubtotal);
-    valorUnitarioInput.addEventListener('input', calcularSubtotal);
+    // Calcular el total al cargar la página
+    calcularTotal();
   </script>
 
 
