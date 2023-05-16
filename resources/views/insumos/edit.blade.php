@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+                <div class="card-header">{{ __('Editar') }}</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -15,13 +15,16 @@
                     @endif
 
                     <!-- edit.blade.php -->
-                    <form action="{{ route('insumos.update', $insumo->id) }}" method="POST">
+                    <form action="{{ route('insumos.update', $insumo->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <!-- Campos del formulario de edición -->
                         <div class="mb-3">
-                            <label for="nombre">Nombre</label>
-                            <input type="text" class="form-control" id="nombre" name="nombre" value="{{ $insumo->nombre }}" required>
+                            <label for="img">Imagen</label>
+                            <input type="file" class="form-control" id="img" name="img">
+                            @if ($insumo->img)
+                                <img src="{{ asset('images/'.$insumo->img) }}" alt="Imagen actual" style="max-width: 50px; margin-top: 10px;">
+                            @endif
                         </div>
                         <div class="mb-3">
                             <label for="tags">Tags</label>
@@ -50,10 +53,6 @@
                         <div class="mb-3">
                             <label for="ancho">Ancho</label>
                             <input type="number" class="form-control" id="ancho" name="ancho" value="{{ $insumo->ancho }}" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="material">Material</label>
-                            <input type="text" class="form-control" id="material" name="material" value="{{ $insumo->material }}" required>
                         </div>
                         <div class="mb-3">
                             <label for="estado">Estado</label>

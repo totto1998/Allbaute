@@ -159,10 +159,6 @@
     
                                             </ul>
                                         </td>
-
-
-
-
                                       </tr>
                                       @endforeach
                                     </tbody>
