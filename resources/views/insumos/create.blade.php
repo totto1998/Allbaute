@@ -96,8 +96,8 @@ Crear insumos
                                 <div class="col-lg-3 col-sm-6">
                                     <div class="mb-3">
                                         <label class="form-label" for="stocks-input">Stocks</label>
-                                        <input type="text" class="form-control" id="stocks-input" name="stock" placeholder="Stocks" required pattern="[A-Za-z\s]+">
-                                        <div class="invalid-feedback">Ingrese cuantos productos estan en Stocks.</div>
+                                        <input type="number" class="form-control" id="stocks-input" name="stock" placeholder="Stocks" required pattern="[A-Za-z\s]+">
+                                        <div class="invalid-feedback">Ingrese Stocks.</div>
                                     </div>
                                 </div>
                                 <div class="col-lg-3 col-sm-6">
@@ -105,7 +105,7 @@ Crear insumos
                                         <label class="form-label" for="product-price-input">Precio</label>
                                         <div class="input-group has-validation mb-3">
                                             <span class="input-group-text" id="product-price-addon">$</span>
-                                            <input type="text" class="form-control" id="product-price-input" placeholder="Enter price" name="precio" aria-label="Price" aria-describedby="product-price-addon" required pattern="[0-9]+">
+                                            <input type="number" class="form-control" id="product-price-input" placeholder="Precio" name="precio" aria-label="Price" aria-describedby="product-price-addon" required pattern="[0-9]+">
                                             <div class="invalid-feedback">Ingrese el precio.</div>
                                         </div>
 
@@ -116,7 +116,7 @@ Crear insumos
                                         <label class="form-label" for="product-discount-input">Descuento</label>
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="product-discount-addon">%</span>
-                                            <input type="text" class="form-control" id="product-discount-input" name="descuento" placeholder="Descuento" aria-label="discount" aria-describedby="product-discount-addon" required pattern="[0-9]+">
+                                            <input type="number" class="form-control" id="product-discount-input" name="descuento" placeholder="Descuento" aria-label="discount" aria-describedby="product-discount-addon" required pattern="[0-9]+">
                                         </div>
                                     </div>
                                 </div>
@@ -185,7 +185,7 @@ Crear insumos
                       </div>
                       <div class="mb-3">
                           <label for="ancho-input" class="form-label">Ancho de la tela</label>
-                          <input type="text" id="ancho-input" class="form-control" required pattern="[A-Za-z]+" placeholder="Ingrese ancho de la tela" name="ancho">
+                          <input type="number" id="ancho-input" class="form-control" required pattern="[A-Za-z]+" placeholder="Ingrese ancho de la tela" name="ancho">
                       </div>
                       <div class="mb-2">
                           <label for="choices-publish-status-input" class="form-label">Color</label>
@@ -247,8 +247,8 @@ Crear insumos
                       </div>
 
                       <div class="mb-3">
-                          <label for="ancho-input" class="form-label">Ancho del boton</label>
-                          <input type="text" id="ancho-input" class="form-control" required pattern="[A-Za-z]+" placeholder="Ingrese ancho de la tela" name="ancho">
+                          <label for="ancho-input" class="form-label">Ancho del Boton-Cremallera</label>
+                          <input type="number" id="ancho-input" class="form-control" required pattern="[A-Za-z]+" placeholder="Ingrese ancho de la tela" name="ancho">
                       </div>
                       <div class="mb-2">
                           <label for="choices-publish-status-input" class="form-label">Color</label>
