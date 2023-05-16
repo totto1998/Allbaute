@@ -106,7 +106,7 @@ Crear insumos
                                 <div class="col-lg-3 col-sm-6">
                                     <div class="mb-3">
                                         <label class="form-label" for="stocks-input">Stocks</label>
-                                        <input type="text" class="form-control" id="stocks-input" placeholder="Stocks" required pattern="[A-Za-z\s]+" name="stock" required>
+                                        <input type="number" class="form-control" id="stocks-input" placeholder="Stocks" required pattern="[A-Za-z\s]+" name="stock" required>
                                         <div class="invalid-feedback">Ingrese cuantos productos estan en Stocks.</div>
                                     </div>
                                 </div>
@@ -189,7 +189,7 @@ Crear insumos
                   </div>
                   <div class="mb-3">
                       <label for="ancho-input" class="form-label">Ancho de la tela</label>
-                      <input type="text" id="ancho-input" class="form-control" required pattern="[A-Za-z]+" placeholder="Ingrese ancho de la tela" name="ancho">
+                      <input type="number" id="ancho-input" class="form-control" aria-label="discount" aria-describedby="product-discount-addon" required pattern="[0-9]+" placeholder="Ingrese ancho de la tela" name="ancho">
                   </div>
                   <div class="mb-2">
                       <label for="choices-publish-status-input" class="form-label">Color</label>
@@ -248,7 +248,7 @@ Crear insumos
                   </div>
                   <div class="mb-3">
                       <label for="ancho-input" class="form-label">Ancho del boton</label>
-                      <input type="text" id="ancho-input" class="form-control" required pattern="[A-Za-z]+" placeholder="Ingrese ancho de la tela" name="ancho">
+                      <input type="number" id="ancho-input" class="form-control" required pattern="[A-Za-z]+" placeholder="Ingrese ancho de la tela" name="ancho">
                   </div>
                   <div class="mb-2">
                       <label for="choices-publish-status-input" class="form-label">Color</label>
