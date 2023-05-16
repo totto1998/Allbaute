@@ -115,7 +115,7 @@ Crear insumos
                                         <label class="form-label" for="product-price-input">Precio</label>
                                         <div class="input-group has-validation mb-3">
                                             <span class="input-group-text" id="product-price-addon">$</span>
-                                            <input type="text" class="form-control" id="product-price-input" placeholder="Enter price" aria-label="Price" aria-describedby="product-price-addon" required pattern="[0-9]+" name="precio" required>
+                                            <input type="number" class="form-control" id="product-price-input" placeholder="Precio" name="precio" aria-label="Price" aria-describedby="product-price-addon" required pattern="[0-9]+">
                                             <div class="invalid-feedback">Ingrese el precio.</div>
                                         </div>
                                     </div>
@@ -125,7 +125,7 @@ Crear insumos
                                         <label class="form-label" for="product-discount-input">Descuento</label>
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="product-discount-addon">%</span>
-                                            <input type="text" class="form-control" id="product-discount-input" placeholder="Descuento" aria-label="discount" aria-describedby="product-discount-addon" required pattern="[0-9]+" name="descuento" required>
+                                            <input type="number" class="form-control" id="product-discount-input" name="descuento" placeholder="Descuento" aria-label="discount" aria-describedby="product-discount-addon" required pattern="[0-9]+">
                                         </div>
                                     </div>
                                 </div>

@@ -50,61 +50,149 @@ Crear nueva parametrizacion
       </div>
     </div>
   </div>
-  <div class="row mb-3">
-    <div class="col-md-6">
-      <label for="subtotal-input" class="form-label">Subtotal</label>
-      <div class="input-group">
-        <span class="input-group-text">$</span>
-        <input type="text" class="form-control" id="subtotal-input" readonly>
+  <form>
+
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label for="subtotal-input" class="form-label">Subtotal</label>
+        <div class="input-group">
+          <span class="input-group-text">$</span>
+          <input type="text" class="form-control" id="subtotal-input" readonly>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <label for="total-input" class="form-label">Total a pagar</label>
+        <div class="input-group">
+          <span class="input-group-text">$</span>
+          <input type="text" class="form-control" id="total-input" readonly>
+        </div>
       </div>
     </div>
-    <div class="col-md-6">
-      <label for="total-input" class="form-label">Total a pagar</label>
-      <div class="input-group">
-        <span class="input-group-text">$</span>
-        <input type="text" class="form-control" id="total-input" readonly>
+    
+    <div id="insumos-container">
+        <a> Aquí se agregarán dinámicamente los insumos seleccionados </a>
       </div>
-    </div>
-  </div>
+    <button type="button" class="btn btn-primary" onclick="agregarInsumo()">Agregar Insumo</button>
+    <button type="submit" class="btn btn-primary">Enviar</button>
+  </form>
   <script>
+    // Obtener los elementos del formulario
     const cantidadInput = document.getElementById('cantidad-input');
     const valorUnitarioInput = document.getElementById('valor-unitario-input');
     const subtotalInput = document.getElementById('subtotal-input');
     const totalInput = document.getElementById('total-input');
-    function calcularSubtotalYTotal() {
-      const cantidad = cantidadInput.valueAsNumber;
-      const valorUnitario = valorUnitarioInput.valueAsNumber;
-      const subtotal = cantidad * valorUnitario;
-      subtotalInput.value = subtotal.toLocaleString();
-      totalInput.value = subtotal.toLocaleString();
+
+    let insumos = [];
+
+    // Función para agregar un nuevo insumo al formulario
+    function agregarInsumo() {
+      const insumosContainer = document.getElementById('insumos-container');
+
+      const divRow = document.createElement('div');
+      divRow.classList.add('row', 'mb-3');
+
+      const divCol1 = document.createElement('div');
+      divCol1.classList.add('col-md-4');
+      const labelInsumo = document.createElement('label');
+      labelInsumo.textContent = 'Tipo de insumo';
+      const selectInsumo = document.createElement('select');
+      selectInsumo.classList.add('form-select');
+      selectInsumo.addEventListener('input', calcularTotal);
+
+      // opciones del select...
+
+      divCol1.appendChild(labelInsumo);
+      divCol1.appendChild(selectInsumo);
+
+      const divCol2 = document.createElement('div');
+      divCol2.classList.add('col-md-4');
+      const labelCantidad = document.createElement('label');
+      labelCantidad.textContent = 'Cantidad de insumo';
+      const inputCantidad = document.createElement('input');
+      inputCantidad.type = 'number';
+      inputCantidad.classList.add('form-control');
+      inputCantidad.addEventListener('input', calcularTotal);
+
+      divCol2.appendChild(labelCantidad);
+      divCol2.appendChild(inputCantidad);
+
+      const divCol3 = document.createElement('div');
+      divCol3.classList.add('col-md-4');
+      const labelValorUnitario = document.createElement('label');
+      labelValorUnitario.textContent = 'Valor unitario';
+      const inputValorUnitario = document.createElement('input');
+      inputValorUnitario.type = 'number';
+      inputValorUnitario.classList.add('form-control');
+      inputValorUnitario.addEventListener('input', calcularTotal);
+
+      divCol3.appendChild(labelValorUnitario);
+      divCol3.appendChild(inputValorUnitario);
+
+      const divCol4 = document.createElement('div');
+      divCol4.classList.add('col-md-4');
+      const labelSubtotal = document.createElement('label');
+      labelSubtotal.textContent = 'Subtotal';
+      const inputSubtotal = document.createElement('input');
+      inputSubtotal.type = 'text';
+      inputSubtotal.classList.add('form-control');
+      inputSubtotal.readOnly = true;
+
+      divCol4.appendChild(labelSubtotal);
+      divCol4.appendChild(inputSubtotal);
+
+      divRow.appendChild(divCol1);
+      divRow.appendChild(divCol2);
+      divRow.appendChild(divCol3);
+      divRow.appendChild(divCol4);
+
+      insumosContainer.appendChild(divRow);
+      calcularTotal();
     }
-    cantidadInput.addEventListener('input', calcularSubtotalYTotal);
-    valorUnitarioInput.addEventListener('input', calcularSubtotalYTotal);
+
+    function calcularTotal() {
+      let subtotal = 0;
+
+      const rows = document.getElementById('insumos-container').querySelectorAll('.row');
+
+      rows.forEach(row => {
+        const inputCantidad = row.querySelector('.form-control');
+        const inputValorUnitario = row.querySelectorAll('.form-control')[1];
+        const inputSubtotal = row.querySelectorAll('.form-control')[2];
+
+        const cantidad = inputCantidad.value;
+        const valorUnitario = inputValorUnitario.value;
+
+        if (cantidad && valorUnitario) {
+          const subtotalInsumo = cantidad * valorUnitario;
+          inputSubtotal.value = subtotalInsumo;
+          subtotal += subtotalInsumo;
+        }
+      });
+
+      // Actualiza el valor del subtotal y el total en los elementos correspondientes
+      document.getElementById('subtotal-input').value = subtotal;
+      document.getElementById('total-input').value = subtotal;
+    }
+
+    // Calcular el total al cargar la página
+    calcularTotal();
   </script>
-  <div class="gender-details">
-    <input type="radio" name="gender" id="dot-1">
-    <input type="radio" name="gender" id="dot-2">
-    <input type="radio" name="gender" id="dot-3">
-  </div>
-  <div class="button">
-    <input type="submit" value="Register">
-  </div>
-</form>
-</div>
-</div>
-</html>
 
 
-<?php $__env->stopSection(); ?>
-<?php $__env->startSection('script'); ?>
 
 
-<script src="<?php echo e(URL::asset('build/libs/@ckeditor/ckeditor5-build-classic/build/ckeditor.js')); ?>"></script>
 
-<script src="<?php echo e(URL::asset('build/libs/dropzone/dropzone-min.js')); ?>"></script>
-<script src="<?php echo e(URL::asset('build/js/pages/ecommerce-product-create.init.js')); ?>"></script>
+  <?php $__env->stopSection(); ?>
+  <?php $__env->startSection('script'); ?>
 
-<script src="<?php echo e(URL::asset('build/js/app.js')); ?>"></script>
 
-<?php $__env->stopSection(); ?>
+  <script src="<?php echo e(URL::asset('build/libs/@ckeditor/ckeditor5-build-classic/build/ckeditor.js')); ?>">
+  </script>
+
+  <script src="<?php echo e(URL::asset('build/libs/dropzone/dropzone-min.js')); ?>"></script>
+  <script src="<?php echo e(URL::asset('build/js/pages/ecommerce-product-create.init.js')); ?>"></script>
+
+  <script src="<?php echo e(URL::asset('build/js/app.js')); ?>"></script>
+
+  <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\laragon\www\Allbaute\Allbaute\resources\views/ordenCompra/create.blade.php ENDPATH**/ ?>
