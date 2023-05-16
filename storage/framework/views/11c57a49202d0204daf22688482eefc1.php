@@ -86,47 +86,74 @@ Crear nueva parametrizacion
 
   // Función para agregar un nuevo insumo al formulario
   function agregarInsumo() {
-  const insumosContainer = document.getElementById('insumos-container');
+    const insumosContainer = document.getElementById('insumos-container');
 
-  const divRow = document.createElement('div');
-  divRow.classList.add('row', 'mb-3');
+    const divRow = document.createElement('div');
+    divRow.classList.add('row', 'mb-3');
 
-  const divCol1 = document.createElement('div');
-  divCol1.classList.add('col-md-4');
-  const labelInsumo = document.createElement('label');
-  labelInsumo.textContent = 'Tipo de insumo';
-  const selectInsumo = document.createElement('select');
-  selectInsumo.classList.add('form-select');
-  selectInsumo.addEventListener('input', calcularTotal);
+    const divCol1 = document.createElement('div');
+    divCol1.classList.add('col-md-4');
+    const labelInsumo = document.createElement('label');
+    labelInsumo.textContent = 'Tipo de insumo';
+    const selectInsumo = document.createElement('select');
+    selectInsumo.classList.add('form-select');
+    selectInsumo.addEventListener('input', calcularTotal);
 
-  // ... código para las opciones del select ...
+    const optionDefault = document.createElement('option');
+    optionDefault.disabled = true;
+    optionDefault.selected = true;
+    optionDefault.textContent = 'Selecciona una opción';
 
-  divCol1.appendChild(labelInsumo);
-  divCol1.appendChild(selectInsumo);
+    const optionTela = document.createElement('option');
+    optionTela.value = 'Tela';
+    optionTela.textContent = 'Tela';
 
-  // ... código para las columnas de cantidad y valor unitario ...
+    const optionBoton = document.createElement('option');
+    optionBoton.value = 'Botón';
+    optionBoton.textContent = 'Botón';
 
-  // Agregar columna para el subtotal
-  const divCol4 = document.createElement('div');
-  divCol4.classList.add('col-md-4');
-  const labelSubtotal = document.createElement('label');
-  labelSubtotal.textContent = 'Subtotal';
-  const inputSubtotal = document.createElement('input');
-  inputSubtotal.type = 'text';
-  inputSubtotal.classList.add('form-control');
-  inputSubtotal.readOnly = true;
+    const optionCremallera = document.createElement('option');
+    optionCremallera.value = 'Cremallera';
+    optionCremallera.textContent = 'Cremallera';
 
-  divCol4.appendChild(labelSubtotal);
-  divCol4.appendChild(inputSubtotal);
+    selectInsumo.appendChild(optionDefault);
+    selectInsumo.appendChild(optionTela);
+    selectInsumo.appendChild(optionBoton);
+    selectInsumo.appendChild(optionCremallera);
 
-  divRow.appendChild(divCol1);
-  divRow.appendChild(divCol2);
-  divRow.appendChild(divCol3);
-  divRow.appendChild(divCol4);
+    divCol1.appendChild(labelInsumo);
+    divCol1.appendChild(selectInsumo);
 
-  insumosContainer.appendChild(divRow);
-}
+    const divCol2 = document.createElement('div');
+    divCol2.classList.add('col-md-4');
+    const labelCantidad = document.createElement('label');
+    labelCantidad.textContent = 'Cantidad de insumo';
+    const inputCantidad = document.createElement('input');
+    inputCantidad.type = 'number';
+    inputCantidad.classList.add('form-control');
+    inputCantidad.addEventListener('input', calcularTotal);
 
+    divCol2.appendChild(labelCantidad);
+    divCol2.appendChild(inputCantidad);
+
+    const divCol3 = document.createElement('div');
+    divCol3.classList.add('col-md-4');
+    const labelValorUnitario = document.createElement('label');
+    labelValorUnitario.textContent = 'Valor unitario';
+    const inputValorUnitario = document.createElement('input');
+    inputValorUnitario.type = 'number';
+    inputValorUnitario.classList.add('form-control');
+    inputValorUnitario.addEventListener('input', calcularTotal);
+
+    divCol3.appendChild(labelValorUnitario);
+    divCol3.appendChild(inputValorUnitario);
+
+    divRow.appendChild(divCol1);
+    divRow.appendChild(divCol2);
+    divRow.appendChild(divCol3);
+
+    insumosContainer.appendChild(divRow);
+  }
 
   // Función para calcular el subtotal y el total
   function calcularTotal() {
