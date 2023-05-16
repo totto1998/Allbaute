@@ -42,7 +42,7 @@
                             </div>
                         </div>
                     </div>
-
+                    <br>
                     
                     <!-- end card header -->
                     <div class="card-body pt-0">
@@ -127,10 +127,6 @@
     
                                             </ul>
                                         </td>
-
-
-
-
                                       </tr>
                                       <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </tbody>

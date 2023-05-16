@@ -46,7 +46,6 @@ parametrizacion
                     </div>
                 </div>
             </div>
-            <br>
     </br>
             <div class="card-body pt-0">
                 <div>

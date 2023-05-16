@@ -55,6 +55,10 @@ Route::group(['middleware' => 'auth'], function() {
     Route::resource('tipoParametrizacion',tipoParametrizacionController::class);
 
 
+    Route::post('/insumos', [InsumosController::class, 'store'])->name('insumos.store');
+
+
+
     Route::put('parametrizacion/{id}', 'parametrizacionController@update')->name('parametrizacion.update');
 
     Route::get('/parametrizacion/{id}/edit', [parametrizacionController::class, 'edit'])->name('parametrizacion.edit');

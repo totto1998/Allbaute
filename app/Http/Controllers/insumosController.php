@@ -35,46 +35,46 @@ class insumosController extends Controller
 
     
 
-    public function store(Request $request)
-    {
-        $request->validate([
-            // 'nombre' => 'required',
-             'img' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-             'tags' => 'required',
-             'categ' => 'required',
-             'precio' => 'required|numeric',
-             'stock' => 'required|numeric',
-             'estado' => 'required|numeric',
-             'descuento' => 'required|numeric',
-             'color' => 'required',
-             'unidad' => 'required',
-             'ancho' => 'required|numeric',
-            // 'material' => 'required',
-        ]);
+public function store(Request $request)
+{
+    $request->validate([
+          'img' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+          'tags' => 'required',
+          'categ' => 'required',
+          'precio' => 'required|numeric',
+          'stock' => 'required|numeric',
+          'estado' => 'required|numeric',
+          'descuento' => 'required|numeric',
+          'color' => 'required',
+          'unidad' => 'required',
+          'ancho' => 'required|numeric',
+    ]);
+        // Obtener la imagen del formulario
+        $image = $request->file('img');
 
-        $imageName = time().'.'.$request->img->extension();
-        $request->img->move(public_path('images'), $imageName);
+        // Generar un nombre único para la imagen
+        $imageName = time() . '.' . $image->extension();
 
-        $insumo = Insumos::create([
-            // 'nombre' => $request->nombre,
-            'img' => $request->img,
-            'tags' => $request->tags,
-            'categ' => $request->categ,
-            'precio' => $request->precio,
-            'stock' => $request->stock,
-            'descuento' => $request->descuento,
-            'color' => $request->color,
-            'unidad' => $request->unidad,
-            'ancho' => $request->ancho,
-            'subcateg' => $request->subcateg,
-            'estado' => $request->estado,
-            'created_at' => now(),
-        ]);
+        // Mover la imagen a la carpeta de almacenamiento
+        $image->move(public_path('images'), $imageName);
 
-        // Otras operaciones que desees realizar después de guardar el insumo
-
-        return redirect()->route('insumos.index')->with('success', 'Insumo agregado correctamente');
-    }
+    $insumo = Insumos::create([
+        'img' => $imageName,
+        'tags' => $request->tags,
+        'categ' => $request->categ,
+        'precio' => $request->precio,
+        'stock' => $request->stock,
+        'descuento' => $request->descuento,
+        'color' => $request->color,
+        'unidad' => $request->unidad,
+        'ancho' => $request->ancho,
+        'subcateg' => $request->subcateg,
+        'estado' => $request->estado,
+        'created_at' => now(),
+    ]);
+    // Otras operaciones que desees realizar después de guardar el insumo
+    return redirect()->route('insumos.index')->with('success', 'Insumo agregado correctamente');
+}
 
     /**
      * Display the specified resource.
@@ -100,26 +100,35 @@ class insumosController extends Controller
     {
         // Validar los datos del formulario si es necesario
         $request->validate([
-
-            //activar los campos que son obligatorios
-
-            // 'nombre' => 'required',
-            // 'tags' => 'required',
-            // 'precio' => 'required',
-            // 'stock' => 'required',
-            // 'descuento' => 'required',
-            // 'color' => 'required',
-            // 'unidad' => 'required',
-            // 'ancho' => 'required',
-            // 'material' => 'required',
-            // 'estado' => 'required',
+            'tags' => 'required',
+            'precio' => 'required',
+            'stock' => 'required',
+            'descuento' => 'required',
+            'color' => 'required',
+            'unidad' => 'required',
+            'ancho' => 'required',
+            'estado' => 'required',
         ]);
-
+    
         // Buscar el insumo a actualizar
         $insumo = insumos::find($id);
-
-        // Actualizar los campos del insumo
-        $insumo->nombre = $request->nombre;
+    
+        // Procesar y guardar la imagen si se ha enviado una nueva imagen
+        if ($request->hasFile('img')) {
+            // Obtener el archivo de imagen enviado
+            $image = $request->file('img');
+    
+            // Generar un nombre único para la imagen
+            $imageName = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
+    
+            // Guardar la imagen en la ubicación deseada (por ejemplo, la carpeta "images" dentro del directorio público)
+            $image->move(public_path('images'), $imageName);
+    
+            // Actualizar el campo de imagen en la base de datos con el nombre de la imagen
+            $insumo->img = $imageName;
+        }
+    
+        // Actualizar los demás campos del insumo
         $insumo->tags = $request->tags;
         $insumo->precio = $request->precio;
         $insumo->stock = $request->stock;
@@ -127,17 +136,14 @@ class insumosController extends Controller
         $insumo->color = $request->color;
         $insumo->unidad = $request->unidad;
         $insumo->ancho = $request->ancho;
-        $insumo->material = $request->material;
         $insumo->estado = $request->estado;
-        // Actualizar otros campos si es necesario
-
+    
         // Guardar los cambios en la base de datos
         $insumo->save();
-
+    
         // Redireccionar a la vista deseada o mostrar un mensaje de éxito
         return redirect()->route('insumos.index')->with('success', 'El insumo se actualizó correctamente.');
     }
-
     /**
      * Remove the specified resource from storage.
      */
