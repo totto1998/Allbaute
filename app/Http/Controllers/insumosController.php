@@ -35,49 +35,46 @@ class insumosController extends Controller
 
     
 
-
     public function store(Request $request)
-{
-    $request->validate([
-        // 'img' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-        // 'tags' => 'required',
-        // 'categ' => 'required',
-        // 'precio' => 'required|numeric',
-        // 'stock' => 'required|numeric',
-        // 'estado' => 'required|numeric',
-        // 'descuento' => 'required|numeric',
-        // 'color' => 'required',
-        // 'unidad' => 'required',
-        // 'ancho' => 'required|numeric',
-    ]);
+    {
+        $request->validate([
+            // 'nombre' => 'required',
+             'img' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+             'tags' => 'required',
+             'categ' => 'required',
+             'precio' => 'required|numeric',
+             'stock' => 'required|numeric',
+             'estado' => 'required|numeric',
+             'descuento' => 'required|numeric',
+             'color' => 'required',
+             'unidad' => 'required',
+             'ancho' => 'required|numeric',
+            // 'material' => 'required',
+        ]);
 
-    if ($request->hasFile('img')) {
-        $image = $request->file('img');
-        $imageName = time().'.'.$image->extension();
-        $image->move(public_path('images'), $imageName);
-    } else {
-        $imageName = null; // Opcional: Define un valor predeterminado si no se carga ninguna imagen
+        $imageName = time().'.'.$request->img->extension();
+        $request->img->move(public_path('images'), $imageName);
+
+        $insumo = Insumos::create([
+            // 'nombre' => $request->nombre,
+            'img' => $request->img,
+            'tags' => $request->tags,
+            'categ' => $request->categ,
+            'precio' => $request->precio,
+            'stock' => $request->stock,
+            'descuento' => $request->descuento,
+            'color' => $request->color,
+            'unidad' => $request->unidad,
+            'ancho' => $request->ancho,
+            'subcateg' => $request->subcateg,
+            'estado' => $request->estado,
+            'created_at' => now(),
+        ]);
+
+        // Otras operaciones que desees realizar después de guardar el insumo
+
+        return redirect()->route('insumos.index')->with('success', 'Insumo agregado correctamente');
     }
-
-    $insumo = Insumos::create([
-        'img' => $imageName,
-        'tags' => $request->tags,
-        'categ' => $request->categ,
-        'precio' => $request->precio,
-        'stock' => $request->stock,
-        'descuento' => $request->descuento,
-        'color' => $request->color,
-        'unidad' => $request->unidad,
-        'ancho' => $request->ancho,
-        'subcateg' => $request->subcateg,
-        'estado' => $request->estado,
-        'created_at' => now(),
-    ]);
-
-    // Otras operaciones que desees realizar después de guardar el insumo
-
-    return redirect()->route('insumos.index')->with('success', 'Insumo agregado correctamente');
-}
 
     /**
      * Display the specified resource.
