@@ -51,7 +51,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::resource('roles',RolController::class);
     Route::resource('user',userController::class);
     Route::resource('proveedor',proveedorController::class);
-    Route::resource('orden-compra',ordenCompraController::class);
+    Route::resource('ordenCompra',ordenCompraController::class);
     Route::resource('insumos',insumosController::class);
     Route::resource('parametrizacion',parametrizacionController::class);
     Route::resource('tipoParametrizacion',tipoParametrizacionController::class);

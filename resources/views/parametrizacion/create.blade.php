@@ -7,14 +7,15 @@
 <link rel="stylesheet" href="{{ URL::asset('build/css/style.css') }}">
 @endsection
 @section('content')
-@component('components.breadcrumb')
-@slot('li_1')
-Ecommerce
-@endslot
-@slot('title')
-Crear nueva parametrizacion
-@endslot
-@endcomponent
+    @component('components.breadcrumb')
+    @slot('li_1')
+    Ecommerce
+    @endslot
+    @slot('title')
+    Crear nueva parametrizacion
+    @endslot
+    @endcomponent
+
 <form action="{{ route('parametrizacion.store') }}" method="POST">
     @csrf
     <div class="row">
@@ -29,7 +30,7 @@ Crear nueva parametrizacion
             </div>
 
         </div>
-        <!-- end col -->
+
 
         <div class="col-lg-4">
             <div class="card">
@@ -53,15 +54,15 @@ Crear nueva parametrizacion
                         </select>
                     </div>
                 </div>
-                <!-- end card body -->
+ 
             </div>
-            <!-- end card -->
+
 
             <div class="card">
                 <div class="card-header">
                     <h5 class="card-title mb-0">Nombre del parametro</h5>
                 </div>
-                <!-- end card body -->
+
                 <div class="card-body">
                     <div>
                         <label for="nombre" class="form-label">Nombre</label>
@@ -69,7 +70,7 @@ Crear nueva parametrizacion
                     </div>
                 </div>
             </div>
-            <!-- end card -->
+
         </div>
     </div>
     <div class="content">
@@ -81,16 +82,14 @@ Crear nueva parametrizacion
             </div>
         </form>
     </div>
-    <!-- end row -->
 </form>
+
+
 @endsection
+
 @section('script')
-
-
 <script src="{{ URL::asset('build/libs/@ckeditor/ckeditor5-build-classic/build/ckeditor.js') }}"></script>
-
 <script src="{{ URL::asset('build/libs/dropzone/dropzone-min.js') }}"></script>
 <script src="{{ URL::asset('build/js/pages/ecommerce-product-create.init.js') }}"></script>
-
 <script src="{{ URL::asset('build/js/app.js') }}"></script>
 @endsection

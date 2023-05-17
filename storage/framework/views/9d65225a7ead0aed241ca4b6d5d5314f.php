@@ -7,14 +7,15 @@
 <link rel="stylesheet" href="<?php echo e(URL::asset('build/css/style.css')); ?>">
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
-<?php $__env->startComponent('components.breadcrumb'); ?>
-<?php $__env->slot('li_1'); ?>
-Ecommerce
-<?php $__env->endSlot(); ?>
-<?php $__env->slot('title'); ?>
-Crear nueva parametrizacion
-<?php $__env->endSlot(); ?>
-<?php echo $__env->renderComponent(); ?>
+    <?php $__env->startComponent('components.breadcrumb'); ?>
+    <?php $__env->slot('li_1'); ?>
+    Ecommerce
+    <?php $__env->endSlot(); ?>
+    <?php $__env->slot('title'); ?>
+    Crear nueva parametrizacion
+    <?php $__env->endSlot(); ?>
+    <?php echo $__env->renderComponent(); ?>
+
 <form action="<?php echo e(route('parametrizacion.store')); ?>" method="POST">
     <?php echo csrf_field(); ?>
     <div class="row">
@@ -29,7 +30,7 @@ Crear nueva parametrizacion
             </div>
 
         </div>
-        <!-- end col -->
+
 
         <div class="col-lg-4">
             <div class="card">
@@ -53,15 +54,15 @@ Crear nueva parametrizacion
                         </select>
                     </div>
                 </div>
-                <!-- end card body -->
+ 
             </div>
-            <!-- end card -->
+
 
             <div class="card">
                 <div class="card-header">
                     <h5 class="card-title mb-0">Nombre del parametro</h5>
                 </div>
-                <!-- end card body -->
+
                 <div class="card-body">
                     <div>
                         <label for="nombre" class="form-label">Nombre</label>
@@ -69,7 +70,7 @@ Crear nueva parametrizacion
                     </div>
                 </div>
             </div>
-            <!-- end card -->
+
         </div>
     </div>
     <div class="content">
@@ -81,17 +82,15 @@ Crear nueva parametrizacion
             </div>
         </form>
     </div>
-    <!-- end row -->
 </form>
+
+
 <?php $__env->stopSection(); ?>
+
 <?php $__env->startSection('script'); ?>
-
-
 <script src="<?php echo e(URL::asset('build/libs/@ckeditor/ckeditor5-build-classic/build/ckeditor.js')); ?>"></script>
-
 <script src="<?php echo e(URL::asset('build/libs/dropzone/dropzone-min.js')); ?>"></script>
 <script src="<?php echo e(URL::asset('build/js/pages/ecommerce-product-create.init.js')); ?>"></script>
-
 <script src="<?php echo e(URL::asset('build/js/app.js')); ?>"></script>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\Usuario\Documents\GitHub\Allbaute\resources\views/parametrizacion/create.blade.php ENDPATH**/ ?>
