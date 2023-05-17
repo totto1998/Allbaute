@@ -57,7 +57,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="<?php echo e(route('orden-compra.index')); ?>" /*data-bs-toggle="collapse"*/ role="button" aria-expanded="false" aria-controls="sidebarAuth">
+                    <a class="nav-link menu-link" href="<?php echo e(route('ordenCompra.index')); ?>" /*data-bs-toggle="collapse"*/ role="button" aria-expanded="false" aria-controls="sidebarAuth">
                         <i class="lar la-user-circle"></i> <span><?php echo app('translator')->get('Orden de compra'); ?></span>
                     </a>
                 </li>
