@@ -15,21 +15,6 @@ parametrizacion
 @endslot
 @endcomponent
 
-{{--  @extends('layouts.master')
-@section('title') @lang('translation.dashboards')
-@endsection
-@section('css')
-<link href="{{ URL::asset('build/libs/jsvectormap/css/jsvectormap.min.css')}}" rel="stylesheet" type="text/css" />
-<link href="{{ URL::asset('build/libs/swiper/swiper-bundle.min.css')}}" rel="stylesheet" type="text/css" />
-@endsection
-
-
-@section('content')
-@component('components.breadcrumb')
-@slot('li_1') Tables @endslot
-@slot('title')PARAMETRIZACION @endslot
-@endcomponent  --}}
-
 <div class="row">
     <div class="col-lg-12">
         <div class="card" id="orderList">
@@ -40,8 +25,6 @@ parametrizacion
                     </div>
                     <div class="col-sm-auto">
                         <div class="d-flex gap-1 flex-wrap">
-                            {{--  <button type="button" class="btn btn-primary add-btn" data-bs-toggle="modal" id="create-btn" data-bs-target="#addModal"><i class="ri-add-line align-bottom me-1"></i>Crear Parametrizacion</button>  --}}
-                            {{--  <input type="text" id="searchInput" placeholder="Buscar...">  --}}
                             <div class="col-sm">
                                 <div class="d-flex justify-content-sm-end">
                                     <div class="search-box ms-2">
@@ -51,7 +34,7 @@ parametrizacion
                                 </div>
                             </div>
 
-                            <a class="btn btn-warning" href="{{route('parametrizacion.create')}}">Nuevo</a>
+                            <a class="btn btn-warning" href="{{route('parametrizacion.create')}}">CREAR NUEVA PARAMETRIZACION</a>
                             <button type="button" class="btn btn-secondary"><i class="ri-file-download-line align-bottom me-1"></i>Exportar</button>
                             <button class="btn btn-soft-danger" id="remove-actions" onClick="deleteMultiple()"><i class="ri-delete-bin-2-line"></i></button>
                             <br>
