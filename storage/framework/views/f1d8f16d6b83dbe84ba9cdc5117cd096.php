@@ -127,10 +127,6 @@
     
                                             </ul>
                                         </td>
-
-
-
-
                                       </tr>
                                       <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </tbody>

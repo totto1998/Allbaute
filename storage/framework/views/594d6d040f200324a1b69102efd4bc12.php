@@ -48,114 +48,18 @@ Ingresar nuevo proveedor
     <label for="direccion" class="form-label">Dirección</label>
     <input type="text" class="form-control" id="direccion" placeholder="Ingrese su dirección" required oninput="eliminarComillas(this)">
   </div>
-  <div class="row">
-    <label for="direccion" class="form-label">Ciudad</label>
-    <select class="form-select" id="ciudad" name="ciudad">
-      <option selected>Seleccione su ciudad</option>
-      <optgroup label="Amazonas">
-        <option value="Leticia">Leticia</option>
-        <option value="Puerto Nariño">Puerto Nariño</option>
-      </optgroup>
-      <optgroup label="Antioquia">
-        <option value="Medellín">Medellín</option>
-        <option value="Bello">Bello</option>
-        <option value="Envigado">Envigado</option>
-        <option value="Itagüí">Itagüí</option>
-        <option value="Sabaneta">Sabaneta</option>
-      </optgroup>
-      <optgroup label="Arauca">
-        <option value="Arauca">Arauca</option>
-      </optgroup>
-      <optgroup label="Atlántico">
-        <option value="Barranquilla">Barranquilla</option>
-        <option value="Galapa">Galapa</option>
-        <option value="Malambo">Malambo</option>
-        <option value="Puerto Colombia">Puerto Colombia</option>
-        <option value="Soledad">Soledad</option>
-      </optgroup>
-      <optgroup label="Bolívar">
-        <option value="Cartagena">Cartagena</option>
-      </optgroup>
-      <optgroup label="Boyacá">
-        <option value="Tunja">Tunja</option>
-        <option value="Villa de Leyva">Villa de Leyva</option>
-      </optgroup>
-      <optgroup label="Caldas">
-        <option value="Manizales">Manizales</option>
-        <option value="Chinchiná">Chinchiná</option>
-      </optgroup>
-      <optgroup label="Caquetá">
-        <option value="Florencia">Florencia</option>
-      </optgroup>
-      <optgroup label="Casanare">
-        <option value="Aguazul">Aguazul</option>
-        <option value="Yopal">Yopal</option>
-      </optgroup>
-      <optgroup label="Cauca">
-        <option value="Popayán">Popayán</option>
-      </optgroup>
-      <optgroup label="Cesar">
-        <option value="Valledupar">Valledupar</option>
-      </optgroup>
-      <optgroup label="Chocó">
-        <option value="Quibdó">Quibdó</option>
-      </optgroup>
-      <optgroup label="Córdoba">
-        <option value="Montería">Montería</option>
-      </optgroup>
-      <optgroup label="Cundinamarca">
-        <option value="Bogotá">Bogotá</option>
-      </optgroup>
-      <optgroup label="Guainía">
-        <option value="Inírida">Inírida</option>
-      </optgroup>
-      <optgroup label="Huila">
-        <option value="Neiva">Neiva</option>
-      </optgroup>
-      <optgroup label="La Guajira">
-        <option value="Riohacha">Riohacha</option>
-      </optgroup>
-      <optgroup label="Magdalena">
-        <option value="Santa Marta">Santa Marta</option>
-      </optgroup>
-      <optgroup label="Meta">
-        <option value="Villavicencio">Villavicencio</option>
-      </optgroup>
-      <optgroup label="Nariño">
-        <option value="Pasto">Pasto</option>
-      </optgroup>
-      <optgroup label="Norte de Santander">
-        <option value="Cúcuta">Cúcuta</option>
-      </optgroup>
-      <optgroup label="Putumayo">
-        <option value="Mocoa">Mocoa</option>
-      </optgroup>
-      <optgroup label="Quindío">
-        <option value="Armenia">Armenia</option>
-      </optgroup>
-      <optgroup label="Risaralda">
-        <option value="Pereira">Pereira</option>
-      </optgroup>
-      <optgroup label="San Andrés y Providencia">
-        <option value="San Andrés">San Andrés</option>
-      </optgroup>
-      <optgroup label="Santander">
-        <option value="Bucaramanga">Bucaramanga</option>
-      </optgroup>
-      <optgroup label="Sucre">
-        <option value="Sincelejo">Sincelejo</option>
-      </optgroup>
-      <optgroup label="Tolima">
-        <option value="Ibagué">Ibagué</option>
-      </optgroup>
-      <optgroup label="Vaupés">
-        <option value="Mitú">Mitú</option>
-      </optgroup>
-      <optgroup label="Vichada">
-        <option value="Vichada">Vichada</option>
-      </optgroup>
-    </select>
-  </div>
+  <script>
+    fetch('https://www.datos.gov.co/resource/xdk5-pm3f.json')
+      .then(response => response.json())
+      .then(data => {
+        // Aquí puedes procesar y utilizar los datos
+        console.log(data);
+      })
+      .catch(error => {
+        // Manejo de errores
+        console.error('Error al obtener los datos:', error);
+      });
+  </script>
   <br>
   <div class="mb-3">
     <label for="nombre-de-contacto" class="form-label">Nombre del contacto</label>
