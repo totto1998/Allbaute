@@ -31,10 +31,11 @@ Ingresar nuevo proveedor
             <br>
           </div>
           <div class="row">
-              <div class="col-md-6 mb-3">
+          <div class="col-md-6 mb-3">
                 <label for="razon-social" class="form-label">Razón Social</label>
-                <input type="text" name="razon_social" class="form-control" id="razon-social" placeholder="Ingrese su razón social" required pattern="[A-Za-z\s]+" oninput="eliminarComillas(this)" required>
+                <input type="text" name="razon_social" class="form-control" id="razon-social" placeholder="Ingrese su razón social" required pattern="[A-Za-z\s\.]+" oninput="eliminarComillas(this)" required>
               </div>
+
               <div class="col-md-6 mb-3">
                 <label for="nit" class="form-label">NIT</label>
                 <input type="text" name="nit" class="form-control" id="nit" placeholder="Ingrese su NIT" required pattern="[0-9]+" oninput="eliminarComillas(this)">
@@ -161,24 +162,23 @@ Ingresar nuevo proveedor
 
 
 </div>
-{{--  <script>
+<script>
   function eliminarComillas(input) {
     input.value = input.value.replace(/['"=]/g, '');
   }
-</script>  --}}
+</script>
+
 
 @endsection
 @section('script')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0/js/select2.min.js"></script>
-<script>
+
   <script>
     // Inicializar Select2 en el campo de selección múltiple
     $(document).ready(function() {
       $('#tipo-insumo').select2();
     });
   </script>
-  
-</script>
 
 <script>
   // Obtener los elementos de selección
