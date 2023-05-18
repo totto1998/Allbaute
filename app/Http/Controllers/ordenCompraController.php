@@ -15,7 +15,7 @@ class ordenCompraController extends Controller
     public function index()
     {
        $ordencompra = OrdenCompra::paginate(5);
-       return view('OrdenCompra.index', compact('ordencompra'));
+       return view('ordenCompra.index', compact('ordencompra'));
     }
 
     /**
