@@ -24,7 +24,7 @@ class proveedorController extends Controller
     public function index()
     {
         $data = proveedor::paginate(10);
-        $insumo = insumos::paginate(10);
+        $insumo = insumos::all();
         return view('proveedor.index', compact('data', 'insumo'));
     }
 
@@ -34,8 +34,9 @@ class proveedorController extends Controller
     public function create()
     {
        $proveedor = Proveedor::all();
+       $insumos = insumos::all();
      
-       return view('proveedor.create', compact('proveedor'));
+       return view('proveedor.create', compact('proveedor', 'insumos'));
     }
 
     /**

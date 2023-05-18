@@ -59,14 +59,6 @@ Provedor
                                     <th>Tipo de Insumo</th>
                                     <th>Tags</th>
                                     <th>Acciones</th>
-                                    {{--  <th class="sort" data-sort="id">Order ID</th>
-                                    <th class="sort" data-sort="customer_name">Customer</th>
-                                    <th class="sort" data-sort="product_name">Product</th>
-                                    <th class="sort" data-sort="date">Order Date</th>
-                                    <th class="sort" data-sort="amount">Amount</th>
-                                    <th class="sort" data-sort="payment">Payment Method</th>
-                                    <th class="sort" data-sort="status">Delivery Status</th>
-                                    <th class="sort" data-sort="city">Action</th>  --}}
                                 </tr>
                             </thead>
 
