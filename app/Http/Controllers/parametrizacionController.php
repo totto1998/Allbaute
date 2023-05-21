@@ -78,7 +78,7 @@ class parametrizacionController extends Controller
            'estado' => 'required',
        ]);
 
-       $parametrizacion = new Parametrizacion;
+       $parametrizacion = new parametrizacion;
        $parametrizacion->id_tipo = $validatedData['tipo_parametrizacion'];
        $parametrizacion->nombre = $validatedData['nombre'];
        $parametrizacion->descripcion = $request->descripcion;
@@ -94,7 +94,7 @@ class parametrizacionController extends Controller
      */
     public function show($id)
     {
-        $parametrizacion = Parametrizacion::findOrFail($id);
+        $parametrizacion = parametrizacion::findOrFail($id);
         return view('parametrizacion.show', compact('parametrizacion'));
     }
 
@@ -104,7 +104,7 @@ class parametrizacionController extends Controller
     // método para mostrar el formulario de edición
     public function edit($id)
     {
-        $param = Parametrizacion::findOrFail($id);
+        $param = parametrizacion::findOrFail($id);
         $tiposParametrizacion = TipoParametrizacion::all();
         // Puedes pasar el registro a la vista de edición
         return view('parametrizacion.edit', compact('param', 'tiposParametrizacion'));
@@ -114,7 +114,7 @@ class parametrizacionController extends Controller
 
     public function update(Request $request, $id)
     {
-        $param = Parametrizacion::findOrFail($id);
+        $param = parametrizacion::findOrFail($id);
     
         $validatedData = $request->validate([
             'tipo_parametrizacion' => 'required',
@@ -143,7 +143,7 @@ class parametrizacionController extends Controller
      */
     public function destroy($id)
     {
-        $parametrizacion = Parametrizacion::find($id);
+        $parametrizacion = parametrizacion::find($id);
         $parametrizacion->delete();
     
         return redirect()->route('parametrizacion.index');

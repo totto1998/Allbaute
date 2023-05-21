@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Models\insumos;
 use App\Models\proveedor;
+use Illuminate\Support\Facades\Http;
 
 class proveedorController extends Controller
 {
@@ -24,7 +25,7 @@ class proveedorController extends Controller
     public function index()
     {
         $data = proveedor::paginate(10);
-        $insumo = insumos::all();
+        $insumo = insumos::paginate(10);
         return view('proveedor.index', compact('data', 'insumo'));
     }
 
@@ -35,8 +36,10 @@ class proveedorController extends Controller
     {
        $proveedor = Proveedor::all();
        $insumos = insumos::all();
+       $response = Http::get('https://www.datos.gov.co/resource/xdk5-pm3f.json?$query=SELECT%20%60region%60%2C%20%60departamento%60%2C%20%60municipio%60');
+       $locations = $response->json();
      
-       return view('proveedor.create', compact('proveedor', 'insumos'));
+       return view('proveedor.create', compact('proveedor', 'insumos','locations'));
     }
 
     /**
@@ -53,7 +56,9 @@ class proveedorController extends Controller
             'telefono_fijo' => 'required',
             'celular' => 'required',
             'direccion' => 'required',
-            'ciudad' => 'required',
+            'region' => 'required',
+            'departamento' => 'required',
+            'municipio' => 'required',
             'email' => 'required',
             'nombre_contacto' => 'required',
             't_insumo' => 'required',
@@ -61,21 +66,21 @@ class proveedorController extends Controller
         ]);
  
         $proveedor = new proveedor();
+        $proveedor->nombre_contacto = $validatedData['nombre_contacto'];
+        $proveedor->email = $validatedData['email'];
         $proveedor->razon_social = $validatedData['razon_social'];
         $proveedor->nit = $validatedData['nit'];
         $proveedor->telefono_fijo = $validatedData['telefono_fijo'];
         $proveedor->celular = $validatedData['celular'];
         $proveedor->direccion = $validatedData['direccion'];
-        $proveedor->ciudad = $validatedData['ciudad'];
-        $proveedor->email = $validatedData['email'];
-        $proveedor->nombre_contacto = $validatedData['nombre_contacto'];
-        $proveedor->t_insumo = $validatedData['t_insumo'];
+        $proveedor->region = $validatedData['region'];
+        $proveedor->departamento = $validatedData['departamento'];
+        $proveedor->municipio = $validatedData['municipio'];
+        $proveedor->t_insumo = implode(',', $validatedData['t_insumo']);
+
         $proveedor->tags = $validatedData['tags'];
         
-        // $proveedor->id_tipo = $validatedData['tipo_parametrizacion'];
-        // $proveedor->nombre = $validatedData['nombre'];
-        // $proveedor->descripcion = $request->descripcion;
-        // $proveedor->estado = $validatedData['estado'];
+
 
         $proveedor->save();
  
@@ -94,22 +99,60 @@ class proveedorController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(proveedor $id)
+    public function edit($id)
     {
-        return view('proveedor.editar', compact('provedor'));
+        $proveedor = proveedor::findOrFail($id);
+        $insumos = insumos::all();
+        $response = Http::get('https://www.datos.gov.co/resource/xdk5-pm3f.json?$query=SELECT%20%60region%60%2C%20%60departamento%60%2C%20%60municipio%60');
+        $locations = $response->json();
+    
+        return view('proveedor.editar', compact('proveedor', 'insumos','locations'));
     }
+    
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, $id)
     {
-        // request()->validate([
-
-        // ]);
-        // $proveedor->update($request->all());
-        // return redirect()->route('proveedor.index');
+        // Validar los datos del formulario
+        $validatedData = $request->validate([
+            'nombre_contacto' => 'required|string',
+            'email' => 'required|email',
+            'razon_social' => 'required|string',
+            'nit' => 'nullable|numeric',
+            'telefono_fijo' => 'required|numeric',
+            'celular' => 'required|numeric',
+            'direccion' => 'required|string',
+            'region' => 'required|string',
+            'departamento' => 'required|string',
+            'municipio' => 'required|string',
+            // Otros campos del formulario
+        ]);
+    
+        // Obtener el proveedor a actualizar
+        $proveedor = Proveedor::findOrFail($id);
+    
+        // Actualizar los datos del proveedor con los valores del formulario
+        $proveedor->nombre_contacto = $validatedData['nombre_contacto'];
+        $proveedor->email = $validatedData['email'];
+        $proveedor->razon_social = $validatedData['razon_social'];
+        $proveedor->nit = $validatedData['nit'];
+        $proveedor->telefono_fijo = $validatedData['telefono_fijo'];
+        $proveedor->celular = $validatedData['celular'];
+        $proveedor->direccion = $validatedData['direccion'];
+        $proveedor->region = $validatedData['region'];
+        $proveedor->departamento = $validatedData['departamento'];
+        $proveedor->municipio = $validatedData['municipio'];
+        // Actualizar otros campos del proveedor
+    
+        // Guardar los cambios en la base de datos
+        $proveedor->save();
+    
+        // Redireccionar a la página de detalles del proveedor o a otra vista de tu elección
+        return redirect()->route('proveedor.index');
     }
+    
 
     /**
      * Remove the specified resource from storage.

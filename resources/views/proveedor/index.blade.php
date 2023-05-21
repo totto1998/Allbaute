@@ -54,7 +54,7 @@ Provedor
                                     <th>Telefono Fijo</th>
                                     <th>Celular</th>
                                     <th>Direccion</th>
-                                    <th>Ciudad</th>
+                                    <th>Ubicacion</th>
                                     <th>Nombre Contacto</th>
                                     <th>Tipo de Insumo</th>
                                     <th>Tags</th>
@@ -77,9 +77,13 @@ Provedor
                                     <td>{{$proveedor->telefono_fijo}}</td>
                                     <td>{{$proveedor->celular}}</td>
                                     <td>{{$proveedor->direccion}}</td>
-                                    <td>{{$proveedor->ciudad}}</td>
+                                    <td>
+                                        <small>{{$proveedor->region}}</small>,
+                                        <small>{{$proveedor->departamento}}</small>,
+                                        <small>{{$proveedor->municipio}}</small>
+                                    </td>
                                     <td>{{$proveedor->nombre_contacto}}</td>
-                                    <td>{{$proveedor->t_insumo}}</td>
+                                    <td>{{$proveedor->insumos->categ  ?? '' }}</td>
                                     <td>{{$proveedor->tags}}</td>
                                     <td>
                                         <ul class="list-inline hstack gap-2 mb-0">
@@ -89,58 +93,22 @@ Provedor
                                                 </a>
                                             </li>  --}}
                                             <li class="list-inline-item edit" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Edit">
-                                                <a href="#editModal" data-bs-toggle="modal" class="text-primary d-inline-block edit-item-btn">
+                                                <a href="{{ route('proveedor.edit', $proveedor->id) }}" class="text-primary d-inline-block">
                                                     <i class="ri-pencil-fill fs-16"></i>
                                                 </a>
                                             </li>
                                             <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Remove">
-                                                <a class="text-danger d-inline-block remove-item-btn" data-bs-toggle="modal" href="#deleteOrder">
-                                                    <i class="ri-delete-bin-5-fill fs-16"></i>
-                                                </a>
-                                            </li>
+                                            <form action="{{ route('proveedor.destroy', $proveedor->id) }}" method="POST" class="delete-form" onsubmit="return confirm('¿Está seguro de que desea eliminar este proveedor?');">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="dropdown-item remove-item-btn"><i class="ri-delete-bin-5-fill fs-16"></i></button>
+                                            </form>
+                                        </li>
                                         </ul>
                                     </td>
                                 </tr>
                                 @endforeach    
                             </tbody>
-
-                            {{--  <tbody class="list form-check-all">
-                                <tr>
-                                    <th scope="row">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="checkAll" value="option1">
-                                        </div>
-                                    </th>
-                                    <td class="id"><a href="{{URL::asset('/apps-ecommerce-order-details')}}" class="fw-medium link-primary">#VZ2101</a></td>
-                                    <td class="customer_name">Frank Hook</td>
-                                    <td class="product_name">Puma Tshirt</td>
-                                    <td class="date">20 Dec, 2021, <small class="text-muted">02:21
-                                            AM</small></td>
-                                    <td class="amount">$654</td>
-                                    <td class="payment">Mastercard</td>
-                                    <td class="status"><span class="badge badge-soft-warning text-uppercase">Pending</span>
-                                    </td>
-                                    <td>
-                                        <ul class="list-inline hstack gap-2 mb-0">
-                                            <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="View">
-                                                <a href="{{URL::asset('/apps-ecommerce-order-details')}}" class="text-primary d-inline-block">
-                                                    <i class="ri-eye-fill fs-16"></i>
-                                                </a>
-                                            </li>
-                                            <li class="list-inline-item edit" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Edit">
-                                                <a href="#showModal" data-bs-toggle="modal" class="text-primary d-inline-block edit-item-btn">
-                                                    <i class="ri-pencil-fill fs-16"></i>
-                                                </a>
-                                            </li>
-                                            <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Remove">
-                                                <a class="text-danger d-inline-block remove-item-btn" data-bs-toggle="modal" href="#deleteOrder">
-                                                    <i class="ri-delete-bin-5-fill fs-16"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </td>
-                                </tr>
-                            </tbody>  --}}
                         </table>
                         <div class="noresult" style="display: none">
                             <div class="text-center">

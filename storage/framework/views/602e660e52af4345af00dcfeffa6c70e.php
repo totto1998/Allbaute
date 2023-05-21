@@ -54,7 +54,7 @@ Provedor
                                     <th>Telefono Fijo</th>
                                     <th>Celular</th>
                                     <th>Direccion</th>
-                                    <th>Ciudad</th>
+                                    <th>Ubicacion</th>
                                     <th>Nombre Contacto</th>
                                     <th>Tipo de Insumo</th>
                                     <th>Tags</th>
@@ -77,30 +77,34 @@ Provedor
                                     <td><?php echo e($proveedor->telefono_fijo); ?></td>
                                     <td><?php echo e($proveedor->celular); ?></td>
                                     <td><?php echo e($proveedor->direccion); ?></td>
-                                    <td><?php echo e($proveedor->ciudad); ?></td>
+                                    <td>
+                                        <small><?php echo e($proveedor->region); ?></small>,
+                                        <small><?php echo e($proveedor->departamento); ?></small>,
+                                        <small><?php echo e($proveedor->municipio); ?></small>
+                                    </td>
                                     <td><?php echo e($proveedor->nombre_contacto); ?></td>
-                                    <td><?php echo e($proveedor->t_insumo); ?></td>
+                                    <td><?php echo e($proveedor->insumos->categ  ?? ''); ?></td>
                                     <td><?php echo e($proveedor->tags); ?></td>
                                     <td>
                                         <ul class="list-inline hstack gap-2 mb-0">
                                             
                                             <li class="list-inline-item edit" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Edit">
-                                                <a href="#editModal" data-bs-toggle="modal" class="text-primary d-inline-block edit-item-btn">
+                                                <a href="<?php echo e(route('proveedor.edit', $proveedor->id)); ?>" class="text-primary d-inline-block">
                                                     <i class="ri-pencil-fill fs-16"></i>
                                                 </a>
                                             </li>
                                             <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Remove">
-                                                <a class="text-danger d-inline-block remove-item-btn" data-bs-toggle="modal" href="#deleteOrder">
-                                                    <i class="ri-delete-bin-5-fill fs-16"></i>
-                                                </a>
-                                            </li>
+                                            <form action="<?php echo e(route('proveedor.destroy', $proveedor->id)); ?>" method="POST" class="delete-form" onsubmit="return confirm('¿Está seguro de que desea eliminar este proveedor?');">
+                                                <?php echo csrf_field(); ?>
+                                                <?php echo method_field('DELETE'); ?>
+                                                <button type="submit" class="dropdown-item remove-item-btn"><i class="ri-delete-bin-5-fill fs-16"></i></button>
+                                            </form>
+                                        </li>
                                         </ul>
                                     </td>
                                 </tr>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>    
                             </tbody>
-
-                            
                         </table>
                         <div class="noresult" style="display: none">
                             <div class="text-center">

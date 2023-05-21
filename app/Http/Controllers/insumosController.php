@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\insumos;
-use App\Models\Parametrizacion;
+use App\Models\parametrizacion;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -29,7 +29,7 @@ class insumosController extends Controller
     // }
     public function create()
 {
-    $paramcateg = Parametrizacion::all();
+    $paramcateg = parametrizacion::all();
     return view('insumos.create', compact('paramcateg'));
 }
 
