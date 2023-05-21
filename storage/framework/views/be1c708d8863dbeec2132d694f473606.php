@@ -1,21 +1,21 @@
-@extends('layouts.master')
-@section('title')
-    @lang('translation.products')
-@endsection
-@section('css')
-    <link href="{{ URL::asset('build/libs/nouislider/nouislider.min.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{ URL::asset('build/libs/gridjs/theme/mermaid.min.css') }}">
 
-@endsection
-@section('content')
-    @component('components.breadcrumb')
-        @slot('li_1')
+<?php $__env->startSection('title'); ?>
+    <?php echo app('translator')->get('translation.products'); ?>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('css'); ?>
+    <link href="<?php echo e(URL::asset('build/libs/nouislider/nouislider.min.css')); ?>" rel="stylesheet">
+    <link rel="stylesheet" href="<?php echo e(URL::asset('build/libs/gridjs/theme/mermaid.min.css')); ?>">
+
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
+    <?php $__env->startComponent('components.breadcrumb'); ?>
+        <?php $__env->slot('li_1'); ?>
             Ecommerce
-        @endslot
-        @slot('title')
+        <?php $__env->endSlot(); ?>
+        <?php $__env->slot('title'); ?>
             Products
-        @endslot
-    @endcomponent
+        <?php $__env->endSlot(); ?>
+    <?php echo $__env->renderComponent(); ?>
     <div class="row">
         <div class="col-xl-3 col-lg-4">
             <div class="card">
@@ -325,8 +325,8 @@
                         <div class="row g-4">
                             <div class="col-sm-auto">
                                 <div>
-                                    <a href="{{route('ordenCompra.create')}}" class="btn btn-success" id="addproduct-btn"><i
-                                            class="ri-add-line align-bottom me-1"></i> Nueva orden de compra</a>
+                                    <a href="<?php echo e(route('ordenCompra.create')); ?>" class="btn btn-success" id="addproduct-btn"><i
+                                            class="ri-add-line align-bottom me-1"></i> Add Product</a>
                                 </div>
                             </div>
                             <div class="col-sm">
@@ -435,14 +435,16 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
-@endsection
-@section('script')
-    <script src="{{ URL::asset('build/libs/nouislider/nouislider.min.js') }}"></script>
-    <script src="{{ URL::asset('build/libs/wnumb/wNumb.min.js') }}"></script>
-    <script src="{{ URL::asset('build/libs/gridjs/gridjs.umd.js') }}"></script>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('script'); ?>
+    <script src="<?php echo e(URL::asset('build/libs/nouislider/nouislider.min.js')); ?>"></script>
+    <script src="<?php echo e(URL::asset('build/libs/wnumb/wNumb.min.js')); ?>"></script>
+    <script src="<?php echo e(URL::asset('build/libs/gridjs/gridjs.umd.js')); ?>"></script>
     <script src="https://unpkg.com/gridjs/plugins/selection/dist/selection.umd.js"></script>
 
 
-    <script src="{{ URL::asset('build/js/pages/ecommerce-product-list.init.js') }}"></script>
-    <script src="{{ URL::asset('build/js/app.js') }}"></script>
-@endsection
+    <script src="<?php echo e(URL::asset('build/js/pages/ecommerce-product-list.init.js')); ?>"></script>
+    <script src="<?php echo e(URL::asset('build/js/app.js')); ?>"></script>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\laragon\www\Allbaute\Allbaute\resources\views/ordenCompra/index.blade.php ENDPATH**/ ?>

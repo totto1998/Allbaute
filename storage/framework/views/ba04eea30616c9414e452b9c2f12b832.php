@@ -59,7 +59,6 @@ Provedor
                                     <th>Tipo de Insumo</th>
                                     <th>Tags</th>
                                     <th>Acciones</th>
-                                    
                                 </tr>
                             </thead>
 
