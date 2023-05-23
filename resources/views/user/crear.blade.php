@@ -182,3 +182,14 @@ Crear Usuarios
         </div>
     </section>
 @endsection
+
+@section('script')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0/js/select2.min.js"></script>
+
+<script src="{{ URL::asset('build/libs/@ckeditor/ckeditor5-build-classic/build/ckeditor.js') }}"></script>
+
+<script src="{{ URL::asset('build/libs/dropzone/dropzone-min.js') }}"></script>
+<script src="{{ URL::asset('build/js/pages/ecommerce-product-create.init.js') }}"></script>
+
+<script src="{{ URL::asset('build/js/app.js') }}"></script>
+@endsection
