@@ -3,19 +3,18 @@
 @lang('translation.create-product')
 @endsection
 @section('css')
-<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0/css/select2.min.css" rel="stylesheet" />
 <link href="{{ URL::asset('build/libs/dropzone/dropzone.css') }}" rel="stylesheet">
 <link rel="stylesheet" href="{{ URL::asset('build/css/style.css') }}">
 @endsection
 @section('content')
-@component('components.breadcrumb')
-@slot('li_1')
-Proveedores
-@endslot
-@slot('title')
-Ingresar nuevo proveedor
-@endslot
-@endcomponent
+    @component('components.breadcrumb')
+    @slot('li_1')
+    Ecommerce
+    @endslot
+    @slot('title')
+    Crear nuevo proveedor
+    @endslot
+    @endcomponent
 
 <form action="{{ route('proveedor.store') }}" method="POST" enctype="multipart/form-data" id="createproduct-form" autocomplete="off" class="needs-validation">
 @csrf
@@ -62,70 +61,59 @@ Ingresar nuevo proveedor
             <input type="text" name="direccion" class="form-control" id="direccion" placeholder="Ingrese su dirección" required oninput="eliminarComillas(this)" required>
           </div>
           <div class="row">
-            <div class="form-group">
+            <div class="form-group mb-3">
               <label for="region">Región</label>
               <select name="region" id="region" class="form-control">
                   @foreach ($locations as $location)
                       <option value="{{ $location['region'] }}">{{ $location['region'] }}</option>
                   @endforeach
               </select>
+            </div>
           </div>
-
-          <div class="form-group">
+          <div class="row">
+            <div class="form-group mb-3">
               <label for="departamento">Departamento</label>
               <select name="departamento" id="departamento" class="form-control">
                   @foreach ($locations as $location)
                       <option value="{{ $location['departamento'] }}">{{ $location['departamento'] }}</option>
                   @endforeach
               </select>
+            </div>
           </div>
-
-          <div class="form-group">
+          <div class="row">
+            <div class="form-group mb-3">
               <label for="municipio">Ciudad</label>
               <select name="municipio" id="municipio" class="form-control">
                   @foreach ($locations as $location)
                       <option value="{{ $location['municipio'] }}">{{ $location['municipio'] }}</option>
                   @endforeach
               </select>
+            </div>
           </div>
-        </div>
 
           
         <div class="mb-3">
-            {{--  <label for="tipo-insumo" class="form-label">Tipo de insumo</label>
-            <select class="form-select" name="t_insumo" id="tipo-insumo" required>
-              <option selected>Seleccione una opción</option>
-              <option value="1">Lino</option>
-              <option value="2">Algodón</option>
-              <option value="3">Boton</option>
-            </select>  --}}
-
-            {{--  <div class="mb-3">
-              <label for="tipo-insumo" class="form-label">Tipo de insumo</label>
-              <select class="form-select" name="t_insumo[]" id="tipo-insumo" multiple>
-                <option value="1">Lino</option>
-                <option value="2">Algodón</option>
-                <option value="3">Botón</option>
-              </select>
-            </div>  --}}
 
             <div class="row">
-              <div class="col-md-6 mb-3">
-                  <label for="tipo-insumo" class="form-label">Tipo de insumo</label>
-                  <div class="dropdown">
-                      <button class="btn btn-secondary dropdown-toggle" type="button" id="tipo-insumo-dropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                          Seleccionar insumos
-                      </button>
-                      <ul class="dropdown-menu" aria-labelledby="tipo-insumo-dropdown">
-                          @foreach ($insumos as $insumo)
-                          <li>
-                              <input type="checkbox" id="tipo-insumo-{{ $insumo->id }}" name="t_insumo[]" value="{{ $insumo->id }}">
-                              <label for="tipo-insumo-{{ $insumo->id }}">{{ $insumo->subcateg }}</label>
-                          </li>
-                          @endforeach
-                      </ul>
-                  </div>
-              </div>                            
+              <div class="col-md-6 mb-3 col-6 mx-auto">
+                <label for="tipo-insumo" class="form-label">Tipo de insumo</label>
+                <div class="dropdown">
+                  <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button" id="tipo-insumo-dropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    Seleccionar insumos
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="tipo-insumo-dropdown">
+                    @foreach ($insumos as $insumo)
+                    <li>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="tipo-insumo-{{ $insumo->id }}" name="t_insumo[]" value="{{ $insumo->id }}">
+                        <label class="form-check-label" for="tipo-insumo-{{ $insumo->id }}">{{ $insumo->subcateg }}</label>
+                      </div>
+                    </li>
+                    @endforeach
+                  </ul>
+                </div>
+              </div>
+
                 <div class="col-md-6 mb-3">
                   <label for="tags" class="form-label">Tags</label>
                   <input type="text" name="tags" class="form-control" id="tags" placeholder="Ingrese los tags" required pattern="[A-Za-z\s]+" oninput="eliminarComillas(this)" required>
@@ -144,46 +132,13 @@ Ingresar nuevo proveedor
   </div>
 </form>
 
-<style>
-  .user-details {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
 
-  .user-details input[type="text"] {
-    width: 100%;
-    box-sizing: border-box;
-    padding: 10px;
-    font-size: 18px;
-  }
-</style>
-<style>
-    .user-details {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-    }
-    
-    .user-details input[type="text"] {
-        width: 100%;
-        box-sizing: border-box;
-        padding: 10px;
-        font-size: 18px;
-    }
-</style>
-
-
-
-</div>
 
 {{--  <script>
   function eliminarComillas(input) {
-    input.value = input.value.replace(/['"=]/g, '');
+    input.value = input.value.replace(/['"]/g, '');
   }
-</script>  --}}
+</script>   --}}
 
 
 @endsection
@@ -191,7 +146,17 @@ Ingresar nuevo proveedor
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0/js/select2.min.js"></script>
 
 <script>
-  // Inicializar Select2 en el campo de selección múltiple
+  // Agregar evento de cambio en los checkboxes del menú desplegable
+  $('.dropdown-menu input[type="checkbox"]').change(function() {
+    var checkedValues = $('.dropdown-menu input[type="checkbox"]:checked').map(function() {
+      return this.value;
+    }).get();
+
+    // Actualizar el valor del campo oculto con los checkboxes seleccionados
+    $('#tipo-insumo').val(checkedValues).trigger('change');
+  });
+
+  // Inicializar Select2 en el campo oculto para estilizarlo como un campo de selección múltiple
   $(document).ready(function() {
     $('#tipo-insumo').select2();
   });

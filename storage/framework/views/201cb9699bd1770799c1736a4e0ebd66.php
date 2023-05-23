@@ -3,19 +3,18 @@
 <?php echo app('translator')->get('translation.create-product'); ?>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('css'); ?>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0/css/select2.min.css" rel="stylesheet" />
 <link href="<?php echo e(URL::asset('build/libs/dropzone/dropzone.css')); ?>" rel="stylesheet">
 <link rel="stylesheet" href="<?php echo e(URL::asset('build/css/style.css')); ?>">
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
-<?php $__env->startComponent('components.breadcrumb'); ?>
-<?php $__env->slot('li_1'); ?>
-Proveedores
-<?php $__env->endSlot(); ?>
-<?php $__env->slot('title'); ?>
-Ingresar nuevo proveedor
-<?php $__env->endSlot(); ?>
-<?php echo $__env->renderComponent(); ?>
+    <?php $__env->startComponent('components.breadcrumb'); ?>
+    <?php $__env->slot('li_1'); ?>
+    Ecommerce
+    <?php $__env->endSlot(); ?>
+    <?php $__env->slot('title'); ?>
+    Crear nuevo proveedor
+    <?php $__env->endSlot(); ?>
+    <?php echo $__env->renderComponent(); ?>
 
 <form action="<?php echo e(route('proveedor.store')); ?>" method="POST" enctype="multipart/form-data" id="createproduct-form" autocomplete="off" class="needs-validation">
 <?php echo csrf_field(); ?>
@@ -62,57 +61,59 @@ Ingresar nuevo proveedor
             <input type="text" name="direccion" class="form-control" id="direccion" placeholder="Ingrese su dirección" required oninput="eliminarComillas(this)" required>
           </div>
           <div class="row">
-            <div class="form-group">
+            <div class="form-group mb-3">
               <label for="region">Región</label>
               <select name="region" id="region" class="form-control">
                   <?php $__currentLoopData = $locations; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $location): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                       <option value="<?php echo e($location['region']); ?>"><?php echo e($location['region']); ?></option>
                   <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
               </select>
+            </div>
           </div>
-
-          <div class="form-group">
+          <div class="row">
+            <div class="form-group mb-3">
               <label for="departamento">Departamento</label>
               <select name="departamento" id="departamento" class="form-control">
                   <?php $__currentLoopData = $locations; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $location): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                       <option value="<?php echo e($location['departamento']); ?>"><?php echo e($location['departamento']); ?></option>
                   <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
               </select>
+            </div>
           </div>
-
-          <div class="form-group">
+          <div class="row">
+            <div class="form-group mb-3">
               <label for="municipio">Ciudad</label>
               <select name="municipio" id="municipio" class="form-control">
                   <?php $__currentLoopData = $locations; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $location): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                       <option value="<?php echo e($location['municipio']); ?>"><?php echo e($location['municipio']); ?></option>
                   <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
               </select>
+            </div>
           </div>
-        </div>
 
           
         <div class="mb-3">
-            
-
-            
 
             <div class="row">
-              <div class="col-md-6 mb-3">
-                  <label for="tipo-insumo" class="form-label">Tipo de insumo</label>
-                  <div class="dropdown">
-                      <button class="btn btn-secondary dropdown-toggle" type="button" id="tipo-insumo-dropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                          Seleccionar insumos
-                      </button>
-                      <ul class="dropdown-menu" aria-labelledby="tipo-insumo-dropdown">
-                          <?php $__currentLoopData = $insumos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $insumo): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                          <li>
-                              <input type="checkbox" id="tipo-insumo-<?php echo e($insumo->id); ?>" name="t_insumo[]" value="<?php echo e($insumo->id); ?>">
-                              <label for="tipo-insumo-<?php echo e($insumo->id); ?>"><?php echo e($insumo->subcateg); ?></label>
-                          </li>
-                          <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                      </ul>
-                  </div>
-              </div>                            
+              <div class="col-md-6 mb-3 col-6 mx-auto">
+                <label for="tipo-insumo" class="form-label">Tipo de insumo</label>
+                <div class="dropdown">
+                  <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button" id="tipo-insumo-dropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    Seleccionar insumos
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="tipo-insumo-dropdown">
+                    <?php $__currentLoopData = $insumos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $insumo): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <li>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="tipo-insumo-<?php echo e($insumo->id); ?>" name="t_insumo[]" value="<?php echo e($insumo->id); ?>">
+                        <label class="form-check-label" for="tipo-insumo-<?php echo e($insumo->id); ?>"><?php echo e($insumo->subcateg); ?></label>
+                      </div>
+                    </li>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                  </ul>
+                </div>
+              </div>
+
                 <div class="col-md-6 mb-3">
                   <label for="tags" class="form-label">Tags</label>
                   <input type="text" name="tags" class="form-control" id="tags" placeholder="Ingrese los tags" required pattern="[A-Za-z\s]+" oninput="eliminarComillas(this)" required>
@@ -131,40 +132,7 @@ Ingresar nuevo proveedor
   </div>
 </form>
 
-<style>
-  .user-details {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
 
-  .user-details input[type="text"] {
-    width: 100%;
-    box-sizing: border-box;
-    padding: 10px;
-    font-size: 18px;
-  }
-</style>
-<style>
-    .user-details {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-    }
-    
-    .user-details input[type="text"] {
-        width: 100%;
-        box-sizing: border-box;
-        padding: 10px;
-        font-size: 18px;
-    }
-</style>
-
-
-
-</div>
 
 
 
@@ -174,7 +142,17 @@ Ingresar nuevo proveedor
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0/js/select2.min.js"></script>
 
 <script>
-  // Inicializar Select2 en el campo de selección múltiple
+  // Agregar evento de cambio en los checkboxes del menú desplegable
+  $('.dropdown-menu input[type="checkbox"]').change(function() {
+    var checkedValues = $('.dropdown-menu input[type="checkbox"]:checked').map(function() {
+      return this.value;
+    }).get();
+
+    // Actualizar el valor del campo oculto con los checkboxes seleccionados
+    $('#tipo-insumo').val(checkedValues).trigger('change');
+  });
+
+  // Inicializar Select2 en el campo oculto para estilizarlo como un campo de selección múltiple
   $(document).ready(function() {
     $('#tipo-insumo').select2();
   });

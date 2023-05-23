@@ -1,6 +1,22 @@
 @extends('layouts.master')
+@section('title')
+@lang('translation.editar-product')
+@endsection
+@section('css')
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0/css/select2.min.css" rel="stylesheet" />
+<link href="{{ URL::asset('build/libs/dropzone/dropzone.css') }}" rel="stylesheet">
 
+@endsection
 @section('content')
+@component('components.breadcrumb')
+@slot('li_1')
+Proveedores
+@endslot
+@slot('title')
+Editar insumos
+@endslot
+@endcomponent
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -66,13 +82,19 @@
                         <button type="submit" class="btn btn-primary">Guardar cambios</button>
                     </form>
                     
-                    
-
-                    
-                    
                 </div>
             </div>
         </div>
     </div>
 </div>
+@endsection
+@section('script')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0/js/select2.min.js"></script>
+
+<script src="{{ URL::asset('build/libs/@ckeditor/ckeditor5-build-classic/build/ckeditor.js') }}"></script>
+
+<script src="{{ URL::asset('build/libs/dropzone/dropzone-min.js') }}"></script>
+<script src="{{ URL::asset('build/js/pages/ecommerce-product-create.init.js') }}"></script>
+
+<script src="{{ URL::asset('build/js/app.js') }}"></script>
 @endsection

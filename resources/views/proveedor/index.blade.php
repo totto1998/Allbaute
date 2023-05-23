@@ -64,7 +64,7 @@ Provedor
 
                             <tbody>
                                 @foreach ($data as $proveedor)
-                                <tr>
+                                
                                     <tr>
                                         <th scope="row">
                                             <div class="form-check">
@@ -83,15 +83,10 @@ Provedor
                                         <small>{{$proveedor->municipio}}</small>
                                     </td>
                                     <td>{{$proveedor->nombre_contacto}}</td>
-                                    <td>{{$proveedor->insumos->categ  ?? '' }}</td>
+                                    <td>{{$proveedor->tipo_insumo}}</td>
                                     <td>{{$proveedor->tags}}</td>
                                     <td>
                                         <ul class="list-inline hstack gap-2 mb-0">
-                                            {{--  <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="View">
-                                                <a href="{{URL::asset('/apps-ecommerce-order-details')}}" class="text-primary d-inline-block">
-                                                    <i class="ri-eye-fill fs-16"></i>
-                                                </a>
-                                            </li>  --}}
                                             <li class="list-inline-item edit" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Edit">
                                                 <a href="{{ route('proveedor.edit', $proveedor->id) }}" class="text-primary d-inline-block">
                                                     <i class="ri-pencil-fill fs-16"></i>
@@ -128,232 +123,9 @@ Provedor
                         </div>
                     </div>
 
-   
-
-
-
-                    {{--  <div class="d-flex justify-content-end">
-                        <div class="pagination-wrap hstack gap-2">
-                            <a class="page-item pagination-prev disabled" href="#">
-                                Previous
-                            </a>
-                            <ul class="pagination listjs-pagination mb-0"></ul>
-                            <a class="page-item pagination-next" href="#">
-                                Next
-                            </a>
-                        </div>
-                    </div>  --}}
                 </div>
-
-                <!-- Modal para agregar item -->
-                <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="addModalLabel">Crear Proveedor</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                          </div>
-                            <div class="modal-body">
-                                <form action="{{ route('proveedor.store') }}" method="POST">
-                                    @csrf
-
-                                    <div class="mb-3">
-                                        <label for="razon_social" class="form-label">Razon Social</label>
-                                        <input type="text" class="form-control" id="razon_social" name="razon_social" required>
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label for="nit" class="form-label">Nit</label>
-                                        <input type="text" class="form-control" id="nit" name="nit" required>
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label for="telefono_fijo" class="form-label">Telefono Fijo</label>
-                                        <input type="text" class="form-control" id="telefono_fijo" name="telefono_fijo" required>
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label for="celular" class="form-label">Celular</label>
-                                        <input type="text" class="form-control" id="celular" name="celular" required>
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label for="direccion" class="form-label">Direccion</label>
-                                        <input type="text" class="form-control" id="direccion" name="direccion" required>
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label for="Ciudad" class="form-label">Ciudad</label>
-                                        <select class="form-control" data-trigger name="Ciudad" id="Ciudad" required />
-                                        <option value="">Ciudad</option>
-                                        <option value="Sincelejo">Sincelejo</option>
-                                        <option value="Monteria">Monteria</option>
-                                        <option value="Medellin">Medellin</option>
-                                        </select>
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label for="email" class="form-label">Email</label>
-                                        <input type="text" class="form-control" id="email" name="email" required>
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label for="nombre_contacto" class="form-label">Nombre de Contacto</label>
-                                        <input type="text" class="form-control" id="nombre_contacto" name="nombre_contacto" required>
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label for="t_insumos" class="form-label">Tipo de Insumo</label>
-                                        <select class="form-select" id="t_insumo" name="t_insumo" required>
-                                            <option value="">Seleccionar tipo de Insumo</option>
-                                            @foreach ($insumo as $tipo)
-                                                <option value="{{ $tipo->id }}">{{ $tipo->nombre }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label for="tags" class="form-label">Tags</label>
-                                        <input type="text" class="form-control" id="tags" name="tags" required>
-                                    </div>
-
-
-
-                                    <button type="submit" class="btn btn-primary">Guardar</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-
-
-
-
-
-
-
-
-                {{--  <div class="modal fade" id="showModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header bg-light p-3">
-                                <h5 class="modal-title" id="exampleModalLabel">&nbsp;</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="close-modal"></button>
-                            </div>
-                            <form class="tablelist-form" autocomplete="off">
-                                <div class="modal-body">
-                                    <input type="hidden" id="id-field" />
-
-                                    <div class="mb-3" id="modal-id">
-                                        <label for="orderId" class="form-label">ID</label>
-                                        <input type="text" id="orderId" class="form-control" placeholder="ID" readonly />
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label for="customername-field" class="form-label">Customer Name</label>
-                                        <input type="text" id="customername-field" class="form-control" placeholder="Enter name" required />
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label for="productname-field" class="form-label">Product</label>
-                                        <select class="form-control" data-trigger name="productname-field" id="productname-field" required />
-                                        <option value="">Product</option>
-                                        <option value="Puma Tshirt">Puma Tshirt</option>
-                                        <option value="Adidas Sneakers">Adidas Sneakers</option>
-                                        <option value="350 ml Glass Grocery Container">350 ml Glass Grocery Container</option>
-                                        <option value="American egale outfitters Shirt">American egale outfitters Shirt</option>
-                                        <option value="Galaxy Watch4">Galaxy Watch4</option>
-                                        <option value="Apple iPhone 12">Apple iPhone 12</option>
-                                        <option value="Funky Prints T-shirt">Funky Prints T-shirt</option>
-                                        <option value="USB Flash Drive Personalized with 3D Print">USB Flash Drive Personalized with 3D Print</option>
-                                        <option value="Oxford Button-Down Shirt">Oxford Button-Down Shirt</option>
-                                        <option value="Classic Short Sleeve Shirt">Classic Short Sleeve Shirt</option>
-                                        <option value="Half Sleeve T-Shirts (Blue)">Half Sleeve T-Shirts (Blue)</option>
-                                        <option value="Noise Evolve Smartwatch">Noise Evolve Smartwatch</option>
-                                        </select>
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label for="date-field" class="form-label">Order Date</label>
-                                        <input type="date" id="date-field" class="form-control" data-provider="flatpickr" required data-date-format="d M, Y" data-enable-time required placeholder="Select date" />
-                                    </div>
-
-                                    <div class="row gy-4 mb-3">
-                                        <div class="col-md-6">
-                                            <div>
-                                                <label for="amount-field" class="form-label">Amount</label>
-                                                <input type="text" id="amount-field" class="form-control" placeholder="Total amount" required />
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div>
-                                                <label for="payment-field" class="form-label">Payment Method</label>
-                                                <select class="form-control" data-trigger name="payment-method" required id="payment-field">
-                                                    <option value="">Payment Method</option>
-                                                    <option value="Mastercard">Mastercard</option>
-                                                    <option value="Visa">Visa</option>
-                                                    <option value="COD">COD</option>
-                                                    <option value="Paypal">Paypal</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div>
-                                        <label for="delivered-status" class="form-label">Delivery Status</label>
-                                        <select class="form-control" data-trigger name="delivered-status" required id="delivered-status">
-                                            <option value="">Delivery Status</option>
-                                            <option value="Pending">Pending</option>
-                                            <option value="Inprogress">Inprogress</option>
-                                            <option value="Cancelled">Cancelled</option>
-                                            <option value="Pickups">Pickups</option>
-                                            <option value="Delivered">Delivered</option>
-                                            <option value="Returns">Returns</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <div class="hstack gap-2 justify-content-end">
-                                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-success" id="add-btn">Add Order</button>
-                                        <!-- <button type="button" class="btn btn-success" id="edit-btn">Update</button> -->
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>  --}}
-
-
-                <!-- Modal -->
-                <div class="modal fade flip" id="deleteOrder" tabindex="-1" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-body p-5 text-center">
-                                <lord-icon src="https://cdn.lordicon.com/gsqxdxog.json" trigger="loop" colors="primary:#405189,secondary:#f06548" style="width:90px;height:90px">
-                                </lord-icon>
-                                <div class="mt-4 text-center">
-                                    <h4>You are about to delete a order ?</h4>
-                                    <p class="text-muted fs-15 mb-4">Deleting your order will remove
-                                        all of
-                                        your information from our database.</p>
-                                    <div class="hstack gap-2 justify-content-center remove">
-                                        <button class="btn btn-link link-success fw-medium text-decoration-none" id="deleteRecord-close" data-bs-dismiss="modal"><i class="ri-close-line me-1 align-middle"></i>
-                                            Close</button>
-                                        <button class="btn btn-danger" id="delete-record">Yes,
-                                            Delete It</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--end modal -->
             </div>
         </div>
-
     </div>
     <!--end col-->
 </div>

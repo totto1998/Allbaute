@@ -24,9 +24,9 @@ class proveedorController extends Controller
      */
     public function index()
     {
-        $data = proveedor::paginate(10);
-        $insumo = insumos::paginate(10);
-        return view('proveedor.index', compact('data', 'insumo'));
+        $data = proveedor::with('insumos')->paginate(10);
+        // $insumos = insumos::all();
+        return view('proveedor.index', compact('data'));
     }
 
     /**
@@ -105,8 +105,10 @@ class proveedorController extends Controller
         $insumos = insumos::all();
         $response = Http::get('https://www.datos.gov.co/resource/xdk5-pm3f.json?$query=SELECT%20%60region%60%2C%20%60departamento%60%2C%20%60municipio%60');
         $locations = $response->json();
+        $t_insumo = explode(',', $proveedor->t_insumo); // Convertir la cadena a un array
+
     
-        return view('proveedor.editar', compact('proveedor', 'insumos','locations'));
+        return view('proveedor.editar', compact('proveedor', 'insumos','locations', 't_insumo'));
     }
     
 
@@ -127,6 +129,7 @@ class proveedorController extends Controller
             'region' => 'required|string',
             'departamento' => 'required|string',
             'municipio' => 'required|string',
+            't_insumo' => 'nullable|array', // Agrega esta línea
             // Otros campos del formulario
         ]);
     
@@ -144,7 +147,7 @@ class proveedorController extends Controller
         $proveedor->region = $validatedData['region'];
         $proveedor->departamento = $validatedData['departamento'];
         $proveedor->municipio = $validatedData['municipio'];
-        // Actualizar otros campos del proveedor
+        $proveedor->t_insumo = implode(',', $validatedData['t_insumo']); // Actualiza los tipos de insumos
     
         // Guardar los cambios en la base de datos
         $proveedor->save();
@@ -152,6 +155,7 @@ class proveedorController extends Controller
         // Redireccionar a la página de detalles del proveedor o a otra vista de tu elección
         return redirect()->route('proveedor.index');
     }
+    
     
 
     /**

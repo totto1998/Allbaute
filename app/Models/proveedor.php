@@ -30,8 +30,17 @@ class proveedor extends Model
 
      public function insumos()
      {
-       return $this->belongsTo(insumos::class, 't_insumo');
+         return $this->hasMany(insumos::class, 'id', 't_insumo');
      }
 
+     public function getTipoInsumoAttribute()
+     {
+         $insumoIds = explode(',', $this->t_insumo);
+         $insumos = insumos::whereIn('id', $insumoIds)->get();
+         $categories = $insumos->pluck('categ')->implode(', ');
+         return $categories;
+     }
+     
+     
 
 }
