@@ -90,9 +90,10 @@ public function store(Request $request)
     public function edit($id)
     {
         $insumo = insumos::find($id);
+        $paramcateg = parametrizacion::all();
         // Puedes pasar otros datos necesarios al formulario si lo deseas
 
-        return view('insumos.edit', compact('insumo'));
+        return view('insumos.edit', compact('insumo','paramcateg'));
     }
 
     // Método para actualizar el registro en la base de datos
@@ -137,6 +138,8 @@ public function store(Request $request)
         $insumo->unidad = $request->unidad;
         $insumo->ancho = $request->ancho;
         $insumo->estado = $request->estado;
+        $insumo->categ = $request->categ;
+        $insumo->subcateg = $request->subcateg;
     
         // Guardar los cambios en la base de datos
         $insumo->save();

@@ -15,6 +15,8 @@ Usuarios
 @endslot
 @endcomponent
 
+<section class="section">
+
 <div class="row">
     <div class="col-lg-12">
         <div class="card">
@@ -90,7 +92,7 @@ Usuarios
         </div>
     </div>
 </div>
-
+</section>
 @endsection
 @section('script')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0/js/select2.min.js"></script>
