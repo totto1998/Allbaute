@@ -134,11 +134,11 @@
 
 
 
-{{--  <script>
+<script>
   function eliminarComillas(input) {
     input.value = input.value.replace(/['"]/g, '');
   }
-</script>   --}}
+</script> 
 
 
 @endsection
