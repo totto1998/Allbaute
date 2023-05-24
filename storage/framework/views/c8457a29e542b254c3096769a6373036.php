@@ -43,6 +43,7 @@ Shopping Cart
                                 <div class="col-sm">
                                     <h5 class="fs-15 text-truncate"><a href="<?php echo e(URL::asset('/ecommerce-product-detail')); ?>" class="text-dark"><?php echo e($insumo->categ); ?></a></h5>
                                     <ul class="list-inline text-muted">
+                                        <li class="list-inline-item"><span class="fw-medium"><?php echo e($insumo->subcateg); ?></span></li><br>
                                         <li class="list-inline-item">Color: <span class="fw-medium"><?php echo e($insumo->color); ?></span></li>
                                         <li class="list-inline-item">Size: <span class="fw-medium"><?php echo e($insumo->ancho); ?></span></li>
                                     </ul>
