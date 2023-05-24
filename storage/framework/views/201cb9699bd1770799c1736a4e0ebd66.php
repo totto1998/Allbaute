@@ -106,7 +106,7 @@
                     <li>
                       <div class="form-check">
                         <input class="form-check-input" type="checkbox" id="tipo-insumo-<?php echo e($insumo->id); ?>" name="t_insumo[]" value="<?php echo e($insumo->id); ?>">
-                        <label class="form-check-label" for="tipo-insumo-<?php echo e($insumo->id); ?>"><?php echo e($insumo->subcateg); ?></label>
+                        <label class="form-check-label" for="tipo-insumo-<?php echo e($insumo->id); ?>"><?php echo e($insumo->categ); ?>-<?php echo e($insumo->subcateg); ?></label>
                       </div>
                     </li>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

@@ -32,7 +32,7 @@ class proveedor extends Model
      {
          return $this->hasMany(insumos::class, 'id', 't_insumo');
      }
-
+     
      public function getTipoInsumoAttribute()
      {
          $insumoIds = explode(',', $this->t_insumo);
@@ -40,6 +40,20 @@ class proveedor extends Model
          $categories = $insumos->pluck('categ')->implode(', ');
          return $categories;
      }
+     
+     public function getInsumos()
+     {
+         $insumoIds = explode(',', $this->t_insumo);
+         return insumos::whereIn('id', $insumoIds)->get();
+     }
+     
+     public function getInsumoAttribute()
+     {
+         $insumos = $this->getInsumos();
+         $categories = $insumos->pluck('categ')->implode(', ');
+         return $categories;
+     }
+     
      
      
 

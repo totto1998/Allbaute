@@ -106,7 +106,7 @@
                     <li>
                       <div class="form-check">
                         <input class="form-check-input" type="checkbox" id="tipo-insumo-{{ $insumo->id }}" name="t_insumo[]" value="{{ $insumo->id }}">
-                        <label class="form-check-label" for="tipo-insumo-{{ $insumo->id }}">{{ $insumo->subcateg }}</label>
+                        <label class="form-check-label" for="tipo-insumo-{{ $insumo->id }}">{{ $insumo->categ }}-{{ $insumo->subcateg }}</label>
                       </div>
                     </li>
                     @endforeach

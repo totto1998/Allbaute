@@ -37,26 +37,52 @@ function recalculateCart() {
     document.getElementById("cart-discount").innerHTML = "-" + currencySign + discount.toFixed(2);
 }
 
+// function updateQuantity(quantityInput) {
+//     var productRow = quantityInput.closest('.product');
+//     var price;
+//     if (productRow || productRow.getElementsByClassName('product-price'))
+//         Array.from(productRow.getElementsByClassName('product-price')).forEach(function (e) {
+//             price = parseFloat(e.innerHTML);
+//         });
+
+//     if (quantityInput.previousElementSibling && quantityInput.previousElementSibling.classList.contains("product-quantity")) {
+//         var quantity = quantityInput.previousElementSibling.value;
+//     } else if (quantityInput.nextElementSibling && quantityInput.nextElementSibling.classList.contains("product-quantity")) {
+//         var quantity = quantityInput.nextElementSibling.value;
+//     }
+//     var linePrice = price * quantity;
+//     /* Update line price display and recalc cart totals */
+//     Array.from(productRow.getElementsByClassName('product-line-price')).forEach(function (e) {
+//         e.innerHTML = linePrice.toFixed(2);
+//         recalculateCart();
+//     });
+// }
 function updateQuantity(quantityInput) {
     var productRow = quantityInput.closest('.product');
     var price;
-    if (productRow || productRow.getElementsByClassName('product-price'))
-        Array.from(productRow.getElementsByClassName('product-price')).forEach(function (e) {
-            price = parseFloat(e.innerHTML);
-        });
+    var discount;
+
+    if (productRow) {
+        price = parseFloat(productRow.querySelector('.product-price').innerHTML);
+        discount = parseFloat(productRow.querySelector('.product-discount').innerHTML) / 100;
+    }
 
     if (quantityInput.previousElementSibling && quantityInput.previousElementSibling.classList.contains("product-quantity")) {
         var quantity = quantityInput.previousElementSibling.value;
     } else if (quantityInput.nextElementSibling && quantityInput.nextElementSibling.classList.contains("product-quantity")) {
         var quantity = quantityInput.nextElementSibling.value;
     }
-    var linePrice = price * quantity;
-    /* Update line price display and recalc cart totals */
+    
+    var discountedPrice = price - (price * discount);
+    var linePrice = discountedPrice * quantity;
+    
+    /* Update line price display and recalculate cart totals */
     Array.from(productRow.getElementsByClassName('product-line-price')).forEach(function (e) {
         e.innerHTML = linePrice.toFixed(2);
         recalculateCart();
     });
 }
+
 
 // Remove product from cart
 var removeProduct = document.getElementById('removeItemModal')
