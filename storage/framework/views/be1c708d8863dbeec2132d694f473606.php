@@ -326,7 +326,7 @@
                             <div class="col-sm-auto">
                                 <div>
                                     <a href="<?php echo e(route('ordenCompra.create')); ?>" class="btn btn-success" id="addproduct-btn"><i
-                                            class="ri-add-line align-bottom me-1"></i> Add Product</a>
+                                            class="ri-add-line align-bottom me-1"></i> Nueva orden de compra</a>
                                 </div>
                             </div>
                             <div class="col-sm">
