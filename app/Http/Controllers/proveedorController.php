@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Models\insumos;
 use App\Models\proveedor;
+use App\Models\parametrizacion;
 use Illuminate\Support\Facades\Http;
 
 class proveedorController extends Controller
@@ -37,9 +38,10 @@ class proveedorController extends Controller
        $proveedor = Proveedor::all();
        $insumos = insumos::all();
        $response = Http::get('https://www.datos.gov.co/resource/xdk5-pm3f.json?$query=SELECT%20%60region%60%2C%20%60departamento%60%2C%20%60municipio%60');
+       $paramcateg = parametrizacion::all();
        $locations = $response->json();
      
-       return view('proveedor.create', compact('proveedor', 'insumos','locations'));
+       return view('proveedor.create', compact('proveedor', 'insumos','locations','paramcateg'));
     }
 
     /**

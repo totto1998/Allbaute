@@ -92,17 +92,17 @@
           </div>
 
           
-        <div class="mb-3">
+        
 
             <div class="row">
-              <div class="col-md-6 mb-3 col-6 mx-auto">
+              <div class="col-md-6 mb-3 col-12 mx-auto text-center"> <!-- Ajusta la clase 'col-6' a 'col-12' y agrega la clase 'text-center' -->
                 <label for="tipo-insumo" class="form-label">Tipo de insumo</label>
                 <div class="dropdown">
                   <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button" id="tipo-insumo-dropdown" data-bs-toggle="dropdown" aria-expanded="false">
                     Seleccionar insumos
                   </button>
-                  <ul class="dropdown-menu" aria-labelledby="tipo-insumo-dropdown">
-                    @foreach ($insumos as $insumo)
+                  <ul class="dropdown-menu text-center" aria-labelledby="tipo-insumo-dropdown"> <!-- Agrega la clase 'text-center' a 'dropdown-menu' -->
+                     @foreach ($insumos as $insumo)
                     <li>
                       <div class="form-check">
                         <input class="form-check-input" type="checkbox" id="tipo-insumo-{{ $insumo->id }}" name="t_insumo[]" value="{{ $insumo->id }}">
@@ -126,7 +126,7 @@
                     <input type="submit" value="Register">
                 </div>
           </div>
-        </div>
+        
       </div>
     </div>
   </div>

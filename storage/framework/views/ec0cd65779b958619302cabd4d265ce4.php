@@ -26,6 +26,7 @@ Usuarios
                 <a class="btn btn-warning" href="<?php echo e(route('user.create')); ?>">Nuevo</a>
             </div>
             <div class="card-body">
+                <div class="table-responsive table-card mb-1">
                 <table id="model-datatables" class="table table-bordered nowrap table-striped align-middle" style="width:100%">
                     <thead>
                         <tr>
@@ -84,6 +85,7 @@ Usuarios
                 </table>
                 
             </div>
+        </div>
         </div>
     </div>
 </div>
