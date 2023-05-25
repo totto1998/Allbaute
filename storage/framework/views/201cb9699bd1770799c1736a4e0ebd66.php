@@ -134,7 +134,11 @@
 
 
 
-
+<script>
+  function eliminarComillas(input) {
+    input.value = input.value.replace(/['"]/g, '');
+  }
+</script> 
 
 
 <?php $__env->stopSection(); ?>

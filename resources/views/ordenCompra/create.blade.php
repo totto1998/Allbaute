@@ -28,24 +28,24 @@ Shopping Cart
             @foreach ($proveedores as $proveedor)
                 @foreach ($proveedor->getInsumos() as $insumo)
                     @php
-                        $insumo = App\Models\insumos::find($proveedor->t_insumo);
-                        $precioConDescuento = $insumo->precio - ($insumo->precio * $insumo->descuento / 100);
-                        $total += $precioConDescuento * $insumo->cantidad; // Aplica el descuento y multiplica por la cantidad de productos
+                        $insumoo = App\Models\insumos::find($proveedor->t_insumo);
+                        $precioConDescuento = $insumoo->precio - ($insumoo->precio * $insumoo->descuento / 100);
+                        $total += $precioConDescuento * $insumoo->cantidad; // Aplica el descuento y multiplica por la cantidad de productos
                     @endphp
                     <div class="card product">
                         <div class="card-body">
                             <div class="row gy-3">
                                 <div class="col-sm-auto">
                                     <div class="avatar-lg bg-light rounded p-1">
-                                        <img src="{{ asset('images/' . $insumo->img) }}" alt="" class="img-fluid d-block">
+                                        <img src="{{ asset('images/' . $insumoo->img) }}" alt="" class="img-fluid d-block">
                                     </div>
                                 </div>
                                 <div class="col-sm">
                                     <h5 class="fs-15 text-truncate"><a href="{{ URL::asset('/ecommerce-product-detail') }}" class="text-dark">{{ $insumo->categ }}</a></h5>
                                     <ul class="list-inline text-muted">
-                                        <li class="list-inline-item"><span class="fw-medium">{{ $insumo->subcateg }}</span></li><br>
-                                        <li class="list-inline-item">Color: <span class="fw-medium">{{ $insumo->color }}</span></li>
-                                        <li class="list-inline-item">Size: <span class="fw-medium">{{ $insumo->ancho }}</span></li>
+                                        <li class="list-inline-item"><span class="fw-medium">{{ $insumoo->subcateg }}</span></li><br>
+                                        <li class="list-inline-item">Color: <span class="fw-medium">{{ $insumoo->color }}</span></li>
+                                        <li class="list-inline-item">Size: <span class="fw-medium">{{ $insumoo->ancho }}</span></li>
                                     </ul>
                 
                                     <div class="input-step">
@@ -63,12 +63,12 @@ Shopping Cart
                                             <h5 class="fs-15">$<span id="ticket_price" class="product-price">{{ $precioConDescuento }}</span></h5>
                                             <!-- Mostrar el precio original si es necesario -->
                                             <p class="text-muted mb-1">Original Price:</p>
-                                            <h5 class="fs-15">$<span id="original_price">{{ $insumo->precio }}</span></h5>
+                                            <h5 class="fs-15">$<span id="original_price">{{ $insumoo->precio }}</span></h5>
                                         </div>                                        
                                     </div>
                                     <div class="text-lg-end">
                                         <p class="text-muted mb-1">Descuento:</p>
-                                        <h5 class="fs-15"><span id="ticket_price" class="product-discount">{{ $insumo->descuento }}%</span></h5>
+                                        <h5 class="fs-15"><span id="ticket_price" class="product-discount">{{ $insumoo->descuento }}%</span></h5>
                                     </div>     
                                 </div>
                             </div>

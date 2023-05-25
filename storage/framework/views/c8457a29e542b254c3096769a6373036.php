@@ -28,24 +28,24 @@ Shopping Cart
             <?php $__currentLoopData = $proveedores; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $proveedor): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <?php $__currentLoopData = $proveedor->getInsumos(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $insumo): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <?php
-                        $insumo = App\Models\insumos::find($proveedor->t_insumo);
-                        $precioConDescuento = $insumo->precio - ($insumo->precio * $insumo->descuento / 100);
-                        $total += $precioConDescuento * $insumo->cantidad; // Aplica el descuento y multiplica por la cantidad de productos
+                        $insumoo = App\Models\insumos::find($proveedor->t_insumo);
+                        $precioConDescuento = $insumoo->precio - ($insumoo->precio * $insumoo->descuento / 100);
+                        $total += $precioConDescuento * $insumoo->cantidad; // Aplica el descuento y multiplica por la cantidad de productos
                     ?>
                     <div class="card product">
                         <div class="card-body">
                             <div class="row gy-3">
                                 <div class="col-sm-auto">
                                     <div class="avatar-lg bg-light rounded p-1">
-                                        <img src="<?php echo e(asset('images/' . $insumo->img)); ?>" alt="" class="img-fluid d-block">
+                                        <img src="<?php echo e(asset('images/' . $insumoo->img)); ?>" alt="" class="img-fluid d-block">
                                     </div>
                                 </div>
                                 <div class="col-sm">
                                     <h5 class="fs-15 text-truncate"><a href="<?php echo e(URL::asset('/ecommerce-product-detail')); ?>" class="text-dark"><?php echo e($insumo->categ); ?></a></h5>
                                     <ul class="list-inline text-muted">
-                                        <li class="list-inline-item"><span class="fw-medium"><?php echo e($insumo->subcateg); ?></span></li><br>
-                                        <li class="list-inline-item">Color: <span class="fw-medium"><?php echo e($insumo->color); ?></span></li>
-                                        <li class="list-inline-item">Size: <span class="fw-medium"><?php echo e($insumo->ancho); ?></span></li>
+                                        <li class="list-inline-item"><span class="fw-medium"><?php echo e($insumoo->subcateg); ?></span></li><br>
+                                        <li class="list-inline-item">Color: <span class="fw-medium"><?php echo e($insumoo->color); ?></span></li>
+                                        <li class="list-inline-item">Size: <span class="fw-medium"><?php echo e($insumoo->ancho); ?></span></li>
                                     </ul>
                 
                                     <div class="input-step">
@@ -62,12 +62,12 @@ Shopping Cart
                                             <h5 class="fs-15">$<span id="ticket_price" class="product-price"><?php echo e($precioConDescuento); ?></span></h5>
                                             <!-- Mostrar el precio original si es necesario -->
                                             <p class="text-muted mb-1">Original Price:</p>
-                                            <h5 class="fs-15">$<span id="original_price"><?php echo e($insumo->precio); ?></span></h5>
+                                            <h5 class="fs-15">$<span id="original_price"><?php echo e($insumoo->precio); ?></span></h5>
                                         </div>                                        
                                     </div>
                                     <div class="text-lg-end">
                                         <p class="text-muted mb-1">Descuento:</p>
-                                        <h5 class="fs-15"><span id="ticket_price" class="product-discount"><?php echo e($insumo->descuento); ?>%</span></h5>
+                                        <h5 class="fs-15"><span id="ticket_price" class="product-discount"><?php echo e($insumoo->descuento); ?>%</span></h5>
                                     </div>     
                                 </div>
                             </div>
