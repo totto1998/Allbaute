@@ -22,7 +22,7 @@ Shopping Cart
                 </div>
             </div>
             <?php
-            $total = 0;
+                $total = 0;
             ?>
         
             <?php $__currentLoopData = $proveedores; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $proveedor): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -104,6 +104,8 @@ Shopping Cart
                     <!-- end card -->
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            <?php echo e($proveedores->links()); ?>
+
                
         </div>
         <br>
@@ -127,10 +129,7 @@ Shopping Cart
                                     <td>Sub Total :</td>
                                     <td class="text-end" id="cart-subtotal"></td>
                                 </tr>
-                                <tr>
-                                    <td>Descuento <span class="text-muted"></span> : </td>
-                                    <td class="text-end" id="cart-discount"></td>
-                                </tr>
+                                
                                 <tr>
                                     <td>Iva 19%: </td>
                                     <td class="text-end" id="cart-tax"></td>
@@ -138,16 +137,10 @@ Shopping Cart
                                 <tr class="table-active">
                                     <th>Total (COP) :</th>
                                     <td class="text-end">
-                                        <span class="fw-semibold" id="cart-total">
-                                            
-                                        </span>
-                                       
+                                        <span class="fw-semibold" id="cart-total"></span>
                                     </td>
-                                    
                                 </tr>
-                                
                             </tbody>
-                            
                         </table>
                         
                     </div>
@@ -157,7 +150,8 @@ Shopping Cart
                 
             </div>
             <div class="text-end mb-4">
-                <a href="<?php echo e(URL::asset('/apps-ecommerce-checkout')); ?>" class="btn btn-success btn-label right ms-auto"><i class="ri-arrow-right-line label-icon align-bottom fs-16 ms-2"></i> Registrar orden</a>
+                <a href="<?php echo e(route('ordenCompra.registrar')); ?>" class="btn btn-success btn-label right ms-auto"><i class="ri-arrow-right-line label-icon align-bottom fs-16 ms-2"></i> Registrar orden</a>
+
             </div>
         </div>
         <!-- end stickey -->

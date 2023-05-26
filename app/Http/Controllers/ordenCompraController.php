@@ -25,14 +25,23 @@ class ordenCompraController extends Controller
      */
     public function create()
     {
-        $proveedores = proveedor::all();
-        $insumos = insumos::all();
-        
-        return view('ordenCompra.create', compact('proveedores', 'insumos'));
+        $itemsPerPage = 10; // Cantidad de elementos por página
+    
+        $proveedores = proveedor::with('insumos')->paginate($itemsPerPage);
+    
+        return view('ordenCompra.create', compact('proveedores'));
     }
+
     /**
      * Store a newly created resource in storage.
      */
+    public function registrar()
+    {
+       return view('ordenCompra.registrar');
+    }
+
+
+
     public function store(Request $request)
     {
         //

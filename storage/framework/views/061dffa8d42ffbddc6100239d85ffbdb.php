@@ -3,7 +3,7 @@
     <!-- LOGO -->
     <div class="navbar-brand-box">
         <!-- Dark Logo-->
-        <a href="index" class="logo logo-dark">
+        <a href="<?php echo e(route('panel.index')); ?>" class="logo logo-dark">
             <span class="logo-sm">
                 <img src="<?php echo e(URL::asset('build/images/logo-sm.png')); ?>" alt="" height="22">
             </span>
@@ -12,7 +12,7 @@
             </span>
         </a>
         <!-- Light Logo-->
-        <a href="index" class="logo logo-light">
+        <a href="<?php echo e(route('panel.index')); ?>" class="logo logo-light">
             <span class="logo-sm">
                 <img src="<?php echo e(URL::asset('build/images/logo-sm.png')); ?>" alt="" height="22">
             </span>
@@ -33,7 +33,7 @@
             <ul class="navbar-nav" id="navbar-nav">
                 <li class="menu-title"><span><?php echo app('translator')->get('Menu'); ?></span></li>
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="home" /*data-bs-toggle="collapse"*/ role="button" aria-expanded="false" aria-controls="sidebarDashboards">
+                    <a class="nav-link menu-link" href="<?php echo e(route('panel.index')); ?>" /*data-bs-toggle="collapse"*/ role="button" aria-expanded="false" aria-controls="sidebarDashboards">
                         <i class="las la-tachometer-alt"></i> <span><?php echo app('translator')->get('Panel principal'); ?></span>
                      </a>
                 <li class="menu-title"><i class="ri-more-fill"></i> <span><?php echo app('translator')->get('Paginas'); ?></span></li>

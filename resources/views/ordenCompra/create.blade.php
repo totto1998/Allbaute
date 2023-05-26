@@ -22,7 +22,7 @@ Shopping Cart
                 </div>
             </div>
             @php
-            $total = 0;
+                $total = 0;
             @endphp
         
             @foreach ($proveedores as $proveedor)
@@ -105,6 +105,7 @@ Shopping Cart
                     <!-- end card -->
                 @endforeach
             @endforeach
+            {{ $proveedores->links() }}
                
         </div>
         <br>
@@ -128,10 +129,10 @@ Shopping Cart
                                     <td>Sub Total :</td>
                                     <td class="text-end" id="cart-subtotal"></td>
                                 </tr>
-                                <tr>
+                                {{--  <tr>
                                     <td>Descuento <span class="text-muted"></span> : </td>
                                     <td class="text-end" id="cart-discount"></td>
-                                </tr>
+                                </tr>  --}}
                                 <tr>
                                     <td>Iva 19%: </td>
                                     <td class="text-end" id="cart-tax"></td>
@@ -139,16 +140,10 @@ Shopping Cart
                                 <tr class="table-active">
                                     <th>Total (COP) :</th>
                                     <td class="text-end">
-                                        <span class="fw-semibold" id="cart-total">
-                                            
-                                        </span>
-                                       
+                                        <span class="fw-semibold" id="cart-total"></span>
                                     </td>
-                                    
                                 </tr>
-                                
                             </tbody>
-                            
                         </table>
                         
                     </div>
@@ -158,7 +153,7 @@ Shopping Cart
                 
             </div>
             <div class="text-end mb-4">
-                <a href="{{URL::asset('/apps-ecommerce-checkout')}}" class="btn btn-success btn-label right ms-auto"><i class="ri-arrow-right-line label-icon align-bottom fs-16 ms-2"></i> Registrar orden</a>
+                <a href="{{route('ordenCompra.registrar')}}" class="btn btn-success btn-label right ms-auto"><i class="ri-arrow-right-line label-icon align-bottom fs-16 ms-2"></i> Registrar orden</a>
 
             </div>
         </div>
