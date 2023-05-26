@@ -48,6 +48,11 @@ Route::post('/update-password/{id}', [App\Http\Controllers\HomeController::class
 
 Route::group(['middleware' => 'auth'], function() {
 
+    Route::get('/panel', [App\Http\Controllers\PanelController::class, 'index'])->name('panel.index');
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+
     Route::resource('roles',RolController::class);
     Route::resource('user',userController::class);
     Route::resource('proveedor',proveedorController::class);

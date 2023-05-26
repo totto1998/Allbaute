@@ -33,7 +33,7 @@
             <ul class="navbar-nav" id="navbar-nav">
                 <li class="menu-title"><span><?php echo app('translator')->get('Menu'); ?></span></li>
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="index" /*data-bs-toggle="collapse"*/ role="button" aria-expanded="false" aria-controls="sidebarDashboards">
+                    <a class="nav-link menu-link" href="home" /*data-bs-toggle="collapse"*/ role="button" aria-expanded="false" aria-controls="sidebarDashboards">
                         <i class="las la-tachometer-alt"></i> <span><?php echo app('translator')->get('Panel principal'); ?></span>
                      </a>
                 <li class="menu-title"><i class="ri-more-fill"></i> <span><?php echo app('translator')->get('Paginas'); ?></span></li>
