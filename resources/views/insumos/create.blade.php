@@ -26,14 +26,12 @@ Crear insumos
 
                 <div class="card">
                     <div class="card-body">
-                        <div class="row mb-3">
+                        
+                        <div class="row mb-4">
                             <div class="col-md-6">
                                 <label for="img" class="form-label">Imagen</label>
                                 <input type="file" class="form-control" id="imagen" name="img" required>
                             </div>
-                        </div>
-
-                        <div class="row">
                             <div class="col-md-6">
                                 <div class="card">
                                     <div class="card-header">
@@ -115,23 +113,6 @@ Crear insumos
                             </div>
                         </div>
 
-                        <div class="row mt-4">
-                            <div class="col-md-6">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <label for="choices-publish-status-input" class="form-label">Medida</label>
-                                    </div>
-                                    <div class="card-body">
-                                        <select class="form-select" id="medida-input" name="medida">
-                                            <option value="">Selecciona una opción</option>
-                                            <option value="Pequeño">Pequeño</option>
-                                            <option value="Mediano">Mediano</option>
-                                            <option value="Grande">Grande</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
                         <div class="card mt-4">
                             <div class="card-body">
