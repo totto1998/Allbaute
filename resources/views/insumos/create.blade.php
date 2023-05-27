@@ -190,17 +190,17 @@ Crear insumos
                       <label for="ancho-input" class="form-label">Ancho de la tela</label>
                       <input type="number" id="ancho-input" class="form-control" aria-label="discount" aria-describedby="product-discount-addon" required pattern="[0-9]+" placeholder="Ingrese ancho de la tela" name="ancho">
                   </div>
-                  <div class="mb-2">
-                    <label class="form-label">Color</label>
-                    @foreach($paramcateg as $param)
-                    @if($param->id_tipo == 5)
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="color-{{ $param->nombre }}" name="color[]" value="{{ $param->nombre }}">
-                        <label class="form-check-label" for="color-{{ $param->nombre }}">{{ $param->nombre }}</label>
+                    <div class="mb-2">
+                        <label class="form-label">Color</label>
+                        @foreach($paramcateg as $param)
+                        @if($param->id_tipo == 5)
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="color-{{ $param->nombre }}" name="color[]" value="{{ $param->nombre }}">
+                            <label class="form-check-label" for="color-{{ $param->nombre }}">{{ $param->nombre }}</label>
+                        </div>
+                        @endif
+                        @endforeach
                     </div>
-                    @endif
-                    @endforeach
-                </div>
 
                   <div class="mb-2">
                       <label for="choices-publish-status-input" class="form-label">Estado</label>
@@ -248,19 +248,21 @@ Crear insumos
                       </select>
                   </div>
                   <div class="mb-3">
-                      <label for="ancho-input" class="form-label">Ancho del boton</label>
+                      <label for="ancho-input" class="form-label">Medida</label>
                       <input type="number" id="ancho-input" class="form-control" required pattern="[A-Za-z]+" placeholder="Ingrese ancho de la tela" name="ancho">
                   </div>
-                  <div class="mb-2">
-                      <label for="choices-publish-status-input" class="form-label">Color</label>
-                          <select class="form-select" id="choices-publish-status-input" name="color" data-choices data-choices-search-false required>
-                            @foreach($paramcateg as $param)
-                            @if($param->id_tipo == 5)
-                                <option value="{{ $param->nombre }}">{{ $param->nombre }}</option>
-                            @endif
-                            @endforeach
-                      </select>
-                  </div>
+                    <div class="mb-2">
+                        <label class="form-label">Color</label>
+                        @foreach($paramcateg as $param)
+                        @if($param->id_tipo == 5)
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="color-{{ $param->nombre }}" name="color[]" value="{{ $param->nombre }}">
+                            <label class="form-check-label" for="color-{{ $param->nombre }}">{{ $param->nombre }}</label>
+                        </div>
+                        @endif
+                        @endforeach
+                    </div>
+
                   <div class="mb-2">
                     <label for="choices-publish-status-input" class="form-label">Estado</label>
                         <select class="form-select" id="choices-publish-status-input" name="estado" data-choices data-choices-search-false required>
@@ -303,37 +305,6 @@ Crear insumos
 
 @endsection
 @section('script')
-
-<script>
-    // Inicializar Dropzone en el elemento con el ID "my-dropzone"
-    Dropzone.autoDiscover = false;
-    const myDropzone = new Dropzone("#my-dropzone", {
-        url: "{{ route('insumos.store') }}", // Ruta del controlador que procesará la imagen
-        autoProcessQueue: false, // Desactivar la carga automática de archivos
-        addRemoveLinks: true, // Mostrar enlaces para eliminar archivos
-
-        init: function() {
-            const form = document.getElementById("createproduct-form");
-
-            // Cuando se envíe el formulario, procesar la cola de archivos de Dropzone
-            form.addEventListener("submit", function(e) {
-                e.preventDefault(); // Evitar el envío del formulario predeterminado
-                e.stopPropagation();
-                myDropzone.processQueue(); // Procesar la cola de archivos de Dropzone
-            });
-
-            // Evento que se dispara cuando se completa correctamente la carga de un archivo
-            this.on("success", function(file, response) {
-                console.log(response); // Aquí puedes manejar la respuesta del controlador
-            });
-
-            // Evento que se dispara cuando se elimina un archivo desde Dropzone
-            this.on("removedfile", function(file) {
-                console.log(file); // Aquí puedes manejar la eliminación del archivo si es necesario
-            });
-        },
-    });
-</script>
 
 
 

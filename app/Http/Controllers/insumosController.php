@@ -58,20 +58,21 @@ public function store(Request $request)
         // Mover la imagen a la carpeta de almacenamiento
         $image->move(public_path('images'), $imageName);
 
-    $insumo = Insumos::create([
-        'img' => $imageName,
-        'tags' => $request->tags,
-        'categ' => $request->categ,
-        'precio' => $request->precio,
-        'stock' => $request->stock,
-        'descuento' => $request->descuento,
-        'color' => $request->color,
-        'unidad' => $request->unidad,
-        'ancho' => $request->ancho,
-        'subcateg' => $request->subcateg,
-        'estado' => $request->estado,
-        'created_at' => now(),
-    ]);
+        $insumo = Insumos::create([
+            'img' => $imageName,
+            'tags' => $request->tags,
+            'categ' => $request->categ,
+            'precio' => $request->precio,
+            'stock' => $request->stock,
+            'descuento' => $request->descuento,
+            'color' => implode(',', $request->color), // Convertir el array en una cadena separada por comas
+            'unidad' => $request->unidad,
+            'ancho' => $request->ancho,
+            'subcateg' => $request->subcateg,
+            'estado' => $request->estado,
+            'created_at' => now(),
+        ]);
+        
     // Otras operaciones que desees realizar después de guardar el insumo
     return redirect()->route('insumos.index')->with('success', 'Insumo agregado correctamente');
 }
