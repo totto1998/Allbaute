@@ -39,7 +39,7 @@ Crear nueva parametrizacion
                 <select class="form-select" id="tipo_parametrizacion" name="tipo_parametrizacion" required onchange="mostrarCampo()">
                     <option value="">Seleccionar tipo de parámetro</option>
                     <option value="1">Nuevo parámetro</option>
-                    <option value="2">Nueva categoría</option>
+                    <option value="2">Nueva categoria</option>
                 </select>
             </div>
 
@@ -49,14 +49,14 @@ Crear nueva parametrizacion
             </div>
 
             <div id="campo_nombre2" style="display:none;">
-                <label for="nombre_categoria" class="form-label">Nombre de la categoría</label>
+                <label for="nombre_categoria" class="form-label">Nombre de la subcategoria</label>
                 <input type="text" class="form-control" id="nombre_categoria" name="nombre_categoria" required pattern="[a-zA-Z]+">
             </div>
 
             <div id="campo_categoria" style="display:none;">
-                <label for="categoria" class="form-label">Parámetros</label>
+                <label for="categoria" class="form-label">Categorias</label>
                 <select class="form-select" id="categoria" name="categoria">
-                    <option value="">Seleccionar parámetros</option>
+                    <option value="">Seleccionar categoria</option>
                     <option value="opcion1">Tela</option>
                     <option value="opcion2">Botón</option>
                     <option value="opcion3">Cremallera</option>
