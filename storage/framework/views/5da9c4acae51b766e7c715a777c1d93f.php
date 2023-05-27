@@ -15,8 +15,6 @@ parametrizacion
 <?php $__env->endSlot(); ?>
 <?php echo $__env->renderComponent(); ?>
 
-
-
 <div class="row">
     <div class="col-lg-12">
         <div class="card" id="orderList">
@@ -27,8 +25,6 @@ parametrizacion
                     </div>
                     <div class="col-sm-auto">
                         <div class="d-flex gap-1 flex-wrap">
-                            
-                            
                             <div class="col-sm">
                                 <div class="d-flex justify-content-sm-end">
                                     <div class="search-box ms-2">
@@ -38,7 +34,7 @@ parametrizacion
                                 </div>
                             </div>
 
-                            <a class="btn btn-warning" href="<?php echo e(route('parametrizacion.create')); ?>">Nuevo</a>
+                            <a class="btn btn-warning" href="<?php echo e(route('parametrizacion.create')); ?>">CREAR NUEVA PARAMETRIZACION</a>
                             <button type="button" class="btn btn-secondary"><i class="ri-file-download-line align-bottom me-1"></i>Exportar</button>
                             <button class="btn btn-soft-danger" id="remove-actions" onClick="deleteMultiple()"><i class="ri-delete-bin-2-line"></i></button>
                             <br>

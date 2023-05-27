@@ -98,44 +98,6 @@ Crear insumos
                     </ul>
                 </div>
                 <!-- end card header -->
-                <div class="card-body">
-                    <div class="tab-content">
-                        <div class="tab-pane active" id="addproduct-general-info" role="tabpanel">
-                            <div class="row">
-                                <div class="col-lg-3 col-sm-6">
-                                    <div class="mb-3">
-                                        <label class="form-label" for="stocks-input">Stocks</label>
-                                        <input type="number" class="form-control" id="stocks-input" placeholder="Stocks" required pattern="[A-Za-z\s]+" name="stock" required>
-                                        <div class="invalid-feedback">Ingrese cuantos productos estan en Stocks.</div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-sm-6">
-                                    <div class="mb-3">
-                                        <label class="form-label" for="product-price-input">Precio</label>
-                                        <div class="input-group has-validation mb-3">
-                                            <span class="input-group-text" id="product-price-addon">$</span>
-                                            <input type="number" class="form-control" id="product-price-input" placeholder="Precio" name="precio" aria-label="Price" aria-describedby="product-price-addon" required pattern="[0-9]+">
-                                            <div class="invalid-feedback">Ingrese el precio.</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-sm-6">
-                                    <div class="mb-3">
-                                        <label class="form-label" for="product-discount-input">Descuento</label>
-                                        <div class="input-group mb-3">
-                                            <span class="input-group-text" id="product-discount-addon">%</span>
-                                            <input type="number" class="form-control" id="product-discount-input" name="descuento" placeholder="Descuento" aria-label="discount" aria-describedby="product-discount-addon" required pattern="[0-9]+">
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- end col -->
-                            </div>
-                            <!-- end row -->
-                        </div>
-                        <!-- end tab pane -->
-                    </div>
-                    <!-- end tab content -->
-                </div>
                 <!-- end card body -->
             </div>
             <!-- end card -->

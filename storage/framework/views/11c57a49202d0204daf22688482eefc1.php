@@ -21,184 +21,95 @@ Shopping Cart
                     <i class="ri-search-line search-icon"></i>
                 </div>
             </div>
+            <?php
+            $total = 0;
+            ?>
+        
+            <?php $__currentLoopData = $proveedores; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $proveedor): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <?php $__currentLoopData = $proveedor->getInsumos(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $insumo): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <?php
+                        $insumoo = App\Models\insumos::find($proveedor->t_insumo);
+                        $precioConDescuento = $insumoo->precio - ($insumoo->precio * $insumoo->descuento / 100);
+                        $total += $precioConDescuento * $insumoo->cantidad; // Aplica el descuento y multiplica por la cantidad de productos
+                    ?>
+                    <div class="card product">
+                        <div class="card-body">
+                            <div class="row gy-3">
+                                <div class="col-sm-auto">
+                                    <div class="avatar-lg bg-light rounded p-1">
+                                        <img src="<?php echo e(asset('images/' . $insumoo->img)); ?>" alt="" class="img-fluid d-block">
+                                    </div>
+                                </div>
+                                <div class="col-sm">
+                                    <h5 class="fs-15 text-truncate"><a href="<?php echo e(URL::asset('/ecommerce-product-detail')); ?>" class="text-dark"><?php echo e($insumo->categ); ?></a></h5>
+                                    <ul class="list-inline text-muted">
+                                        <li class="list-inline-item"><span class="fw-medium"><?php echo e($insumoo->subcateg); ?></span></li><br>
+                                        <li class="list-inline-item">Color: <span class="fw-medium"><?php echo e($insumoo->color); ?></span></li>
+                                        <li class="list-inline-item">Size: <span class="fw-medium"><?php echo e($insumoo->ancho); ?></span></li>
+                                    </ul>
+                
+                                    <div class="input-step">
+                                        <button type="button" class="minus">–</button>
+                                        <input type="number" class="product-quantity" value="0" min="0" max="100">
+                                        <button type="button" class="plus">+</button>
+                                    </div>
+                                </div>
+                                <div class="col-sm-auto">
+                                    <div class="text-lg-end">
+                                        
+                                        <div class="text-lg-end">
+                                            <p class="text-muted mb-1">Item Price:</p>
+                                            <h5 class="fs-15">$<span id="ticket_price" class="product-price"><?php echo e($precioConDescuento); ?></span></h5>
+                                            <!-- Mostrar el precio original si es necesario -->
+                                            <p class="text-muted mb-1">Original Price:</p>
+                                            <h5 class="fs-15">$<span id="original_price"><?php echo e($insumoo->precio); ?></span></h5>
+                                        </div>                                        
+                                    </div>
+                                    <div class="text-lg-end">
+                                        <p class="text-muted mb-1">Descuento:</p>
+                                        <h5 class="fs-15"><span id="ticket_price" class="product-discount"><?php echo e($insumoo->descuento); ?>%</span></h5>
+                                    </div>     
+                                </div>
+                            </div>
+                        </div>
+                        <!-- card body -->
+                        <div class="card-footer">
+                            <div class="row align-items-center gy-3">
+                                <div class="col-sm">
+                                    <div class="d-flex flex-wrap my-n1">
+                                        <div>
+                                            <a href="#" class="d-block text-body p-1 px-2" data-bs-toggle="modal" data-bs-target="#removeItemModal">
+                                                <i class="ri-delete-bin-fill text-muted align-bottom me-1"></i>
+                                                Remove
+                                            </a>
+                                        </div>
+                                        <div>
+                                            <a href="#" class="d-block text-body p-1 px-2">
+                                                <i class="ri-star-fill text-muted align-bottom me-1"></i>
+                                                Add Wishlist
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-auto">
+                                    <div class="d-flex align-items-center gap-2 text-muted">
+                                        <div>Total :</div>
+                                        <h5 class="fs-15 mb-0">$<span class="product-line-price"><?php echo e($total); ?></span></h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end card footer -->
+                    </div>
+                    <!-- end card -->
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+               
         </div>
         <br>
-        <div class="card product">
-            <div class="card-body">
-                <div class="row gy-3">
-                    <div class="col-sm-auto">
-                        <div class="avatar-lg bg-light rounded p-1">
-                            <img src="<?php echo e(URL::asset('build/images/products/img-8.png')); ?>" alt="" class="img-fluid d-block">
-                        </div>
-                    </div>
-                    <div class="col-sm">
-                        <h5 class="fs-15 text-truncate"><a href="<?php echo e(URL::asset('/ecommerce-product-detail')); ?>" class="text-dark">Sweatshirt for Men (Pink)</a></h5>
-                        <ul class="list-inline text-muted">
-                            <li class="list-inline-item">Color : <span class="fw-medium">Pink</span>
-                            </li>
-                            <li class="list-inline-item">Size : <span class="fw-medium">M</span>
-                            </li>
-                        </ul>
+        
 
-                        <div class="input-step">
-                            <button type="button" class="minus">–</button>
-                            <input type="number" class="product-quantity" value="2" min="0" max="100">
-                            <button type="button" class="plus">+</button>
-                        </div>
-                    </div>
-                    <div class="col-sm-auto">
-                        <div class="text-lg-end">
-                            <p class="text-muted mb-1">Item Price:</p>
-                            <h5 class="fs-15">$<span id="ticket_price" class="product-price">119.99</span>
-                            </h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- card body -->
-            <div class="card-footer">
-                <div class="row align-items-center gy-3">
-                    <div class="col-sm">
-                        <div class="d-flex flex-wrap my-n1">
-                            <div>
-                                <a href="#" class="d-block text-body p-1 px-2" data-bs-toggle="modal" data-bs-target="#removeItemModal"><i class="ri-delete-bin-fill text-muted align-bottom me-1"></i>
-                                    Remove</a>
-                            </div>
-                            <div>
-                                <a href="#" class="d-block text-body p-1 px-2"><i class="ri-star-fill text-muted align-bottom me-1"></i> Add
-                                    Wishlist</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-auto">
-                        <div class="d-flex align-items-center gap-2 text-muted">
-                            <div>Total :</div>
-                            <h5 class="fs-15 mb-0">$<span class="product-line-price">239.98</span>
-                            </h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- end card footer -->
-        </div>
-        <!-- end card -->
 
-        <div class="card product">
-            <div class="card-body">
-                <div class="row gy-3">
-                    <div class="col-sm-auto">
-                        <div class="avatar-lg bg-light rounded p-1">
-                            <img src="<?php echo e(URL::asset('build/images/products/img-7.png')); ?>" alt="" class="img-fluid d-block">
-                        </div>
-                    </div>
-                    <div class="col-sm">
-                        <h5 class="fs-15 text-truncate"><a href="<?php echo e(URL::asset('/ecommerce-product-detail')); ?>" class="text-dark">Noise NoiseFit Endure Smart Watch</a></h5>
-
-                        <ul class="list-inline text-muted">
-                            <li class="list-inline-item">Color : <span class="fw-medium">Black</span></li>
-                            <li class="list-inline-item">Size : <span class="fw-medium">32.5mm</span></li>
-                        </ul>
-
-                        <div class="input-step">
-                            <button type="button" class="minus">–</button>
-                            <input type="number" class="product-quantity" value="1" min="0" max="100">
-                            <button type="button" class="plus">+</button>
-                        </div>
-                    </div>
-                    <div class="col-sm-auto">
-                        <div class="text-lg-end">
-                            <p class="text-muted mb-1">Item Price:</p>
-                            <h5 class="fs-15">$<span class="product-price">94.99</span></h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- card body -->
-            <div class="card-footer">
-                <div class="row align-items-center gy-3">
-                    <div class="col-sm">
-                        <div class="d-flex flex-wrap my-n1">
-                            <div>
-                                <a href="#" class="d-block text-body p-1 px-2" data-bs-toggle="modal" data-bs-target="#removeItemModal"><i class="ri-delete-bin-fill text-muted align-bottom me-1"></i>
-                                    Remove</a>
-                            </div>
-                            <div>
-                                <a href="#" class="d-block text-body p-1 px-2"><i class="ri-star-fill text-muted align-bottom me-1"></i> Add
-                                    Wishlist</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-auto">
-                        <div class="d-flex align-items-center gap-2 text-muted">
-                            <div>Total :</div>
-                            <h5 class="fs-15 mb-0">$<span class="product-line-price">94.99</span>
-                            </h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- end card footer -->
-        </div>
-        <!-- end card -->
-
-        <div class="card product">
-            <div class="card-body">
-                <div class="row gy-3">
-                    <div class="col-sm-auto">
-                        <div class="avatar-lg bg-light rounded p-1">
-                            <img src="<?php echo e(URL::asset('build/images/products/img-3.png')); ?>" alt="" class="img-fluid d-block">
-                        </div>
-                    </div>
-                    <div class="col-sm">
-                        <h5 class="fs-15 text-truncate"><a href="<?php echo e(URL::asset('/ecommerce-product-detail')); ?>" class="text-dark">350 ml Glass Grocery Container</a></h5>
-
-                        <ul class="list-inline text-muted">
-                            <li class="list-inline-item">Color : <span class="fw-medium">White</span></li>
-                            <li class="list-inline-item">Size : <span class="fw-medium">350
-                                    ml</span></li>
-                        </ul>
-
-                        <div class="input-step">
-                            <button type="button" class="minus">–</button>
-                            <input type="number" class="product-quantity" value="1" min="0" max="100">
-                            <button type="button" class="plus">+</button>
-                        </div>
-                    </div>
-                    <div class="col-sm-auto">
-                        <div class="text-lg-end">
-                            <p class="text-muted mb-1">Item Price:</p>
-                            <h5 class="fs-15">$<span class="product-price">24.99</span></h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- card body -->
-            <div class="card-footer">
-                <div class="row align-items-center gy-3">
-                    <div class="col-sm">
-                        <div class="d-flex flex-wrap my-n1">
-                            <div>
-                                <a href="#" class="d-block text-body p-1 px-2" data-bs-toggle="modal" data-bs-target="#removeItemModal"><i class="ri-delete-bin-fill text-muted align-bottom me-1"></i>
-                                    Remove</a>
-                            </div>
-                            <div>
-                                <a href="#" class="d-block text-body p-1 px-2"><i class="ri-star-fill text-muted align-bottom me-1"></i> Add
-                                    Wishlist</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-auto">
-                        <div class="d-flex align-items-center gap-2 text-muted">
-                            <div>Total :</div>
-                            <h5 class="fs-15 mb-0">$<span class="product-line-price">24.99</span>
-                            </h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- end card footer -->
-        </div>
-        <!-- end card -->
     </div>
     <!-- end col -->
 
@@ -279,9 +190,14 @@ Shopping Cart
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 <?php $__env->stopSection(); ?>
+
+
 <?php $__env->startSection('script'); ?>
 <script src="<?php echo e(URL::asset('build/js/pages/form-input-spin.init.js')); ?>"></script>
 <script src="<?php echo e(URL::asset('build/js/pages/ecommerce-cart.init.js')); ?>"></script>
 <script src="<?php echo e(URL::asset('build/js/app.js')); ?>"></script>
 <?php $__env->stopSection(); ?>
+
+
+
 <?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\laragon\www\Allbaute\Allbaute\resources\views/ordenCompra/create.blade.php ENDPATH**/ ?>
