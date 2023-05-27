@@ -26,14 +26,29 @@ Crear insumos
 
                 <div class="card">
                     <div class="card-body">
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <label for="img" class="form-label">Imagen</label>
-                                <input type="file" class="form-control" id="imagen" name="img" required>
+                        
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <label for="img" class="form-label">Imagen</label>
+                                </div>
+                                <div class="card-body">
+                                    <input type="file" class="form-control" id="imagen" name="img" required>
+                                </div>
                             </div>
                         </div>
-
-                        <div class="row">
+                        
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <label for="nombre" class="form-label">Nombre</label>
+                                    </div>
+                                    <div class="card-body">
+                                        <input type="text" class="form-control" id="imagen" name="nombre" required>
+                                    </div> 
+                                </div> 
+                            </div>
                             <div class="col-md-6">
                                 <div class="card">
                                     <div class="card-header">
@@ -115,23 +130,6 @@ Crear insumos
                             </div>
                         </div>
 
-                        <div class="row mt-4">
-                            <div class="col-md-6">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <label for="choices-publish-status-input" class="form-label">Medida</label>
-                                    </div>
-                                    <div class="card-body">
-                                        <select class="form-select" id="medida-input" name="medida">
-                                            <option value="">Selecciona una opción</option>
-                                            <option value="Pequeño">Pequeño</option>
-                                            <option value="Mediano">Mediano</option>
-                                            <option value="Grande">Grande</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
                         <div class="card mt-4">
                             <div class="card-body">
@@ -152,5 +150,7 @@ Crear insumos
     </div>
 </div>
 <?php $__env->stopSection(); ?>
-
+<?php $__env->startSection('script'); ?>
+    <script src="<?php echo e(URL::asset('build/js/app.js')); ?>"></script>
+<?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\laragon\www\Allbaute\Allbaute\resources\views/insumos/create.blade.php ENDPATH**/ ?>

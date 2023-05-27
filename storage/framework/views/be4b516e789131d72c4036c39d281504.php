@@ -7,14 +7,14 @@
 <link rel="stylesheet" href="<?php echo e(URL::asset('build/css/style.css')); ?>">
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
-    <?php $__env->startComponent('components.breadcrumb'); ?>
-    <?php $__env->slot('li_1'); ?>
-    Ecommerce
-    <?php $__env->endSlot(); ?>
-    <?php $__env->slot('title'); ?>
-    Crear nueva parametrizacion
-    <?php $__env->endSlot(); ?>
-    <?php echo $__env->renderComponent(); ?>
+<?php $__env->startComponent('components.breadcrumb'); ?>
+<?php $__env->slot('li_1'); ?>
+Ecommerce
+<?php $__env->endSlot(); ?>
+<?php $__env->slot('title'); ?>
+Crear nueva parametrizacion
+<?php $__env->endSlot(); ?>
+<?php echo $__env->renderComponent(); ?>
 
 <form action="<?php echo e(route('parametrizacion.store')); ?>" method="POST">
     <?php echo csrf_field(); ?>
@@ -31,47 +31,79 @@
 
         </div>
 
-
         <div class="col-lg-4">
-            <div class="card">
-                <div class="card-body">
-                    <div class="mb-3">
-                        <label for="tipo_parametrizacion" class="form-label">Tipo de Parámetro</label>
-                        <select class="form-select" id="tipo_parametrizacion" name="tipo_parametrizacion" required>
-                            <option value="">Seleccionar tipo de parámetro</option>
-                            <?php $__currentLoopData = $parametrizacion; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tipo): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <option value="<?php echo e($tipo->id); ?>"><?php echo e($tipo->nombre); ?></option>
-                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                        </select>
-                    </div>
-
-                    <div>
-                        <label for="estado">Estado</label>
-                        <select class="form-select" id="estado" name="estado" required>
-                            <option value="">Seleccionar estado</option>
-                            <option value="1">Activo</option>
-                            <option value="0">Inactivo</option>
-                        </select>
-                    </div>
-                </div>
- 
+    <div class="card">
+        <div class="card-body">
+            <div class="mb-3">
+                <label for="tipo_parametrizacion" class="form-label">Tipo de Parámetro</label>
+                <select class="form-select" id="tipo_parametrizacion" name="tipo_parametrizacion" required onchange="mostrarCampo()">
+                    <option value="">Seleccionar tipo de parámetro</option>
+                    <option value="1">Nuevo parámetro</option>
+                    <option value="2">Nueva categoría</option>
+                </select>
             </div>
 
-
-            <div class="card">
-                <div class="card-header">
-                    <h5 class="card-title mb-0">Nombre del parametro</h5>
-                </div>
-
-                <div class="card-body">
-                    <div>
-                        <label for="nombre" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" id="nombre" name="nombre" required pattern="[a-zA-Z]+">
-                    </div>
-                </div>
+            <div id="campo_nombre" style="display:none;">
+                <label for="nombre" class="form-label">Nombre del parámetro</label>
+                <input type="text" class="form-control" id="nombre" name="nombre" required pattern="[a-zA-Z]+">
             </div>
 
+            <div id="campo_nombre2" style="display:none;">
+                <label for="nombre_categoria" class="form-label">Nombre de la categoría</label>
+                <input type="text" class="form-control" id="nombre_categoria" name="nombre_categoria" required pattern="[a-zA-Z]+">
+            </div>
+
+            <div id="campo_categoria" style="display:none;">
+                <label for="categoria" class="form-label">Categoría</label>
+                <select class="form-select" id="categoria" name="categoria">
+                    <option value="">Seleccionar categoría</option>
+                    <option value="opcion1">Tela</option>
+                    <option value="opcion2">Botón</option>
+                    <option value="opcion2">Cremallera</option>
+                    <!-- Agrega más opciones según sea necesario -->
+                </select>
+            </div>
+
+            <div id="campo_estado" style="display:none;">
+                <label for="estado" class="form-label">Estado</label>
+                <select class="form-select" id="estado" name="estado">
+                    <option value="">Seleccionar estado</option>
+                    <option value="1">Activo</option>
+                    <option value="0">Inactivo</option>
+                </select>
+            </div>
         </div>
+    </div>
+</div>
+
+<script>
+    function mostrarCampo() {
+        var tipoParametrizacion = document.getElementById("tipo_parametrizacion").value;
+        var campoNombre = document.getElementById("campo_nombre");
+        var campoNombre2 = document.getElementById("campo_nombre2");
+        var campoCategoria = document.getElementById("campo_categoria");
+        var campoEstado = document.getElementById("campo_estado");
+
+        if (tipoParametrizacion === "1") {
+            campoNombre.style.display = "block";
+            campoNombre2.style.display = "none";
+            campoCategoria.style.display = "none";
+            campoEstado.style.display = "block";
+        } else if (tipoParametrizacion === "2") {
+            campoNombre.style.display = "none";
+            campoNombre2.style.display = "block";
+            campoCategoria.style.display = "block";
+            campoEstado.style.display = "block";
+        } else {
+            campoNombre.style.display = "none";
+            campoNombre2.style.display = "none";
+            campoCategoria.style.display = "none";
+            campoEstado.style.display = "none";
+        }
+    }
+</script>
+
+
     </div>
     <div class="content">
         <form action="#">
