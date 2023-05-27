@@ -27,10 +27,27 @@ Crear insumos
                 <div class="card">
                     <div class="card-body">
                         
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <label for="img" class="form-label">Imagen</label>
+                                </div>
+                                <div class="card-body">
+                                    <input type="file" class="form-control" id="imagen" name="img" required>
+                                </div>
+                            </div>
+                        </div>
+                        
                         <div class="row mb-4">
                             <div class="col-md-6">
-                                <label for="img" class="form-label">Imagen</label>
-                                <input type="file" class="form-control" id="imagen" name="img" required>
+                                <div class="card">
+                                    <div class="card-header">
+                                        <label for="nombre" class="form-label">Nombre</label>
+                                    </div>
+                                    <div class="card-body">
+                                        <input type="text" class="form-control" id="imagen" name="nombre" required>
+                                    </div> 
+                                </div> 
                             </div>
                             <div class="col-md-6">
                                 <div class="card">
@@ -132,4 +149,7 @@ Crear insumos
         </div>
     </div>
 </div>
+@endsection
+@section('script')
+    <script src="{{ URL::asset('build/js/app.js') }}"></script>
 @endsection
