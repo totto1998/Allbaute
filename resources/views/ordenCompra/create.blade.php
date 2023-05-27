@@ -22,7 +22,7 @@ Shopping Cart
                 </div>
             </div>
             @php
-            $total = 0;
+                $total = 0;
             @endphp
         
             @foreach ($proveedores as $proveedor)
@@ -105,6 +105,7 @@ Shopping Cart
                     <!-- end card -->
                 @endforeach
             @endforeach
+            {{ $proveedores->links() }}
                
         </div>
         <br>
@@ -126,29 +127,23 @@ Shopping Cart
                             <tbody>
                                 <tr>
                                     <td>Sub Total :</td>
-                                    <td class="text-end" id="cart-subtotal">$ 359.96</td>
+                                    <td class="text-end" id="cart-subtotal"></td>
                                 </tr>
-                                <tr>
+                                {{--  <tr>
                                     <td>Descuento <span class="text-muted"></span> : </td>
-                                    <td class="text-end" id="cart-discount">- $ 53.99</td>
-                                </tr>
+                                    <td class="text-end" id="cart-discount"></td>
+                                </tr>  --}}
                                 <tr>
                                     <td>Iva 19%: </td>
-                                    <td class="text-end" id="cart-tax">$ 44.99</td>
+                                    <td class="text-end" id="cart-tax"></td>
                                 </tr>
                                 <tr class="table-active">
                                     <th>Total (COP) :</th>
                                     <td class="text-end">
-                                        <span class="fw-semibold" id="cart-total">
-                                            $415.96
-                                        </span>
-                                       
+                                        <span class="fw-semibold" id="cart-total"></span>
                                     </td>
-                                    
                                 </tr>
-                                
                             </tbody>
-                            
                         </table>
                         
                     </div>
@@ -158,8 +153,9 @@ Shopping Cart
                 
             </div>
             <div class="text-end mb-4">
-                                    <a href="{{URL::asset('/apps-ecommerce-checkout')}}" class="btn btn-success btn-label right ms-auto"><i class="ri-arrow-right-line label-icon align-bottom fs-16 ms-2"></i> Registrar orden</a>
-                                </div>
+                <a href="{{route('ordenCompra.registrar')}}" class="btn btn-success btn-label right ms-auto"><i class="ri-arrow-right-line label-icon align-bottom fs-16 ms-2"></i> Registrar orden</a>
+
+            </div>
         </div>
         <!-- end stickey -->
 

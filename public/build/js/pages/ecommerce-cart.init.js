@@ -7,14 +7,12 @@ File: Ecommerce cart Js File
 */
 
 
-var taxRate = 0.125;
-var shippingRate = 65.00;
-var discountRate = 0.15;
+var taxRate = 0.19;
+var discountRate = 0.00;
 
 var currencySign = "$";
 
 function recalculateCart() {
-
     var subtotal = 0;
 
     Array.from(document.getElementsByClassName("product")).forEach(function (item) {
@@ -27,14 +25,11 @@ function recalculateCart() {
     var tax = subtotal * taxRate;
     var discount = subtotal * discountRate;
 
-    var shipping = (subtotal > 0 ? shippingRate : 0);
-    var total = subtotal + tax + shipping - discount;
+    var total = subtotal + tax - discount;
 
     document.getElementById("cart-subtotal").innerHTML = currencySign + subtotal.toFixed(2);
     document.getElementById("cart-tax").innerHTML = currencySign + tax.toFixed(2);
-    document.getElementById("cart-shipping").innerHTML = currencySign + shipping.toFixed(2);
     document.getElementById("cart-total").innerHTML = currencySign + total.toFixed(2);
-    document.getElementById("cart-discount").innerHTML = "-" + currencySign + discount.toFixed(2);
 }
 
 function updateQuantity(quantityInput) {
@@ -59,8 +54,8 @@ function updateQuantity(quantityInput) {
 }
 
 // Remove product from cart
-var removeProduct = document.getElementById('removeItemModal')
-if (removeProduct)
+var removeProduct = document.getElementById('removeItemModal');
+if (removeProduct) {
     removeProduct.addEventListener('show.bs.modal', function (e) {
         document.getElementById('remove-product').addEventListener('click', function (event) {
             e.relatedTarget.closest('.product').remove();
@@ -68,3 +63,4 @@ if (removeProduct)
             recalculateCart();
         });
     });
+}

@@ -36,17 +36,16 @@ Route::post('/update-password/{id}', [App\Http\Controllers\HomeController::class
 
 
 
-// Route::get('orden-compra', [App\Http\Controllers\OrdenCompraController::class, 'mostrarOrdenes'])->name('ordenCompra');
-// Route::get('parametrizacion', [App\Http\Controllers\parametrizacionController::class, 'mostrarParametrizacion'])->name('parametrizacion');
-// Route::get('insumos', [App\Http\Controllers\insumosController::class, 'mostrarInsumos'])->name('insumos');
-// Route::get('proveedor', [App\Http\Controllers\proveedorController::class, 'mostrarProveedor'])->name('Proveedor');
-// Route::get('Rol', [App\Http\Controllers\RolController::class, 'index'])->name('Rol');
-// Route::get('user', [App\Http\Controllers\RolController::class, 'index'])->name('user');
-
 
 
 
 Route::group(['middleware' => 'auth'], function() {
+
+    Route::get('/panel', [App\Http\Controllers\PanelController::class, 'index'])->name('panel.index');
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+    Route::get('ordenCompra/registrar', [App\Http\Controllers\ordenCompraController::class, 'registrar'])->name('ordenCompra.registrar');
+
 
     Route::resource('roles',RolController::class);
     Route::resource('user',userController::class);
@@ -68,9 +67,6 @@ Route::group(['middleware' => 'auth'], function() {
     // Route::delete('/parametrizacion/{id}', [parametrizacionController::class, 'destroy'])->name('parametrizacion.destroy');
 
     Route::delete('/parametrizacion/{id}/destroy', [App\Http\Controllers\parametrizacionController::class, 'destroy'])->name('parametrizacion.destroy');
-
-
-
 
 
 
