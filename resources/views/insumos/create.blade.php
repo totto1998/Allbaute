@@ -57,10 +57,10 @@ Crear insumos
                                     <div class="card-body">
                                         <select class="form-select" id="choices-publish-status-input" name="categ" data-choices data-choices-search-false>
                                             <option value="">Selecciona una opción</option>
-                                            @foreach($paramcateg as $param)
-                                            @if($param->id_tipo == 1)
-                                            <option value="{{ $param->nombre }}">{{ $param->nombre }}</option>
-                                            @endif
+                                            @foreach($SubCategoria as $param)
+                                            
+                                            <option value="{{ $param->nombre_categoria }}">{{ $param->nombre_categoria }}</option>
+
                                             @endforeach
                                         </select>
                                     </div>
@@ -76,7 +76,7 @@ Crear insumos
                                     </div>
                                     <div class="card-body">
                                         <select class="form-select" id="choices-publish-status-input" name="subcateg" data-choices data-choices-search-false required>
-                                            @foreach($paramcateg as $param)
+                                            @foreach($SubCategoria as $param)
                                             @if($param->id_tipo == 2)
                                             <option value="{{ $param->nombre }}">{{ $param->nombre }}</option>
                                             @endif

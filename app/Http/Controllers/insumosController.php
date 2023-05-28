@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\insumos;
 use App\Models\parametrizacion;
+use App\Models\Categoria;
+use App\Models\SubCategoria;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -29,8 +31,9 @@ class insumosController extends Controller
     // }
     public function create()
 {
-    $paramcateg = parametrizacion::all();
-    return view('insumos.create', compact('paramcateg'));
+    $categorias = Categoria::all();
+    $SubCategoria = SubCategoria::all();
+    return view('insumos.create', compact('categorias', 'SubCategoria'));
 }
 
     

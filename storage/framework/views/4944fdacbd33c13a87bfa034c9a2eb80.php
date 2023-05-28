@@ -51,8 +51,8 @@ parametrizacion
                                 <tr class="text-uppercase">
                                     
                                     <th class="sort" data-sort="id">ID</th>
-                                    <th class="sort" data-sort="id_tipo">Tipo</th>
-                                    <th class="sort" data-sort="nombre">Nombre</th>
+                                    <th class="sort" data-sort="id_tipo">Categoria</th>
+                                    <th class="sort" data-sort="nombre">SubCategoria</th>
                                     <th class="sort" data-sort="descripcion">Descripcion</th>
                                     <th class="sort" data-sort="estado">Estado</th>
                                     <th >Acciones</th>
@@ -60,15 +60,15 @@ parametrizacion
                             </thead>
                             <tbody class="list form-check-all">
 
-                                <?php $__currentLoopData = $data; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $param): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <?php $__currentLoopData = $subcategoria; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $param): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <tr>
                                     
                                     <td><?php echo e($param->id); ?></td>
-                                    <td><?php echo e($param->tipoParametrizacion->nombre ?? ''); ?></td>
-                                    <td><?php echo e($param->nombre); ?></td>
-                                    <td><?php echo e($param->descripcion); ?></td>
+                                    <td><?php echo e($param->categoria->nombre_categoria ?? ''); ?></td>
+                                    <td><?php echo e($param->nombre_sub_categoria); ?></td>
+                                    <td><?php echo e($param->comentario); ?></td>
                                     <td>
-                                        <?php if($param->estado == 1): ?>
+                                        <?php if($param->estado_sub_categoria == 1): ?>
                                             <span class="badge badge-soft-success">Activo</span>
                                         <?php else: ?>
                                             <span class="badge badge-soft-danger">Inactivo</span>
@@ -119,7 +119,7 @@ parametrizacion
 
                     <div class="card-body">
                         <div class="pagination justify-content-end">
-                            <?php echo e($data->links()); ?>
+                            <?php echo e($subcategoria->links()); ?>
 
                         </div>
                     </div>
@@ -127,98 +127,6 @@ parametrizacion
 
                 </div>
 
-
-
-
-
-
-
-                <!-- Modal para agregar parametrizacion -->
-                <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="addModalLabel">Agregar Parámetro</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                          </div>
-                            <div class="modal-body">
-                                <form action="<?php echo e(route('parametrizacion.store')); ?>" method="POST">
-                                    <?php echo csrf_field(); ?>
-                                    <div class="mb-3">
-                                        <label for="tipo_parametrizacion" class="form-label">Tipo de Parámetro</label>
-                                        <select class="form-select" id="tipo_parametrizacion" name="tipo_parametrizacion" required>
-                                            <option value="">Seleccionar tipo de parámetro</option>
-                                            <?php $__currentLoopData = $tipo_parametrizacion; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tipo): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                <option value="<?php echo e($tipo->id); ?>"><?php echo e($tipo->nombre); ?></option>
-                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                        </select>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="nombre" class="form-label">Nombre</label>
-                                        <input type="text" maxlength="10" minlength="4" pattern="[a-zA-Z]+" class="form-control" id="nombre" name="nombre" required="">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="descripcion" class="form-label">Descripción</label>
-                                        <textarea class="form-control" maxlength="30" minlength="4" pattern="[a-zA-Z]+" id="descripcion" name="descripcion" rows="3" cols="10"></textarea>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="estado">Estado</label>
-                                        <select class="form-select" id="estado" name="estado" required>
-                                            <option value="">Seleccionar estado</option>
-                                            <option value="1">Activo</option>
-                                            <option value="0">Inactivo</option>
-                                        </select>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">Guardar</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Modal de Edición -->
-                <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-lg modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="editModalLabel">Editar Parámetro</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <form method="POST" action="<?php echo e(route('parametrizacion.update',$param->id)); ?>">
-                                    <?php echo csrf_field(); ?>
-                                    <?php echo method_field('PUT'); ?>
-                                    <div class="form-group">
-                                        <label for="tipoParametrizacion">Tipo:</label>
-                                        <select class="form-control" name="tipoParametrizacion" id="tipoParametrizacion">
-                                            <option value="">Seleccione una opción</option>
-                                            <?php $__currentLoopData = $tipo_parametrizacion; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tipo): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                <option value="<?php echo e($tipo->id); ?>" <?php echo e($param->tipoParametrizacion->id == $tipo->id ? 'selected' : ''); ?>><?php echo e($tipo->nombre); ?></option>
-                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="nombre">Nombre:</label>
-                                        <input type="text" class="form-control" id="nombre" name="nombre" value="<?php echo e($param->nombre); ?>">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="descripcion">Descripción:</label>
-                                        <textarea maxlength="30" minlength="10" class="form-control" id="descripcion" name="descripcion"><?php echo e($param->descripcion); ?></textarea>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="estado">Estado:</label>
-                                        <select class="form-control" name="estado" id="estado">
-                                            <option value="">Seleccione una opción</option>
-                                            <option value="1" <?php echo e($param->estado == 'Activo' ? 'selected' : ''); ?>>Activo</option>
-                                            <option value="0" <?php echo e($param->estado == 'Inactivo' ? 'selected' : ''); ?>>Inactivo</option>
-                                        </select>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
 

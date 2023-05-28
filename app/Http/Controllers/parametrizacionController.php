@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\parametrizacion;
 use App\Models\TipoParametrizacion;
+use App\Models\Categoria;
+use App\Models\SubCategoria;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -28,65 +30,57 @@ class parametrizacionController extends Controller
      */
     public function index()
     {
-        //  $parametrizacion = parametrizacion::paginate();
-        //  return view('parametrizacion.index', compact('parametrizacion'));
-
-         $data = parametrizacion::paginate(8); // Datos necesarios para el formulario
-         $tipo_parametrizacion = TipoParametrizacion::paginate(8);; // Datos de la tabla tipo_parametrizacion
-         return view('parametrizacion.index', compact('data', 'tipo_parametrizacion'));
+        $categoria = Categoria::paginate(8); // Datos necesarios para el formulario
+        $subcategoria = SubCategoria::paginate(8); // Datos de la tabla subcategoria
+        return view('parametrizacion.index', compact('categoria', 'subcategoria'));
     }
+    
 
         // método para mostrar el formulario de creación
-        public function create()
-        {
-            $parametrizacion = TipoParametrizacion::all();
-            return view('parametrizacion.create', compact('parametrizacion'));
+    public function create()
+    {
+        $categorias = Categoria::all();
+        $SubCategoria = SubCategoria::all();
+        return view('parametrizacion.create', compact('categorias', 'SubCategoria'));
+    }
+        
+
+
+    public function store(Request $request)
+    {
+        $validatedData = $request->validate([
+            'parametro' => 'required',
+            'comentario' => 'required',
+        ]);
+    
+        $categoria = null; // Valor predeterminado para la variable $categoria
+    
+        if ($validatedData['parametro'] == 1) {
+            // Nueva categoría
+            $categoria = new Categoria;
+            $categoria->nombre_categoria = $request->input('nombre_categoria');
+            $categoria->estado_categoria = $request->input('estado_categoria');
+            $categoria->comentario = $validatedData['comentario'];
+            $categoria->save();
+        } elseif ($validatedData['parametro'] == 2) {
+            // Nueva subcategoría
+            $subCategoria = new SubCategoria;
+            $subCategoria->nombre_sub_categoria = $request->input('nombre_sub_categoria');
+    
+            if ($request->filled('categoria')) {
+                $subCategoria->id_categ = $request->input('categoria');
+            }
+    
+            $subCategoria->estado_sub_categoria = $request->input('estado_categoria');
+            $subCategoria->comentario = $validatedData['comentario'];
+            $subCategoria->save();
         }
+    
+        return redirect()->route('parametrizacion.index')->with('success', 'El parámetro se ha creado exitosamente.');
+    }
+    
+    
 
-
-//     public function store(Request $request)
-//     {
-//     // Validar los datos del formulario
-//     $validatedData = $request->validate([
-//         'tipo_parametrizacion' => 'required',
-//         'nombre' => 'required',
-//         'estado' => 'required',
-//     ]);
-
-//     // Crear una nueva instancia del modelo Parametrizacion
-//     $parametrizacion = new Parametrizacion;
-
-//     // Asignar los valores recibidos desde el formulario a las propiedades del modelo
-//     $parametrizacion->id_tipo = $validatedData['tipo_parametrizacion'];
-//     $parametrizacion->nombre = $validatedData['nombre'];
-//     $parametrizacion->descripcion = $request->descripcion;
-//     $parametrizacion->estado = $validatedData['estado'];
-
-//     // Guardar el nuevo registro en la base de datos
-//     $parametrizacion->save();
-
-//     // Redirigir al usuario a la página de la lista de parámetros con un mensaje de confirmación
-//     return redirect()->route('parametrizacion.index')->with('status', 'El parámetro se ha agregado correctamente.');
-// }
-
-   // método para guardar el nuevo parámetro
-   public function store(Request $request)
-   {
-       $validatedData = $request->validate([
-           'tipo_parametrizacion' => 'required',
-           'nombre' => 'required|max:255',
-           'estado' => 'required',
-       ]);
-
-       $parametrizacion = new parametrizacion;
-       $parametrizacion->id_tipo = $validatedData['tipo_parametrizacion'];
-       $parametrizacion->nombre = $validatedData['nombre'];
-       $parametrizacion->descripcion = $request->descripcion;
-       $parametrizacion->estado = $validatedData['estado'];
-       $parametrizacion->save();
-
-       return redirect()->route('parametrizacion.index')->with('success', 'El parámetro se ha creado exitosamente.');
-   }
 
 
     /**
@@ -104,34 +98,38 @@ class parametrizacionController extends Controller
     // método para mostrar el formulario de edición
     public function edit($id)
     {
-        $param = parametrizacion::findOrFail($id);
-        $tiposParametrizacion = TipoParametrizacion::all();
-        // Puedes pasar el registro a la vista de edición
-        return view('parametrizacion.edit', compact('param', 'tiposParametrizacion'));
+        $subcategoria = SubCategoria::findOrFail($id);
+        $categorias = Categoria::all();
+        return view('parametrizacion.edit', compact('subcategoria', 'categorias'));
     }
     
 
 
     public function update(Request $request, $id)
     {
-        $param = parametrizacion::findOrFail($id);
-    
-        $validatedData = $request->validate([
-            'tipo_parametrizacion' => 'required',
-            'nombre' => 'required|max:255',
+        $subcategoria = SubCategoria::findOrFail($id);
+        
+        // Validar los datos del formulario
+        $request->validate([
+            'nombre' => 'required',
+            'descripcion' => 'required',
+            'categoria' => 'required',
             'estado' => 'required',
         ]);
     
-        $param->id_tipo = $validatedData['tipo_parametrizacion'];
-        $param->nombre = $validatedData['nombre'];
-        $param->descripcion = $request->descripcion;
-        $param->estado = $validatedData['estado'];
+        // Actualizar los atributos del registro con los datos del formulario
+        $subcategoria->nombre_sub_categoria = $request->nombre;
+        $subcategoria->comentario = $request->descripcion;
+        $subcategoria->id_categ = $request->categoria;
+        $subcategoria->estado_sub_categoria = $request->estado;
     
-        $param->save();
+        // Guardar los cambios en la base de datos
+        $subcategoria->save();
     
-        return redirect()->route('parametrizacion.index')->with('status', 'El parámetro se ha actualizado correctamente.');
+        // Redireccionar a la vista de la lista de registros o mostrar un mensaje de éxito
+        return redirect()->route('parametrizacion.index')->with('success', 'Registro actualizado exitosamente');
     }
-
+    
 
 
 

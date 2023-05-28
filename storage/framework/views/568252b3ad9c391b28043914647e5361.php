@@ -30,38 +30,41 @@ Editar insumos
                         </div>
                     <?php endif; ?>
 
-                    <!-- edit.blade.php -->
-                    <form action="<?php echo e(route('parametrizacion.update', $param->id)); ?>" method="POST">
+                    <form action="<?php echo e(route('parametrizacion.update', $subcategoria->id)); ?>" method="POST">
                         <?php echo csrf_field(); ?>
                         <?php echo method_field('PUT'); ?>
-                        <!-- Campos del formulario de edición -->
                         <div class="mb-3">
                             <label for="nombre">Nombre</label>
-                            <input type="text" class="form-control" id="nombre" name="nombre" value="<?php echo e($param->nombre); ?>" required>
+                            <input type="text" class="form-control" id="nombre" name="nombre" value="<?php echo e($subcategoria->nombre_sub_categoria); ?>" required>
                         </div>
                         <div class="mb-3">
                             <label for="descripcion">Descripción</label>
-                            <textarea class="form-control" id="descripcion" name="descripcion" required><?php echo e($param->descripcion); ?></textarea>
+                            <textarea class="form-control" id="descripcion" name="descripcion" required><?php echo e($subcategoria->comentario); ?></textarea>
                         </div>
                         <div class="mb-3">
-                            <label for="tipo_parametrizacion">Tipo de Parametrización</label>
-                            <select class="form-control" id="tipo_parametrizacion" name="tipo_parametrizacion" required>
-                                <?php $__currentLoopData = $tiposParametrizacion; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tipo): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <option value="<?php echo e($tipo->id); ?>" <?php echo e($param->tipoParametrizacion->id == $tipo->id ? 'selected' : ''); ?>><?php echo e($tipo->nombre); ?></option>
+                            <label for="categoria">Categoría</label>
+                            <select class="form-control" id="categoria" name="categoria" required>
+                                <?php $__currentLoopData = $categorias; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $categoria): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <option value="<?php echo e($categoria->id); ?>" <?php echo e($subcategoria->categoria_id == $categoria->id ? 'selected' : ''); ?>>
+                                        <?php echo e($categoria->nombre_categoria); ?>
+
+                                    </option>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </select>
                         </div>
                         <div class="mb-3">
                             <label for="estado">Estado</label>
                             <select class="form-control" id="estado" name="estado" required>
-                                <option value="1" <?php echo e($param->estado == 1 ? 'selected' : ''); ?>>Activo</option>
-                                <option value="0" <?php echo e($param->estado == 0 ? 'selected' : ''); ?>>Inactivo</option>
+                                <option value="1" <?php echo e($subcategoria->estado_sub_categoria == 1 ? 'selected' : ''); ?>>Activo</option>
+                                <option value="0" <?php echo e($subcategoria->estado_sub_categoria == 0 ? 'selected' : ''); ?>>Inactivo</option>
                             </select>
                         </div>
-                        <!-- Otros campos del formulario -->
-                    
                         <button type="submit" class="btn btn-primary">Guardar cambios</button>
                     </form>
+                    
+                    
+                
+                    
                     
                     
                 </div>

@@ -29,6 +29,7 @@ use App\Http\Controllers\ordenCompraController;
 use App\Http\Controllers\insumosController;
 use App\Http\Controllers\parametrizacionController;
 
+
 //Update User Details
 
 Route::post('/update-profile/{id}', [App\Http\Controllers\HomeController::class, 'updateProfile'])->name('updateProfile');
@@ -68,7 +69,10 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::delete('/parametrizacion/{id}/destroy', [App\Http\Controllers\parametrizacionController::class, 'destroy'])->name('parametrizacion.destroy');
 
-
+    Route::put('parametrizacion/{id}', 'parametrizacionController@update')->name('parametrizacion.update');
+    Route::get('/parametrizacion/{id}/edit', [parametrizacionController::class, 'edit'])->name('parametrizacion.edit');
+    Route::put('/parametrizacion/{id}', [parametrizacionController::class, 'update'])->name('parametrizacion.update');
+    Route::delete('/parametrizacion/{id}/destroy', [parametrizacionController::class, 'destroy'])->name('parametrizacion.destroy');
 
     
 

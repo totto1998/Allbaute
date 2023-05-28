@@ -30,38 +30,40 @@ Editar insumos
                         </div>
                     @endif
 
-                    <!-- edit.blade.php -->
-                    <form action="{{ route('parametrizacion.update', $param->id) }}" method="POST">
+                    <form action="{{ route('parametrizacion.update', $subcategoria->id) }}" method="POST">
                         @csrf
                         @method('PUT')
-                        <!-- Campos del formulario de edición -->
                         <div class="mb-3">
                             <label for="nombre">Nombre</label>
-                            <input type="text" class="form-control" id="nombre" name="nombre" value="{{ $param->nombre }}" required>
+                            <input type="text" class="form-control" id="nombre" name="nombre" value="{{ $subcategoria->nombre_sub_categoria }}" required>
                         </div>
                         <div class="mb-3">
                             <label for="descripcion">Descripción</label>
-                            <textarea class="form-control" id="descripcion" name="descripcion" required>{{ $param->descripcion }}</textarea>
+                            <textarea class="form-control" id="descripcion" name="descripcion" required>{{ $subcategoria->comentario }}</textarea>
                         </div>
                         <div class="mb-3">
-                            <label for="tipo_parametrizacion">Tipo de Parametrización</label>
-                            <select class="form-control" id="tipo_parametrizacion" name="tipo_parametrizacion" required>
-                                @foreach ($tiposParametrizacion as $tipo)
-                                    <option value="{{ $tipo->id }}" {{ $param->tipoParametrizacion->id == $tipo->id ? 'selected' : '' }}>{{ $tipo->nombre }}</option>
+                            <label for="categoria">Categoría</label>
+                            <select class="form-control" id="categoria" name="categoria" required>
+                                @foreach ($categorias as $categoria)
+                                    <option value="{{ $categoria->id }}" {{ $subcategoria->categoria_id == $categoria->id ? 'selected' : '' }}>
+                                        {{ $categoria->nombre_categoria }}
+                                    </option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="mb-3">
                             <label for="estado">Estado</label>
                             <select class="form-control" id="estado" name="estado" required>
-                                <option value="1" {{ $param->estado == 1 ? 'selected' : '' }}>Activo</option>
-                                <option value="0" {{ $param->estado == 0 ? 'selected' : '' }}>Inactivo</option>
+                                <option value="1" {{ $subcategoria->estado_sub_categoria == 1 ? 'selected' : '' }}>Activo</option>
+                                <option value="0" {{ $subcategoria->estado_sub_categoria == 0 ? 'selected' : '' }}>Inactivo</option>
                             </select>
                         </div>
-                        <!-- Otros campos del formulario -->
-                    
                         <button type="submit" class="btn btn-primary">Guardar cambios</button>
                     </form>
+                    
+                    
+                
+                    
                     
                     
                 </div>

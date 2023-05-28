@@ -57,10 +57,10 @@ Crear insumos
                                     <div class="card-body">
                                         <select class="form-select" id="choices-publish-status-input" name="categ" data-choices data-choices-search-false>
                                             <option value="">Selecciona una opción</option>
-                                            <?php $__currentLoopData = $paramcateg; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $param): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                            <?php if($param->id_tipo == 1): ?>
-                                            <option value="<?php echo e($param->nombre); ?>"><?php echo e($param->nombre); ?></option>
-                                            <?php endif; ?>
+                                            <?php $__currentLoopData = $SubCategoria; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $param): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            
+                                            <option value="<?php echo e($param->nombre_categoria); ?>"><?php echo e($param->nombre_categoria); ?></option>
+
                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </select>
                                     </div>
@@ -76,7 +76,7 @@ Crear insumos
                                     </div>
                                     <div class="card-body">
                                         <select class="form-select" id="choices-publish-status-input" name="subcateg" data-choices data-choices-search-false required>
-                                            <?php $__currentLoopData = $paramcateg; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $param): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <?php $__currentLoopData = $SubCategoria; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $param): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <?php if($param->id_tipo == 2): ?>
                                             <option value="<?php echo e($param->nombre); ?>"><?php echo e($param->nombre); ?></option>
                                             <?php endif; ?>
