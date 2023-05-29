@@ -62,7 +62,7 @@ parametrizacion
 
                                 <?php $__currentLoopData = $subcategoria; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $param): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <tr>
-                                    
+
                                     <td><?php echo e($param->id); ?></td>
                                     <td><?php echo e($param->categoria->nombre_categoria ?? ''); ?></td>
                                     <td><?php echo e($param->nombre_sub_categoria); ?></td>
@@ -78,7 +78,7 @@ parametrizacion
 
                                     <td>
                                         <ul class="list-inline hstack gap-2 mb-0">
-                                            
+
                                             <li class="list-inline-item edit" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Edit">
                                                 <a href="<?php echo e(route('parametrizacion.edit', $param->id)); ?>" class="text-primary d-inline-block">
                                                     <i class="ri-pencil-fill fs-16"></i>

@@ -66,11 +66,7 @@ parametrizacion
 
                                 @foreach ($subcategoria as $param)
                                 <tr>
-                                    {{--  <th scope="row">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="checkAll" value="option1">
-                                        </div>
-                                    </th>  --}}
+
                                     <td>{{$param->id}}</td>
                                     <td>{{$param->categoria->nombre_categoria ?? '' }}</td>
                                     <td>{{$param->nombre_sub_categoria}}</td>
@@ -86,11 +82,7 @@ parametrizacion
 
                                     <td>
                                         <ul class="list-inline hstack gap-2 mb-0">
-                                            {{--  <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="View">
-                                                <a href="{{URL::asset('/apps-ecommerce-order-details')}}" class="text-primary d-inline-block">
-                                                    <i class="ri-eye-fill fs-16"></i>
-                                                </a>
-                                            </li>  --}}
+
                                             <li class="list-inline-item edit" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Edit">
                                                 <a href="{{ route('parametrizacion.edit', $param->id) }}" class="text-primary d-inline-block">
                                                     <i class="ri-pencil-fill fs-16"></i>

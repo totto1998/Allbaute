@@ -30,8 +30,8 @@ class parametrizacionController extends Controller
      */
     public function index()
     {
-        $categoria = Categoria::paginate(8); // Datos necesarios para el formulario
-        $subcategoria = SubCategoria::paginate(8); // Datos de la tabla subcategoria
+        $categoria = Categoria::paginate(5); // Datos necesarios para el formulario
+        $subcategoria = SubCategoria::paginate(5); // Datos de la tabla subcategoria
         return view('parametrizacion.index', compact('categoria', 'subcategoria'));
     }
     
