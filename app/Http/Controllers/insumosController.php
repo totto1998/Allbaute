@@ -32,7 +32,7 @@ class insumosController extends Controller
     // }
     public function create()
     {
-        $categorias = Categoria::where('estado_categoria', 1)->get();
+        $categorias = Categoria::all();
         $subcategorias = SubCategoria::where('estado_sub_categoria', 1)->get();
     
         return view('insumos.create', compact('categorias', 'subcategorias'));
