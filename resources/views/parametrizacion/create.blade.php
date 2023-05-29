@@ -1,18 +1,21 @@
 @extends('layouts.master')
+
 @section('title')
 @lang('translation.create-product')
 @endsection
+
 @section('css')
 <link href="{{ asset('build/libs/dropzone/dropzone.css') }}" rel="stylesheet">
 <link rel="stylesheet" href="{{ asset('build/css/style.css') }}">
 @endsection
+
 @section('content')
 @component('components.breadcrumb')
 @slot('li_1')
 Ecommerce
 @endslot
 @slot('title')
-Crear nueva parametrizacion
+Crear nueva parametrización
 @endslot
 @endcomponent
 
@@ -29,7 +32,8 @@ Crear nueva parametrizacion
                 <div class="card-body">
                     <div class="mb-3">
                         <label for="comentario" class="form-label">Comentario</label>
-                        <textarea required class="form-control" id="comentario" name="comentario" rows="5"></textarea>
+                        <textarea required class="form-control" id="comentario" name="comentario" rows="5" oninput="bloquearComillas('comentario')"></textarea>
+                        <p id="mensajeError_comentario" class="error"></p>
                     </div>
                 </div>
             </div>
@@ -40,7 +44,7 @@ Crear nueva parametrizacion
                 <div class="card-body">
                     <div class="mb-3">
                         <label for="parametro" class="form-label">Tipo de Parámetro</label>
-                        <select class="form-select" id="parametro" name="parametro" required onchange="mostrarCampo()">
+                        <select class="form-select" id="parametro" name="parametro" onchange="mostrarCampo()">
                             <option value="">Seleccionar tipo de parámetro</option>
                             <option value="1">Nuevo parámetro</option>
                             <option value="2">Nueva categoría</option>
@@ -79,7 +83,7 @@ Crear nueva parametrizacion
                     </div>
 
                     <div id="campo_estado2" style="display:none;">
-                        <label for="estado_categoria2" class="form-label">aqui va lo nuevo</label>
+                        <label for="estado_categoria2" class="form-label">Aquí va lo nuevo</label>
                         <select class="form-select" id="estado_categoria" name="estado_categoria">
                             <option value="">Seleccionar cambia esto</option>
                             <option value="1">Activo</option>
@@ -102,7 +106,7 @@ Crear nueva parametrizacion
 <script>
     function bloquearComillas(id) {
         var input = document.getElementById(id);
-        input.value = input.value.replace(/['="]/g, '');
+        input.value = input.value.replace(/['"]/g, '');
     }
 
     function validarCampoNombre() {
@@ -134,22 +138,37 @@ Crear nueva parametrizacion
 
         if (tipoParametrizacion === "1") {
             campoNombre.style.display = "block";
+            campoNombre.querySelector('input').setAttribute("required", "required");
             campoNombre2.style.display = "none";
+            campoNombre2.querySelector('input').removeAttribute("required");
             campoCategoria.style.display = "none";
+            campoCategoria.querySelector('select').removeAttribute("required");
             campoEstado.style.display = "none";
+            campoEstado.querySelector('select').removeAttribute("required");
             campoEstado2.style.display = "block";
+            campoEstado2.querySelector('select').setAttribute("required", "required");
         } else if (tipoParametrizacion === "2") {
             campoNombre.style.display = "none";
+            campoNombre.querySelector('input').removeAttribute("required");
             campoNombre2.style.display = "block";
+            campoNombre2.querySelector('input').setAttribute("required", "required");
             campoCategoria.style.display = "block";
+            campoCategoria.querySelector('select').setAttribute("required", "required");
             campoEstado.style.display = "block";
+            campoEstado.querySelector('select').setAttribute("required", "required");
             campoEstado2.style.display = "none";
+            campoEstado2.querySelector('select').removeAttribute("required");
         } else {
             campoNombre.style.display = "none";
+            campoNombre.querySelector('input').removeAttribute("required");
             campoNombre2.style.display = "none";
+            campoNombre2.querySelector('input').removeAttribute("required");
             campoCategoria.style.display = "none";
+            campoCategoria.querySelector('select').removeAttribute("required");
             campoEstado.style.display = "none";
+            campoEstado.querySelector('select').removeAttribute("required");
             campoEstado2.style.display = "none";
+            campoEstado2.querySelector('select').removeAttribute("required");
         }
     }
 </script>
@@ -159,3 +178,4 @@ Crear nueva parametrizacion
 @section('script')
 <script src="{{ asset('build/js/app.js') }}"></script>
 @endsection
+
