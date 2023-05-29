@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class insumos extends Model
+class Insumo extends Model
 {
     use HasFactory;
 
@@ -24,6 +24,17 @@ class insumos extends Model
           'estado',
           'created_at',
       ];
+
+      public function categoria()
+      {
+          return $this->belongsTo(Categoria::class, 'categ', 'nombre_categoria');
+      }
+
+      public function subcategoria()
+      {
+          return $this->belongsTo(SubCategoria::class, 'subcateg');
+      }
+  
 
 
 }
