@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\insumos;
+use App\Models\Insumo;
 use App\Models\parametrizacion;
 use App\Models\Categoria;
 use App\Models\SubCategoria;
+use Intervention\Image\Facades\Image;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -17,7 +18,7 @@ class insumosController extends Controller
      */
     public function index()
     {
-       $data = insumos::paginate(8);
+       $data = Insumo::paginate(5);
        return view('insumos.index', compact('data'));
     }
 
@@ -30,55 +31,58 @@ class insumosController extends Controller
     //     return view('insumos.create', ['paramcateg' => $paramcateg]);
     // }
     public function create()
-{
-    $categorias = Categoria::all();
-    $SubCategoria = SubCategoria::all();
-    return view('insumos.create', compact('categorias', 'SubCategoria'));
-}
+    {
+        $categorias = Categoria::where('estado_categoria', 1)->get();
+        $subcategorias = SubCategoria::where('estado_sub_categoria', 1)->get();
+    
+        return view('insumos.create', compact('categorias', 'subcategorias'));
+    }
+    
+    
+    
 
     
 
-public function store(Request $request)
-{
-    $request->validate([
-          'img' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-          'tags' => 'required',
-          'categ' => 'required',
-          'precio' => 'required|numeric',
-          'stock' => 'required|numeric',
-          'estado' => 'required|numeric',
-          'descuento' => 'required|numeric',
-          'color' => 'required',
-          'unidad' => 'required',
-          'ancho' => 'required|numeric',
-    ]);
-        // Obtener la imagen del formulario
-        $image = $request->file('img');
-
-        // Generar un nombre único para la imagen
-        $imageName = time() . '.' . $image->extension();
-
-        // Mover la imagen a la carpeta de almacenamiento
-        $image->move(public_path('images'), $imageName);
-
-        $insumo = Insumos::create([
-            'img' => $imageName,
-            'tags' => $request->tags,
-            'categ' => $request->categ,
-            'precio' => $request->precio,
-            'stock' => $request->stock,
-            'descuento' => $request->descuento,
-            'color' => implode(',', $request->color), // Convertir el array en una cadena separada por comas
-            'unidad' => $request->unidad,
-            'ancho' => $request->ancho,
-            'subcateg' => $request->subcateg,
-            'estado' => $request->estado,
-            'created_at' => now(),
+    public function store(Request $request)
+    {
+        $validatedData = $request->validate([
+            'img' => 'required|image',
+            'nombre' => 'required',
+            'categ' => 'required',
+            'subcateg' => 'required',
+            'color' => 'required',
+            'unidad' => 'required',
+            'descripcion' => 'nullable',
+            'tags' => 'nullable',
         ]);
-        
-    // Otras operaciones que desees realizar después de guardar el insumo
-    return redirect()->route('insumos.index')->with('success', 'Insumo agregado correctamente');
-}
+    
+        // Procesar la imagen
+        if ($request->hasFile('img')) {
+            $image = $request->file('img');
+            $imageName = $image->getClientOriginalName();
+            $image->storePubliclyAs('public/images', $imageName);
+        } else {
+            $imageName = null;
+        }
+    
+        // Crear el nuevo insumo
+        $insumo = new Insumo();
+        $insumo->nombre = $validatedData['nombre'];
+        $insumo->categ = $validatedData['categ'];
+        $insumo->subcateg = $validatedData['subcateg'];
+        $insumo->color = $validatedData['color'];
+        $insumo->unidad = $validatedData['unidad'];
+        $insumo->descripcion = $validatedData['descripcion'];
+        $insumo->tags = $validatedData['tags']; // Guardar los tags en el campo 'tags'
+        $insumo->img = $imageName;
+        $insumo->save();
+    
+        return redirect()->route('insumos.index')->with('success', 'El insumo se ha registrado correctamente.');
+    }
+    
+    
+    
+    
 
     /**
      * Display the specified resource.
@@ -93,12 +97,13 @@ public function store(Request $request)
      */
     public function edit($id)
     {
-        $insumo = insumos::find($id);
-        $paramcateg = parametrizacion::all();
-        // Puedes pasar otros datos necesarios al formulario si lo deseas
-
-        return view('insumos.edit', compact('insumo','paramcateg'));
+        $insumo = Insumo::findOrFail($id);
+        $subcategorias = SubCategoria::all();
+        $categorias = Categoria::all();
+    
+        return view('insumos.edit', compact('insumo', 'subcategorias', 'categorias'));
     }
+    
 
     // Método para actualizar el registro en la base de datos
     public function update(Request $request, $id)
@@ -116,7 +121,7 @@ public function store(Request $request)
         ]);
     
         // Buscar el insumo a actualizar
-        $insumo = insumos::find($id);
+        $insumo = insumo::find($id);
     
         // Procesar y guardar la imagen si se ha enviado una nueva imagen
         if ($request->hasFile('img')) {
@@ -156,7 +161,7 @@ public function store(Request $request)
      */
     public function destroy($id)
     {
-        $insumo = insumos::find($id);
+        $insumo = insumo::find($id);
         $insumo->delete();
     
         return redirect()->route('insumos.index');

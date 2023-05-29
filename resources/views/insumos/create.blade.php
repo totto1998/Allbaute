@@ -33,7 +33,7 @@ Crear insumos
                                     <label for="img" class="form-label">Imagen</label>
                                 </div>
                                 <div class="card-body">
-                                    <input type="file" class="form-control" id="imagen" name="img" required>
+                                    <input type="file" class="form-control" id="img" name="img" required>
                                 </div>
                             </div>
                         </div>
@@ -57,10 +57,8 @@ Crear insumos
                                     <div class="card-body">
                                         <select class="form-select" id="choices-publish-status-input" name="categ" data-choices data-choices-search-false>
                                             <option value="">Selecciona una opción</option>
-                                            @foreach($SubCategoria as $param)
-                                            
-                                            <option value="{{ $param->nombre_categoria }}">{{ $param->nombre_categoria }}</option>
-
+                                            @foreach($categorias as $categoria)
+                                                <option value="{{ $categoria->nombre_categoria }}">{{ $categoria->nombre_categoria }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -76,11 +74,7 @@ Crear insumos
                                     </div>
                                     <div class="card-body">
                                         <select class="form-select" id="choices-publish-status-input" name="subcateg" data-choices data-choices-search-false required>
-                                            @foreach($SubCategoria as $param)
-                                            @if($param->id_tipo == 2)
-                                            <option value="{{ $param->nombre }}">{{ $param->nombre }}</option>
-                                            @endif
-                                            @endforeach
+                                            <!-- Opciones de subcategorías filtradas por JavaScript -->
                                         </select>
                                     </div>
                                 </div>
@@ -105,10 +99,11 @@ Crear insumos
                                     </div>
                                     <div class="card-body">
                                         <select class="form-select" id="color-input" name="color">
-                                            <option value="">Selecciona una opción</option>
-                                            <option value="Rojo">Rojo</option>
-                                            <option value="Azul">Azul</option>
-                                            <option value="Verde">Verde</option>
+                                            @foreach($subcategorias as $subcategoria)
+                                                @if($subcategoria->id_categ == 3) {{-- Filtrar por el id_categ de "Colores" --}}
+                                                    <option value="{{ $subcategoria->nombre_sub_categoria }}">{{ $subcategoria->nombre_sub_categoria }}</option>
+                                                @endif
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
@@ -120,10 +115,11 @@ Crear insumos
                                     </div>
                                     <div class="card-body">
                                         <select class="form-select" id="unidad-input" name="unidad">
-                                            <option value="">Selecciona una opción</option>
-                                            <option value="Metro">Metro</option>
-                                            <option value="Kilogramo">Kilogramo</option>
-                                            <option value="Litro">Litro</option>
+                                            @foreach($subcategorias as $subcategoria)
+                                                @if($subcategoria->id_categ == 4) {{-- Filtrar por el id_categ de "Unidad" --}}
+                                                    <option value="{{ $subcategoria->nombre_sub_categoria }}">{{ $subcategoria->nombre_sub_categoria }}</option>
+                                                @endif
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
@@ -151,5 +147,30 @@ Crear insumos
 </div>
 @endsection
 @section('script')
-    <script src="{{ URL::asset('build/js/app.js') }}"></script>
+<script src="{{ URL::asset('build/js/app.js') }}"></script>
+<script>
+        // Obtener el elemento del select de categoría
+    var selectCategoria = document.getElementById('choices-publish-status-input');
+    
+        // Obtener el elemento del select de subcategoría
+    var selectSubcategoria = document.getElementsByName('subcateg')[0];
+    
+        // Manejar el evento de cambio en el select de categoría
+    selectCategoria.addEventListener('change', function() {
+        var categoriaSeleccionada = selectCategoria.value;
+    
+            // Limpiar las opciones anteriores del select de subcategoría
+        selectSubcategoria.innerHTML = '';
+    
+            // Filtrar y agregar las opciones de subcategoría correspondientes
+        @foreach($subcategorias as $subcategoria)
+            if ('{{ $subcategoria->categoria->nombre_categoria }}' === categoriaSeleccionada) {
+                var option = document.createElement('option');
+                option.value = '{{ $subcategoria->nombre_sub_categoria }}';
+                option.textContent = '{{ $subcategoria->nombre_sub_categoria }}';
+                selectSubcategoria.appendChild(option);
+            }
+        @endforeach
+    });
+</script>
 @endsection

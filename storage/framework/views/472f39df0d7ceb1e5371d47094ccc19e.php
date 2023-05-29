@@ -19,7 +19,7 @@
      
     <div class="row">
         
-        
+
 
         <div class="col-lg-12">
             <div>
@@ -43,7 +43,7 @@
                         </div>
                     </div>
                     <br>
-                    
+
                     <!-- end card header -->
                     <div class="card-body pt-0">
                         <div>
@@ -59,14 +59,9 @@
                                         <th>ID</th>
                                         <th>Producto</th>
                                         <th>Tags</th>
-                                        <th>Precio</th>
-                                        <th>Stock</th>
-                                        <th>Descuento</th>
                                         <th>Color</th>
                                         <th>Unidad</th>
-                                        <th>Ancho</th>
-                                        <th>Material</th>
-                                        <th>Estado</th>
+                                    
                                         <th>Fecha de Creación</th>
                                         <th>Acciones</th>
                                       </tr>
@@ -85,26 +80,16 @@
                                               <img src="<?php echo e(asset('images/' . $insumo->img)); ?>" alt="<?php echo e($insumo->nombre); ?>" class="me-2" style="width: 50px; height: 50px;">
                                               <div>
                                                 <p class="mb-0"><?php echo e($insumo->nombre); ?></p>
-                                                <small class="text-muted"><?php echo e($insumo->categ); ?></small>
+                                                <small class="text-muted"><?php echo e($insumo->categ); ?></small><br>
+                                                <small class="text-muted"><?php echo e($insumo->subcateg); ?></small>
                                               </div>
                                             </div>
                                           </td>
                                           
                                         <td><?php echo e($insumo->tags); ?></td>
-                                        <td><?php echo e($insumo->precio); ?></td>
-                                        <td><?php echo e($insumo->stock); ?></td>
-                                        <td><?php echo e($insumo->descuento); ?></td>
                                         <td><?php echo e($insumo->color); ?></td>
                                         <td><?php echo e($insumo->unidad); ?></td>
-                                        <td><?php echo e($insumo->ancho); ?></td>
-                                        <td><?php echo e($insumo->subcateg); ?></td>
-                                        <td>
-                                            <?php if($insumo->estado == 1): ?>
-                                                <span class="badge badge-soft-success">Terminado</span>
-                                            <?php else: ?>
-                                                <span class="badge badge-soft-danger">Produccion</span>
-                                            <?php endif; ?>
-                                        </td>
+                                        
                                         <td><?php echo e($insumo->created_at); ?></td>
                                         <td>
                                             <ul class="list-inline hstack gap-2 mb-0">
@@ -130,9 +115,10 @@
                                       </tr>
                                       <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </tbody>
-                                  </table>
-                                  
+                                  </table>     
                             </div>
+                            <?php echo e($data->links()); ?>
+
                         </div>
                     </div>
                     <!-- end card body -->
@@ -143,7 +129,7 @@
         <!-- end col -->
     </div>
     <!-- end row -->
-    
+
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('script'); ?>
 

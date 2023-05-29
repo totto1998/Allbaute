@@ -5,7 +5,6 @@
 @section('css')
 <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0/css/select2.min.css" rel="stylesheet" />
 <link href="{{ URL::asset('build/libs/dropzone/dropzone.css') }}" rel="stylesheet">
-
 @endsection
 @section('content')
 @component('components.breadcrumb')
@@ -35,134 +34,165 @@ Editar insumos
                         @csrf
                         @method('PUT')
                         <!-- Campos del formulario de edición -->
-                        <div class="mb-3">
-                            <label for="img">Imagen</label>
-                            <input type="file" class="form-control" id="img" name="img">
-                            @if ($insumo->img)
-                                <img src="{{ asset('images/'.$insumo->img) }}" alt="Imagen actual" style="max-width: 50px; margin-top: 10px;">
-                            @endif
-                        </div>
-                        <div class="mb-3">
-                            <label for="choices-publish-status-input" class="form-label">Categoria de insumos</label>
-                            <select class="form-select" id="choices-publish-status-input" name="categ" data-choices data-choices-search-false>
-                                <option value="">Selecciona una opción</option>
-                                @foreach($paramcateg as $param)
-                                    @if($param->id_tipo == 1)
-                                        <option value="{{ $param->nombre }}" {{ $param->nombre == $insumo->categ ? 'selected' : '' }}>
-                                            {{ $param->nombre }}
-                                        </option>
-                                    @endif
-                                @endforeach
-                            </select>
-                        </div>
-
-                        <div id="card-body-container"></div>
-                        <script>
-                            const selectEl = document.getElementById('choices-publish-status-input');
-                            const cardBodyContainerEl = document.getElementById('card-body-container');
-                    
-                            selectEl.addEventListener('change', (event) => {
-                                const selectedValue = event.target.value;
-                                if (selectedValue === 'Tela') {
-                                    // Agregar el código HTML al contenedor
-                                    cardBodyContainerEl.innerHTML = `
+                        <div class="card">
+                            <div class="card-body">
+                                
+                                <div class="col-md-12">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <label for="img" class="form-label">Imagen</label>
+                                        </div>
                                         <div class="card-body">
-                                            <div class="mb-2">
-                                                <label for="choices-publish-status-input" class="form-label">Tipo de tela</label>
+                                            <input type="file" class="form-control" id="img" name="img" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row mb-4">
+                                    <div class="col-md-6">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <label for="nombre" class="form-label">Nombre</label>
+                                            </div>
+                                            <div class="card-body">
+                                                <input type="text" class="form-control" id="imagen" name="nombre" value="{{ $insumo->nombre }}" required>
+                                            </div> 
+                                        </div> 
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <label for="choices-publish-status-input" class="form-label">Categoría de insumos</label>
+                                            </div>
+                                            <div class="card-body">
+                                                <select class="form-select" id="choices-publish-status-input" name="categ" data-choices data-choices-search-false>
+                                                    @foreach($categorias as $categoria)
+                                                        <option value="{{ $categoria->nombre_categoria }}" @if($insumo->categoria && $categoria->nombre_categoria == $insumo->categoria->nombre_categoria) selected @endif>{{ $categoria->nombre_categoria }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                    
+                                <div class="row mt-4">
+                                    <div class="col-md-6">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <label for="choices-publish-status-input" class="form-label">Subcategoría</label>
+                                            </div>
+                                            <div class="card-body">
                                                 <select class="form-select" id="choices-publish-status-input" name="subcateg" data-choices data-choices-search-false required>
-                                                    @foreach($paramcateg as $param)
-                                                        @if($param->id_tipo == 2)
-                                                        <option value="{{ $param->nombre }}" {{ $param->nombre == $insumo->subcateg ? 'selected' : '' }}>
-                                                            {{ $param->nombre }}
-                                                        </option>
+                                                    <!-- Opciones de subcategorías -->
+                                                    @foreach($subcategorias as $subcategoria)
+                                                        <option value="{{ $subcategoria->id }}" @if($subcategoria->id == $insumo->subcateg) selected @endif>{{ $subcategoria->nombre_sub_categoria }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-md-6">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <label for="choices-publish-status-input" class="form-label">Tags</label>
+                                            </div>
+                                            <div class="card-body">
+                                                <input type="text" class="form-control" id="tags-input" name="tags" value="{{ $insumo->tags }}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                    
+                                <div class="row mt-4">
+                                    <div class="col-md-6">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <label for="choices-publish-status-input" class="form-label">Color</label>
+                                            </div>
+                                            <div class="card-body">
+                                                <select class="form-select" id="color-input" name="color">
+                                                    @foreach($subcategorias as $subcategoria)
+                                                        @if($subcategoria->id_categ == 3) {{-- Filtrar por el id_categ de "Colores" --}}
+                                                            <option value="{{ $subcategoria->nombre_sub_categoria }}" @if($subcategoria->nombre_sub_categoria == $insumo->color) selected @endif>{{ $subcategoria->nombre_sub_categoria }}</option>
                                                         @endif
                                                     @endforeach
                                                 </select>
                                             </div>
                                         </div>
-                                    `;
-                                } else if (selectedValue === 'Botón' || selectedValue === 'Cremalleras') {
-                                    // Agregar el código HTML al contenedor
-                                    cardBodyContainerEl.innerHTML = `
-                                        <div class="card-body">
-                                            <div class="mb-2">
-                                                <label for="choices-publish-status-input" class="form-label">Tipo de Material</label>
-                                                <select class="form-select" id="choices-publish-status-input" name="subcateg" data-choices data-choices-search-false required>
-                                                    @foreach($paramcateg as $param)
-                                                        @if($param->id_tipo == 3)
-                                                        <option value="{{ $param->nombre }}" {{ $param->nombre == $insumo->subcateg ? 'selected' : '' }}>
-                                                            {{ $param->nombre }}
-                                                        </option>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <label for="choices-publish-status-input" class="form-label">Unidad</label>
+                                            </div>
+                                            <div class="card-body">
+                                                <select class="form-select" id="unidad-input" name="unidad">
+                                                    @foreach($subcategorias as $subcategoria)
+                                                        @if($subcategoria->id_categ == 4) {{-- Filtrar por el id_categ de "Unidad" --}}
+                                                            <option value="{{ $subcategoria->nombre_sub_categoria }}" @if($subcategoria->nombre_sub_categoria == $insumo->unidad) selected @endif>{{ $subcategoria->nombre_sub_categoria }}</option>
                                                         @endif
                                                     @endforeach
                                                 </select>
                                             </div>
                                         </div>
-                                    `;
-                                } else {
-                                    // Limpiar el contenido del contenedor si no se selecciona una opción correspondiente
-                                    cardBodyContainerEl.innerHTML = '';
-                                }
-                            });
+                                    </div>
+                                </div>
                     
-                            // Simular el evento 'change' para mostrar la subcategoría seleccionada inicialmente
-                            selectEl.value = '{{ $insumo->categ }}';
-                            selectEl.dispatchEvent(new Event('change'));
-                        </script>
-                        
-                        <div class="mb-3">
-                            <label for="tags">Tags</label>
-                            <input type="text" class="form-control" id="tags" name="tags" value="{{ $insumo->tags }}" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="precio">Precio</label>
-                            <input type="number" class="form-control" id="precio" name="precio" value="{{ $insumo->precio }}" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="stock">Stock</label>
-                            <input type="number" class="form-control" id="stock" name="stock" value="{{ $insumo->stock }}" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="descuento">Descuento</label>
-                            <input type="number" class="form-control" id="descuento" name="descuento" value="{{ $insumo->descuento }}">
-                        </div>
-                        <div class="mb-3">
-                            <label for="color">Color</label>
-                            <input type="text" class="form-control" id="color" name="color" value="{{ $insumo->color }}" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="unidad">Unidad</label>
-                            <input type="text" class="form-control" id="unidad" name="unidad" value="{{ $insumo->unidad }}" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="ancho">Ancho</label>
-                            <input type="number" class="form-control" id="ancho" name="ancho" value="{{ $insumo->ancho }}" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="estado">Estado</label>
-                            <select class="form-control" id="estado" name="estado" required>
-                                <option value="1" {{ $insumo->estado == 1 ? 'selected' : '' }}>Terminado</option>
-                                <option value="0" {{ $insumo->estado == 0 ? 'selected' : '' }}>Producción</option>
-                            </select>
+                                <div class="card mt-4">
+                                    <div class="card-body">
+                                        <div class="mb-3">
+                                            <label for="descripcion-input" class="form-label">Descripción</label>
+                                            <textarea class="form-control" id="descripcion-input" name="descripcion" rows="3">{{ $insumo->descripcion }}</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                    
+                                <div class="text-center mt-4">
+                                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                                </div>
+                            </div>
                         </div>
                         <!-- Otros campos del formulario -->
-                    
-                        <button type="submit" class="btn btn-primary">Guardar cambios</button>
                     </form>
                     
+
                 </div>
             </div>
         </div>
     </div>
 </div>
 @endsection
+@push('script')
+<script>
+    // Obtener el valor actual de la categoría seleccionada
+    var categoriaSeleccionada = '{{ $insumo->categ }}';
+
+    // Filtrar las opciones de subcategoría basadas en la categoría seleccionada
+    var subcategorias = @json($subcategorias);
+    var opcionesSubcategoria = subcategorias.filter(function(subcategoria) {
+        return subcategoria.id_categ === categoriaSeleccionada;
+    });
+
+    // Actualizar las opciones del select de subcategoría con las opciones filtradas
+    var selectSubcategoria = document.getElementById('choices-publish-status-input');
+    selectSubcategoria.innerHTML = ''; // Limpiar las opciones actuales
+    opcionesSubcategoria.forEach(function(subcategoria) {
+        var option = document.createElement('option');
+        option.value = subcategoria.id;
+        option.text = subcategoria.nombre_sub_categoria;
+        if (subcategoria.id === '{{ $insumo->subcateg }}') {
+            option.selected = true;
+        }
+        selectSubcategoria.appendChild(option);
+    });
+</script>
+@endpush
 @section('script')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0/js/select2.min.js"></script>
-
 <script src="{{ URL::asset('build/libs/@ckeditor/ckeditor5-build-classic/build/ckeditor.js') }}"></script>
-
 <script src="{{ URL::asset('build/libs/dropzone/dropzone-min.js') }}"></script>
 <script src="{{ URL::asset('build/js/pages/ecommerce-product-create.init.js') }}"></script>
-
 <script src="{{ URL::asset('build/js/app.js') }}"></script>
 @endsection

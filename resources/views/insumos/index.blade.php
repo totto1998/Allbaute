@@ -19,25 +19,7 @@
      
     <div class="row">
         
-        {{--  <div class="col-xl-3 col-lg-4">
-            <div class="card">
-                <div class="accordion accordion-flush filter-accordion"><div class="card-body border-bottom">
-                        <p class="text-muted text-uppercase fs-12 fw-medium mb-4">Precio</p>
-                        <div id="product-price-range"></div>
-                        <div class="formCost d-flex gap-2 align-items-center mt-3">
-                            <input class="form-control form-control-sm" type="text" id="minCost" value="0" /> <span class="fw-semibold text-muted">to</span> <input
-                                class="form-control form-control-sm" type="text" id="maxCost" value="1000000" />
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <div id="flush-collapseBrands" class="accordion-collapse collapse show"
-                            aria-labelledby="flush-headingBrands">
-                        </div>
-                    </div>
-                </div>
-            </div> 
-        </div>
-          --}}
+
 
         <div class="col-lg-12">
             <div>
@@ -61,17 +43,7 @@
                         </div>
                     </div>
                     <br>
-                    {{--  <div class="card-header">
-                        <div class="row align-items-center">
-                            <div class="col-auto">
-                                <div id="selection-element">
-                                    <div class="my-n1 d-flex align-items-center text-muted">
-                                        Select <div id="select-content" class="text-body fw-semibold px-1"></div> Result <button type="button" class="btn btn-link link-danger p-0 ms-3" data-bs-toggle="modal" data-bs-target="#removeItemModal">Remove</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>  --}}
+
                     <!-- end card header -->
                     <div class="card-body pt-0">
                         <div>
@@ -87,14 +59,9 @@
                                         <th>ID</th>
                                         <th>Producto</th>
                                         <th>Tags</th>
-                                        <th>Precio</th>
-                                        <th>Stock</th>
-                                        <th>Descuento</th>
                                         <th>Color</th>
                                         <th>Unidad</th>
-                                        <th>Ancho</th>
-                                        <th>Material</th>
-                                        <th>Estado</th>
+                                    
                                         <th>Fecha de Creación</th>
                                         <th>Acciones</th>
                                       </tr>
@@ -113,26 +80,16 @@
                                               <img src="{{ asset('images/' . $insumo->img) }}" alt="{{ $insumo->nombre }}" class="me-2" style="width: 50px; height: 50px;">
                                               <div>
                                                 <p class="mb-0">{{ $insumo->nombre }}</p>
-                                                <small class="text-muted">{{ $insumo->categ }}</small>
+                                                <small class="text-muted">{{ $insumo->categ }}</small><br>
+                                                <small class="text-muted">{{ $insumo->subcateg }}</small>
                                               </div>
                                             </div>
                                           </td>
                                           
                                         <td>{{ $insumo->tags }}</td>
-                                        <td>{{ $insumo->precio }}</td>
-                                        <td>{{ $insumo->stock }}</td>
-                                        <td>{{ $insumo->descuento }}</td>
                                         <td>{{ $insumo->color }}</td>
                                         <td>{{ $insumo->unidad }}</td>
-                                        <td>{{ $insumo->ancho }}</td>
-                                        <td>{{ $insumo->subcateg }}</td>
-                                        <td>
-                                            @if($insumo->estado == 1)
-                                                <span class="badge badge-soft-success">Terminado</span>
-                                            @else
-                                                <span class="badge badge-soft-danger">Produccion</span>
-                                            @endif
-                                        </td>
+                                        
                                         <td>{{ $insumo->created_at }}</td>
                                         <td>
                                             <ul class="list-inline hstack gap-2 mb-0">
@@ -162,9 +119,9 @@
                                       </tr>
                                       @endforeach
                                     </tbody>
-                                  </table>
-                                  
+                                  </table>     
                             </div>
+                            {{ $data->links() }}
                         </div>
                     </div>
                     <!-- end card body -->
@@ -175,32 +132,7 @@
         <!-- end col -->
     </div>
     <!-- end row -->
-    {{--  <!-- removeItemModal -->
-    <div id="removeItemModal" class="modal fade zoomIn" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                        id="btn-close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="mt-2 text-center">
-                        <lord-icon src="https://cdn.lordicon.com/gsqxdxog.json" trigger="loop"
-                            colors="primary:#f7b84b,secondary:#f06548" style="width:100px;height:100px"></lord-icon>
-                        <div class="mt-4 pt-2 fs-15 mx-4 mx-sm-5">
-                            <h4>Are you Sure ?</h4>
-                            <p class="text-muted mx-4 mb-0">Are you Sure You want to Remove this Product ?</p>
-                        </div>
-                    </div>
-                    <div class="d-flex gap-2 justify-content-center mt-4 mb-2">
-                        <button type="button" class="btn w-sm btn-light" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn w-sm btn-danger " id="delete-product">Yes, Delete It!</button>
-                    </div>
-                </div>
 
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->  --}}
 @endsection
 @section('script')
 

@@ -4,7 +4,6 @@
 <?php $__env->startSection('css'); ?>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0/css/select2.min.css" rel="stylesheet" />
 <link href="<?php echo e(URL::asset('build/libs/dropzone/dropzone.css')); ?>" rel="stylesheet">
-
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
 <?php $__env->startComponent('components.breadcrumb'); ?>
@@ -35,138 +34,167 @@ Editar insumos
                         <?php echo csrf_field(); ?>
                         <?php echo method_field('PUT'); ?>
                         <!-- Campos del formulario de edición -->
-                        <div class="mb-3">
-                            <label for="img">Imagen</label>
-                            <input type="file" class="form-control" id="img" name="img">
-                            <?php if($insumo->img): ?>
-                                <img src="<?php echo e(asset('images/'.$insumo->img)); ?>" alt="Imagen actual" style="max-width: 50px; margin-top: 10px;">
-                            <?php endif; ?>
-                        </div>
-                        <div class="mb-3">
-                            <label for="choices-publish-status-input" class="form-label">Categoria de insumos</label>
-                            <select class="form-select" id="choices-publish-status-input" name="categ" data-choices data-choices-search-false>
-                                <option value="">Selecciona una opción</option>
-                                <?php $__currentLoopData = $paramcateg; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $param): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <?php if($param->id_tipo == 1): ?>
-                                        <option value="<?php echo e($param->nombre); ?>" <?php echo e($param->nombre == $insumo->categ ? 'selected' : ''); ?>>
-                                            <?php echo e($param->nombre); ?>
-
-                                        </option>
-                                    <?php endif; ?>
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                            </select>
-                        </div>
-
-                        <div id="card-body-container"></div>
-                        <script>
-                            const selectEl = document.getElementById('choices-publish-status-input');
-                            const cardBodyContainerEl = document.getElementById('card-body-container');
-                    
-                            selectEl.addEventListener('change', (event) => {
-                                const selectedValue = event.target.value;
-                                if (selectedValue === 'Tela') {
-                                    // Agregar el código HTML al contenedor
-                                    cardBodyContainerEl.innerHTML = `
+                        <div class="card">
+                            <div class="card-body">
+                                
+                                <div class="col-md-12">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <label for="img" class="form-label">Imagen</label>
+                                        </div>
                                         <div class="card-body">
-                                            <div class="mb-2">
-                                                <label for="choices-publish-status-input" class="form-label">Tipo de tela</label>
+                                            <input type="file" class="form-control" id="img" name="img" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row mb-4">
+                                    <div class="col-md-6">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <label for="nombre" class="form-label">Nombre</label>
+                                            </div>
+                                            <div class="card-body">
+                                                <input type="text" class="form-control" id="imagen" name="nombre" value="<?php echo e($insumo->nombre); ?>" required>
+                                            </div> 
+                                        </div> 
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <label for="choices-publish-status-input" class="form-label">Categoría de insumos</label>
+                                            </div>
+                                            <div class="card-body">
+                                                <select class="form-select" id="choices-publish-status-input" name="categ" data-choices data-choices-search-false>
+                                                    <?php $__currentLoopData = $categorias; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $categoria): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                        <option value="<?php echo e($categoria->nombre_categoria); ?>" <?php if($insumo->categoria && $categoria->nombre_categoria == $insumo->categoria->nombre_categoria): ?> selected <?php endif; ?>><?php echo e($categoria->nombre_categoria); ?></option>
+                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                    
+                                <div class="row mt-4">
+                                    <div class="col-md-6">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <label for="choices-publish-status-input" class="form-label">Subcategoría</label>
+                                            </div>
+                                            <div class="card-body">
                                                 <select class="form-select" id="choices-publish-status-input" name="subcateg" data-choices data-choices-search-false required>
-                                                    <?php $__currentLoopData = $paramcateg; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $param): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                        <?php if($param->id_tipo == 2): ?>
-                                                        <option value="<?php echo e($param->nombre); ?>" <?php echo e($param->nombre == $insumo->subcateg ? 'selected' : ''); ?>>
-                                                            <?php echo e($param->nombre); ?>
-
-                                                        </option>
+                                                    <!-- Opciones de subcategorías -->
+                                                    <?php $__currentLoopData = $subcategorias; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $subcategoria): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                        <option value="<?php echo e($subcategoria->id); ?>" <?php if($subcategoria->id == $insumo->subcateg): ?> selected <?php endif; ?>><?php echo e($subcategoria->nombre_sub_categoria); ?></option>
+                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-md-6">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <label for="choices-publish-status-input" class="form-label">Tags</label>
+                                            </div>
+                                            <div class="card-body">
+                                                <input type="text" class="form-control" id="tags-input" name="tags" value="<?php echo e($insumo->tags); ?>">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                    
+                                <div class="row mt-4">
+                                    <div class="col-md-6">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <label for="choices-publish-status-input" class="form-label">Color</label>
+                                            </div>
+                                            <div class="card-body">
+                                                <select class="form-select" id="color-input" name="color">
+                                                    <?php $__currentLoopData = $subcategorias; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $subcategoria): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                        <?php if($subcategoria->id_categ == 3): ?> 
+                                                            <option value="<?php echo e($subcategoria->nombre_sub_categoria); ?>" <?php if($subcategoria->nombre_sub_categoria == $insumo->color): ?> selected <?php endif; ?>><?php echo e($subcategoria->nombre_sub_categoria); ?></option>
                                                         <?php endif; ?>
                                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                 </select>
                                             </div>
                                         </div>
-                                    `;
-                                } else if (selectedValue === 'Botón' || selectedValue === 'Cremalleras') {
-                                    // Agregar el código HTML al contenedor
-                                    cardBodyContainerEl.innerHTML = `
-                                        <div class="card-body">
-                                            <div class="mb-2">
-                                                <label for="choices-publish-status-input" class="form-label">Tipo de Material</label>
-                                                <select class="form-select" id="choices-publish-status-input" name="subcateg" data-choices data-choices-search-false required>
-                                                    <?php $__currentLoopData = $paramcateg; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $param): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                        <?php if($param->id_tipo == 3): ?>
-                                                        <option value="<?php echo e($param->nombre); ?>" <?php echo e($param->nombre == $insumo->subcateg ? 'selected' : ''); ?>>
-                                                            <?php echo e($param->nombre); ?>
-
-                                                        </option>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <label for="choices-publish-status-input" class="form-label">Unidad</label>
+                                            </div>
+                                            <div class="card-body">
+                                                <select class="form-select" id="unidad-input" name="unidad">
+                                                    <?php $__currentLoopData = $subcategorias; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $subcategoria): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                        <?php if($subcategoria->id_categ == 4): ?> 
+                                                            <option value="<?php echo e($subcategoria->nombre_sub_categoria); ?>" <?php if($subcategoria->nombre_sub_categoria == $insumo->unidad): ?> selected <?php endif; ?>><?php echo e($subcategoria->nombre_sub_categoria); ?></option>
                                                         <?php endif; ?>
                                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                 </select>
                                             </div>
                                         </div>
-                                    `;
-                                } else {
-                                    // Limpiar el contenido del contenedor si no se selecciona una opción correspondiente
-                                    cardBodyContainerEl.innerHTML = '';
-                                }
-                            });
+                                    </div>
+                                </div>
                     
-                            // Simular el evento 'change' para mostrar la subcategoría seleccionada inicialmente
-                            selectEl.value = '<?php echo e($insumo->categ); ?>';
-                            selectEl.dispatchEvent(new Event('change'));
-                        </script>
-                        
-                        <div class="mb-3">
-                            <label for="tags">Tags</label>
-                            <input type="text" class="form-control" id="tags" name="tags" value="<?php echo e($insumo->tags); ?>" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="precio">Precio</label>
-                            <input type="number" class="form-control" id="precio" name="precio" value="<?php echo e($insumo->precio); ?>" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="stock">Stock</label>
-                            <input type="number" class="form-control" id="stock" name="stock" value="<?php echo e($insumo->stock); ?>" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="descuento">Descuento</label>
-                            <input type="number" class="form-control" id="descuento" name="descuento" value="<?php echo e($insumo->descuento); ?>">
-                        </div>
-                        <div class="mb-3">
-                            <label for="color">Color</label>
-                            <input type="text" class="form-control" id="color" name="color" value="<?php echo e($insumo->color); ?>" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="unidad">Unidad</label>
-                            <input type="text" class="form-control" id="unidad" name="unidad" value="<?php echo e($insumo->unidad); ?>" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="ancho">Ancho</label>
-                            <input type="number" class="form-control" id="ancho" name="ancho" value="<?php echo e($insumo->ancho); ?>" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="estado">Estado</label>
-                            <select class="form-control" id="estado" name="estado" required>
-                                <option value="1" <?php echo e($insumo->estado == 1 ? 'selected' : ''); ?>>Terminado</option>
-                                <option value="0" <?php echo e($insumo->estado == 0 ? 'selected' : ''); ?>>Producción</option>
-                            </select>
+                                <div class="card mt-4">
+                                    <div class="card-body">
+                                        <div class="mb-3">
+                                            <label for="descripcion-input" class="form-label">Descripción</label>
+                                            <textarea class="form-control" id="descripcion-input" name="descripcion" rows="3"><?php echo e($insumo->descripcion); ?></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                    
+                                <div class="text-center mt-4">
+                                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                                </div>
+                            </div>
                         </div>
                         <!-- Otros campos del formulario -->
-                    
-                        <button type="submit" class="btn btn-primary">Guardar cambios</button>
                     </form>
                     
+
                 </div>
             </div>
         </div>
     </div>
 </div>
 <?php $__env->stopSection(); ?>
+<?php $__env->startPush('script'); ?>
+<script>
+    // Obtener el valor actual de la categoría seleccionada
+    var categoriaSeleccionada = '<?php echo e($insumo->categ); ?>';
+
+    // Filtrar las opciones de subcategoría basadas en la categoría seleccionada
+    var subcategorias = <?php echo json_encode($subcategorias, 15, 512) ?>;
+    var opcionesSubcategoria = subcategorias.filter(function(subcategoria) {
+        return subcategoria.id_categ === categoriaSeleccionada;
+    });
+
+    // Actualizar las opciones del select de subcategoría con las opciones filtradas
+    var selectSubcategoria = document.getElementById('choices-publish-status-input');
+    selectSubcategoria.innerHTML = ''; // Limpiar las opciones actuales
+    opcionesSubcategoria.forEach(function(subcategoria) {
+        var option = document.createElement('option');
+        option.value = subcategoria.id;
+        option.text = subcategoria.nombre_sub_categoria;
+        if (subcategoria.id === '<?php echo e($insumo->subcateg); ?>') {
+            option.selected = true;
+        }
+        selectSubcategoria.appendChild(option);
+    });
+</script>
+<?php $__env->stopPush(); ?>
 <?php $__env->startSection('script'); ?>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0/js/select2.min.js"></script>
-
 <script src="<?php echo e(URL::asset('build/libs/@ckeditor/ckeditor5-build-classic/build/ckeditor.js')); ?>"></script>
-
 <script src="<?php echo e(URL::asset('build/libs/dropzone/dropzone-min.js')); ?>"></script>
 <script src="<?php echo e(URL::asset('build/js/pages/ecommerce-product-create.init.js')); ?>"></script>
-
 <script src="<?php echo e(URL::asset('build/js/app.js')); ?>"></script>
 <?php $__env->stopSection(); ?>
+
 <?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\Usuario\Documents\GitHub\Allbaute\resources\views/insumos/edit.blade.php ENDPATH**/ ?>
