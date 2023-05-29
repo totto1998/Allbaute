@@ -106,7 +106,7 @@ Crear nueva parametrización
 <script>
     function bloquearComillas(id) {
         var input = document.getElementById(id);
-        input.value = input.value.replace(/['"]/g, '');
+        input.value = input.value.replace(/['="]/g, '');
     }
 
     function validarCampos() {
