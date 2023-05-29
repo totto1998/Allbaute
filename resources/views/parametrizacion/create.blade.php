@@ -143,11 +143,13 @@ Crear nueva parametrizacion
             campoNombre2.style.display = "block";
             campoCategoria.style.display = "block";
             campoEstado.style.display = "block";
+            campoEstado2.style.display = "none";
         } else {
             campoNombre.style.display = "none";
             campoNombre2.style.display = "none";
             campoCategoria.style.display = "none";
             campoEstado.style.display = "none";
+            campoEstado2.style.display = "none";
         }
     }
 </script>
