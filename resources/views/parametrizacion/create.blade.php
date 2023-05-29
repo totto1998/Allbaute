@@ -44,7 +44,7 @@ Crear nueva parametrización
                 <div class="card-body">
                     <div class="mb-3">
                         <label for="parametro" class="form-label">Tipo de Parámetro</label>
-                        <select class="form-select" id="parametro" name="parametro" onchange="mostrarCampo()">
+                        <select class="form-select" id="parametro" name="parametro" required onchange="mostrarCampo()">
                             <option value="">Seleccionar tipo de parámetro</option>
                             <option value="1">Nuevo parámetro</option>
                             <option value="2">Nueva categoría</option>
@@ -97,7 +97,7 @@ Crear nueva parametrización
     <div class="content">
         <div class="user-details">
             <div class="button">
-                <input onclick="return validarCampoNombre()" type="submit" name="submit" value="Enviar">
+                <input onclick="return validarCampos()" type="submit" name="submit" value="Enviar">
             </div>
         </div>
     </div>
@@ -109,13 +109,24 @@ Crear nueva parametrización
         input.value = input.value.replace(/['"]/g, '');
     }
 
-    function validarCampoNombre() {
-        var texto = document.getElementById("nombre_categoria").value;
-        var patron = /^[a-zA-Z\s]+$/;
+    function validarCampos() {
+        var tipoParametrizacion = document.getElementById("parametro").value;
 
-        if (!patron.test(texto)) {
-            document.getElementById("mensajeError_categoria").textContent = "El texto contiene caracteres no permitidos";
-            return false;
+        if (tipoParametrizacion === "1") {
+            var texto = document.getElementById("nombre_categoria").value;
+            var patron = /^[a-zA-Z\s]+$/;
+
+            if (!patron.test(texto)) {
+                document.getElementById("mensajeError_categoria").textContent = "El texto contiene caracteres no permitidos";
+                return false;
+            }
+        } else if (tipoParametrizacion === "2") {
+            var subCategoria = document.getElementById("nombre_sub_categoria").value;
+
+            if (subCategoria.trim() === "") {
+                document.getElementById("mensajeError").textContent = "Debe ingresar un nombre de subcategoría";
+                return false;
+            }
         }
 
         var comentario = document.getElementById("comentario").value;
@@ -138,37 +149,22 @@ Crear nueva parametrización
 
         if (tipoParametrizacion === "1") {
             campoNombre.style.display = "block";
-            campoNombre.querySelector('input').setAttribute("required", "required");
             campoNombre2.style.display = "none";
-            campoNombre2.querySelector('input').removeAttribute("required");
             campoCategoria.style.display = "none";
-            campoCategoria.querySelector('select').removeAttribute("required");
             campoEstado.style.display = "none";
-            campoEstado.querySelector('select').removeAttribute("required");
             campoEstado2.style.display = "block";
-            campoEstado2.querySelector('select').setAttribute("required", "required");
         } else if (tipoParametrizacion === "2") {
             campoNombre.style.display = "none";
-            campoNombre.querySelector('input').removeAttribute("required");
             campoNombre2.style.display = "block";
-            campoNombre2.querySelector('input').setAttribute("required", "required");
             campoCategoria.style.display = "block";
-            campoCategoria.querySelector('select').setAttribute("required", "required");
             campoEstado.style.display = "block";
-            campoEstado.querySelector('select').setAttribute("required", "required");
             campoEstado2.style.display = "none";
-            campoEstado2.querySelector('select').removeAttribute("required");
         } else {
             campoNombre.style.display = "none";
-            campoNombre.querySelector('input').removeAttribute("required");
             campoNombre2.style.display = "none";
-            campoNombre2.querySelector('input').removeAttribute("required");
             campoCategoria.style.display = "none";
-            campoCategoria.querySelector('select').removeAttribute("required");
             campoEstado.style.display = "none";
-            campoEstado.querySelector('select').removeAttribute("required");
             campoEstado2.style.display = "none";
-            campoEstado2.querySelector('select').removeAttribute("required");
         }
     }
 </script>
@@ -178,4 +174,3 @@ Crear nueva parametrización
 @section('script')
 <script src="{{ asset('build/js/app.js') }}"></script>
 @endsection
-
