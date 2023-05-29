@@ -59,7 +59,7 @@ class parametrizacionController extends Controller
             // Nueva categoría
             $categoria = new Categoria;
             $categoria->nombre_categoria = $request->input('nombre_categoria');
-            $categoria->estado_categoria = $request->input('estado_categoria');
+            $categoria->tipo = $request->input('tipo');
             $categoria->comentario = $validatedData['comentario'];
             $categoria->save();
         } elseif ($validatedData['parametro'] == 2) {
@@ -71,7 +71,7 @@ class parametrizacionController extends Controller
                 $subCategoria->id_categ = $request->input('categoria');
             }
     
-            $subCategoria->estado_sub_categoria = $request->input('estado_categoria');
+            $subCategoria->estado_sub_categoria = $request->input('estado_sub_categoria');
             $subCategoria->comentario = $validatedData['comentario'];
             $subCategoria->save();
         }

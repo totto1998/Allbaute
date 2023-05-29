@@ -75,7 +75,7 @@ Crear nueva parametrización
 
                     <div id="campo_estado" style="display:none;">
                         <label for="estado_categoria" class="form-label">Estado</label>
-                        <select class="form-select" id="estado_categoria" name="estado_categoria">
+                        <select class="form-select" id="estado_Sub_categoria" name="estado_sub_categoria">
                             <option value="">Seleccionar estado</option>
                             <option value="1">Activo</option>
                             <option value="0">Inactivo</option>
@@ -83,8 +83,8 @@ Crear nueva parametrización
                     </div>
 
                     <div id="campo_estado2" style="display:none;">
-                        <label for="estado_categoria2" class="form-label">Aquí va lo nuevo</label>
-                        <select class="form-select" id="estado_categoria" name="estado_categoria">
+                        <label for="estado_categoria2" class="form-label">Tipo</label>
+                        <select class="form-select" id="tipo" name="tipo">
                             <option value="">Seleccionar cambia esto</option>
                             <option value="1">Activo</option>
                             <option value="0">Inactivo</option>
