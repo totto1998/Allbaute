@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use App\Models\parametrizacion;
 use App\Models\TipoParametrizacion;
 use App\Models\Categoria;
@@ -12,17 +10,11 @@ use Illuminate\Http\Response;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 use Illuminate\Pagination\Paginator;
-
 use App\Http\Controllers\Controller;
-
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-
 use Illuminate\Support\Arr; 
-
-
-
 class parametrizacionController extends Controller
 {
     /**
@@ -30,12 +22,11 @@ class parametrizacionController extends Controller
      */
     public function index()
     {
-        $categoria = Categoria::paginate(5); // Datos necesarios para el formulario
-        $subcategoria = SubCategoria::paginate(5); // Datos de la tabla subcategoria
+        $categoria = Categoria::paginate(8); // Datos necesarios para el formulario
+        $subcategoria = SubCategoria::paginate(8); // Datos de la tabla subcategoria
         return view('parametrizacion.index', compact('categoria', 'subcategoria'));
     }
     
-
         // método para mostrar el formulario de creación
     public function create()
     {
@@ -44,8 +35,6 @@ class parametrizacionController extends Controller
         return view('parametrizacion.create', compact('categorias', 'SubCategoria'));
     }
         
-
-
     public function store(Request $request)
     {
         $validatedData = $request->validate([
@@ -80,9 +69,6 @@ class parametrizacionController extends Controller
     }
     
     
-
-
-
     /**
      * Display the specified resource.
      */
@@ -91,7 +77,6 @@ class parametrizacionController extends Controller
         $parametrizacion = parametrizacion::findOrFail($id);
         return view('parametrizacion.show', compact('parametrizacion'));
     }
-
     /**
      * Show the form for editing the specified resource.
      */
@@ -103,8 +88,6 @@ class parametrizacionController extends Controller
         return view('parametrizacion.edit', compact('subcategoria', 'categorias'));
     }
     
-
-
     public function update(Request $request, $id)
     {
         $subcategoria = SubCategoria::findOrFail($id);
@@ -130,12 +113,6 @@ class parametrizacionController extends Controller
         return redirect()->route('parametrizacion.index')->with('success', 'Registro actualizado exitosamente');
     }
     
-
-
-
-
-
-
     /**
      * Remove the specified resource from storage.
      */

@@ -1,14 +1,11 @@
 @extends('layouts.master')
-
 @section('title')
 @lang('translation.create-product')
 @endsection
-
 @section('css')
 <link href="{{ asset('build/libs/dropzone/dropzone.css') }}" rel="stylesheet">
 <link rel="stylesheet" href="{{ asset('build/css/style.css') }}">
 @endsection
-
 @section('content')
 @component('components.breadcrumb')
 @slot('li_1')
@@ -18,7 +15,6 @@ Ecommerce
 Crear nueva parametrización
 @endslot
 @endcomponent
-
 <form action="{{ route('parametrizacion.store') }}" method="POST" enctype="multipart/form-data" id="createproduct-form" autocomplete="off" class="needs-validation">
     @csrf
     <style>
@@ -38,7 +34,6 @@ Crear nueva parametrización
                 </div>
             </div>
         </div>
-
         <div class="col-lg-4">
             <div class="card">
                 <div class="card-body">
@@ -50,19 +45,16 @@ Crear nueva parametrización
                             <option value="2">Nueva categoría</option>
                         </select>
                     </div>
-
                     <div id="campo_nombre" style="display:none;">
                         <label for="nombre_categoria" class="form-label">Nombre del parámetro</label>
                         <input type="text" class="form-control" id="nombre_categoria" name="nombre_categoria" pattern="[a-zA-Z\s]+" oninput="bloquearComillas('nombre_categoria')">
                         <p id="mensajeError_categoria" class="error"></p>
                     </div>
-
                     <div id="campo_nombre2" style="display:none;">
                         <label for="nombre_sub_categoria" class="form-label">Nombre de la subcategoría</label>
                         <input type="text" class="form-control" id="nombre_sub_categoria" name="nombre_sub_categoria" pattern="[a-zA-Z\s]+" oninput="bloquearComillas('nombre_sub_categoria')">
                         <p id="mensajeError" class="error"></p>
                     </div>
-
                     <div id="campo_categoria" style="display:none;">
                         <label for="categoria" class="form-label">Categorías</label>
                         <select class="form-select" id="categoria" name="categoria">
@@ -72,7 +64,6 @@ Crear nueva parametrización
                             @endforeach
                         </select>
                     </div>
-
                     <div id="campo_estado" style="display:none;">
                         <label for="estado_categoria" class="form-label">Estado</label>
                         <select class="form-select" id="estado_Sub_categoria" name="estado_sub_categoria">
@@ -81,7 +72,6 @@ Crear nueva parametrización
                             <option value="0">Inactivo</option>
                         </select>
                     </div>
-
                     <div id="campo_estado2" style="display:none;">
                         <label for="estado_categoria2" class="form-label">Tipo</label>
                         <select class="form-select" id="tipo" name="tipo">
@@ -102,43 +92,34 @@ Crear nueva parametrización
         </div>
     </div>
 </form>
-
 <script>
     function bloquearComillas(id) {
         var input = document.getElementById(id);
-        input.value = input.value.replace(/['="]/g, '');
+        input.value = input.value.replace(/['"]/g, '');
     }
-
     function validarCampos() {
         var tipoParametrizacion = document.getElementById("parametro").value;
-
         if (tipoParametrizacion === "1") {
             var texto = document.getElementById("nombre_categoria").value;
             var patron = /^[a-zA-Z\s]+$/;
-
             if (!patron.test(texto)) {
                 document.getElementById("mensajeError_categoria").textContent = "El texto contiene caracteres no permitidos";
                 return false;
             }
         } else if (tipoParametrizacion === "2") {
             var subCategoria = document.getElementById("nombre_sub_categoria").value;
-
             if (subCategoria.trim() === "") {
                 document.getElementById("mensajeError").textContent = "Debe ingresar un nombre de subcategoría";
                 return false;
             }
         }
-
         var comentario = document.getElementById("comentario").value;
-
         if (comentario.includes("'") || comentario.includes('"')) {
             document.getElementById("mensajeError_comentario").textContent = "El comentario contiene comillas";
             return false;
         }
-
         return true;
     }
-
     function mostrarCampo() {
         var tipoParametrizacion = document.getElementById("parametro").value;
         var campoNombre = document.getElementById("campo_nombre");
@@ -146,7 +127,6 @@ Crear nueva parametrización
         var campoCategoria = document.getElementById("campo_categoria");
         var campoEstado = document.getElementById("campo_estado");
         var campoEstado2 = document.getElementById("campo_estado2");
-
         if (tipoParametrizacion === "1") {
             campoNombre.style.display = "block";
             campoNombre2.style.display = "none";
@@ -168,9 +148,7 @@ Crear nueva parametrización
         }
     }
 </script>
-
 @endsection
-
 @section('script')
 <script src="{{ asset('build/js/app.js') }}"></script>
 @endsection
