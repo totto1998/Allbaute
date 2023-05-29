@@ -77,6 +77,15 @@ Crear nueva parametrizacion
                             <option value="0">Inactivo</option>
                         </select>
                     </div>
+
+                    <div id="campo_estado2" style="display:none;">
+                        <label for="estado_categoria2" class="form-label">aqui va lo nuevo</label>
+                        <select class="form-select" id="estado_categoria" name="estado_categoria">
+                            <option value="">Seleccionar cambia esto</option>
+                            <option value="1">Activo</option>
+                            <option value="0">Inactivo</option>
+                        </select>
+                    </div>
                 </div>
             </div>
         </div>
@@ -121,12 +130,14 @@ Crear nueva parametrizacion
         var campoNombre2 = document.getElementById("campo_nombre2");
         var campoCategoria = document.getElementById("campo_categoria");
         var campoEstado = document.getElementById("campo_estado");
+        var campoEstado2 = document.getElementById("campo_estado2");
 
         if (tipoParametrizacion === "1") {
             campoNombre.style.display = "block";
             campoNombre2.style.display = "none";
             campoCategoria.style.display = "none";
             campoEstado.style.display = "none";
+            campoEstado2.style.display = "block";
         } else if (tipoParametrizacion === "2") {
             campoNombre.style.display = "none";
             campoNombre2.style.display = "block";
