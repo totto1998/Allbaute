@@ -28,6 +28,19 @@
         display: inline-block;
         margin-right: 10px;
     }
+    
+    #entriesContainer {
+        display: inline-block;
+        width: 100px; /* Ajusta el ancho según tus necesidades */
+    }
+
+    .form-select-smaller {
+        font-size: 0.875rem;
+        padding: 0.25rem 0.5rem;
+        height: 2.25rem;
+        width: 100%;
+    }
+    
 </style>
 @endsection
 @section('content')
@@ -50,6 +63,7 @@ parametrizacion
                     </div>
                     <div class="col-sm-auto">
                         <div class="d-flex gap-1 flex-wrap">
+                            <div id="searchContainer"></div>
                             <a class="btn btn-warning" href="{{route('parametrizacion.create')}}">CREAR NUEVA PARAMETRIZACION</a>
                             <button type="button" class="btn btn-secondary">
                                 <i class="ri-file-download-line align-bottom me-1"></i>
@@ -60,6 +74,7 @@ parametrizacion
                 </div>
             </div>
             <div class="card-body pt-0">
+                <div id="entriesContainer"></div> 
                 <div class="table-responsive">
                     <table class="table table-nowrap align-middle" id="orderTable">
                         <thead class="text-muted table-light">
@@ -114,8 +129,9 @@ parametrizacion
                             <p class="text-muted">We've searched more than 150+ Orders We did not find any orders for your search.</p>
                         </div>
                     </div>
-                
+                    <div id="paginationContainer"></div>
             </div>
+
         </div>
     </div>
 </div>
@@ -145,17 +161,33 @@ parametrizacion
                 searchInput.removeClass('form-control-sm');
                 searchInput.attr('placeholder', 'Buscar');
                 searchInput.parent().addClass('custom-search');
-                searchInput.parent().insertAfter($('#orderTable_length'));
-                
+
+                // Mover el campo de búsqueda a una posición estática
+                searchInput.appendTo('#searchContainer');
+
                 var entriesLabel = $('#orderTable_length').find('label');
                 entriesLabel.addClass('form-label');
                 entriesLabel.contents().filter(function() {
                     return this.nodeType === 3;
                 }).remove();
                 entriesLabel.prepend('Cantidad ');
-                
+
                 var entriesSelect = $('#orderTable_length').find('select');
                 entriesSelect.addClass('form-select form-select-sm');
+
+                // Mover el campo de cantidad a una posición estática
+                entriesLabel.appendTo('#entriesContainer');
+                entriesSelect.appendTo('#entriesContainer');
+
+                // Reducir el tamaño del campo de cantidad
+                entriesSelect.removeClass('form-select-sm');
+                entriesSelect.addClass('form-select-smaller');
+
+                var paginationContainer = $('#orderTable_paginate');
+                paginationContainer.addClass('custom-pagination');
+
+                // Mover el campo de paginación a una posición estática
+                paginationContainer.appendTo('#paginationContainer');
             }
         });
     });
