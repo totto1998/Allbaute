@@ -94,26 +94,7 @@ Editar proveedor
         </div>
   
         <div class="mb-3">
-            <div class="row">
-              <div class="col-md-6 mb-3 col-6 mx-auto">
-                <label for="tipo-insumo" class="form-label">Tipo de insumo</label>
-                <div class="dropdown">
-                  <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button" id="tipo-insumo-dropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                    Seleccionar insumos
-                  </button>
-                  <ul class="dropdown-menu" aria-labelledby="tipo-insumo-dropdown">
-                    @foreach ($insumos as $insumo)
-                    <li>
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="tipo-insumo-{{ $insumo->id }}" name="t_insumo[]" value="{{ $insumo->id }}" {{ in_array($insumo->id, $t_insumo) ? 'checked' : '' }}>
-                        <label class="form-check-label" for="tipo-insumo-{{ $insumo->id }}">{{ $insumo->subcateg }}</label>
-                      </div>
-                    </li>
-                    @endforeach
-                  </ul>
-                </div>
-              </div>
-                                          
+            <div class="row">                         
                 <div class="col-md-6 mb-3">
                   <label for="tags" class="form-label">Tags</label>
                   <input type="text" name="tags" class="form-control" id="tags" value="{{ $proveedor->tags }}" required pattern="[A-Za-z\s]+" oninput="eliminarComillas(this)" required>

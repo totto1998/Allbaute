@@ -25,7 +25,7 @@ class proveedorController extends Controller
      */
     public function index()
     {
-        $data = Proveedor::with('Insumo')->paginate(10);
+        $data = Proveedor::paginate(5);
         // $insumos = insumos::all();
         return view('proveedor.index', compact('data'));
     }
@@ -36,12 +36,10 @@ class proveedorController extends Controller
     public function create()
     {
        $proveedor = Proveedor::all();
-       $insumos = Insumo::all();
        $response = Http::get('https://www.datos.gov.co/resource/xdk5-pm3f.json?$query=SELECT%20%60region%60%2C%20%60departamento%60%2C%20%60municipio%60');
-       $paramcateg = parametrizacion::all();
        $locations = $response->json();
      
-       return view('proveedor.create', compact('proveedor', 'insumos','locations','paramcateg'));
+       return view('proveedor.create', compact('proveedor','locations'));
     }
 
     /**
@@ -63,7 +61,6 @@ class proveedorController extends Controller
             'municipio' => 'required',
             'email' => 'required',
             'nombre_contacto' => 'required',
-            't_insumo' => 'required',
             'tags' => 'required',
         ]);
  
@@ -78,7 +75,6 @@ class proveedorController extends Controller
         $proveedor->region = $validatedData['region'];
         $proveedor->departamento = $validatedData['departamento'];
         $proveedor->municipio = $validatedData['municipio'];
-        $proveedor->t_insumo = implode(',', $validatedData['t_insumo']);
 
         $proveedor->tags = $validatedData['tags'];
         
@@ -104,13 +100,11 @@ class proveedorController extends Controller
     public function edit($id)
     {
         $proveedor = proveedor::findOrFail($id);
-        $insumos = Insumo::all();
         $response = Http::get('https://www.datos.gov.co/resource/xdk5-pm3f.json?$query=SELECT%20%60region%60%2C%20%60departamento%60%2C%20%60municipio%60');
         $locations = $response->json();
-        $t_insumo = explode(',', $proveedor->t_insumo); // Convertir la cadena a un array
 
     
-        return view('proveedor.editar', compact('proveedor', 'insumos','locations', 't_insumo'));
+        return view('proveedor.editar', compact('proveedor','locations'));
     }
     
 
@@ -131,7 +125,7 @@ class proveedorController extends Controller
             'region' => 'required|string',
             'departamento' => 'required|string',
             'municipio' => 'required|string',
-            't_insumo' => 'nullable|array', // Agrega esta línea
+            'tags' => 'required|string',
             // Otros campos del formulario
         ]);
     
@@ -149,7 +143,7 @@ class proveedorController extends Controller
         $proveedor->region = $validatedData['region'];
         $proveedor->departamento = $validatedData['departamento'];
         $proveedor->municipio = $validatedData['municipio'];
-        $proveedor->t_insumo = implode(',', $validatedData['t_insumo']); // Actualiza los tipos de insumos
+        $proveedor->tags = $validatedData['tags'];
     
         // Guardar los cambios en la base de datos
         $proveedor->save();

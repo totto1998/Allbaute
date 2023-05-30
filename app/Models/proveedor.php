@@ -23,37 +23,10 @@ class Proveedor extends Model
           'municipio',
           'email',
           'nombre_contacto',
-          't_insumo',
           'tags',
 
      ];
-
-     public function Insumo()
-     {
-         return $this->hasMany(Insumo::class, 'id', 't_insumo');
-     }
-     
-     public function getTipoInsumoAttribute()
-     {
-         $insumoIds = explode(',', $this->t_insumo);
-         $insumos = Insumo::whereIn('id', $insumoIds)->get();
-         $categories = $insumos->pluck('categ')->implode(', ');
-         return $categories;
-     }
-     
-     public function getInsumos()
-     {
-         $insumoIds = explode(',', $this->t_insumo);
-         return Insumo::whereIn('id', $insumoIds)->get();
-     }
-     
-     public function getInsumoAttribute()
-     {
-         $insumos = $this->getInsumos();
-         $categories = $insumos->pluck('categ')->implode(', ');
-         return $categories;
-     }
-     
+    
      
      
 

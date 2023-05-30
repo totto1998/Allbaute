@@ -95,25 +95,6 @@
         
 
             <div class="row">
-              <div class="col-md-6 mb-3 col-12 mx-auto text-center"> <!-- Ajusta la clase 'col-6' a 'col-12' y agrega la clase 'text-center' -->
-                <label for="tipo-insumo" class="form-label">Tipo de insumo</label>
-                <div class="dropdown">
-                  <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button" id="tipo-insumo-dropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                    Seleccionar insumos
-                  </button>
-                  <ul class="dropdown-menu text-center" aria-labelledby="tipo-insumo-dropdown"> <!-- Agrega la clase 'text-center' a 'dropdown-menu' -->
-                     <?php $__currentLoopData = $insumos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $insumo): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <li>
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="tipo-insumo-<?php echo e($insumo->id); ?>" name="t_insumo[]" value="<?php echo e($insumo->id); ?>">
-                        <label class="form-check-label" for="tipo-insumo-<?php echo e($insumo->id); ?>"><?php echo e($insumo->categ); ?>-<?php echo e($insumo->subcateg); ?></label>
-                      </div>
-                    </li>
-                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                  </ul>
-                </div>
-              </div>
-
                 <div class="col-md-6 mb-3">
                   <label for="tags" class="form-label">Tags</label>
                   <input type="text" name="tags" class="form-control" id="tags" placeholder="Ingrese los tags" required pattern="[A-Za-z\s]+" oninput="eliminarComillas(this)" required>

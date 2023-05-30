@@ -56,7 +56,6 @@ Provedor
                                     <th>Direccion</th>
                                     <th>Ubicacion</th>
                                     <th>Nombre Contacto</th>
-                                    <th>Tipo de Insumo</th>
                                     <th>Tags</th>
                                     <th>Acciones</th>
                                 </tr>
@@ -83,7 +82,6 @@ Provedor
                                         <small>{{$proveedor->municipio}}</small>
                                     </td>
                                     <td>{{$proveedor->nombre_contacto}}</td>
-                                    <td>{{$proveedor->tipo_insumo}}</td>
                                     <td>{{$proveedor->tags}}</td>
                                     <td>
                                         <ul class="list-inline hstack gap-2 mb-0">
