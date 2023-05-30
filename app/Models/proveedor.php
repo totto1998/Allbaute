@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class proveedor extends Model
+class Proveedor extends Model
 {
     use HasFactory;
 
@@ -28,15 +28,15 @@ class proveedor extends Model
 
      ];
 
-     public function insumos()
+     public function Insumo()
      {
-         return $this->hasMany(insumos::class, 'id', 't_insumo');
+         return $this->hasMany(Insumo::class, 'id', 't_insumo');
      }
      
      public function getTipoInsumoAttribute()
      {
          $insumoIds = explode(',', $this->t_insumo);
-         $insumos = insumos::whereIn('id', $insumoIds)->get();
+         $insumos = Insumo::whereIn('id', $insumoIds)->get();
          $categories = $insumos->pluck('categ')->implode(', ');
          return $categories;
      }
@@ -44,7 +44,7 @@ class proveedor extends Model
      public function getInsumos()
      {
          $insumoIds = explode(',', $this->t_insumo);
-         return insumos::whereIn('id', $insumoIds)->get();
+         return Insumo::whereIn('id', $insumoIds)->get();
      }
      
      public function getInsumoAttribute()

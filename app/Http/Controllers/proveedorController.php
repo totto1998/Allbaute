@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use App\Models\insumos;
-use App\Models\proveedor;
+use App\Models\Insumo;
+use App\Models\Proveedor;
 use App\Models\parametrizacion;
 use Illuminate\Support\Facades\Http;
 
@@ -25,7 +25,7 @@ class proveedorController extends Controller
      */
     public function index()
     {
-        $data = proveedor::with('insumos')->paginate(10);
+        $data = Proveedor::with('Insumo')->paginate(10);
         // $insumos = insumos::all();
         return view('proveedor.index', compact('data'));
     }
@@ -36,7 +36,7 @@ class proveedorController extends Controller
     public function create()
     {
        $proveedor = Proveedor::all();
-       $insumos = insumos::all();
+       $insumos = Insumo::all();
        $response = Http::get('https://www.datos.gov.co/resource/xdk5-pm3f.json?$query=SELECT%20%60region%60%2C%20%60departamento%60%2C%20%60municipio%60');
        $paramcateg = parametrizacion::all();
        $locations = $response->json();
@@ -104,7 +104,7 @@ class proveedorController extends Controller
     public function edit($id)
     {
         $proveedor = proveedor::findOrFail($id);
-        $insumos = insumos::all();
+        $insumos = Insumo::all();
         $response = Http::get('https://www.datos.gov.co/resource/xdk5-pm3f.json?$query=SELECT%20%60region%60%2C%20%60departamento%60%2C%20%60municipio%60');
         $locations = $response->json();
         $t_insumo = explode(',', $proveedor->t_insumo); // Convertir la cadena a un array
