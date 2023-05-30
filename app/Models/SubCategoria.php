@@ -20,6 +20,6 @@ class SubCategoria extends Model
 
     public function categoria()
     {
-        return $this->belongsTo(Categoria::class, 'id_categ');
+        return $this->belongsTo(Categoria::class, 'id_categ', 'id');
     }
 }

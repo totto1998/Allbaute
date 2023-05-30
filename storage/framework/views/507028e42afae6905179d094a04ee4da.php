@@ -58,9 +58,12 @@ Crear insumos
                                         <select class="form-select" id="choices-publish-status-input" name="categ" data-choices data-choices-search-false>
                                             <option value="">Selecciona una opción</option>
                                             <?php $__currentLoopData = $categorias; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $categoria): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                <option value="<?php echo e($categoria->nombre_categoria); ?>"><?php echo e($categoria->nombre_categoria); ?></option>
+                                                <?php if($categoria->tipo === 1): ?>
+                                                    <option value="<?php echo e($categoria->id); ?>"><?php echo e($categoria->nombre_categoria); ?></option>
+                                                <?php endif; ?>
                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </select>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -70,15 +73,17 @@ Crear insumos
                             <div class="col-md-6">
                                 <div class="card">
                                     <div class="card-header">
-                                        <label for="choices-publish-status-input" class="form-label">Subcategoria</label>
+                                        <label for="subcategoria-input" class="form-label">Subcategoria</label>
                                     </div>
                                     <div class="card-body">
-                                        <select class="form-select" id="choices-publish-status-input" name="subcateg" data-choices data-choices-search-false required>
-                                            <!-- Opciones de subcategorías filtradas por JavaScript -->
+                                        <select class="form-select" id="subcategoria-input" name="subcateg" data-choices data-choices-search-false required>
+                                            <option value="">Selecciona una opción</option>
                                         </select>
                                     </div>
                                 </div>
                             </div>
+                            
+                            
                             <div class="col-md-6">
                                 <div class="card">
                                     <div class="card-header">
@@ -149,24 +154,24 @@ Crear insumos
 <?php $__env->startSection('script'); ?>
 <script src="<?php echo e(URL::asset('build/js/app.js')); ?>"></script>
 <script>
-        // Obtener el elemento del select de categoría
+    // Obtener el elemento del select de categoría
     var selectCategoria = document.getElementById('choices-publish-status-input');
     
-        // Obtener el elemento del select de subcategoría
-    var selectSubcategoria = document.getElementsByName('subcateg')[0];
+    // Obtener el elemento del select de subcategoría
+    var selectSubcategoria = document.getElementById('subcategoria-input');
     
-        // Manejar el evento de cambio en el select de categoría
+    // Manejar el evento de cambio en el select de categoría
     selectCategoria.addEventListener('change', function() {
         var categoriaSeleccionada = selectCategoria.value;
     
-            // Limpiar las opciones anteriores del select de subcategoría
+        // Limpiar las opciones anteriores del select de subcategoría
         selectSubcategoria.innerHTML = '';
     
-            // Filtrar y agregar las opciones de subcategoría correspondientes
+        // Filtrar y agregar las opciones de subcategoría correspondientes
         <?php $__currentLoopData = $subcategorias; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $subcategoria): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-            if ('<?php echo e($subcategoria->categoria->nombre_categoria); ?>' === categoriaSeleccionada) {
+            if('<?php echo e($subcategoria->categoria->id); ?>' === categoriaSeleccionada) {
                 var option = document.createElement('option');
-                option.value = '<?php echo e($subcategoria->nombre_sub_categoria); ?>';
+                option.value = '<?php echo e($subcategoria->id); ?>';
                 option.textContent = '<?php echo e($subcategoria->nombre_sub_categoria); ?>';
                 selectSubcategoria.appendChild(option);
             }

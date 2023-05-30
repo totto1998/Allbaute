@@ -16,4 +16,9 @@ class Categoria extends Model
         'estado_categoria',
         'comentario',
     ];
+
+    public function subcategorias()
+    {
+        return $this->hasMany(SubCategoria::class, 'id_categ', 'id');
+    }
 }

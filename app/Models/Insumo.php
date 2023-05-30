@@ -12,29 +12,24 @@ class Insumo extends Model
     protected $table = 'insumos';
 
     protected $fillable = [
-          
-          'id',
-          'nombre',
-          'img',
-          'tags',
-          'categ',
-          'subcateg',
-          'color',
-          'unidad',
-          'estado',
-          'created_at',
-      ];
+        'nombre',
+        'img',
+        'tags',
+        'categ',
+        'subcateg',
+        'color',
+        'unidad',
+        'descripcion',
+        'created_at',
+    ];
 
-      public function categoria()
-      {
-          return $this->belongsTo(Categoria::class, 'categ', 'nombre_categoria');
-      }
+    public function categoria()
+    {
+        return $this->belongsTo(Categoria::class, 'categ', 'id');
+    }
 
-      public function subcategoria()
-      {
-          return $this->belongsTo(SubCategoria::class, 'subcateg');
-      }
-  
-
-
+    public function subcategoria()
+    {
+        return $this->belongsTo(SubCategoria::class, 'subcateg', 'id');
+    }
 }

@@ -58,9 +58,12 @@ Crear insumos
                                         <select class="form-select" id="choices-publish-status-input" name="categ" data-choices data-choices-search-false>
                                             <option value="">Selecciona una opción</option>
                                             @foreach($categorias as $categoria)
-                                                <option value="{{ $categoria->nombre_categoria }}">{{ $categoria->nombre_categoria }}</option>
+                                                @if($categoria->tipo === 1)
+                                                    <option value="{{ $categoria->id }}">{{ $categoria->nombre_categoria }}</option>
+                                                @endif
                                             @endforeach
                                         </select>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -70,15 +73,17 @@ Crear insumos
                             <div class="col-md-6">
                                 <div class="card">
                                     <div class="card-header">
-                                        <label for="choices-publish-status-input" class="form-label">Subcategoria</label>
+                                        <label for="subcategoria-input" class="form-label">Subcategoria</label>
                                     </div>
                                     <div class="card-body">
-                                        <select class="form-select" id="choices-publish-status-input" name="subcateg" data-choices data-choices-search-false required>
-                                            <!-- Opciones de subcategorías filtradas por JavaScript -->
+                                        <select class="form-select" id="subcategoria-input" name="subcateg" data-choices data-choices-search-false required>
+                                            <option value="">Selecciona una opción</option>
                                         </select>
                                     </div>
                                 </div>
                             </div>
+                            
+                            
                             <div class="col-md-6">
                                 <div class="card">
                                     <div class="card-header">
@@ -149,24 +154,24 @@ Crear insumos
 @section('script')
 <script src="{{ URL::asset('build/js/app.js') }}"></script>
 <script>
-        // Obtener el elemento del select de categoría
+    // Obtener el elemento del select de categoría
     var selectCategoria = document.getElementById('choices-publish-status-input');
     
-        // Obtener el elemento del select de subcategoría
-    var selectSubcategoria = document.getElementsByName('subcateg')[0];
+    // Obtener el elemento del select de subcategoría
+    var selectSubcategoria = document.getElementById('subcategoria-input');
     
-        // Manejar el evento de cambio en el select de categoría
+    // Manejar el evento de cambio en el select de categoría
     selectCategoria.addEventListener('change', function() {
         var categoriaSeleccionada = selectCategoria.value;
     
-            // Limpiar las opciones anteriores del select de subcategoría
+        // Limpiar las opciones anteriores del select de subcategoría
         selectSubcategoria.innerHTML = '';
     
-            // Filtrar y agregar las opciones de subcategoría correspondientes
+        // Filtrar y agregar las opciones de subcategoría correspondientes
         @foreach($subcategorias as $subcategoria)
-            if ('{{ $subcategoria->categoria->nombre_categoria }}' === categoriaSeleccionada) {
+            if('{{ $subcategoria->categoria->id }}' === categoriaSeleccionada) {
                 var option = document.createElement('option');
-                option.value = '{{ $subcategoria->nombre_sub_categoria }}';
+                option.value = '{{ $subcategoria->id }}';
                 option.textContent = '{{ $subcategoria->nombre_sub_categoria }}';
                 selectSubcategoria.appendChild(option);
             }

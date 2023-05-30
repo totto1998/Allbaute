@@ -100,62 +100,52 @@ class insumosController extends Controller
         $insumo = Insumo::findOrFail($id);
         $subcategorias = SubCategoria::all();
         $categorias = Categoria::all();
-    
-        return view('insumos.edit', compact('insumo', 'subcategorias', 'categorias'));
+        
+        $categoriaSeleccionada = $insumo->categ;
+        
+        return view('insumos.edit', compact('insumo', 'subcategorias', 'categorias', 'categoriaSeleccionada'));
     }
     
+    
 
-    // Método para actualizar el registro en la base de datos
     public function update(Request $request, $id)
     {
-        // Validar los datos del formulario si es necesario
+        // Validar los campos del formulario de edición
         $request->validate([
-            'tags' => 'required',
-            'precio' => 'required',
-            'stock' => 'required',
-            'descuento' => 'required',
+            'nombre' => 'required',
+            'categ' => 'required',
+            'subcateg' => 'required',
             'color' => 'required',
             'unidad' => 'required',
-            'ancho' => 'required',
-            'estado' => 'required',
         ]);
     
-        // Buscar el insumo a actualizar
-        $insumo = insumo::find($id);
+        // Buscar el insumo por su ID
+        $insumo = Insumo::findOrFail($id);
     
-        // Procesar y guardar la imagen si se ha enviado una nueva imagen
+        // Actualizar los campos del insumo con los valores del formulario
+        $insumo->fill($request->only([
+            'nombre',
+            'categ',
+            'subcateg',
+            'tags',
+            'color',
+            'unidad',
+            'descripcion',
+        ]));
+    
+        // Manejar la subida de la imagen
         if ($request->hasFile('img')) {
-            // Obtener el archivo de imagen enviado
-            $image = $request->file('img');
-    
-            // Generar un nombre único para la imagen
-            $imageName = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
-    
-            // Guardar la imagen en la ubicación deseada (por ejemplo, la carpeta "images" dentro del directorio público)
-            $image->move(public_path('images'), $imageName);
-    
-            // Actualizar el campo de imagen en la base de datos con el nombre de la imagen
-            $insumo->img = $imageName;
+            $imagePath = $request->file('img')->store('ruta/de/tu/carpeta');
+            $insumo->img = $imagePath;
         }
-    
-        // Actualizar los demás campos del insumo
-        $insumo->tags = $request->tags;
-        $insumo->precio = $request->precio;
-        $insumo->stock = $request->stock;
-        $insumo->descuento = $request->descuento;
-        $insumo->color = $request->color;
-        $insumo->unidad = $request->unidad;
-        $insumo->ancho = $request->ancho;
-        $insumo->estado = $request->estado;
-        $insumo->categ = $request->categ;
-        $insumo->subcateg = $request->subcateg;
     
         // Guardar los cambios en la base de datos
         $insumo->save();
     
-        // Redireccionar a la vista deseada o mostrar un mensaje de éxito
-        return redirect()->route('insumos.index')->with('success', 'El insumo se actualizó correctamente.');
+        // Redireccionar a la página de detalles del insumo actualizado
+        return redirect()->route('insumos.index', $insumo->id)->with('success', 'Insumo actualizado exitosamente.');
     }
+    
     /**
      * Remove the specified resource from storage.
      */
