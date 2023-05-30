@@ -62,7 +62,6 @@ parametrizacion
             <div class="card-body pt-0">
                 <div class="table-responsive">
                     <table class="table table-nowrap align-middle" id="orderTable">
-                        <div class="table-responsive">
                         <thead class="text-muted table-light">
                             <tr class="text-uppercase">
                                 <th class="sort" data-sort="id">ID</th>
