@@ -1,3 +1,10 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Crear insumos</title>
+</head>
+<body>
+
 @extends('layouts.master')
 @section('title')
 @lang('translation.create-product')
@@ -21,7 +28,7 @@ Crear insumos
 <div class="">
     <div class="row">
         <div class="col-lg-8 mx-auto">
-            <form action="{{ route('insumos.store') }}" method="POST" enctype="multipart/form-data" id="createproduct-form" autocomplete="off" class="needs-validation">
+            <form action="{{ route('insumos.store') }}" method="POST" enctype="multipart/form-data" id="createproduct-form" autocomplete="off" class="needs-validation" onsubmit="return validarCampos();">
                 @csrf
 
                 <div class="card">
@@ -45,7 +52,7 @@ Crear insumos
                                         <label for="nombre" class="form-label">Nombre</label>
                                     </div>
                                     <div class="card-body">
-                                        <input type="text" class="form-control" id="imagen" name="nombre" required>
+                                        <input type="text" class="form-control" id="imagen" name="nombre" required oninput="bloquearComillas('imagen');">
                                     </div> 
                                 </div> 
                             </div>
@@ -136,7 +143,7 @@ Crear insumos
                             <div class="card-body">
                                 <div class="mb-3">
                                     <label for="descripcion-input" class="form-label">Descripción</label>
-                                    <textarea class="form-control" id="descripcion-input" name="descripcion" rows="3"></textarea>
+                                    <textarea class="form-control" id="descripcion-input" name="descripcion" rows="3" oninput="bloquearComillas('descripcion-input');"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -151,31 +158,40 @@ Crear insumos
     </div>
 </div>
 @endsection
+
 @section('script')
 <script src="{{ URL::asset('build/js/app.js') }}"></script>
 <script>
-    // Obtener el elemento del select de categoría
-    var selectCategoria = document.getElementById('choices-publish-status-input');
-    
-    // Obtener el elemento del select de subcategoría
-    var selectSubcategoria = document.getElementById('subcategoria-input');
-    
-    // Manejar el evento de cambio en el select de categoría
-    selectCategoria.addEventListener('change', function() {
-        var categoriaSeleccionada = selectCategoria.value;
-    
-        // Limpiar las opciones anteriores del select de subcategoría
-        selectSubcategoria.innerHTML = '';
-    
-        // Filtrar y agregar las opciones de subcategoría correspondientes
-        @foreach($subcategorias as $subcategoria)
-            if('{{ $subcategoria->categoria->id }}' === categoriaSeleccionada) {
-                var option = document.createElement('option');
-                option.value = '{{ $subcategoria->id }}';
-                option.textContent = '{{ $subcategoria->nombre_sub_categoria }}';
-                selectSubcategoria.appendChild(option);
+    function bloquearComillas(id) {
+        var input = document.getElementById(id);
+        input.value = input.value.replace(/['="]/g, '');
+    }
+
+    function validarCampos() {
+        var tipoParametrizacion = document.getElementById("parametro").value;
+        if (tipoParametrizacion === "1") {
+            var texto = document.getElementById("nombre_categoria").value;
+            var patron = /^[a-zA-Z\s]+$/;
+            if (!patron.test(texto)) {
+                document.getElementById("mensajeError_categoria").textContent = "El texto contiene caracteres no permitidos";
+                return false;
             }
-        @endforeach
-    });
+        } else if (tipoParametrizacion === "2") {
+            var subCategoria = document.getElementById("nombre_sub_categoria").value;
+            if (subCategoria.trim() === "") {
+                document.getElementById("mensajeError").textContent = "Debe ingresar un nombre de subcategoría";
+                return false;
+            }
+        }
+        var comentario = document.getElementById("comentario").value;
+        if (comentario.includes("'") || comentario.includes('"')) {
+            document.getElementById("mensajeError_comentario").textContent = "El comentario contiene comillas";
+            return false;
+        }
+        return true;
+    }
 </script>
 @endsection
+
+</body>
+</html>

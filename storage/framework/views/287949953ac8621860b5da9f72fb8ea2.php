@@ -1,3 +1,10 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Crear insumos</title>
+</head>
+<body>
+
 
 <?php $__env->startSection('title'); ?>
 <?php echo app('translator')->get('translation.create-product'); ?>
@@ -21,7 +28,7 @@ Crear insumos
 <div class="">
     <div class="row">
         <div class="col-lg-8 mx-auto">
-            <form action="<?php echo e(route('insumos.store')); ?>" method="POST" enctype="multipart/form-data" id="createproduct-form" autocomplete="off" class="needs-validation">
+            <form action="<?php echo e(route('insumos.store')); ?>" method="POST" enctype="multipart/form-data" id="createproduct-form" autocomplete="off" class="needs-validation" onsubmit="return validarCampos();">
                 <?php echo csrf_field(); ?>
 
                 <div class="card">
@@ -33,7 +40,7 @@ Crear insumos
                                     <label for="img" class="form-label">Imagen</label>
                                 </div>
                                 <div class="card-body">
-                                    <input type="file" class="form-control" id="imagen" name="img" required>
+                                    <input type="file" class="form-control" id="img" name="img" required>
                                 </div>
                             </div>
                         </div>
@@ -45,7 +52,7 @@ Crear insumos
                                         <label for="nombre" class="form-label">Nombre</label>
                                     </div>
                                     <div class="card-body">
-                                        <input type="text" class="form-control" id="imagen" name="nombre" required>
+                                        <input type="text" class="form-control" id="imagen" name="nombre" required oninput="bloquearComillas('imagen');">
                                     </div> 
                                 </div> 
                             </div>
@@ -57,12 +64,13 @@ Crear insumos
                                     <div class="card-body">
                                         <select class="form-select" id="choices-publish-status-input" name="categ" data-choices data-choices-search-false>
                                             <option value="">Selecciona una opción</option>
-                                            <?php $__currentLoopData = $SubCategoria; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $param): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                            
-                                            <option value="<?php echo e($param->nombre_categoria); ?>"><?php echo e($param->nombre_categoria); ?></option>
-
+                                            <?php $__currentLoopData = $categorias; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $categoria): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <?php if($categoria->tipo === 1): ?>
+                                                    <option value="<?php echo e($categoria->id); ?>"><?php echo e($categoria->nombre_categoria); ?></option>
+                                                <?php endif; ?>
                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </select>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -72,19 +80,17 @@ Crear insumos
                             <div class="col-md-6">
                                 <div class="card">
                                     <div class="card-header">
-                                        <label for="choices-publish-status-input" class="form-label">Subcategoria</label>
+                                        <label for="subcategoria-input" class="form-label">Subcategoria</label>
                                     </div>
                                     <div class="card-body">
-                                        <select class="form-select" id="choices-publish-status-input" name="subcateg" data-choices data-choices-search-false required>
-                                            <?php $__currentLoopData = $SubCategoria; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $param): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                            <?php if($param->id_tipo == 2): ?>
-                                            <option value="<?php echo e($param->nombre); ?>"><?php echo e($param->nombre); ?></option>
-                                            <?php endif; ?>
-                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                        <select class="form-select" id="subcategoria-input" name="subcateg" data-choices data-choices-search-false required>
+                                            <option value="">Selecciona una opción</option>
                                         </select>
                                     </div>
                                 </div>
                             </div>
+                            
+                            
                             <div class="col-md-6">
                                 <div class="card">
                                     <div class="card-header">
@@ -105,10 +111,11 @@ Crear insumos
                                     </div>
                                     <div class="card-body">
                                         <select class="form-select" id="color-input" name="color">
-                                            <option value="">Selecciona una opción</option>
-                                            <option value="Rojo">Rojo</option>
-                                            <option value="Azul">Azul</option>
-                                            <option value="Verde">Verde</option>
+                                            <?php $__currentLoopData = $subcategorias; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $subcategoria): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <?php if($subcategoria->id_categ == 3): ?> 
+                                                    <option value="<?php echo e($subcategoria->nombre_sub_categoria); ?>"><?php echo e($subcategoria->nombre_sub_categoria); ?></option>
+                                                <?php endif; ?>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </select>
                                     </div>
                                 </div>
@@ -120,10 +127,11 @@ Crear insumos
                                     </div>
                                     <div class="card-body">
                                         <select class="form-select" id="unidad-input" name="unidad">
-                                            <option value="">Selecciona una opción</option>
-                                            <option value="Metro">Metro</option>
-                                            <option value="Kilogramo">Kilogramo</option>
-                                            <option value="Litro">Litro</option>
+                                            <?php $__currentLoopData = $subcategorias; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $subcategoria): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <?php if($subcategoria->id_categ == 4): ?> 
+                                                    <option value="<?php echo e($subcategoria->nombre_sub_categoria); ?>"><?php echo e($subcategoria->nombre_sub_categoria); ?></option>
+                                                <?php endif; ?>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </select>
                                     </div>
                                 </div>
@@ -135,7 +143,7 @@ Crear insumos
                             <div class="card-body">
                                 <div class="mb-3">
                                     <label for="descripcion-input" class="form-label">Descripción</label>
-                                    <textarea class="form-control" id="descripcion-input" name="descripcion" rows="3"></textarea>
+                                    <textarea class="form-control" id="descripcion-input" name="descripcion" rows="3" oninput="bloquearComillas('descripcion-input');"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -150,7 +158,42 @@ Crear insumos
     </div>
 </div>
 <?php $__env->stopSection(); ?>
+
 <?php $__env->startSection('script'); ?>
-    <script src="<?php echo e(URL::asset('build/js/app.js')); ?>"></script>
+<script src="<?php echo e(URL::asset('build/js/app.js')); ?>"></script>
+<script>
+    function bloquearComillas(id) {
+        var input = document.getElementById(id);
+        input.value = input.value.replace(/['="]/g, '');
+    }
+
+    function validarCampos() {
+        var tipoParametrizacion = document.getElementById("parametro").value;
+        if (tipoParametrizacion === "1") {
+            var texto = document.getElementById("nombre_categoria").value;
+            var patron = /^[a-zA-Z\s]+$/;
+            if (!patron.test(texto)) {
+                document.getElementById("mensajeError_categoria").textContent = "El texto contiene caracteres no permitidos";
+                return false;
+            }
+        } else if (tipoParametrizacion === "2") {
+            var subCategoria = document.getElementById("nombre_sub_categoria").value;
+            if (subCategoria.trim() === "") {
+                document.getElementById("mensajeError").textContent = "Debe ingresar un nombre de subcategoría";
+                return false;
+            }
+        }
+        var comentario = document.getElementById("comentario").value;
+        if (comentario.includes("'") || comentario.includes('"')) {
+            document.getElementById("mensajeError_comentario").textContent = "El comentario contiene comillas";
+            return false;
+        }
+        return true;
+    }
+</script>
 <?php $__env->stopSection(); ?>
+
+</body>
+</html>
+
 <?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\laragon\www\Allbaute\Allbaute\resources\views/insumos/create.blade.php ENDPATH**/ ?>
