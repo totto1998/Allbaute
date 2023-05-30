@@ -56,7 +56,6 @@ Provedor
                                     <th>Direccion</th>
                                     <th>Ubicacion</th>
                                     <th>Nombre Contacto</th>
-                                    <th>Tipo de Insumo</th>
                                     <th>Tags</th>
                                     <th>Acciones</th>
                                 </tr>
@@ -83,7 +82,6 @@ Provedor
                                         <small><?php echo e($proveedor->municipio); ?></small>
                                     </td>
                                     <td><?php echo e($proveedor->nombre_contacto); ?></td>
-                                    <td><?php echo e($proveedor->tipo_insumo); ?></td>
                                     <td><?php echo e($proveedor->tags); ?></td>
                                     <td>
                                         <ul class="list-inline hstack gap-2 mb-0">
