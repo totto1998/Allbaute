@@ -161,6 +161,32 @@ Crear insumos
 
 @section('script')
 <script src="{{ URL::asset('build/js/app.js') }}"></script>
+
+<script>
+    // Obtener el elemento del select de categoría
+    var selectCategoria = document.getElementById('choices-publish-status-input');
+    
+    // Obtener el elemento del select de subcategoría
+    var selectSubcategoria = document.getElementById('subcategoria-input');
+    
+    // Manejar el evento de cambio en el select de categoría
+    selectCategoria.addEventListener('change', function() {
+        var categoriaSeleccionada = selectCategoria.value;
+    
+        // Limpiar las opciones anteriores del select de subcategoría
+        selectSubcategoria.innerHTML = '';
+    
+        // Filtrar y agregar las opciones de subcategoría correspondientes
+        @foreach($subcategorias as $subcategoria)
+            if('{{ $subcategoria->categoria->id }}' === categoriaSeleccionada) {
+                var option = document.createElement('option');
+                option.value = '{{ $subcategoria->id }}';
+                option.textContent = '{{ $subcategoria->nombre_sub_categoria }}';
+                selectSubcategoria.appendChild(option);
+            }
+        @endforeach
+    });
+</script>
 <script>
     function bloquearComillas(id) {
         var input = document.getElementById(id);

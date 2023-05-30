@@ -1,3 +1,10 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Crear insumos</title>
+</head>
+<body>
+
 
 <?php $__env->startSection('title'); ?>
 <?php echo app('translator')->get('translation.create-product'); ?>
@@ -21,7 +28,7 @@ Crear insumos
 <div class="">
     <div class="row">
         <div class="col-lg-8 mx-auto">
-            <form action="<?php echo e(route('insumos.store')); ?>" method="POST" enctype="multipart/form-data" id="createproduct-form" autocomplete="off" class="needs-validation">
+            <form action="<?php echo e(route('insumos.store')); ?>" method="POST" enctype="multipart/form-data" id="createproduct-form" autocomplete="off" class="needs-validation" onsubmit="return validarCampos();">
                 <?php echo csrf_field(); ?>
 
                 <div class="card">
@@ -45,7 +52,7 @@ Crear insumos
                                         <label for="nombre" class="form-label">Nombre</label>
                                     </div>
                                     <div class="card-body">
-                                        <input type="text" class="form-control" id="imagen" name="nombre" required>
+                                        <input type="text" class="form-control" id="imagen" name="nombre" required oninput="bloquearComillas('imagen');">
                                     </div> 
                                 </div> 
                             </div>
@@ -136,7 +143,7 @@ Crear insumos
                             <div class="card-body">
                                 <div class="mb-3">
                                     <label for="descripcion-input" class="form-label">Descripción</label>
-                                    <textarea class="form-control" id="descripcion-input" name="descripcion" rows="3"></textarea>
+                                    <textarea class="form-control" id="descripcion-input" name="descripcion" rows="3" oninput="bloquearComillas('descripcion-input');"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -151,8 +158,10 @@ Crear insumos
     </div>
 </div>
 <?php $__env->stopSection(); ?>
+
 <?php $__env->startSection('script'); ?>
 <script src="<?php echo e(URL::asset('build/js/app.js')); ?>"></script>
+
 <script>
     // Obtener el elemento del select de categoría
     var selectCategoria = document.getElementById('choices-publish-status-input');
@@ -178,6 +187,39 @@ Crear insumos
         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
     });
 </script>
+<script>
+    function bloquearComillas(id) {
+        var input = document.getElementById(id);
+        input.value = input.value.replace(/['="]/g, '');
+    }
+
+    function validarCampos() {
+        var tipoParametrizacion = document.getElementById("parametro").value;
+        if (tipoParametrizacion === "1") {
+            var texto = document.getElementById("nombre_categoria").value;
+            var patron = /^[a-zA-Z\s]+$/;
+            if (!patron.test(texto)) {
+                document.getElementById("mensajeError_categoria").textContent = "El texto contiene caracteres no permitidos";
+                return false;
+            }
+        } else if (tipoParametrizacion === "2") {
+            var subCategoria = document.getElementById("nombre_sub_categoria").value;
+            if (subCategoria.trim() === "") {
+                document.getElementById("mensajeError").textContent = "Debe ingresar un nombre de subcategoría";
+                return false;
+            }
+        }
+        var comentario = document.getElementById("comentario").value;
+        if (comentario.includes("'") || comentario.includes('"')) {
+            document.getElementById("mensajeError_comentario").textContent = "El comentario contiene comillas";
+            return false;
+        }
+        return true;
+    }
+</script>
 <?php $__env->stopSection(); ?>
+
+</body>
+</html>
 
 <?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\Usuario\Documents\GitHub\Allbaute\resources\views/insumos/create.blade.php ENDPATH**/ ?>
