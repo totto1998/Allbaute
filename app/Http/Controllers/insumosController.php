@@ -10,6 +10,9 @@ use Intervention\Image\Facades\Image;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
+
 
 class insumosController extends Controller
 {
@@ -38,15 +41,11 @@ class insumosController extends Controller
         return view('insumos.create', compact('categorias', 'subcategorias'));
     }
     
-    
-    
-
-    
 
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'img' => 'required|image',
+            'img' => 'required|image|max:2048', // Validación de imagen, máximo 2 MB
             'nombre' => 'required',
             'categ' => 'required',
             'subcateg' => 'required',
@@ -55,16 +54,16 @@ class insumosController extends Controller
             'descripcion' => 'nullable',
             'tags' => 'nullable',
         ]);
-    
-        // Procesar la imagen
-        if ($request->hasFile('img')) {
-            $image = $request->file('img');
-            $imageName = $image->getClientOriginalName();
-            $image->storePubliclyAs('public/images', $imageName);
-        } else {
-            $imageName = null;
-        }
-    
+        
+        // Obtener el archivo de imagen del request
+        $image = $request->file('img');
+        
+        // Generar un nombre único para la imagen
+        $imageName = Str::random(40) . '.' . $image->getClientOriginalExtension();
+        
+        // Guardar la imagen en la ubicación deseada
+        $image->storeAs('public/images', $imageName);
+        
         // Crear el nuevo insumo
         $insumo = new Insumo();
         $insumo->nombre = $validatedData['nombre'];
@@ -79,6 +78,7 @@ class insumosController extends Controller
     
         return redirect()->route('insumos.index')->with('success', 'El insumo se ha registrado correctamente.');
     }
+    
     
     
     
@@ -135,8 +135,20 @@ class insumosController extends Controller
     
         // Manejar la subida de la imagen
         if ($request->hasFile('img')) {
-            $imagePath = $request->file('img')->store('ruta/de/tu/carpeta');
-            $insumo->img = $imagePath;
+            // Obtener el archivo de imagen del request
+            $image = $request->file('img');
+            
+            // Generar un nombre único para la imagen
+            $imageName = Str::random(40) . '.' . $image->getClientOriginalExtension();
+            
+            // Guardar la imagen en la ubicación deseada
+            $image->storeAs('public/images', $imageName);
+            
+            // Eliminar la imagen anterior (opcional)
+            Storage::delete('public/images/' . $insumo->img);
+            
+            // Actualizar el campo 'img' con el nuevo nombre de la imagen
+            $insumo->img = $imageName;
         }
     
         // Guardar los cambios en la base de datos
@@ -145,6 +157,7 @@ class insumosController extends Controller
         // Redireccionar a la página de detalles del insumo actualizado
         return redirect()->route('insumos.index', $insumo->id)->with('success', 'Insumo actualizado exitosamente.');
     }
+    
     
     /**
      * Remove the specified resource from storage.

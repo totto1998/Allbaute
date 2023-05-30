@@ -35,7 +35,7 @@ Editar insumo
                                 </div>
                                 <div class="card-body">
                                     <?php if($insumo->img): ?>
-                                        <img src="<?php echo e(asset('ruta/de/tu/carpeta/'.$insumo->img)); ?>" alt="Imagen actual" width="150">
+                                        <img src="<?php echo e(asset('storage/images/'.$insumo->img)); ?>" alt="Imagen actual" width="150">
                                     <?php endif; ?>
                                     <input type="file" class="form-control" id="img" name="img">
                                 </div>
