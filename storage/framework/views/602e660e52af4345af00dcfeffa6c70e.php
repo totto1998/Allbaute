@@ -3,7 +3,32 @@
 <?php echo app('translator')->get('translation.orders'); ?>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('css'); ?>
-<link href="<?php echo e(URL::asset('build/libs/sweetalert2/sweetalert2.min.css')); ?>" rel="stylesheet" type="text/css" />
+<link href="https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+    .custom-table-responsive {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .custom-table-responsive .dataTables_wrapper .row:first-child {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+    
+    .custom-table-responsive .dataTables_wrapper .row:first-child .col-md-6:last-child {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+    }
+    
+    .custom-table-responsive .dataTables_wrapper .row:first-child .col-md-6:last-child .dataTables_filter {
+        display: inline-block;
+        margin-right: 10px;
+    }
+</style>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
 <?php $__env->startComponent('components.breadcrumb'); ?>
@@ -39,7 +64,7 @@ Provedor
             <br>
             <div class="card-body pt-0">
                 <div>
-                    <div class="table-responsive table-card mb-1">
+                    <div class="table-responsive">
                         <table class="table table-nowrap align-middle" id="orderTable">
                             <thead class="text-muted table-light">
                                 <tr class="text-uppercase">
@@ -114,14 +139,6 @@ Provedor
                             </div>
                         </div>
                     </div>
-
-                    <div class="card-body">
-                        <div class="pagination justify-content-end">
-                            <?php echo e($data->links()); ?>
-
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </div>
@@ -131,14 +148,43 @@ Provedor
 <!--end row-->
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('script'); ?>
-<script src="<?php echo e(URL::asset('build/libs/list.js/list.min.js')); ?>"></script>
-<script src="<?php echo e(URL::asset('build/libs/list.pagination.js/list.pagination.min.js')); ?>"></script>
-
-<!--ecommerce-customer init js -->
-<script src="<?php echo e(URL::asset('build/js/pages/ecommerce-order.init.js')); ?>"></script>
-<script src="<?php echo e(URL::asset('build/libs/sweetalert2/sweetalert2.min.js')); ?>"></script>
-
-<script src="<?php echo e(URL::asset('build/js/app.js')); ?>"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap4.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#orderTable').DataTable({
+                "paging": true,
+                "searching": true,
+                "info": false,
+                "responsive": true,
+                "language": {
+                    "search": "",
+                    "paginate": {
+                        "previous": "<i class='ri-arrow-left-s-line'></i>",
+                        "next": "<i class='ri-arrow-right-s-line'></i>"
+                    }
+                },
+                "initComplete": function() {
+                    var searchInput = $('#orderTable_filter').find('input');
+                    searchInput.removeClass('form-control-sm');
+                    searchInput.attr('placeholder', 'Buscar');
+                    searchInput.parent().addClass('custom-search');
+                    searchInput.parent().insertAfter($('#orderTable_length'));
+                    
+                    var entriesLabel = $('#orderTable_length').find('label');
+                    entriesLabel.addClass('form-label');
+                    entriesLabel.contents().filter(function() {
+                        return this.nodeType === 3;
+                    }).remove();
+                    entriesLabel.prepend('Cantidad ');
+                    
+                    var entriesSelect = $('#orderTable_length').find('select');
+                    entriesSelect.addClass('form-select form-select-sm');
+                }
+            });
+        });
+    </script>
 <?php $__env->stopSection(); ?>
 
 
