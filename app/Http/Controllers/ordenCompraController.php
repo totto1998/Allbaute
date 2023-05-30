@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\OrdenCompra;
-use App\Models\proveedor;
-use App\Models\insumos;
+use App\Models\Proveedor;
+use App\Models\Insumo;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -27,7 +27,7 @@ class ordenCompraController extends Controller
     {
         $itemsPerPage = 10; // Cantidad de elementos por página
     
-        $proveedores = proveedor::with('insumos')->paginate($itemsPerPage);
+        $proveedores = Proveedor::all();
     
         return view('ordenCompra.create', compact('proveedores'));
     }
