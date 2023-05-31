@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Proveedor;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Models\Insumo;
-use App\Models\Proveedor;
+
 use App\Models\parametrizacion;
 use Illuminate\Support\Facades\Http;
 

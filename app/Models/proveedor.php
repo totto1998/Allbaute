@@ -7,12 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Proveedor extends Model
 {
-    use HasFactory;
+     use HasFactory;
 
-    protected $table = 'proveedor';
+     protected $table = 'proveedor';
 
-    protected $fillable = [
-          'id',
+     protected $fillable = [
+
           'razon_social',
           'nit',
           'telefono_fijo',
@@ -23,8 +23,7 @@ class Proveedor extends Model
           'municipio',
           'email',
           'nombre_contacto',
-          'tags',
-
+          'tags',   
      ];
     
      
