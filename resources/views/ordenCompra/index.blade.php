@@ -437,12 +437,12 @@
     </div><!-- /.modal -->
 @endsection
 @section('script')
-    <script src="{{ URL::asset('build/libs/nouislider/nouislider.min.js') }}"></script>
-    <script src="{{ URL::asset('build/libs/wnumb/wNumb.min.js') }}"></script>
-    <script src="{{ URL::asset('build/libs/gridjs/gridjs.umd.js') }}"></script>
+    <script src="{{ asset('build/libs/nouislider/nouislider.min.js') }}"></script>
+    <script src="{{ asset('build/libs/wnumb/wNumb.min.js') }}"></script>
+    <script src="{{ asset('build/libs/gridjs/gridjs.umd.js') }}"></script>
     <script src="https://unpkg.com/gridjs/plugins/selection/dist/selection.umd.js"></script>
 
 
-    <script src="{{ URL::asset('build/js/pages/ecommerce-product-list.init.js') }}"></script>
-    <script src="{{ URL::asset('build/js/app.js') }}"></script>
+    <script src="{{ asset('build/js/pages/ecommerce-product-list.init.js') }}"></script>
+    <script src="{{ asset('build/js/app.js') }}"></script>
 @endsection

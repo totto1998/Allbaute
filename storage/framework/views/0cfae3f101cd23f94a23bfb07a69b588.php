@@ -1,8 +1,8 @@
 <?php $__env->startSection('title'); ?> <?php echo app('translator')->get('translation.dashboards'); ?>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('css'); ?>
-<link href="<?php echo e(URL::asset('build/libs/jsvectormap/css/jsvectormap.min.css')); ?>" rel="stylesheet" type="text/css" />
-<link href="<?php echo e(URL::asset('build/libs/swiper/swiper-bundle.min.css')); ?>" rel="stylesheet" type="text/css" />
+<link href="<?php echo e(asset('build/libs/jsvectormap/css/jsvectormap.min.css')); ?>" rel="stylesheet" type="text/css" />
+<link href="<?php echo e(asset('build/libs/swiper/swiper-bundle.min.css')); ?>" rel="stylesheet" type="text/css" />
 <?php $__env->stopSection(); ?>
 
 
@@ -237,14 +237,14 @@ unset($__errorArgs, $__bag); ?>
 <!--end row-->
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('script'); ?>
-<script src="<?php echo e(URL::asset('build/libs/list.js/list.min.js')); ?>"></script>
-<script src="<?php echo e(URL::asset('build/libs/list.pagination.js/list.pagination.min.js')); ?>"></script>
+<script src="<?php echo e(asset('build/libs/list.js/list.min.js')); ?>"></script>
+<script src="<?php echo e(asset('build/libs/list.pagination.js/list.pagination.min.js')); ?>"></script>
 
 <!--ecommerce-customer init js -->
-<script src="<?php echo e(URL::asset('build/js/pages/ecommerce-order.init.js')); ?>"></script>
-<script src="<?php echo e(URL::asset('build/libs/sweetalert2/sweetalert2.min.js')); ?>"></script>
+<script src="<?php echo e(asset('build/js/pages/ecommerce-order.init.js')); ?>"></script>
+<script src="<?php echo e(asset('build/libs/sweetalert2/sweetalert2.min.js')); ?>"></script>
 
-<script src="<?php echo e(URL::asset('build/js/app.js')); ?>"></script>
+<script src="<?php echo e(asset('build/js/app.js')); ?>"></script>
 
 <?php $__env->stopSection(); ?>
 

@@ -437,14 +437,14 @@
     </div><!-- /.modal -->
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('script'); ?>
-    <script src="<?php echo e(URL::asset('build/libs/nouislider/nouislider.min.js')); ?>"></script>
-    <script src="<?php echo e(URL::asset('build/libs/wnumb/wNumb.min.js')); ?>"></script>
-    <script src="<?php echo e(URL::asset('build/libs/gridjs/gridjs.umd.js')); ?>"></script>
+    <script src="<?php echo e(asset('build/libs/nouislider/nouislider.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('build/libs/wnumb/wNumb.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('build/libs/gridjs/gridjs.umd.js')); ?>"></script>
     <script src="https://unpkg.com/gridjs/plugins/selection/dist/selection.umd.js"></script>
 
 
-    <script src="<?php echo e(URL::asset('build/js/pages/ecommerce-product-list.init.js')); ?>"></script>
-    <script src="<?php echo e(URL::asset('build/js/app.js')); ?>"></script>
+    <script src="<?php echo e(asset('build/js/pages/ecommerce-product-list.init.js')); ?>"></script>
+    <script src="<?php echo e(asset('build/js/app.js')); ?>"></script>
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\Usuario\Documents\GitHub\Allbaute\resources\views/ordenCompra/index.blade.php ENDPATH**/ ?>

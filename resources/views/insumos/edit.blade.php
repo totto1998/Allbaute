@@ -5,8 +5,8 @@
 @section('css')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.min.css">
-<link rel="stylesheet" href="{{ URL::asset('build/css/styledrop.css') }}">
-<link rel="stylesheet" href="{{ URL::asset('build/css/style.css') }}">
+<link rel="stylesheet" href="{{ asset('build/css/styledrop.css') }}">
+<link rel="stylesheet" href="{{ asset('build/css/style.css') }}">
 @endsection
 @section('content')
 @component('components.breadcrumb')
@@ -159,7 +159,7 @@ Editar insumo
 </div>
 @endsection
 @section('script')
-<script src="{{ URL::asset('build/js/app.js') }}"></script>
+<script src="{{ asset('build/js/app.js') }}"></script>
 <script>
     // Obtener el elemento del select de categoría
     var selectCategoria = document.getElementById('choices-publish-status-input');

@@ -601,6 +601,6 @@
     </div><!-- /.modal -->
 @endsection
 @section('script')
-    <script src="{{ URL::asset('build/js/pages/ecommerce-product-checkout.init.js') }}"></script>
-    <script src="{{ URL::asset('build/js/app.js') }}"></script>
+    <script src="{{ asset('build/js/pages/ecommerce-product-checkout.init.js') }}"></script>
+    <script src="{{ asset('build/js/app.js') }}"></script>
 @endsection

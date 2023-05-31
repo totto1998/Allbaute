@@ -207,10 +207,10 @@ async function fillSelects() {
 fillSelects();
 </script>
 
-<script src="{{ URL::asset('build/libs/@ckeditor/ckeditor5-build-classic/build/ckeditor.js') }}"></script>
+<script src="{{ asset('build/libs/@ckeditor/ckeditor5-build-classic/build/ckeditor.js') }}"></script>
 
-<script src="{{ URL::asset('build/libs/dropzone/dropzone-min.js') }}"></script>
-<script src="{{ URL::asset('build/js/pages/ecommerce-product-create.init.js') }}"></script>
+<script src="{{ asset('build/libs/dropzone/dropzone-min.js') }}"></script>
+<script src="{{ asset('build/js/pages/ecommerce-product-create.init.js') }}"></script>
 
-<script src="{{ URL::asset('build/js/app.js') }}"></script>
+<script src="{{ asset('build/js/app.js') }}"></script>
 @endsection

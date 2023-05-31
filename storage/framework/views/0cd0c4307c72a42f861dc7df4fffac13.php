@@ -1,8 +1,8 @@
 <?php $__env->startSection('title'); ?> <?php echo app('translator')->get('translation.dashboards'); ?>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('css'); ?>
-<link href="<?php echo e(URL::asset('build/libs/jsvectormap/css/jsvectormap.min.css')); ?>" rel="stylesheet" type="text/css" />
-<link href="<?php echo e(URL::asset('build/libs/swiper/swiper-bundle.min.css')); ?>" rel="stylesheet" type="text/css" />
+<link href="<?php echo e(asset('build/libs/jsvectormap/css/jsvectormap.min.css')); ?>" rel="stylesheet" type="text/css" />
+<link href="<?php echo e(asset('build/libs/swiper/swiper-bundle.min.css')); ?>" rel="stylesheet" type="text/css" />
 <?php $__env->stopSection(); ?>
 
 
