@@ -27,9 +27,9 @@ class ordenCompraController extends Controller
     {
         $itemsPerPage = 10; // Cantidad de elementos por página
     
-        $proveedores = Proveedor::all();
+        // $proveedores = Proveedor::all();
     
-        return view('ordenCompra.create', compact('proveedores'));
+        return view('ordenCompra.create');
     }
 
     /**
