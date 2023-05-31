@@ -25,14 +25,8 @@ class insumosController extends Controller
        return view('insumos.index', compact('data'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    // public function create()
-    // {
-    //     $paramcateg = Parametrizacion::where('id_tipo', 1)->get();
-    //     return view('insumos.create', ['paramcateg' => $paramcateg]);
-    // }
+
+
     public function create()
     {
         $categorias = Categoria::all();
