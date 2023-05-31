@@ -13,20 +13,9 @@ use Illuminate\Support\Facades\Http;
 class proveedorController extends Controller
 {
     
-    // function __construct()
-    // {
-    //     $this->middleware('permission:ver-proveedor | crear-proveedor | editar-proveedor | borrar-proveedor',['only'=>['index']]);
-    //     $this->middleware('permission:crear-proveedor', ['only'=>['create','store']]);
-    //     $this->middleware('permission:editar-proveedor', ['only'=>['edit','update']]);
-    //     $this->middleware('permission:borrar-proveedor', ['only'=>['edit','detroy']]);
-    // }
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $data = Proveedor::all();
-        // $insumos = insumos::all();
         return view('proveedor.index', compact('data'));
     }
 
