@@ -21,7 +21,7 @@ class insumosController extends Controller
      */
     public function index()
     {
-       $data = Insumo::paginate(5);
+       $data = Insumo::all();
        return view('insumos.index', compact('data'));
     }
 

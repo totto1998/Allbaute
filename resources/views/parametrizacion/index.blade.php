@@ -192,7 +192,4 @@ parametrizacion
         });
     });
 </script>
-
-
-
 @endsection
