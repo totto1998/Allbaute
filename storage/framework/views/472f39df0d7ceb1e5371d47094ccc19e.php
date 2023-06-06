@@ -110,8 +110,7 @@
                                                 <td><?php echo e($insumo->id); ?></td>
                                                 <td>
                                                     <div class="d-flex align-items-center">
-                                                        <img src="<?php echo e(asset('storage/images/' . $insumo->img)); ?>" alt="<?php echo e($insumo->nombre); ?>" class="me-2" style="width: 50px; height: 50px;">
-
+                                                        <img src="<?php echo e(asset('images/' . $insumo->img)); ?>" alt="<?php echo e($insumo->nombre); ?>" class="me-2" style="width: 50px; height: 50px;">
                                                         <div>
                                                             <p class="mb-0"><?php echo e($insumo->nombre); ?></p>
                                                             <small class="text-muted"><?php echo e($insumo->categoria->nombre_categoria); ?></small><br>

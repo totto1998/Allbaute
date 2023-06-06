@@ -110,8 +110,7 @@
                                                 <td>{{ $insumo->id }}</td>
                                                 <td>
                                                     <div class="d-flex align-items-center">
-                                                        <img src="{{ asset('storage/images/' . $insumo->img) }}" alt="{{ $insumo->nombre }}" class="me-2" style="width: 50px; height: 50px;">
-
+                                                        <img src="{{ asset('images/' . $insumo->img) }}" alt="{{ $insumo->nombre }}" class="me-2" style="width: 50px; height: 50px;">
                                                         <div>
                                                             <p class="mb-0">{{ $insumo->nombre }}</p>
                                                             <small class="text-muted">{{ $insumo->categoria->nombre_categoria }}</small><br>

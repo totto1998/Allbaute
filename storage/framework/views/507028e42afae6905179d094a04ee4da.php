@@ -12,8 +12,8 @@
 <?php $__env->startSection('css'); ?>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.min.css">
-<link rel="stylesheet" href="<?php echo e(URL::asset('build/css/styledrop.css')); ?>">
-<link rel="stylesheet" href="<?php echo e(URL::asset('build/css/style.css')); ?>">
+<link rel="stylesheet" href="<?php echo e(asset('build/css/styledrop.css')); ?>">
+<link rel="stylesheet" href="<?php echo e(asset('build/css/style.css')); ?>">
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
 <?php $__env->startComponent('components.breadcrumb'); ?>

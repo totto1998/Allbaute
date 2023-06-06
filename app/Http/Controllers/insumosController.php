@@ -12,6 +12,8 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
+
 
 
 class insumosController extends Controller
@@ -48,16 +50,16 @@ class insumosController extends Controller
             'descripcion' => 'nullable',
             'tags' => 'nullable',
         ]);
-        
+    
         // Obtener el archivo de imagen del request
         $image = $request->file('img');
-        
+    
         // Generar un nombre único para la imagen
         $imageName = Str::random(40) . '.' . $image->getClientOriginalExtension();
-        
-        // Guardar la imagen en la ubicación deseada
-        $image->storeAs('public/images', $imageName);
-        
+    
+        // Mover la imagen a la ubicación deseada utilizando public_path
+        $image->move(public_path('images'), $imageName);
+    
         // Crear el nuevo insumo
         $insumo = new Insumo();
         $insumo->nombre = $validatedData['nombre'];
@@ -72,6 +74,7 @@ class insumosController extends Controller
     
         return redirect()->route('insumos.index')->with('success', 'El insumo se ha registrado correctamente.');
     }
+    
     
     
     
@@ -131,16 +134,18 @@ class insumosController extends Controller
         if ($request->hasFile('img')) {
             // Obtener el archivo de imagen del request
             $image = $request->file('img');
-            
+    
             // Generar un nombre único para la imagen
-            $imageName = Str::random(40) . '.' . $image->getClientOriginalExtension();
-            
-            // Guardar la imagen en la ubicación deseada
-            $image->storeAs('public/images', $imageName);
-            
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+    
+            // Mover la imagen a la ubicación deseada en public_path
+            $image->move(public_path('images'), $imageName);
+    
             // Eliminar la imagen anterior (opcional)
-            Storage::delete('public/images/' . $insumo->img);
-            
+            if ($insumo->img) {
+                File::delete(public_path('images/' . $insumo->img));
+            }
+    
             // Actualizar el campo 'img' con el nuevo nombre de la imagen
             $insumo->img = $imageName;
         }
@@ -151,6 +156,7 @@ class insumosController extends Controller
         // Redireccionar a la página de detalles del insumo actualizado
         return redirect()->route('insumos.index', $insumo->id)->with('success', 'Insumo actualizado exitosamente.');
     }
+    
     
     
     /**

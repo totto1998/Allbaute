@@ -5,8 +5,8 @@
 <?php $__env->startSection('css'); ?>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.min.css">
-<link rel="stylesheet" href="<?php echo e(URL::asset('build/css/styledrop.css')); ?>">
-<link rel="stylesheet" href="<?php echo e(URL::asset('build/css/style.css')); ?>">
+<link rel="stylesheet" href="<?php echo e(asset('build/css/styledrop.css')); ?>">
+<link rel="stylesheet" href="<?php echo e(asset('build/css/style.css')); ?>">
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
 <?php $__env->startComponent('components.breadcrumb'); ?>
@@ -35,7 +35,7 @@ Editar insumo
                                 </div>
                                 <div class="card-body">
                                     <?php if($insumo->img): ?>
-                                        <img src="<?php echo e(asset('storage/images/'.$insumo->img)); ?>" alt="Imagen actual" width="150">
+                                    <img src="<?php echo e(asset('images/' . $insumo->img)); ?>" alt="<?php echo e($insumo->nombre); ?>" class="me-2" style="width: 50px; height: 50px;">
                                     <?php endif; ?>
                                     <input type="file" class="form-control" id="img" name="img">
                                 </div>
@@ -159,7 +159,7 @@ Editar insumo
 </div>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('script'); ?>
-<script src="<?php echo e(URL::asset('build/js/app.js')); ?>"></script>
+<script src="<?php echo e(asset('build/js/app.js')); ?>"></script>
 <script>
     // Obtener el elemento del select de categoría
     var selectCategoria = document.getElementById('choices-publish-status-input');

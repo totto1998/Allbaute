@@ -35,7 +35,7 @@ Editar insumo
                                 </div>
                                 <div class="card-body">
                                     @if ($insumo->img)
-                                        <img src="{{ asset('storage/images/'.$insumo->img) }}" alt="Imagen actual" width="150">
+                                    <img src="{{ asset('images/' . $insumo->img) }}" alt="{{ $insumo->nombre }}" class="me-2" style="width: 50px; height: 50px;">
                                     @endif
                                     <input type="file" class="form-control" id="img" name="img">
                                 </div>
